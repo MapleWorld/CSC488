@@ -4,57 +4,64 @@
 
 {
 
-	%%%%%%%%%% Declarations
-	var x, y : Integer
+	%%%%%%%%%% Declarations %%%%%%%%%%
 	var b : Boolean
+	var x, y : Integer
 
-	%%%%%%%%%% Arithmetic
+	%%%%%%%%%% Arithmetic %%%%%%%%%%
 
 	% Addition Test
-	x := 1 + 1 % Result 2
-	x := 1 + -1 % Result 0
+	x := 1 + 1 						% Result 2
+	x := 1 + -1 					% Result 0
 
 	% Subtraction Test
-	x := 1 - 1 % Result 0
-	x := 1 - (-1) % Result 2
-	x := (-1) - (-1) % Result 0
+	x := 1 - 1 						% Result 0
+	x := 1 - (-1) 					% Result 2
+	x := (-1) - (-1) 				% Result 0
 
 	% Multiplication Test
-	x := 3 * 5 % Result 15
-	x := 3 * (-5) % Result -15
-	x := (-3) * (-5) % Result 15
+	x := 3 * 5 						% Result 15
+	x := 3 * (-5) 					% Result -15
+	x := (-3) * (-5) 				% Result 15
 
 	% Division Test
-	x :=  15 / 5 % Result 3
-	x :=  15 / -5 % Result -3
-	x :=  -15 / -5 % Result 3
+	x :=  15 / 5 					% Result 3
+	x :=  15 / -5 					% Result -3
+	x :=  -15 / -5 					% Result 3
 
-	%%%%%%%%%% Logical
+	%%%%%%%%%% Logical %%%%%%%%%%
 
 	% AND Test
-	b := true and true % Result true
-	b := not true and true % Result false
-	b := true and not true % Result false
-	b := not true and not true % Result false
-	b := true and false % Result false
-	b := false and true % Result false
-	b := false and false % Result false
-	b := true and not false % Result true
-	b := not false and true % Result true
+	b := true and true 				% Result true
+	b := true and false 			% Result false
+	b := false and true 			% Result false
+	b := false and false 			% Result false
+	b := true and not true 			% Result false
+	b := not true and true 			% Result false
+	b := not true and not true 		% Result false
+	b := true and not false 		% Result true
+	b := not false and true 		% Result true
+	b := false and not false 		% Result false
+	b := not false and false 		% Result false
+	b := not false and not false 	% Result true
 
 	% OR Test
-	b := true or true % Result true
-	b := true or false % Result true
-	b := false or true % Result true
-	b := false or false % Result false
-	b := true or not true % Result true
-	b := not true or true % Result true
-	b := false or not false % Result true
-	b := not false or  false % Result true
-	b := not false or not false % Result true
+	b := true or true 				% Result true
+	b := true or false 				% Result true
+	b := false or true 				% Result true
+	b := false or false 			% Result false
+	b := true or not true 			% Result true
+	b := not true or true 			% Result true
+	b := not true or not true 		% Result false
+	b := true or not false 			% Result true
+	b := not false or true 			% Result true
+	b := false or not false 		% Result true
+	b := not false or  false 		% Result true
+	b := not false or not false 	% Result true
 
-	%%%%%%%%%% Comparison
+	%%%%%%%%%% Comparison %%%%%%%%%%
 	
+	% All Result true
 	b := 1 < 2
 	b := 2 > 1
 	b := -1 < 2
