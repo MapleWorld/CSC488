@@ -1,3 +1,5 @@
+Add ?ts=4 to the end of the url to fix the styling issue, don't know how to fix the indent problem
+
 # CSC488 A1
 
 - **Ou** - a program that uses all arithmetic, logical and comparison operators
