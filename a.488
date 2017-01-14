@@ -377,8 +377,8 @@
 	% E4 : Inequality Test
 	if ((0 not= 1) = false) 
 	then
-		write "E3 pass", newline
+		write "E4 pass", newline
 	else
-		write "E3 fail", newline
+		write "E4 fail", newline
 
 }
