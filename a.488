@@ -4,381 +4,176 @@
 
 {
 
-	%%%%%%%%%% Declarations
-	var x, y : Integer
+	%%%%%%%%%% Declarations %%%%%%%%%%
 	var b : Boolean
+	var x, y : Integer
 
-	%%%%%%%%%% Arithmetic
+	%%%%%%%%%% Arithmetic %%%%%%%%%%
 
 	% Addition Test
-	% A0 : Addition
-	x := 1 + 1
-	if (x = 2) 
-	then
-		write "A0 pass", newline
-	else
-		write "A0 fail", newline
-
-	% A1 : Addition
-	x := 1 + -1
-	if (x = 0) 
-	then
-		write "A1 pass", newline
-	else
-		write "A1 fail", newline
+	x := 1 + 1 						% Result 2
+	x := 1 + (-1) 					% Result 0
 
 	% Subtraction Test
-	% S0 : Subtraction
-	x := 1 - 1
-	if (x = 0) 
-	then
-		write "S0 pass", newline
-	else
-		write "S0 fail", newline
-
-	% S1 : Subtraction
-	x := 1 - (-1)
-	if (x = 2) 
-	then
-		write "S1 pass", newline
-	else
-		write "S1 fail", newline
-
-	% S2 : Subtraction
-	x := (-1) - (-1)
-	if (x = 0) 
-	then
-		write "S2 pass", newline
-	else
-		write "S2 fail", newline
+	x := 1 - 1 						% Result 0
+	x := 1 - (-1) 					% Result 2
+	x := (-1) - 1					% Result -2
+	x := (-1) - (-1) 				% Result 0
 
 	% Multiplication Test
-	% M0 : Multiplication 
-	x := 3 * 5
-	if (x = 15) 
-	then
-		write "M0 pass", newline
-	else
-		write "M0 fail", newline
-
-	% M1 : Multiplication 
-	x := 3 * (-5)
-	if (x = -15) 
-	then
-		write "M1 pass", newline
-	else
-		write "M1 fail", newline
-
-	% M2 : Multiplication 
-	x := (-3) * (-5)
-	if (x = 15) 
-	then
-		write "M2 pass", newline
-	else
-		write "M2 fail", newline
+	x := 3 * 5 						% Result 15
+	x := 3 * (-5) 					% Result -15
+	x := (-5) * 3					% Result -15
+	x := (-3) * (-5) 				% Result 15
 
 	% Division Test
-	% D0 : Division  
-	x :=  15 / 5
-	if (x = 3) 
-	then
-		write "D0 pass", newline
-	else
-		write "D0 fail", newline
+	x :=  15 / 5 					% Result 3
+	x :=  15 / (-5) 				% Result -3
+	x :=  (-15) / 5 				% Result -3
+	x :=  (-15) / -5 				% Result 3
 
-	% D1 : Division  
-	x :=  15 / -5
-	if (x = -3) 
-	then
-		write "D1 pass", newline
-	else
-		write "D1 fail", newline
+	% Precedence of Operators %
+	% Addition and Subtraction
+	x := 1 - 2 + 3 - 4				% Result -2
+    y := (1 - 2) + (3 - 4)			% Result -2
+    b := x = y
 
-	% D2 : Division  
-	x :=  -15 / -5
-	if (x = 3) 
-	then
-		write "D2 pass", newline
-	else
-		write "D2 fail", newline
+	x := 1 - -2 + 3 - -4			% Result 10
+    y := (1 - (-2) + (3 - (-4))		% Result 10
+    b := x = y
 
-	%%%%%%%%%% Logical
+	% Addition and Multiplication
+	x := 1 * 2 + 3 * 4				% Result 14
+    y := (1 * 2) + (3 * 4)			% Result 14
+    b := x = y
+
+	x := 1 * -2 + 3 * -4			% Result -14
+    y := ((-1) * 2) + ((-3) * 4)	% Result -14
+    b := x = y
+
+	% Addition and Division
+	x := 2 / 1 + 4 / 2				% Result 4
+    y := (2 / 1) + (4 / 2)			% Result 4
+    b := x = y
+
+	x := 2 / -1 + 4 / -2			% Result -4
+    y := (2 / (-1)) + (4 / (-2))	% Result -4
+    b := x = y
+
+    % Subtraction and Multiplication
+	x := 1 * 2 - 3 * 4				% Result 14
+    y := (1 * 2) - (3 * 4)			% Result 14
+    b := x = y
+
+	x := 1 * -2 - 3 * -4			% Result 12
+    y := ((-1) * 2) - ((-3) * 4)	% Result 12
+    b := x = y
+
+    % Subtraction and Division
+	x := 2 / 1 - 4 / 2				% Result 0
+    y := (2 / 1) - (4 / 2)			% Result 0
+    b := x = y
+
+	x := 2 / -1 - 4 / -2			% Result 0
+    y := (2 / (-1)) - (4 / (-2))	% Result 0
+    b := x = y
+
+    % Addition, Subtraction, Multiplication, and Division
+    x := 4 * 3 / -2 * -1 - 6		% Result 0
+    y := ((4 * 3 / -6) * -3) - 6	% Result 0
+    b := x = y
+
+	%%%%%%%%%% Logical %%%%%%%%%%
 
 	% AND Test
-	% L0
-	b := true and true
-	if (b = true)
-	then
-		write "L0 pass", newline
-	else
-		write "L0 fail", newline
+	b := true and true 				% Result true
+	b := true and false 			% Result false
+	b := false and true 			% Result false
+	b := false and false 			% Result false
 
-	% L1
-	b := not true and true
-	if (b = false)
-	then
-		write "L1 pass", newline
-	else
-		write "L1 fail", newline
-
-	% L2
-	b := true and not true
-	if (b = false)
-	then
-		write "L2 pass", newline
-	else
-		write "L2 fail", newline
-
-	% L3
-	b := not true and not true
-	if (b = false)
-	then
-		write "L3 pass", newline
-	else
-		write "L3 fail", newline
-
-	% L4
-	b := true and false
-	if (b = false)
-	then
-		write "L4 pass", newline
-	else
-		write "L4 fail", newline
-
-	% L5
-	b := false and true
-	if (b = false)
-	then
-		write "L5 pass", newline
-	else
-		write "L5 fail", newline
-
-	% L6
-	b := false and false
-	if (b = false)
-	then
-		write "L6 pass", newline
-	else
-		write "L6 fail", newline
-
-	% L7
-	b := true and not false
-	if (b = true)
-	then
-		write "L7 pass", newline
-	else
-		write "L7 fail", newline
-
-	% L8
-	b := not false and true
-	if (b = true)
-	then
-		write "L8 pass", newline
-	else
-		write "L8 fail", newline
-
+	% AND NOT Test
+	b := true and not true 			% Result false
+	b := not true and true 			% Result false
+	b := not true and not true 		% Result false
+	b := true and not false 		% Result true
+	b := not false and true 		% Result true
+	b := false and not false 		% Result false
+	b := not false and false 		% Result false
+	b := not false and not false 	% Result true
 
 	% OR Test
-	% R0
-	b := true or true
-	if (b = true)
-	then
-		write "R0 pass", newline
-	else
-		write "R0 fail", newline
+	b := true or true 				% Result true
+	b := true or false 				% Result true
+	b := false or true 				% Result true
+	b := false or false 			% Result false
 
-	% R1
-	b := true or false
-	if (b = true)
-	then
-		write "R1 pass", newline
-	else
-		write "R1 fail", newline
+	% OR NOT Test
+	b := true or not true 			% Result true
+	b := not true or true 			% Result true
+	b := not true or not true 		% Result false
+	b := true or not false 			% Result true
+	b := not false or true 			% Result true
+	b := false or not false 		% Result true
+	b := not false or  false 		% Result true
+	b := not false or not false 	% Result true
 
-	% R2
-	b := false or true
-	if (b = true)
-	then
-		write "R2 pass", newline
-	else
-		write "R2 fail", newline
+    % Conditional Expression
+    % < >
+    b := ( 1 > 2 ? false : true )			% Result false
+	b := ( 1 > -2 ? false : true )			% Result true
+	b := ( 1 > (-2) ? false : true )		% Result true
+	b := ( 1 < 2 ? false : true )			% Result true
+	b := ( -1 < 2 ? false : true )			% Result true
+	b := ( (-1) < 2 ? false : true )		% Result true
 
-	% R3
-	b := false or false
-	if (b = false)
-	then
-		write "R3 pass", newline
-	else
-		write "R3 fail", newline
+	% < > =
+    b := ( 1 >= 1 ? false : true )			% Result true
+	b := ( -1 >= -1 ? false : true )		% Result true
+	b := ( (-1) >= (-1) ? false : true )	% Result true
+	b := ( 1 <= 1 ? false : true )			% Result true
+	b := ( -1 <= -1 ? false : true )		% Result true
+	b := ( (-1) <= (-1) ? false : true )	% Result true
 
-	% R4
-	b := true or not true
-	if (b = true)
-	then
-		write "R4 pass", newline
-	else
-		write "R4 fail", newline
+	% Precedence of Operators %
+	b := false or true and false				% Result false
+	b := not false or not true and not false	% Result true
+	b := not not true and not false				% Result true
 
-	% R5
-	b := not true or true
-	if (b = true)
-	then
-		write "R pass", newline
-	else
-		write "R5 fail", newline
-
-	% R6
-	b := false or not false
-	if (b = true)
-	then
-		write "R6 pass", newline
-	else
-		write "R6 fail", newline
-
-	% R7
-	b := not false or  false
-	if (b = true)
-	then
-		write "R7 pass", newline
-	else
-		write "R7 fail", newline
-
-	% R8
-	b := not false or not false
-	if (b = true)
-	then
-		write "R8 pass", newline
-	else
-		write "R8 fail", newline
-
-	%%%%%%%%%% Comparison
-
-	% C0 
-	x := 1
-	y := 2
-	if (x < y) 
-	then
-		write "C0 pass", newline
-	else
-		write "C0 fail", newline
-
-	% C1
-	x := 2
-	y := 1
-	if (x > y) 
-	then
-		write "C1 pass", newline
-	else
-		write "C1 fail", newline
-
-	% C2
-	x := -1
-	y := 2
-	if (x < y) 
-	then
-		write "C2 pass", newline
-	else
-		write "C2 fail", newline
-
-	% C3
-	x := 2
-	y := -1
-	if (x > y) 
-	then
-		write "C3 pass", newline
-	else
-		write "C3 fail", newline
-
-	% C4
-	x := -1
-	y := -2
-	if (x > y) 
-	then
-		write "C4 pass", newline
-	else
-		write "C4 fail", newline
-
-	% C5
-	x := -2
-	y := -1
-	if (x < y) 
-	then
-		write "C5 pass", newline
-	else
-		write "C5 fail", newline
-
-	% C6
-	x := 1
-	y := 1
-	if (x <= y) 
-	then
-		write "C6 pass", newline
-	else
-		write "C6 fail", newline
-
-	% C7
-	x := 1
-	y := 1
-	if (x >= y) 
-	then
-		write "C7 pass", newline
-	else
-		write "C7 fail", newline
-
-	% C8
-	x := -1
-	y := -1
-	if (x >= y) 
-	then
-		write "C8 pass", newline
-	else
-		write "C8 fail", newline
-
-	% C9
-	x := -1
-	y := -1
-	if (x >= y) 
-	then
-		write "C9 pass", newline
-	else
-		write "C9 fail", newline
-
+	%%%%%%%%%% Comparison %%%%%%%%%%
+	
+	% All Result true
+	b := 1 < 2
+	b := 2 > 1
+	b := -1 < 2
+	b := 2 > -1
+	b := -1 > -2
+	b := -2 < -1
+	b := 1 <= 1
+	b := 1 >= 1
+	b := -1 >= -1
+	b := -1 >= -1
 
 	% Eqaulity Test
-	% E0 : Equality Test
-	if (-1 = -1) 
-	then
-		write "E0 pass", newline
-	else
-		write "E0 fail", newline
-
-	% E1 : Equality Test
-	if (0 = 0) 
-	then
-		write "E1 pass", newline
-	else
-		write "E1 fail", newline
-
-	% E2 : Equality Test
-	if (1 = 1) 
-	then
-		write "E2 pass", newline
-	else
-		write "E2 fail", newline
+	b := -1 = -1
+	b := 0 = 0
+	b := 1 = 1
 
 	% Inequality Test
-	% E3 : Inequality Test
-	if (-1 not= 0) 
-	then
-		write "E3 pass", newline
-	else
-		write "E3 fail", newline
+	b := -1 not= 0
+	b := (0 not= 1) = false
 
-	% E4 : Inequality Test
-	if ((0 not= 1) = false) 
-	then
-		write "E3 pass", newline
-	else
-		write "E3 fail", newline
+	%%%%%%%%%% Additional %%%%%%%%%%
+
+    % Reference to a variable    
+    y := x
+
+    % Conditional Statement
+    if false then
+        b := false
+
+    if not true then
+        b := false
+    else
+        b := true
 
 }
