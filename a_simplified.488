@@ -1,0 +1,186 @@
+% Assignment 	: 1
+% Member		: yeou, wulawre1, jinzi2, wlodare1, matheres
+% A program that uses all arithmetic, logical and comparison operators
+
+{
+
+	%%%%%%%%%% Declarations
+	var x, y : Integer
+	var b : Boolean
+
+	%%%%%%%%%% Arithmetic
+
+	% Addition Test
+	x := 1 + 1 % Result 2
+	x := 1 + -1 % Result 0
+
+	% Subtraction Test
+	x := 1 - 1 % Result 0
+	x := 1 - (-1) % Result 2
+	x := (-1) - (-1) % Result 0
+
+	% Multiplication Test
+	x := 3 * 5 % Result 15
+	x := 3 * (-5) % Result -15
+	x := (-3) * (-5) % Result 15
+
+	% Division Test
+	x :=  15 / 5 % Result 3
+	x :=  15 / -5 % Result -3
+	x :=  -15 / -5 % Result 3
+
+	%%%%%%%%%% Logical
+
+	% AND Test
+	b := true and true % Result true
+	b := not true and true % Result false
+	b := true and not true % Result false
+	b := not true and not true % Result false
+	b := true and false % Result false
+	b := false and true % Result false
+	b := false and false % Result false
+	b := true and not false % Result true
+	b := not false and true % Result true
+
+	% OR Test
+	b := true or true % Result true
+	b := true or false % Result true
+	b := false or true % Result true
+	b := false or false % Result false
+	b := true or not true % Result true
+	b := not true or true % Result true
+	b := false or not false % Result true
+	b := not false or  false % Result true
+	b := not false or not false % Result true
+
+	%%%%%%%%%% Comparison
+
+	% C0 
+	x := 1
+	y := 2
+	if (x < y) 
+	then
+		write "C0 pass", newline
+	else
+		write "C0 fail", newline
+
+	% C1
+	x := 2
+	y := 1
+	if (x > y) 
+	then
+		write "C1 pass", newline
+	else
+		write "C1 fail", newline
+
+	% C2
+	x := -1
+	y := 2
+	if (x < y) 
+	then
+		write "C2 pass", newline
+	else
+		write "C2 fail", newline
+
+	% C3
+	x := 2
+	y := -1
+	if (x > y) 
+	then
+		write "C3 pass", newline
+	else
+		write "C3 fail", newline
+
+	% C4
+	x := -1
+	y := -2
+	if (x > y) 
+	then
+		write "C4 pass", newline
+	else
+		write "C4 fail", newline
+
+	% C5
+	x := -2
+	y := -1
+	if (x < y) 
+	then
+		write "C5 pass", newline
+	else
+		write "C5 fail", newline
+
+	% C6
+	x := 1
+	y := 1
+	if (x <= y) 
+	then
+		write "C6 pass", newline
+	else
+		write "C6 fail", newline
+
+	% C7
+	x := 1
+	y := 1
+	if (x >= y) 
+	then
+		write "C7 pass", newline
+	else
+		write "C7 fail", newline
+
+	% C8
+	x := -1
+	y := -1
+	if (x >= y) 
+	then
+		write "C8 pass", newline
+	else
+		write "C8 fail", newline
+
+	% C9
+	x := -1
+	y := -1
+	if (x >= y) 
+	then
+		write "C9 pass", newline
+	else
+		write "C9 fail", newline
+
+
+	% Eqaulity Test
+	% E0 : Equality Test
+	if (-1 = -1) 
+	then
+		write "E0 pass", newline
+	else
+		write "E0 fail", newline
+
+	% E1 : Equality Test
+	if (0 = 0) 
+	then
+		write "E1 pass", newline
+	else
+		write "E1 fail", newline
+
+	% E2 : Equality Test
+	if (1 = 1) 
+	then
+		write "E2 pass", newline
+	else
+		write "E2 fail", newline
+
+	% Inequality Test
+	% E3 : Inequality Test
+	if (-1 not= 0) 
+	then
+		write "E3 pass", newline
+	else
+		write "E3 fail", newline
+
+	% E4 : Inequality Test
+	if ((0 not= 1) = false) 
+	then
+		write "E3 pass", newline
+	else
+		write "E3 fail", newline
+
+}
