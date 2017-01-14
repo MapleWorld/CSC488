@@ -1,0 +1,25 @@
+% Assignment 	: 1
+% Member		: yeou, wulawre1, jinzi2, wlodare1, matheres
+% A program using non-recursive functions and procedures with and without parameters
+
+{
+    %%%%% function with parameters
+    function function_with_params(param1 : Integer, param2 : Integer) : Integer {
+        return 5
+    }
+
+    %%%%% function without parameters
+    function function_without_params : Boolean {
+        return true
+    }
+
+    %%%%% procedure with parameters
+    procedure procedure_with_params(param1 : Integer, param2 : Integer) {
+        return
+    }
+
+    %%%%% procedure without parameters
+    procedure procedure_without_params {
+        return
+    }
+}
