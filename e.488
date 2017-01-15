@@ -89,6 +89,7 @@
     global_int_proc := 2
     rec_procedure_without_param
     global_sum := 0
+    rec_procedure_with_param ( 2 , true )
     write "OUTPUT FOR RECURSIVE PROCEDURE WITH PARAMATERS (EXPECTED: 3) : " ,
-          rec_procedure_with_param( 2 , true )
+          global_sum
 }
