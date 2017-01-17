@@ -4,7 +4,7 @@
 
 {
 
-    %%%% Declaring arrays %%%%
+    % Declaring arrays 
 
     var simple[1] 
     var longer[32767]
@@ -19,7 +19,7 @@
     y := 4
     z := -5
 
-    %%%% Reference array elements using integers
+    % Reference array elements using integers
     test_equality(simple[1], 1)
     test_equality(longer[32767], 32767)
     test_equality(sequential[3], 3)
@@ -30,7 +30,7 @@
     test_equality(largest[-32767], -32767)
     test_equality(largest[32767], 32767)
 
-    %%%% Reference array elements using expresions %%%%
+    % Reference array elements using expresions
     test_equality(simple[2-1], 1)
     test_equality(sequential[y], 4)
     test_equality(largest[543-123], 420)
@@ -43,19 +43,20 @@
     test_equality(largest[120/-12], -10)
     test_equality(largest[2+120/-12-y], -12)
 
-    %%%% Modify array elements %%%%
+    % Modify array elements
     simple[1] := -5
     sequential[3] := 9
     sequential[y] := 19
     negative_and_positive[z] = y
 
+    % Test values
     test_equality(simple[1], 5)
     test_equality(sequential[3], 9)
     test_equality(sequential[4], 19)
     test_equality(negative_and_positive[-5], 4)
 
 
-    %%%% Function to test results %%%%
+    % Function to test results
     function test_equality(expected : Integer, actual : Integer) : Boolean {
         var test_passed : Boolean
         
