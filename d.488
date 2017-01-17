@@ -22,4 +22,9 @@
     procedure procedure_without_params {
         return
     }
+
+    function_with_params(5, 5)
+    function_without_params
+    procedure_with_params(5, 5)
+    procedure_without_params
 }
