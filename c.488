@@ -1,0 +1,81 @@
+% Assignment    : 1
+% Member        : yeou, wulawre1, jinzi2, wlodare1, matheres
+% A program using all forms of loop building and loop exit constructs.
+
+{
+
+    % Loop variables
+    var i, j : Integer
+
+    % Nested loops using while
+    i := 0
+    while i <= 25 do {
+        j := 0
+        while j <= 25 do {
+            write i
+            write ", "
+            write j
+            write newline
+            j := j + 1
+        }
+        i := i + 1
+    }
+
+    write newline
+
+    % Loop using repeat ... until ...
+    i := 0
+    repeat {
+        write i
+        write ", "
+        i := i + 1
+    } until i > 25
+
+    write newline
+
+    % Loop using 'exit'
+    while true do {
+        write "Loop exit #1, leaving single loop"
+        write newline
+        exit
+    }
+
+    % Loop using 'exit integer'
+    while true do {
+        while true do {
+            write "Loop exit #2, leaving nested loops"
+            write newline
+            exit 2
+        }
+    }
+
+    % Loop using 'exit when expression'
+    i := 0
+    repeat {
+        write i
+        write ", "
+        i := i + 1
+        exit when i > 25
+    } until false
+
+    write newline
+
+    % Nested loop using 'exit integer when expression'
+    i := 0
+    while true do {
+        j := 0
+        while j <= 25 do {
+            write i
+            write ", "
+            write j
+            write newline
+            j := j + 1
+            exit 2 when i > 25 and j > 25
+        }
+        i := i + 1
+    }
+
+    write newline
+
+}
+
