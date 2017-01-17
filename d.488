@@ -5,21 +5,27 @@
 {
     %%%%% function with parameters
     function function_with_params(param1 : Integer, param2 : Integer) : Integer {
-        return 5
+        write "function with params"
+        write param1 + param2
+        return param1 + param2
     }
 
     %%%%% function without parameters
     function function_without_params : Boolean {
+        write "function without params"
         return true
     }
 
     %%%%% procedure with parameters
     procedure procedure_with_params(param1 : Integer, param2 : Integer) {
+        write "procedure without params"
+        write param1 + param2
         return
     }
 
     %%%%% procedure without parameters
     procedure procedure_without_params {
+        write "procedure without params"
         return
     }
 
