@@ -1,0 +1,70 @@
+% Assignment 	: 1
+% Member		: yeou, wulawre1, jinzi2, wlodare1, matheres
+% A program using arrays including all forms of array declaration, positive and negative bounds.
+
+{
+
+    %%%% Declaring arrays %%%%
+
+    var simple[1] 
+    var longer[32767]
+    var sequential[1..5] 
+    var negatives[-100, -9]
+    var negative_and_positive[-5, 5]
+    var largest[-32767..32767]
+
+    % Declare test variables
+    var test_passed : Boolean
+    var y, z : Integer
+    y := 4
+    z := -5
+
+    %%%% Reference array elements using integers
+    test_equality(simple[1], 1)
+    test_equality(longer[32767], 32767)
+    test_equality(sequential[3], 3)
+    test_equality(negative[-100], -100)
+    test_equality(negative[0], 0)
+    test_equality(negative_and_positive[-3], -3)
+    test_equality(largest[0], 0)
+    test_equality(largest[-32767], -32767)
+    test_equality(largest[32767], 32767)
+
+    %%%% Reference array elements using expresions %%%%
+    test_equality(simple[2-1], 1)
+    test_equality(sequential[y], 4)
+    test_equality(largest[543-123], 420)
+    test_equality(negatives[-90-10], -100)
+    test_equality(negatives[-90+45], -45)
+    test_equality(negative_and_position[z + y], -1)
+    test_equality(negative_and_positive[-5+10-3], 2)
+    test_equality(largest[-50*50], -250)
+    test_equality(largest[-11*-11], 121)
+    test_equality(largest[120/-12], -10)
+    test_equality(largest[2+120/-12-y], -12)
+
+    %%%% Modify array elements %%%%
+    simple[1] := -5
+    sequential[3] := 9
+    sequential[y] := 19
+    negative_and_positive[z] = y
+
+    test_equality(simple[1], 5)
+    test_equality(sequential[3], 9)
+    test_equality(sequential[4], 19)
+    test_equality(negative_and_positive[-5], 4)
+
+
+    %%%% Function to test results %%%%
+    function test_equality(expected : Integer, actual : Integer) : Boolean {
+        var test_passed : Boolean
+        
+        if expected = actual
+        then test_passed := true 
+        else test_passed := false
+
+        write test_passed
+        return test_passed
+    }
+
+}
