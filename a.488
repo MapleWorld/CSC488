@@ -1,168 +1,168 @@
-% Assignment 	: 1
-% Member		: yeou, wulawre1, jinzi2, wlodare1, matheres
+% Assignment    : 1
+% Member        : yeou, wulawre1, jinzi2, wlodare1, matheres
 % A program that uses all arithmetic, logical and comparison operators
 
 {
 
-	%%%%%%%%%% Declarations %%%%%%%%%%
-	var b : Boolean
-	var x, y : Integer
+    %%%%%%%%%% Declarations %%%%%%%%%%
+    var b : Boolean
+    var x, y : Integer
 
-	%%%%%%%%%% Arithmetic %%%%%%%%%%
+    %%%%%%%%%% Arithmetic %%%%%%%%%%
 
-	% Addition Test
-	x := 1 + 1 						% Result 2
-	x := 1 + (-1) 					% Result 0
+    % Addition Test
+    x := 1 + 1               % Result 2
+    x := 1 + (-1)            % Result 0
 
-	% Subtraction Test
-	x := 1 - 1 						% Result 0
-	x := 1 - (-1) 					% Result 2
-	x := (-1) - 1					% Result -2
-	x := (-1) - (-1) 				% Result 0
+    % Subtraction Test
+    x := 1 - 1               % Result 0
+    x := 1 - (-1)            % Result 2
+    x := (-1) - 1            % Result -2
+    x := (-1) - (-1)          % Result 0
 
-	% Multiplication Test
-	x := 3 * 5 						% Result 15
-	x := 3 * (-5) 					% Result -15
-	x := (-5) * 3					% Result -15
-	x := (-3) * (-5) 				% Result 15
+    % Multiplication Test
+    x := 3 * 5                  % Result 15
+    x := 3 * (-5)            % Result -15
+    x := (-5) * 3            % Result -15
+    x := (-3) * (-5)          % Result 15
 
-	% Division Test
-	x :=  15 / 5 					% Result 3
-	x :=  15 / (-5) 				% Result -3
-	x :=  (-15) / 5 				% Result -3
-	x :=  (-15) / -5 				% Result 3
+    % Division Test
+    x :=  15 / 5             % Result 3
+    x :=  15 / (-5)           % Result -3
+    x :=  (-15) / 5           % Result -3
+    x :=  (-15) / -5           % Result 3
 
-	% Precedence of Operators %
-	% Addition and Subtraction
-	x := 1 - 2 + 3 - 4				% Result -2
-    y := (1 - 2) + (3 - 4)			% Result -2
+    % Precedence of Operators %
+    % Addition and Subtraction
+    x := 1 - 2 + 3 - 4           % Result -2
+    y := (1 - 2) + (3 - 4)          % Result -2
     b := x = y
 
-	x := 1 - -2 + 3 - -4			% Result 10
-    y := (1 - (-2) + (3 - (-4))		% Result 10
+    x := 1 - -2 + 3 - -4        % Result 10
+    y := (1 - (-2) + (3 - (-4))    % Result 10
     b := x = y
 
-	% Addition and Multiplication
-	x := 1 * 2 + 3 * 4				% Result 14
-    y := (1 * 2) + (3 * 4)			% Result 14
+    % Addition and Multiplication
+    x := 1 * 2 + 3 * 4           % Result 14
+    y := (1 * 2) + (3 * 4)          % Result 14
     b := x = y
 
-	x := 1 * -2 + 3 * -4			% Result -14
-    y := ((-1) * 2) + ((-3) * 4)	% Result -14
+    x := 1 * -2 + 3 * -4        % Result -14
+    y := ((-1) * 2) + ((-3) * 4)   % Result -14
     b := x = y
 
-	% Addition and Division
-	x := 2 / 1 + 4 / 2				% Result 4
-    y := (2 / 1) + (4 / 2)			% Result 4
+    % Addition and Division
+    x := 2 / 1 + 4 / 2           % Result 4
+    y := (2 / 1) + (4 / 2)          % Result 4
     b := x = y
 
-	x := 2 / -1 + 4 / -2			% Result -4
-    y := (2 / (-1)) + (4 / (-2))	% Result -4
+    x := 2 / -1 + 4 / -2        % Result -4
+    y := (2 / (-1)) + (4 / (-2))   % Result -4
     b := x = y
 
     % Subtraction and Multiplication
-	x := 1 * 2 - 3 * 4				% Result 14
-    y := (1 * 2) - (3 * 4)			% Result 14
+    x := 1 * 2 - 3 * 4           % Result 14
+    y := (1 * 2) - (3 * 4)          % Result 14
     b := x = y
 
-	x := 1 * -2 - 3 * -4			% Result 12
-    y := ((-1) * 2) - ((-3) * 4)	% Result 12
+    x := 1 * -2 - 3 * -4        % Result 12
+    y := ((-1) * 2) - ((-3) * 4)   % Result 12
     b := x = y
 
     % Subtraction and Division
-	x := 2 / 1 - 4 / 2				% Result 0
-    y := (2 / 1) - (4 / 2)			% Result 0
+    x := 2 / 1 - 4 / 2           % Result 0
+    y := (2 / 1) - (4 / 2)          % Result 0
     b := x = y
 
-	x := 2 / -1 - 4 / -2			% Result 0
-    y := (2 / (-1)) - (4 / (-2))	% Result 0
+    x := 2 / -1 - 4 / -2        % Result 0
+    y := (2 / (-1)) - (4 / (-2))   % Result 0
     b := x = y
-
+        
     % Addition, Subtraction, Multiplication, and Division
-    x := 4 * 3 / -2 * -1 - 6		% Result 0
-    y := ((4 * 3 / -6) * -3) - 6	% Result 0
+    x := 4 * 3 / -2 * -1 - 6    % Result 0
+    y := ((4 * 3 / -6) * -3) - 6   % Result 0
     b := x = y
 
-	%%%%%%%%%% Logical %%%%%%%%%%
+    %%%%%%%%%% Logical %%%%%%%%%%
 
-	% AND Test
-	b := true and true 				% Result true
-	b := true and false 			% Result false
-	b := false and true 			% Result false
-	b := false and false 			% Result false
+    % AND Test
+    b := true and true          % Result true
+    b := true and false       % Result false
+    b := false and true       % Result false
+    b := false and false          % Result false
 
-	% AND NOT Test
-	b := true and not true 			% Result false
-	b := not true and true 			% Result false
-	b := not true and not true 		% Result false
-	b := true and not false 		% Result true
-	b := not false and true 		% Result true
-	b := false and not false 		% Result false
-	b := not false and false 		% Result false
-	b := not false and not false 	% Result true
+    % AND NOT Test
+    b := true and not true        % Result false
+    b := not true and true        % Result false
+    b := not true and not true     % Result false
+    b := true and not false         % Result true
+    b := not false and true      % Result true
+    b := false and not false     % Result false
+    b := not false and false     % Result false
+    b := not false and not false   % Result true
 
-	% OR Test
-	b := true or true 				% Result true
-	b := true or false 				% Result true
-	b := false or true 				% Result true
-	b := false or false 			% Result false
+    % OR Test
+    b := true or true          % Result true
+    b := true or false          % Result true
+    b := false or true          % Result true
+    b := false or false          % Result false
 
-	% OR NOT Test
-	b := true or not true 			% Result true
-	b := not true or true 			% Result true
-	b := not true or not true 		% Result false
-	b := true or not false 			% Result true
-	b := not false or true 			% Result true
-	b := false or not false 		% Result true
-	b := not false or  false 		% Result true
-	b := not false or not false 	% Result true
+    % OR NOT Test
+    b := true or not true       % Result true
+    b := not true or true         % Result true
+    b := not true or not true   % Result false
+    b := true or not false        % Result true
+    b := not false or true        % Result true
+    b := false or not false         % Result true
+    b := not false or  false     % Result true
+    b := not false or not false    % Result true
 
     % Conditional Expression
     % < >
-    b := ( 1 > 2 ? false : true )			% Result false
-	b := ( 1 > -2 ? false : true )			% Result true
-	b := ( 1 > (-2) ? false : true )		% Result true
-	b := ( 1 < 2 ? false : true )			% Result true
-	b := ( -1 < 2 ? false : true )			% Result true
-	b := ( (-1) < 2 ? false : true )		% Result true
+    b := ( 1 > 2 ? false : true )             % Result false
+    b := ( 1 > -2 ? false : true )               % Result true
+    b := ( 1 > (-2) ? false : true )     % Result true
+    b := ( 1 < 2 ? false : true )             % Result true
+    b := ( -1 < 2 ? false : true )               % Result true
+    b := ( (-1) < 2 ? false : true )     % Result true
 
-	% < > =
-    b := ( 1 >= 1 ? false : true )			% Result true
-	b := ( -1 >= -1 ? false : true )		% Result true
-	b := ( (-1) >= (-1) ? false : true )	% Result true
-	b := ( 1 <= 1 ? false : true )			% Result true
-	b := ( -1 <= -1 ? false : true )		% Result true
-	b := ( (-1) <= (-1) ? false : true )	% Result true
+    % < > =
+    b := ( 1 >= 1 ? false : true )               % Result true
+    b := ( -1 >= -1 ? false : true )     % Result true
+    b := ( (-1) >= (-1) ? false : true )   % Result true
+    b := ( 1 <= 1 ? false : true )               % Result true
+    b := ( -1 <= -1 ? false : true )     % Result true
+    b := ( (-1) <= (-1) ? false : true )   % Result true
 
-	% Precedence of Operators %
-	b := false or true and false				% Result false
-	b := not false or not true and not false	% Result true
-	b := not not true and not false				% Result true
+    % Precedence of Operators %
+    b := false or true and false               % Result false
+    b := not false or not true and not false   % Result true
+    b := not not true and not false                 % Result true
 
-	%%%%%%%%%% Comparison %%%%%%%%%%
-	
-	% All Result true
-	b := 1 < 2
-	b := 2 > 1
-	b := -1 < 2
-	b := 2 > -1
-	b := -1 > -2
-	b := -2 < -1
-	b := 1 <= 1
-	b := 1 >= 1
-	b := -1 >= -1
-	b := -1 >= -1
+    %%%%%%%%%% Comparison %%%%%%%%%%
 
-	% Eqaulity Test
-	b := -1 = -1
-	b := 0 = 0
-	b := 1 = 1
+    % All Result true
+    b := 1 < 2
+    b := 2 > 1
+    b := -1 < 2
+    b := 2 > -1
+    b := -1 > -2
+    b := -2 < -1
+    b := 1 <= 1
+    b := 1 >= 1
+    b := -1 >= -1
+    b := -1 >= -1
 
-	% Inequality Test
-	b := -1 not= 0
-	b := (0 not= 1) = false
+    % Eqaulity Test
+    b := -1 = -1
+    b := 0 = 0
+    b := 1 = 1
 
-	%%%%%%%%%% Additional %%%%%%%%%%
+    % Inequality Test
+    b := -1 not= 0
+    b := (0 not= 1) = false
+
+    %%%%%%%%%% Additional %%%%%%%%%%
 
     % Reference to a variable    
     y := x
@@ -175,5 +175,7 @@
         b := false
     else
         b := true
+
+    }
 
 }
