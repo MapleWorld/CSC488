@@ -159,8 +159,8 @@
     b := 1 = 1
 
     % Inequality Test
-    b := -1 not= 0
-    b := (0 not= 1) = false
+    b := -1 not= 0      % Result true
+    b := (0 not= 1)     % Result true
 
     %%%%%%%%%% Additional %%%%%%%%%%
 
