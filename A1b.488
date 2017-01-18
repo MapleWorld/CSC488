@@ -9,8 +9,8 @@
     var simple[1] 
     var longer[32767]
     var sequential[1..5] 
-    var negatives[-100, -9]
-    var negative_and_positive[-5, 5]
+    var negatives[-100..-9]
+    var negative_and_positive[-5..5]
     var largest[-32767..32767]
 
     % Declare test variables
