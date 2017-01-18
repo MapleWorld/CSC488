@@ -14,7 +14,6 @@
     var largest[-32767..32767]
 
     % Declare test variables
-    var test_passed : Boolean
     var y, z : Integer
     y := 4
     z := -5
@@ -47,7 +46,7 @@
     simple[1] := -5
     sequential[3] := 9
     sequential[y] := 19
-    negative_and_positive[z] = y
+    negative_and_positive[z] := y
 
     % Test values
     test_equality(simple[1], 5)
