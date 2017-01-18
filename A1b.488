@@ -1,62 +1,114 @@
 % Assignment    : 1
 % Author        : matheres
+%
 % A program using arrays including all forms of array declaration, positive and negative bounds.
+% This program initializes arrays of various sizes, up to the max and min range of integers. 
+% Values are then assigned to particular indices of the array. 
+% The expected value of the array at a particular index is passed to a test function which checks whether 
+% the value of the array at a particular index is the expected value. 
 
 {
 
-    % Declaring arrays 
+    %%%% Declaring arrays 
 
-    var simple[1] 
-    var longer[32767]
-    var sequential[1..5] 
-    var negatives[-100..-9]
-    var negative_and_positive[-5..5]
-    var largest[-32767..32767]
+    var simple[1] : Integer
+    var longer[32767] : Integer
+    var sequential[1..5] : Boolean
+    var negatives[-100..-9] : Boolean
+    var negative_and_positive[-5..5] : Integer
+    var largest[-32767..32767] : Interger
 
     % Declare test variables
     var y, z : Integer
+    var b = Boolean
     y := 4
     z := -5
+    b = true
 
-    % Reference array elements using integers
+
+    %%%% Assign values to array elements
+    %%%% Reference array elements using integers
+    
+    simple[1] := 1
     test_equality(simple[1], 1)
+    
+    longer[32767] := 32767
     test_equality(longer[32767], 32767)
-    test_equality(sequential[3], 3)
-    test_equality(negative[-100], -100)
-    test_equality(negative[0], 0)
+    
+    sequential[3] := true
+    test_equality(sequential[3], true)
+    
+    negatives[-100] := false
+    test_equality_boolean(negatives[-100], false)
+    
+    negatives[0] := true
+    test_equality_boolean(negatives[0], true)
+    
+    negative_and_positive[-3] := -3
     test_equality(negative_and_positive[-3], -3)
+    
+    largest[0] := 0
     test_equality(largest[0], 0)
+    
+    largest[-32767] = -32767
     test_equality(largest[-32767], -32767)
-    test_equality(largest[32767], 32767)
-
-    % Reference array elements using expresions
+    
+    %%%% Reference array elements using expresions
+    
     test_equality(simple[2-1], 1)
-    test_equality(sequential[y], 4)
+    
+    sequential[y] := false
+    test_equality_boolean(sequential[y], false)
+    
+    largest[543-123] := 420
     test_equality(largest[543-123], 420)
-    test_equality(negatives[-90-10], -100)
-    test_equality(negatives[-90+45], -45)
-    test_equality(negative_and_position[z + y], -1)
+    
+    negatives[-100] = true
+    test_equality_boolean(negatives[-90-10], true)
+    
+    negatives[-45] = false
+    test_equality_boolean(negatives[-90+45], false)
+   
+    negative_and_positive[z + y] := -1
+    test_equality(negative_and_positive[z + y], -1)
+    
+    negative_and_positive[-5+10-3] := 2
     test_equality(negative_and_positive[-5+10-3], 2)
+    
+    largest[-50*50] := -250
     test_equality(largest[-50*50], -250)
+    
+    largest[-11*-11] := 121
     test_equality(largest[-11*-11], 121)
+    
+    largest[120/-12] := -10
     test_equality(largest[120/-12], -10)
+    
+    largest[2+120/-12-y] := -12
     test_equality(largest[2+120/-12-y], -12)
 
-    % Modify array elements
+    %%%% Modify array elements
     simple[1] := -5
-    sequential[3] := 9
-    sequential[y] := 19
-    negative_and_positive[z] := y
+    sequential[y] := b
 
-    % Test values
-    test_equality(simple[1], 5)
-    test_equality(sequential[3], 9)
-    test_equality(sequential[4], 19)
-    test_equality(negative_and_positive[-5], 4)
+    %%%% Test modified values
+    test_equality(simple[1], -5)
+    test_equality(sequential[y], b)
 
+    %%%% Function to test results of integer arrays
+    function test_equality_integer(expected : Integer, actual : Integer) : Boolean {
+        var test_passed : Boolean
+        
+        if expected = actual
+        then test_passed := true 
+        else test_passed := false
 
-    % Function to test results
-    function test_equality(expected : Integer, actual : Integer) : Boolean {
+        write test_passed
+        return test_passed
+    }
+    
+    %%%% Function to test results of boolean arrays
+    function test_equality_boolean(expected : Boolean, actual : Boolean) : Boolean {
         var test_passed : Boolean
         
         if expected = actual
