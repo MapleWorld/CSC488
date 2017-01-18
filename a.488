@@ -1,8 +1,8 @@
-% Assignment 	: 1
-% Member		: yeou, wulawre1, jinzi2, wlodare1, matheres
-% A program that uses all arithmetic, logical and comparison operators
+	% Assignment 	: 1
+	% Member		: yeou, wulawre1, jinzi2, wlodare1, matheres
+	% A program that uses all arithmetic, logical and comparison operators
 
-{
+	{
 
 	%%%%%%%%%% Declarations %%%%%%%%%%
 	var b : Boolean
@@ -35,53 +35,53 @@
 	% Precedence of Operators %
 	% Addition and Subtraction
 	x := 1 - 2 + 3 - 4				% Result -2
-    y := (1 - 2) + (3 - 4)			% Result -2
-    b := x = y
+	y := (1 - 2) + (3 - 4)			% Result -2
+	b := x = y
 
 	x := 1 - -2 + 3 - -4			% Result 10
-    y := (1 - (-2) + (3 - (-4))		% Result 10
-    b := x = y
+	y := (1 - (-2) + (3 - (-4))		% Result 10
+	b := x = y
 
 	% Addition and Multiplication
 	x := 1 * 2 + 3 * 4				% Result 14
-    y := (1 * 2) + (3 * 4)			% Result 14
-    b := x = y
+	y := (1 * 2) + (3 * 4)			% Result 14
+	b := x = y
 
 	x := 1 * -2 + 3 * -4			% Result -14
-    y := ((-1) * 2) + ((-3) * 4)	% Result -14
-    b := x = y
+	y := ((-1) * 2) + ((-3) * 4)	% Result -14
+	b := x = y
 
 	% Addition and Division
 	x := 2 / 1 + 4 / 2				% Result 4
-    y := (2 / 1) + (4 / 2)			% Result 4
-    b := x = y
+	y := (2 / 1) + (4 / 2)			% Result 4
+	b := x = y
 
 	x := 2 / -1 + 4 / -2			% Result -4
-    y := (2 / (-1)) + (4 / (-2))	% Result -4
-    b := x = y
+	y := (2 / (-1)) + (4 / (-2))	% Result -4
+	b := x = y
 
-    % Subtraction and Multiplication
+	% Subtraction and Multiplication
 	x := 1 * 2 - 3 * 4				% Result 14
-    y := (1 * 2) - (3 * 4)			% Result 14
-    b := x = y
+	y := (1 * 2) - (3 * 4)			% Result 14
+	b := x = y
 
 	x := 1 * -2 - 3 * -4			% Result 12
-    y := ((-1) * 2) - ((-3) * 4)	% Result 12
-    b := x = y
+	y := ((-1) * 2) - ((-3) * 4)	% Result 12
+	b := x = y
 
-    % Subtraction and Division
+	% Subtraction and Division
 	x := 2 / 1 - 4 / 2				% Result 0
-    y := (2 / 1) - (4 / 2)			% Result 0
-    b := x = y
+	y := (2 / 1) - (4 / 2)			% Result 0
+	b := x = y
 
 	x := 2 / -1 - 4 / -2			% Result 0
-    y := (2 / (-1)) - (4 / (-2))	% Result 0
-    b := x = y
+	y := (2 / (-1)) - (4 / (-2))	% Result 0
+	b := x = y
 
-    % Addition, Subtraction, Multiplication, and Division
-    x := 4 * 3 / -2 * -1 - 6		% Result 0
-    y := ((4 * 3 / -6) * -3) - 6	% Result 0
-    b := x = y
+	% Addition, Subtraction, Multiplication, and Division
+	x := 4 * 3 / -2 * -1 - 6		% Result 0
+	y := ((4 * 3 / -6) * -3) - 6	% Result 0
+	b := x = y
 
 	%%%%%%%%%% Logical %%%%%%%%%%
 
@@ -117,9 +117,9 @@
 	b := not false or  false 		% Result true
 	b := not false or not false 	% Result true
 
-    % Conditional Expression
-    % < >
-    b := ( 1 > 2 ? false : true )			% Result false
+	% Conditional Expression
+	% < >
+	b := ( 1 > 2 ? false : true )			% Result false
 	b := ( 1 > -2 ? false : true )			% Result true
 	b := ( 1 > (-2) ? false : true )		% Result true
 	b := ( 1 < 2 ? false : true )			% Result true
@@ -127,7 +127,7 @@
 	b := ( (-1) < 2 ? false : true )		% Result true
 
 	% < > =
-    b := ( 1 >= 1 ? false : true )			% Result true
+	b := ( 1 >= 1 ? false : true )			% Result true
 	b := ( -1 >= -1 ? false : true )		% Result true
 	b := ( (-1) >= (-1) ? false : true )	% Result true
 	b := ( 1 <= 1 ? false : true )			% Result true
@@ -140,7 +140,7 @@
 	b := not not true and not false				% Result true
 
 	%%%%%%%%%% Comparison %%%%%%%%%%
-	
+
 	% All Result true
 	b := 1 < 2
 	b := 2 > 1
@@ -164,16 +164,18 @@
 
 	%%%%%%%%%% Additional %%%%%%%%%%
 
-    % Reference to a variable    
-    y := x
+	% Reference to a variable    
+	y := x
 
-    % Conditional Statement
-    if false then
-        b := false
+	% Conditional Statement
+	if false then
+	    b := false
 
-    if not true then
-        b := false
-    else
-        b := true
+	if not true then
+	    b := false
+	else
+	    b := true
+
+	}
 
 }
