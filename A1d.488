@@ -7,13 +7,13 @@
     function function_with_params(param1 : Integer, param2 : Integer) : Integer {
         write "function with params"
         write param1 + param2
-        return param1 + param2
+        return with param1 + param2
     }
 
     %%%%% function without parameters
     function function_without_params : Boolean {
         write "function without params"
-        return true
+        return with true
     }
 
     %%%%% procedure with parameters
