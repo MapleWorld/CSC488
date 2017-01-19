@@ -20,10 +20,10 @@
 
     % Declare test variables
     var y, z : Integer
-    var b = Boolean
+    var b : Boolean
     y := 4
     z := -5
-    b = true
+    b := true
 
 
     %%%% Assign values to array elements
@@ -50,7 +50,7 @@
     largest[0] := 0
     test_equality(largest[0], 0)
     
-    largest[-32767] = -32767
+    largest[-32767] := -32767
     test_equality(largest[-32767], -32767)
     
     %%%% Reference array elements using expresions
@@ -63,10 +63,10 @@
     largest[543-123] := 420
     test_equality(largest[543-123], 420)
     
-    negatives[-100] = true
+    negatives[-100] := true
     test_equality_boolean(negatives[-90-10], true)
     
-    negatives[-45] = false
+    negatives[-45] := false
     test_equality_boolean(negatives[-90+45], false)
    
     negative_and_positive[z + y] := -1
