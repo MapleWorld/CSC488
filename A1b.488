@@ -104,7 +104,7 @@
         else test_passed := false
 
         write test_passed
-        return test_passed
+        return with test_passed
     }
     
     %%%% Function to test results of boolean arrays
@@ -116,7 +116,7 @@
         else test_passed := false
 
         write test_passed
-        return test_passed
+        return with test_passed
     }
 
 }
