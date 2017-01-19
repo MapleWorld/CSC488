@@ -36,7 +36,7 @@
     test_equality(longer[32767], 32767)
     
     sequential[3] := true
-    test_equality(sequential[3], true)
+    test_equality_boolean(sequential[3], true)
     
     negatives[-100] := false
     test_equality_boolean(negatives[-100], false)
