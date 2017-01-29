@@ -12,13 +12,13 @@ import java_cup.runtime.*;		// Must always import this.
 // your code goes here
 //:};
 
-/* User code components 2: parser code components. 
+/* User code components 2: parser code components.
  * Modifications to the default generated parser
  */
 parser code {:
 
 	String lastError;
-	
+
     /* Override the report_error method so it will display the line and
      * column of where the error occurred in the input as well as the
      * reason for the error which is passed into the method in the
@@ -27,7 +27,7 @@ parser code {:
     public void report_error(String message, Object info)
 	{
 	String st =  "Error";
-   
+
         if (info instanceof java_cup.runtime.Symbol)
 	    {
             java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
@@ -35,7 +35,7 @@ parser code {:
 	    /* s.left is supposed to hold the line number of the error.
 	     * s.right is supposed to hold the column number.
 	     */
-   
+
             if (s.left >= 0)				// Check line number.
 		{
                 st += " in line " + (s.left + 1);
@@ -47,14 +47,14 @@ parser code {:
         System.err.println (st);
         lastError = st;
 	}
-   
+
     // Override the report_fatal_error method to use the report_error method.
     public void report_fatal_error (String message, Object info) throws Exception
 	{
         report_error (message, info);
         throw new Exception (lastError);
 	}
-   
+
    // version string for printing version in Main
    public static final String version =
      "Winter 2017" ;
@@ -85,9 +85,9 @@ init with {:
  * "left", "right", "nonassoc", "import", and "package".
  */
 
-// DEFINITIONS for CSC488S Source Language  Winter  2016/2017 
+// DEFINITIONS for CSC488S Source Language  Winter  2016/2017
 
-// Terminals returned by the scanner with no value attached.  
+// Terminals returned by the scanner with no value attached.
 terminal	AND,	OR,	NOT,	TRUE,	FALSE	;
 terminal 	BOOLEAN,INTEGER,FUNCTION,PROCEDURE	;
 terminal	DO,	ELSE,	EXIT,   IF	;
@@ -107,7 +107,24 @@ terminal String  TEXTCONST	;
 // Non-terminals that have no value.
 // nonterminal xxx
 
-nonterminal	program 	;
+nonterminal	program;
+nonterminal statement;
+nonterminal declaration;
+nonterminal variablenames;
+nonterminal bound;
+nonterminal scope;
+nonterminal output;
+nonterminal input;
+nonterminal type;
+nonterminal arguments;
+nonterminal parameters;
+nonterminal variable;
+nonterminal expression;
+nonterminal variablename;
+nonterminal arrayname;
+nonterminal functionname;
+nonterminal parametername;
+nonterminal procedurename;
 
 // Non-terminals that have a value.
 // nonterminal type  nameList ;
@@ -132,8 +149,91 @@ start with program;
 
 
 /*  YOUR CLEVERLY CRAFTED cup GRAMMAR FOR THE CSC488S SOURCE LANGUAGE
- *
  *  GOES HERE
  */
 
-program		::=	;
+program		::=	scope;
+statement   ::= variable COLON EQUAL expression
+              | IF expression THEN statement
+			  | IF expression THEN statement ELSE statement
+              | WHILE expression DO statement
+              | REPEAT statement UNTIL expression
+              | EXIT
+              | EXIT INTCONST
+              | EXIT WHEN expression
+              | EXIT INTCONST WHEN expression
+              | RETURN WITHX expression
+              | RETURN
+              | WRITE output
+              | READ input
+              | procedurename
+              | procedurename L_PAREN arguments R_PAREN
+              | scope
+              | statement statement;
+
+declaration ::= VAR variablenames COLON type
+              | FUNCTION functionname COLON type scope
+              | FUNCTION functionname L_PAREN parameters R_PAREN COLON type scope
+              | PROCEDURE procedurename scope
+              | PROCEDURE procedurename L_PAREN parameters R_PAREN scope
+              | declaration declaration;
+
+variablenames ::= variablename
+                | variablename L_SQUARE INTCONST R_SQUARE
+                | variablename L_SQUARE bound DOT DOT bound R_SQUARE
+                | variablenames COMMA variablenames;
+
+bound ::= INTCONST | MINUS INTCONST;
+
+scope ::= L_CURLEY declaration statement R_CURLEY
+        | L_CURLEY statement R_CURLEY
+        | L_CURLEY R_CURLEY;
+
+output ::= expression
+         | TEXTCONST
+         | NEWLINE
+         | output COMMA output;
+
+input ::= variable
+        | input COMMA input;
+
+type ::= INTEGER | BOOLEAN;
+
+arguments ::= expression
+            | arguments COMMA arguments;
+
+parameters ::= parametername COLON type
+             | parameters COMMA parameters;
+
+variable ::= variablename
+           | arrayname L_SQUARE expression R_SQUARE;
+
+expression ::= INTCONST
+             | MINUS expression
+             | expression PLUS expression
+             | expression MINUS expression
+             | expression TIMES expression
+             | expression DIVIDE expression
+             | TRUE
+             | FALSE
+             | NOT expression
+             | expression AND expression
+             | expression OR expression
+             | expression EQUAL expression
+             | expression NOT EQUAL expression
+             | expression LESS expression
+             | expression LESS EQUAL expression
+             | expression GREATER expression
+             | expression GREATER EQUAL expression
+             | L_PAREN expression R_PAREN
+             | L_PAREN expression QUESTION expression COLON expression R_PAREN
+             | variable
+             | functionname
+             | functionname L_PAREN arguments R_PAREN
+             | parametername;
+
+variablename ::= IDENT;
+arrayname ::= IDENT;
+functionname ::= IDENT;
+parametername ::= IDENT;
+procedurename ::= IDENT;
