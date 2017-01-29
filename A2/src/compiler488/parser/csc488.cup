@@ -118,6 +118,7 @@ nonterminal input;
 nonterminal type;
 nonterminal argument;
 nonterminal arguments;
+nonterminal parameter;
 nonterminal parameters;
 nonterminal variable;
 nonterminal expression;
@@ -161,7 +162,7 @@ start with program;
 program		::=	scope;
 
 statements  ::= statement
-              | statements statement;
+              | statement statements;
 
 statement   ::= variable COLON EQUAL expression
               | IF expression THEN statements
@@ -213,8 +214,10 @@ arguments ::= argument
 
 argument ::= expression;
 
-parameters ::= parametername COLON type
-             | parameters COMMA parameters;
+parameters ::= parameter
+             | parameter COMMA parameters;
+
+parameter ::= parametername COLON type;
 
 variable ::= variablename
            | arrayname L_SQUARE expression R_SQUARE;
