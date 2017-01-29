@@ -110,6 +110,7 @@ terminal String  TEXTCONST	;
 nonterminal	program;
 nonterminal statement;
 nonterminal declaration;
+nonterminal declarations;
 nonterminal variablenames;
 nonterminal bound;
 nonterminal scope;
@@ -187,21 +188,23 @@ statement   ::= variable COLON EQUAL expression
               | procedurename L_PAREN arguments R_PAREN
               | scope;
 
+declarations ::= declaration
+               | declaration declarations;
+
 declaration ::= VAR variablenames COLON type
               | FUNCTION functionname COLON type scope
               | FUNCTION functionname L_PAREN parameters R_PAREN COLON type scope
               | PROCEDURE procedurename scope
-              | PROCEDURE procedurename L_PAREN parameters R_PAREN scope
-              | declaration declaration;
+              | PROCEDURE procedurename L_PAREN parameters R_PAREN scope;
 
 variablenames ::= variablename
                 | variablename L_SQUARE INTCONST R_SQUARE
                 | variablename L_SQUARE bound DOT DOT bound R_SQUARE
-                | variablenames COMMA variablenames;
+                | variablename COMMA variablenames;
 
 bound ::= INTCONST | MINUS INTCONST;
 
-scope ::= L_CURLEY declaration statements R_CURLEY
+scope ::= L_CURLEY declarations statements R_CURLEY
         | L_CURLEY statements R_CURLEY
         | L_CURLEY R_CURLEY;
 
