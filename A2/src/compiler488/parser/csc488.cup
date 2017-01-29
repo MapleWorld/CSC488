@@ -134,6 +134,10 @@ nonterminal timesordivideexpression;
 nonterminal timesordivideoperand;
 nonterminal primitive;
 nonterminal statements;
+nonterminal orexpression;
+nonterminal andexpression;
+nonterminal negationexpression;
+nonterminal compareexpression;
 
 // Non-terminals that have a value.
 // nonterminal type  nameList ;
@@ -231,20 +235,30 @@ expression ::= INTCONST
              | TRUE
              | FALSE
              | NOT expression
-             | expression AND expression
-             | expression OR expression
-             | expression EQUAL expression
-             | expression NOT EQUAL expression
-             | expression LESS expression
-             | expression LESS EQUAL expression
-             | expression GREATER expression
-             | expression GREATER EQUAL expression
+             | orexpression
              | L_PAREN expression R_PAREN
              | L_PAREN expression QUESTION expression COLON expression R_PAREN
              | variable
              | functionname
              | functionname L_PAREN arguments R_PAREN
              | parametername;
+
+orexpression ::= andexpression
+             |   expression OR andexpression;
+
+andexpression ::= negationexpression
+              |   andexpression AND negationexpression;
+
+negationexpression ::= compareexpression
+                   |   NOT negationexpression;
+
+compareexpression ::= arithmeticexpression
+                  |   arithmeticexpression EQUAL arithmeticexpression
+                  |   arithmeticexpression NOT EQUAL arithmeticexpression
+                  |   arithmeticexpression LESS arithmeticexpression
+                  |   arithmeticexpression LESS THEN arithmeticexpression
+                  |   arithmeticexpression GREATER arithmeticexpression
+                  |   arithmeticexpression GREATER EQUAL arithmeticexpression;
 
 arithmeticexpression ::= timesordivideexpression
                        | arithmeticexpression PLUS timesordivideexpression
