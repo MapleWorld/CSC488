@@ -114,7 +114,9 @@ nonterminal variablenames;
 nonterminal bound;
 nonterminal scope;
 nonterminal output;
+nonterminal outputs;
 nonterminal input;
+nonterminal inputs;
 nonterminal type;
 nonterminal argument;
 nonterminal arguments;
@@ -175,8 +177,8 @@ statement   ::= variable COLON EQUAL expression
               | EXIT INTCONST WHEN expression
               | RETURN WITHX expression
               | RETURN
-              | WRITE output
-              | READ input
+              | WRITE outputs
+              | READ inputs
               | procedurename
               | procedurename L_PAREN arguments R_PAREN
               | scope;
@@ -199,13 +201,15 @@ scope ::= L_CURLEY declaration statements R_CURLEY
         | L_CURLEY statements R_CURLEY
         | L_CURLEY R_CURLEY;
 
+outputs ::= output COMMA outputs;
+
 output ::= expression
          | TEXTCONST
-         | NEWLINE
-         | output COMMA output;
+         | NEWLINE;
 
-input ::= variable
-        | input COMMA input;
+inputs ::= input COMMA inputs;
+
+input ::= variable;
 
 type ::= INTEGER | BOOLEAN;
 
