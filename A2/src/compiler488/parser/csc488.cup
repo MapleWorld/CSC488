@@ -116,6 +116,7 @@ nonterminal scope;
 nonterminal output;
 nonterminal input;
 nonterminal type;
+nonterminal argument;
 nonterminal arguments;
 nonterminal parameters;
 nonterminal variable;
@@ -129,6 +130,7 @@ nonterminal arithmeticexpression;
 nonterminal timesordivideexpression;
 nonterminal timesordivideoperand;
 nonterminal primitive;
+nonterminal statements;
 
 // Non-terminals that have a value.
 // nonterminal type  nameList ;
@@ -157,11 +159,15 @@ start with program;
  */
 
 program		::=	scope;
+
+statements  ::= statement
+              | statements statement;
+
 statement   ::= variable COLON EQUAL expression
-              | IF expression THEN statement
-			  | IF expression THEN statement ELSE statement
-              | WHILE expression DO statement
-              | REPEAT statement UNTIL expression
+              | IF expression THEN statements
+			  | IF expression THEN statements ELSE statements
+              | WHILE expression DO statements
+              | REPEAT statements UNTIL expression
               | EXIT
               | EXIT INTCONST
               | EXIT WHEN expression
@@ -172,8 +178,7 @@ statement   ::= variable COLON EQUAL expression
               | READ input
               | procedurename
               | procedurename L_PAREN arguments R_PAREN
-              | scope
-              | statement statement;
+              | scope;
 
 declaration ::= VAR variablenames COLON type
               | FUNCTION functionname COLON type scope
@@ -189,8 +194,8 @@ variablenames ::= variablename
 
 bound ::= INTCONST | MINUS INTCONST;
 
-scope ::= L_CURLEY declaration statement R_CURLEY
-        | L_CURLEY statement R_CURLEY
+scope ::= L_CURLEY declaration statements R_CURLEY
+        | L_CURLEY statements R_CURLEY
         | L_CURLEY R_CURLEY;
 
 output ::= expression
@@ -203,8 +208,10 @@ input ::= variable
 
 type ::= INTEGER | BOOLEAN;
 
-arguments ::= expression
-            | arguments COMMA arguments;
+arguments ::= argument
+            | argument COMMA arguments;
+
+argument ::= expression;
 
 parameters ::= parametername COLON type
              | parameters COMMA parameters;
