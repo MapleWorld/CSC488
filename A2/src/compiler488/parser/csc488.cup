@@ -125,6 +125,10 @@ nonterminal arrayname;
 nonterminal functionname;
 nonterminal parametername;
 nonterminal procedurename;
+nonterminal arithmeticexpression;
+nonterminal timesordivideexpression;
+nonterminal timesordivideoperand;
+nonterminal primitive;
 
 // Non-terminals that have a value.
 // nonterminal type  nameList ;
@@ -209,11 +213,7 @@ variable ::= variablename
            | arrayname L_SQUARE expression R_SQUARE;
 
 expression ::= INTCONST
-             | MINUS expression
-             | expression PLUS expression
-             | expression MINUS expression
-             | expression TIMES expression
-             | expression DIVIDE expression
+             | arithmeticexpression
              | TRUE
              | FALSE
              | NOT expression
@@ -231,6 +231,18 @@ expression ::= INTCONST
              | functionname
              | functionname L_PAREN arguments R_PAREN
              | parametername;
+
+arithmeticexpression ::= timesordivideexpression
+                       | arithmeticexpression PLUS timesordivideexpression
+                       | arithmeticexpression MINUS timesordivideexpression;
+
+timesordivideexpression ::= timesordivideoperand
+                          | timesordivideexpression TIMES timesordivideoperand
+                          | timesordivideexpression DIVIDE timesordivideoperand;
+
+timesordivideoperand ::= primitive | MINUS primitive;
+
+primitive ::= INTCONST;
 
 variablename ::= IDENT;
 arrayname ::= IDENT;
