@@ -193,7 +193,7 @@ declaration ::= VAR variablenames COLON type
 variablenames ::= variablename
                 | variablename L_SQUARE INTCONST R_SQUARE
                 | variablename L_SQUARE bound DOT DOT bound R_SQUARE
-                | variablenames COMMA variablenames;
+                | variablename COMMA variablenames;
 
 bound ::= INTCONST | MINUS INTCONST;
 
