@@ -233,8 +233,8 @@ variable ::= variablename
            | arrayname L_SQUARE expression R_SQUARE;
 
 expression ::= andorexpression
-             | L_PAREN expression R_PAREN
-             | L_PAREN expression QUESTION expression COLON expression R_PAREN
+             | L_PAREN andorexpression R_PAREN
+             | L_PAREN andorexpression QUESTION andorexpression COLON andorexpression R_PAREN
              | variable
              | functionname
              | functionname L_PAREN arguments R_PAREN
