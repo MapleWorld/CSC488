@@ -135,8 +135,7 @@ nonterminal timesordivideexpression;
 nonterminal timesordivideoperand;
 nonterminal primitive;
 nonterminal statements;
-nonterminal orexpression;
-nonterminal andexpression;
+nonterminal andorexpression;
 nonterminal negationexpression;
 nonterminal compareexpression;
 
@@ -237,8 +236,7 @@ expression ::= INTCONST
              | arithmeticexpression
              | TRUE
              | FALSE
-             | NOT expression
-             | orexpression
+             | andorexpression
              | L_PAREN expression R_PAREN
              | L_PAREN expression QUESTION expression COLON expression R_PAREN
              | variable
@@ -246,11 +244,9 @@ expression ::= INTCONST
              | functionname L_PAREN arguments R_PAREN
              | parametername;
 
-orexpression ::= andexpression
-             |   expression OR andexpression;
-
-andexpression ::= negationexpression
-              |   andexpression AND negationexpression;
+andorexpression ::= negationexpression
+                  | andorexpression OR negationexpression
+                  | andorexpression AND negationexpression;
 
 negationexpression ::= compareexpression
                    |   NOT negationexpression;
