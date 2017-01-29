@@ -232,11 +232,7 @@ parameter ::= parametername COLON type;
 variable ::= variablename
            | arrayname L_SQUARE expression R_SQUARE;
 
-expression ::= INTCONST
-             | arithmeticexpression
-             | TRUE
-             | FALSE
-             | andorexpression
+expression ::= andorexpression
              | L_PAREN expression R_PAREN
              | L_PAREN expression QUESTION expression COLON expression R_PAREN
              | variable
@@ -269,7 +265,7 @@ timesordivideexpression ::= timesordivideoperand
 
 timesordivideoperand ::= primitive | MINUS primitive;
 
-primitive ::= INTCONST;
+primitive ::= INTCONST | TRUE | FALSE;
 
 variablename ::= IDENT;
 arrayname ::= IDENT;
