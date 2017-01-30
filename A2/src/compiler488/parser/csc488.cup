@@ -111,7 +111,7 @@ nonterminal	program;
 nonterminal statement;
 nonterminal declaration;
 nonterminal declarations;
-nonterminal variablenames;
+nonterminal variable_names;
 nonterminal bound;
 nonterminal scope;
 nonterminal output;
@@ -125,11 +125,11 @@ nonterminal parameter;
 nonterminal parameters;
 nonterminal variable;
 nonterminal expression;
-nonterminal variablename;
-nonterminal arrayname;
-nonterminal functionname;
-nonterminal parametername;
-nonterminal procedurename;
+nonterminal variable_name;
+nonterminal array_name;
+nonterminal function_name;
+nonterminal parameter_name;
+nonterminal procedure_name;
 nonterminal arithmetic_expression;
 nonterminal times_or_divide_expression;
 nonterminal times_or_divide_operand;
@@ -183,23 +183,23 @@ statement   ::= variable COLON EQUAL expression
               | RETURN
               | WRITE outputs
               | READ inputs
-              | procedurename
-              | procedurename L_PAREN arguments R_PAREN
+              | procedure_name
+              | procedure_name L_PAREN arguments R_PAREN
               | scope;
 
 declarations ::= declaration
                | declaration declarations;
 
-declaration ::= VAR variablenames COLON type
-              | FUNCTION functionname COLON type scope
-              | FUNCTION functionname L_PAREN parameters R_PAREN COLON type scope
-              | PROCEDURE procedurename scope
-              | PROCEDURE procedurename L_PAREN parameters R_PAREN scope;
+declaration ::= VAR variable_names COLON type
+              | FUNCTION function_name COLON type scope
+              | FUNCTION function_name L_PAREN parameters R_PAREN COLON type scope
+              | PROCEDURE procedure_name scope
+              | PROCEDURE procedure_name L_PAREN parameters R_PAREN scope;
 
-variablenames ::= variablename
-                | variablename L_SQUARE INTCONST R_SQUARE
-                | variablename L_SQUARE bound DOT DOT bound R_SQUARE
-                | variablename COMMA variablenames;
+variable_names ::= variable_name
+                | variable_name L_SQUARE INTCONST R_SQUARE
+                | variable_name L_SQUARE bound DOT DOT bound R_SQUARE
+                | variable_name COMMA variable_names;
 
 bound ::= INTCONST | MINUS INTCONST;
 
@@ -227,18 +227,18 @@ argument ::= expression;
 parameters ::= parameter
              | parameter COMMA parameters;
 
-parameter ::= parametername COLON type;
+parameter ::= parameter_name COLON type;
 
-variable ::= variablename
-           | arrayname L_SQUARE expression R_SQUARE;
+variable ::= variable_name
+           | array_name L_SQUARE expression R_SQUARE;
 
 expression ::= and_or_expression
              | L_PAREN and_or_expression R_PAREN
              | L_PAREN and_or_expression QUESTION and_or_expression COLON and_or_expression R_PAREN
              | variable
-             | functionname
-             | functionname L_PAREN arguments R_PAREN
-             | parametername;
+             | function_name
+             | function_name L_PAREN arguments R_PAREN
+             | parameter_name;
 
 and_or_expression ::= negation_expression
                   | and_or_expression OR negation_expression
@@ -267,8 +267,8 @@ times_or_divide_operand ::= primitive | MINUS primitive;
 
 primitive ::= INTCONST | TRUE | FALSE;
 
-variablename ::= IDENT;
-arrayname ::= IDENT;
-functionname ::= IDENT;
-parametername ::= IDENT;
-procedurename ::= IDENT;
+variable_name ::= IDENT;
+array_name ::= IDENT;
+function_name ::= IDENT;
+parameter_name ::= IDENT;
+procedure_name ::= IDENT;
