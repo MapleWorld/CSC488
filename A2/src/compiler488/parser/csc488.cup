@@ -130,14 +130,14 @@ nonterminal arrayname;
 nonterminal functionname;
 nonterminal parametername;
 nonterminal procedurename;
-nonterminal arithmeticexpression;
-nonterminal timesordivideexpression;
-nonterminal timesordivideoperand;
+nonterminal arithmetic_expression;
+nonterminal times_or_divide_expression;
+nonterminal times_or_divide_operand;
 nonterminal primitive;
 nonterminal statements;
-nonterminal andorexpression;
-nonterminal negationexpression;
-nonterminal compareexpression;
+nonterminal and_or_expression;
+nonterminal negation_expression;
+nonterminal compare_expression;
 
 // Non-terminals that have a value.
 // nonterminal type  nameList ;
@@ -232,38 +232,38 @@ parameter ::= parametername COLON type;
 variable ::= variablename
            | arrayname L_SQUARE expression R_SQUARE;
 
-expression ::= andorexpression
-             | L_PAREN andorexpression R_PAREN
-             | L_PAREN andorexpression QUESTION andorexpression COLON andorexpression R_PAREN
+expression ::= and_or_expression
+             | L_PAREN and_or_expression R_PAREN
+             | L_PAREN and_or_expression QUESTION and_or_expression COLON and_or_expression R_PAREN
              | variable
              | functionname
              | functionname L_PAREN arguments R_PAREN
              | parametername;
 
-andorexpression ::= negationexpression
-                  | andorexpression OR negationexpression
-                  | andorexpression AND negationexpression;
+and_or_expression ::= negation_expression
+                  | and_or_expression OR negation_expression
+                  | and_or_expression AND negation_expression;
 
-negationexpression ::= compareexpression
-                   |   NOT negationexpression;
+negation_expression ::= compare_expression
+                   |   NOT negation_expression;
 
-compareexpression ::= arithmeticexpression
-                  |   arithmeticexpression EQUAL arithmeticexpression
-                  |   arithmeticexpression NOT EQUAL arithmeticexpression
-                  |   arithmeticexpression LESS arithmeticexpression
-                  |   arithmeticexpression LESS THEN arithmeticexpression
-                  |   arithmeticexpression GREATER arithmeticexpression
-                  |   arithmeticexpression GREATER EQUAL arithmeticexpression;
+compare_expression ::= arithmetic_expression
+                  |   arithmetic_expression EQUAL arithmetic_expression
+                  |   arithmetic_expression NOT EQUAL arithmetic_expression
+                  |   arithmetic_expression LESS arithmetic_expression
+                  |   arithmetic_expression LESS THEN arithmetic_expression
+                  |   arithmetic_expression GREATER arithmetic_expression
+                  |   arithmetic_expression GREATER EQUAL arithmetic_expression;
 
-arithmeticexpression ::= timesordivideexpression
-                       | arithmeticexpression PLUS timesordivideexpression
-                       | arithmeticexpression MINUS timesordivideexpression;
+arithmetic_expression ::= times_or_divide_expression
+                       | arithmetic_expression PLUS times_or_divide_expression
+                       | arithmetic_expression MINUS times_or_divide_expression;
 
-timesordivideexpression ::= timesordivideoperand
-                          | timesordivideexpression TIMES timesordivideoperand
-                          | timesordivideexpression DIVIDE timesordivideoperand;
+times_or_divide_expression ::= times_or_divide_operand
+                          | times_or_divide_expression TIMES times_or_divide_operand
+                          | times_or_divide_expression DIVIDE times_or_divide_operand;
 
-timesordivideoperand ::= primitive | MINUS primitive;
+times_or_divide_operand ::= primitive | MINUS primitive;
 
 primitive ::= INTCONST | TRUE | FALSE;
 
