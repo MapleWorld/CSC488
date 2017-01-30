@@ -167,6 +167,19 @@ start with program;
 
 program		::=	scope;
 
+scope ::= L_CURLEY declarations statements R_CURLEY
+        | L_CURLEY statements R_CURLEY
+        | L_CURLEY R_CURLEY;
+        
+declarations ::= declaration
+               | declaration declarations;
+
+declaration ::= VAR variable_names COLON type
+              | FUNCTION function_name COLON type scope
+              | FUNCTION function_name L_PAREN parameters R_PAREN COLON type scope
+              | PROCEDURE procedure_name scope
+              | PROCEDURE procedure_name L_PAREN parameters R_PAREN scope;
+              
 statements  ::= statement
               | statement statements;
 
@@ -187,50 +200,15 @@ statement   ::= variable COLON EQUAL expression
               | procedure_name L_PAREN arguments R_PAREN
               | scope;
 
-declarations ::= declaration
-               | declaration declarations;
-
-declaration ::= VAR variable_names COLON type
-              | FUNCTION function_name COLON type scope
-              | FUNCTION function_name L_PAREN parameters R_PAREN COLON type scope
-              | PROCEDURE procedure_name scope
-              | PROCEDURE procedure_name L_PAREN parameters R_PAREN scope;
-
 variable_names ::= variable_name
                 | variable_name L_SQUARE INTCONST R_SQUARE
                 | variable_name L_SQUARE bound DOT DOT bound R_SQUARE
                 | variable_name COMMA variable_names;
 
-bound ::= INTCONST | MINUS INTCONST;
-
-scope ::= L_CURLEY declarations statements R_CURLEY
-        | L_CURLEY statements R_CURLEY
-        | L_CURLEY R_CURLEY;
-
-outputs ::= output COMMA outputs;
-
-output ::= expression
-         | TEXTCONST
-         | NEWLINE;
-
-inputs ::= input COMMA inputs;
-
-input ::= variable;
-
-type ::= INTEGER | BOOLEAN;
-
 arguments ::= argument
             | argument COMMA arguments;
 
 argument ::= expression;
-
-parameters ::= parameter
-             | parameter COMMA parameters;
-
-parameter ::= parameter_name COLON type;
-
-variable ::= variable_name
-           | array_name L_SQUARE expression R_SQUARE;
 
 expression ::= and_or_expression
              | L_PAREN and_or_expression R_PAREN
@@ -266,6 +244,30 @@ times_or_divide_expression ::= times_or_divide_operand
 times_or_divide_operand ::= primitive | MINUS primitive;
 
 primitive ::= INTCONST | TRUE | FALSE;
+
+bound ::= INTCONST | MINUS INTCONST;
+
+outputs ::= output COMMA outputs;
+
+output ::= expression
+         | TEXTCONST
+         | NEWLINE;
+
+inputs ::= input COMMA inputs;
+
+input ::= variable;
+
+type ::= INTEGER | BOOLEAN;
+
+
+
+parameters ::= parameter
+             | parameter COMMA parameters;
+
+parameter ::= parameter_name COLON type;
+
+variable ::= variable_name
+           | array_name L_SQUARE expression R_SQUARE;
 
 variable_name ::= IDENT;
 array_name ::= IDENT;
