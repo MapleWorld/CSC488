@@ -1,0 +1,16 @@
+% Assignment    : 1
+% Author        : yeou
+% A program that uses all arithmetic, logical and comparison operators
+
+{
+
+    %%%%%%%%%% Declarations %%%%%%%%%%
+    var b : Boolean
+    var x, y : Integer
+
+    %%%%%%%%%% Arithmetic %%%%%%%%%%
+
+    % Addition Test
+    x := 1 + 1                      % Result 2
+
+}

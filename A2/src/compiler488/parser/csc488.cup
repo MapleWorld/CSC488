@@ -223,6 +223,7 @@ negation_expression ::= compare_expression
                    |   NOT negation_expression;
 
 compare_expression ::= arithmetic_expression
+                  |   L_PAREN arithmetic_expression R_PAREN
                   |   arithmetic_expression EQUAL arithmetic_expression
                   |   arithmetic_expression NOT EQUAL arithmetic_expression
                   |   arithmetic_expression LESS arithmetic_expression

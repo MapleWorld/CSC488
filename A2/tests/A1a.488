@@ -39,7 +39,7 @@
     b := x = y
 
     x := 1 - -2 + 3 - -4            % Result 10
-    y := (1 - (-2) + (3 - (-4))     % Result 10
+    y := 1 - (-2) + (3 - (-4))     % Result 10
     b := x = y
 
     % Addition and Multiplication
@@ -77,7 +77,7 @@
     x := 2 / -1 - 4 / -2            % Result 0
     y := (2 / (-1)) - (4 / (-2))    % Result 0
     b := x = y
-        
+
     % Addition, Subtraction, Multiplication, and Division
     x := 4 * 3 / -2 * -1 - 6        % Result 0
     y := ((4 * 3 / -6) * -3) - 6    % Result 0
@@ -164,17 +164,17 @@
 
     %%%%%%%%%% Additional %%%%%%%%%%
 
-    % Reference to a variable    
+    % Reference to a variable
     y := x
 
     % Conditional Statement
-    if false then
-        b := false
+    % if false then
+        % b := false
 
-    if not true then
-        b := false
-    else
-        b := true
+    %if not true then
+        % b := false
+    % else
+        %b := true
 
 
 }
