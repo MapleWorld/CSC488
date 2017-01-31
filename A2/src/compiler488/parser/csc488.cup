@@ -131,7 +131,8 @@ nonterminal times_or_divide_expression;
 nonterminal times_or_divide_operand;
 nonterminal primitive;
 nonterminal statements;
-nonterminal and_or_expression;
+nonterminal or_expression;
+nonterminal and_expression;
 nonterminal negation_expression;
 nonterminal compare_expression;
 
@@ -206,15 +207,17 @@ arguments ::= argument
 
 argument ::= expression;
 
-expression ::= and_or_expression
-             | L_PAREN and_or_expression R_PAREN
-             | L_PAREN and_or_expression QUESTION and_or_expression COLON and_or_expression R_PAREN
+expression ::= or_expression
+             | L_PAREN or_expression R_PAREN
+             | L_PAREN or_expression QUESTION or_expression COLON or_expression R_PAREN
              | variable
              | string L_PAREN arguments R_PAREN;
 
-and_or_expression ::= negation_expression
-                  | and_or_expression OR negation_expression
-                  | and_or_expression AND negation_expression;
+or_expression ::= and_expression
+                | or_expression OR and_expression;
+
+and_expression ::= negation_expression
+                 | and_expression AND negation_expression;
 
 negation_expression ::= compare_expression
                    |   NOT negation_expression;
