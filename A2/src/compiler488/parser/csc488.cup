@@ -109,6 +109,7 @@ terminal String  TEXTCONST	;
 
 nonterminal program;
 nonterminal statement;
+nonterminal sub_statements;
 nonterminal declaration;
 nonterminal declarations;
 nonterminal variable_names;
@@ -185,9 +186,9 @@ statements  ::= statement
               | statement statements;
 
 statement   ::= variable COLON EQUAL expression
-              | IF expression THEN statements
-              | IF expression THEN statements ELSE statements
-              //| WHILE expression DO statements
+              | IF expression THEN sub_statements
+              | IF expression THEN sub_statements ELSE sub_statements
+              | WHILE expression DO sub_statements
 			  | REPEAT statements UNTIL expression
 			  | EXIT
 			  | EXIT INTCONST
@@ -198,8 +199,9 @@ statement   ::= variable COLON EQUAL expression
 			  | READ inputs
 			  | WRITE outputs
 			  | string
-			  | string L_PAREN arguments R_PAREN
-			  | scope;
+			  | string L_PAREN arguments R_PAREN;
+
+sub_statements ::= statement | scope;
 
 variable_names ::= string
                 | string L_SQUARE INTCONST R_SQUARE
