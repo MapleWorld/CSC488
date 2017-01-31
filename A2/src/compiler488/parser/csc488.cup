@@ -166,7 +166,7 @@ program     ::= scope;
 scope ::= L_CURLEY declarations statements R_CURLEY
         | L_CURLEY statements R_CURLEY
         | L_CURLEY R_CURLEY;
-        
+
 declarations ::= declaration
                | declaration declarations;
 
@@ -175,7 +175,7 @@ declaration ::= VAR variable_names COLON type
               | FUNCTION string L_PAREN parameters R_PAREN COLON type scope
               | PROCEDURE string scope
               | PROCEDURE string L_PAREN parameters R_PAREN scope;
-              
+
 statements  ::= statement
               | statement statements;
 
@@ -241,7 +241,7 @@ primitive ::= INTCONST | TRUE | FALSE;
 
 bound ::= INTCONST | MINUS INTCONST;
 
-outputs ::= output COMMA outputs;
+outputs ::= output | output COMMA outputs;
 
 output ::= expression
          | TEXTCONST
