@@ -231,24 +231,20 @@ compare_expression ::= arithmetic_expression
 
 arithmetic_expression ::= times_or_divide_expression
                        | arithmetic_expression PLUS times_or_divide_expression
-                       | arithmetic_expression PLUS L_PAREN times_or_divide_expression R_PAREN
-                       | L_PAREN arithmetic_expression R_PAREN PLUS times_or_divide_expression
-                       | arithmetic_expression MINUS times_or_divide_expression
-                       | arithmetic_expression MINUS L_PAREN times_or_divide_expression R_PAREN
-                       | L_PAREN arithmetic_expression R_PAREN times_or_divide_expression;
+                       | arithmetic_expression MINUS times_or_divide_expression;
 
 times_or_divide_expression ::= times_or_divide_operand
                           | times_or_divide_expression TIMES times_or_divide_operand
-                          | times_or_divide_expression TIMES L_PAREN times_or_divide_operand R_PAREN
-                          | times_or_divide_expression DIVIDE times_or_divide_operand
-                          | times_or_divide_expression DIVIDE L_PAREN times_or_divide_operand R_PAREN;
+                          | times_or_divide_expression DIVIDE times_or_divide_operand;
+
 
 times_or_divide_operand ::= primitive
-                            | MINUS primitive;
+                            | L_PAREN expression R_PAREN
+                            | MINUS expression;
 
 primitive ::= INTCONST | TRUE | FALSE;
 
-bound ::= INTCONST | MINUS INTCONST;
+bound ::= INTCONST;// | MINUS INTCONST;
 
 outputs ::= output | output COMMA outputs;
 
