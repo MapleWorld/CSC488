@@ -9,6 +9,29 @@
 
 {
 
+    %%%% Function to test results of integer arrays
+    function test_equality_integer(expected : Integer, actual : Integer) : Boolean {
+        var test_passed : Boolean
+        
+        if expected = actual
+        then test_passed := true 
+        else test_passed := false
+
+        write test_passed
+        return with test_passed
+    }
+    
+    %%%% Function to test results of boolean arrays
+    function test_equality_boolean(expected : Boolean, actual : Boolean) : Boolean {
+        var test_passed : Boolean
+        
+        if expected = actual
+        then test_passed := true 
+        else test_passed := false
+
+        write test_passed
+        return with test_passed
+    }
     %%%% Declaring arrays 
 
     var simple[1] : Integer
@@ -16,7 +39,7 @@
     var sequential[1..5] : Boolean
     var negatives[-100..-9] : Boolean
     var negative_and_positive[-5..5] : Integer
-    var largest[-32767..32767] : Interger
+    var largest[-32767..32767] : Integer
 
     % Declare test variables
     var y, z : Integer
@@ -94,29 +117,5 @@
     %%%% Test modified values
     test_equality_integer(simple[1], -5)
     test_equality_boolean(sequential[y], b)
-
-    %%%% Function to test results of integer arrays
-    function test_equality_integer(expected : Integer, actual : Integer) : Boolean {
-        var test_passed : Boolean
-        
-        if expected = actual
-        then test_passed := true 
-        else test_passed := false
-
-        write test_passed
-        return with test_passed
-    }
-    
-    %%%% Function to test results of boolean arrays
-    function test_equality_boolean(expected : Boolean, actual : Boolean) : Boolean {
-        var test_passed : Boolean
-        
-        if expected = actual
-        then test_passed := true 
-        else test_passed := false
-
-        write test_passed
-        return with test_passed
-    }
 
 }
