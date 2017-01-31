@@ -180,6 +180,19 @@ statements  ::= statement
               | statement statements;
 
 statement   ::= variable COLON EQUAL expression
+			  | REPEAT statements UNTIL expression
+			  | EXIT
+			  | EXIT INTCONST
+			  | EXIT WHEN expression
+			  | EXIT INTCONST WHEN expression
+			  | RETURN WITHX expression
+			  | RETURN
+			  | READ inputs
+			  | WRITE outputs
+			  | string
+			  | string L_PAREN arguments R_PAREN
+			  | scope;
+/*
               | IF expression THEN statements
               | IF expression THEN statements ELSE statements
               | WHILE expression DO statements
@@ -195,6 +208,7 @@ statement   ::= variable COLON EQUAL expression
               | string
               | string L_PAREN arguments R_PAREN
 		      | scope;
+*/
               
 variable_names ::= string
                 | string L_SQUARE INTCONST R_SQUARE
