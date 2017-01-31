@@ -147,6 +147,9 @@ nonterminal compare_expression;
 //precedence right PLUS, MINUS;
 //precedence right TIMES, DIVIDE;       // Higher precedence.
 
+precedence nonassoc ELSE;
+precedence nonassoc IF;
+
 // The grammar section.
 
 // This specifies the initial symbol of the grammar.
@@ -182,8 +185,8 @@ statements  ::= statement
               | statement statements;
 
 statement   ::= variable COLON EQUAL expression
-              //| IF expression THEN statements
-              //| IF expression THEN statements ELSE statements
+              | IF expression THEN statements
+              | IF expression THEN statements ELSE statements
               //| WHILE expression DO statements
 			  | REPEAT statements UNTIL expression
 			  | EXIT
