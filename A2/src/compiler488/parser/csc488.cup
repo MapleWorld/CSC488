@@ -189,7 +189,7 @@ statement   ::= variable COLON EQUAL expression
               | IF expression THEN sub_statements
               | IF expression THEN sub_statements ELSE sub_statements
               | WHILE expression DO sub_statements
-			  | REPEAT statements UNTIL expression
+			  | REPEAT sub_statements UNTIL expression
 			  | EXIT
 			  | EXIT INTCONST
 			  | EXIT WHEN expression
