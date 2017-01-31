@@ -210,7 +210,6 @@ argument ::= expression;
 
 expression ::= or_expression
              | L_PAREN expression QUESTION expression COLON expression R_PAREN
-             | variable
              | string L_PAREN arguments R_PAREN;
 
 or_expression ::= and_expression
@@ -226,7 +225,7 @@ compare_expression ::= arithmetic_expression
                   |   arithmetic_expression EQUAL arithmetic_expression
                   |   arithmetic_expression NOT EQUAL arithmetic_expression
                   |   arithmetic_expression LESS arithmetic_expression
-                  |   arithmetic_expression LESS THEN arithmetic_expression
+                  |   arithmetic_expression LESS EQUAL arithmetic_expression
                   |   arithmetic_expression GREATER arithmetic_expression
                   |   arithmetic_expression GREATER EQUAL arithmetic_expression;
 
@@ -242,7 +241,8 @@ times_or_divide_operand ::= unary_minus_operand
                           | MINUS unary_minus_operand;
 
 unary_minus_operand ::= primitive
-                      | L_PAREN expression R_PAREN;
+                      | L_PAREN expression R_PAREN
+                      | variable;
 
 primitive ::= INTCONST | TRUE | FALSE;
 
