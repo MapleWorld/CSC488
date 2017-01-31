@@ -129,6 +129,7 @@ nonterminal expression;
 nonterminal arithmetic_expression;
 nonterminal times_or_divide_expression;
 nonterminal times_or_divide_operand;
+nonterminal unary_minus_operand;
 nonterminal primitive;
 nonterminal statements;
 nonterminal or_expression;
@@ -237,14 +238,15 @@ times_or_divide_expression ::= times_or_divide_operand
                           | times_or_divide_expression TIMES times_or_divide_operand
                           | times_or_divide_expression DIVIDE times_or_divide_operand;
 
+times_or_divide_operand ::= unary_minus_operand
+                          | MINUS unary_minus_operand;
 
-times_or_divide_operand ::= primitive
-                            | L_PAREN expression R_PAREN
-                            | MINUS expression;
+unary_minus_operand ::= primitive
+                      | L_PAREN expression R_PAREN;
 
 primitive ::= INTCONST | TRUE | FALSE;
 
-bound ::= INTCONST;// | MINUS INTCONST;
+bound ::= INTCONST | MINUS INTCONST;
 
 outputs ::= output | output COMMA outputs;
 
