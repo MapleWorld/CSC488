@@ -208,8 +208,7 @@ arguments ::= argument
 argument ::= expression;
 
 expression ::= or_expression
-             | L_PAREN or_expression R_PAREN
-             | L_PAREN or_expression QUESTION or_expression COLON or_expression R_PAREN
+             | L_PAREN expression QUESTION expression COLON expression R_PAREN
              | variable
              | string L_PAREN arguments R_PAREN;
 
@@ -223,7 +222,6 @@ negation_expression ::= compare_expression
                    |   NOT negation_expression;
 
 compare_expression ::= arithmetic_expression
-                  |   L_PAREN arithmetic_expression R_PAREN
                   |   arithmetic_expression EQUAL arithmetic_expression
                   |   arithmetic_expression NOT EQUAL arithmetic_expression
                   |   arithmetic_expression LESS arithmetic_expression
@@ -233,13 +231,20 @@ compare_expression ::= arithmetic_expression
 
 arithmetic_expression ::= times_or_divide_expression
                        | arithmetic_expression PLUS times_or_divide_expression
-                       | arithmetic_expression MINUS times_or_divide_expression;
+                       | arithmetic_expression PLUS L_PAREN times_or_divide_expression R_PAREN
+                       | L_PAREN arithmetic_expression R_PAREN PLUS times_or_divide_expression
+                       | arithmetic_expression MINUS times_or_divide_expression
+                       | arithmetic_expression MINUS L_PAREN times_or_divide_expression R_PAREN
+                       | L_PAREN arithmetic_expression R_PAREN times_or_divide_expression;
 
 times_or_divide_expression ::= times_or_divide_operand
                           | times_or_divide_expression TIMES times_or_divide_operand
-                          | times_or_divide_expression DIVIDE times_or_divide_operand;
+                          | times_or_divide_expression TIMES L_PAREN times_or_divide_operand R_PAREN
+                          | times_or_divide_expression DIVIDE times_or_divide_operand
+                          | times_or_divide_expression DIVIDE L_PAREN times_or_divide_operand R_PAREN;
 
-times_or_divide_operand ::= primitive | MINUS primitive;
+times_or_divide_operand ::= primitive
+                            | MINUS primitive;
 
 primitive ::= INTCONST | TRUE | FALSE;
 
