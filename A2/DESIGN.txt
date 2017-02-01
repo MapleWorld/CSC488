@@ -1,11 +1,15 @@
 Design
 
+For the design of our parser, we started at the top with scope and declared a non-terminal for everything on the left hand side of the language specification sheet, and a terminal for everything that could not be broken down further. 
 
+From there, we defined sub categories for all the left hand rules, such as or_expression or and_expression from expression, whenever a shift-reduce error occurred. Whenever we needed to enforce precedence, we again created a new non-terminal. 
 
-Problem Encountered:
+In this way, we tried to follow our design principle of maintaining the fewest number of non-terminals while removing any ambiguity from the grammar.
+
+Problems Encountered:
 
 Dangling else problem for if, else, and while statement, which causes ambiguous grammar due to its recursiveness, and was resolved by defining a separate sub statement for them to prevent ambiguous grammar. 
 
-Ambiguous grammar for arithmetic operation, and was resolved through leveling by defining multiplication, and division grammar separately from addition and subtraction to determines operators precedence, and reference it recursively in arithmetic expression.
+Ambiguous grammar for arithmetic operations was resolved through levelling by defining multiplication and division grammar rules separately from addition and subtraction to determine operators precedence.
 
 Reduce-Reduce Conflicts for array_name, function_name, variable_name, procedure_name, and was resolved through reduction and replacing it with a single variable instead.
