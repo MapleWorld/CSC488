@@ -1,0 +1,6 @@
+{
+
+    var x : Integer
+    exit when i := 0
+
+}
