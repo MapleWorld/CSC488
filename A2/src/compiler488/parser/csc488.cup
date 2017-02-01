@@ -114,7 +114,7 @@ nonterminal declaration;
 nonterminal declarations;
 nonterminal variable_names;
 nonterminal bound;
-nonterminal string;
+nonterminal name;
 nonterminal scope;
 nonterminal output;
 nonterminal outputs;
@@ -132,7 +132,6 @@ nonterminal times_or_divide_expression;
 nonterminal times_or_divide_operand;
 nonterminal unary_minus_operand;
 nonterminal basic_val;
-nonterminal primitive;
 nonterminal statements;
 nonterminal or_expression;
 nonterminal and_expression;
@@ -178,10 +177,10 @@ declarations ::= declaration
                | declaration declarations;
 
 declaration ::= VAR variable_names COLON type
-              | FUNCTION string COLON type scope
-              | FUNCTION string L_PAREN parameters R_PAREN COLON type scope
-              | PROCEDURE string scope
-              | PROCEDURE string L_PAREN parameters R_PAREN scope;
+              | FUNCTION name COLON type scope
+              | FUNCTION name L_PAREN parameters R_PAREN COLON type scope
+              | PROCEDURE name scope
+              | PROCEDURE name L_PAREN parameters R_PAREN scope;
 
 statements  ::= statement
               | statement statements;
@@ -199,24 +198,22 @@ statement   ::= variable COLON EQUAL expression
 			  | RETURN
 			  | READ inputs
 			  | WRITE outputs
-			  | string
-			  | string L_PAREN arguments R_PAREN;
+			  | name
+			  | name L_PAREN arguments R_PAREN;
 
 sub_statements ::= statement | scope;
 
-variable_names ::= string
-                | string L_SQUARE INTCONST R_SQUARE
-                | string L_SQUARE bound DOT DOT bound R_SQUARE
-                | string COMMA variable_names;
+variable_names ::= name
+                | name L_SQUARE INTCONST R_SQUARE
+                | name L_SQUARE bound DOT DOT bound R_SQUARE
+                | name COMMA variable_names;
 
 arguments ::= argument
             | argument COMMA arguments;
 
 argument ::= expression;
 
-expression ::= or_expression
-             | L_PAREN expression QUESTION expression COLON expression R_PAREN
-             | string L_PAREN arguments R_PAREN;
+expression ::= or_expression;
 
 or_expression ::= and_expression
                 | or_expression OR and_expression;
@@ -249,9 +246,12 @@ times_or_divide_operand ::= unary_minus_operand
 unary_minus_operand ::= basic_val
                       | L_PAREN expression R_PAREN;
 
-basic_val ::= primitive | variable;
-
-primitive ::= INTCONST | TRUE | FALSE;
+basic_val ::= variable 
+            | INTCONST 
+            | TRUE 
+            | FALSE
+            | L_PAREN expression QUESTION expression COLON expression R_PAREN                                                                                                                            
+            | name L_PAREN arguments R_PAREN;
 
 bound ::= INTCONST | MINUS INTCONST;
 
@@ -270,9 +270,9 @@ type ::= INTEGER | BOOLEAN;
 parameters ::= parameter
              | parameter COMMA parameters;
 
-parameter ::= string COLON type;
+parameter ::= name COLON type;
 
-variable ::= string
-           | string L_SQUARE expression R_SQUARE;
+variable ::= name
+           | name L_SQUARE expression R_SQUARE;
 
-string ::= IDENT;
+name ::= IDENT;
