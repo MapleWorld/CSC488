@@ -1,5 +1,0 @@
-% Invalid if statement
-{
-    % Invalid if return
-    if return then return else return
-}
