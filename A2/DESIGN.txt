@@ -2,4 +2,10 @@ Design
 
 
 
-Problem Encountered
+Problem Encountered:
+
+Dangling else problem for if, else, and while statement, which causes ambiguous grammar due to its recursiveness, and was resolved by defining a separate sub statement for them to prevent ambiguous grammar. 
+
+Ambiguous grammar for arithmetic operation, and was resolved through leveling by defining multiplication, and division grammar separately from addition and subtraction to determines operators precedence, and reference it recursively in arithmetic expression.
+
+Reduce-Reduce Conflicts for array_name, function_name, variable_name, procedure_name, and was resolved through reduction and replacing it with a single variable instead.
