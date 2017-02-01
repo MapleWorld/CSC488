@@ -1,11 +1,4 @@
 % Variable declaration with missing/invalid bound
 {   
     var x[] : Integer
-    var z[a] : Integer
-    var z["a"] : Integer
-    var y[1 .. ] : Integer
-    var z[ .. 10] : Integer
-    var q[1 .. 10 .. 20] : Integer
-    var p[-3276777..3276777] : Integer
-    write "hi"
 }
