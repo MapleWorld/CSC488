@@ -131,6 +131,7 @@ nonterminal arithmetic_expression;
 nonterminal times_or_divide_expression;
 nonterminal times_or_divide_operand;
 nonterminal unary_minus_operand;
+nonterminal basic_val;
 nonterminal primitive;
 nonterminal statements;
 nonterminal or_expression;
@@ -245,9 +246,10 @@ times_or_divide_expression ::= times_or_divide_operand
 times_or_divide_operand ::= unary_minus_operand
                           | MINUS unary_minus_operand;
 
-unary_minus_operand ::= primitive
-                      | L_PAREN expression R_PAREN
-                      | variable;
+unary_minus_operand ::= basic_val
+                      | L_PAREN expression R_PAREN;
+
+basic_val ::= primitive | variable;
 
 primitive ::= INTCONST | TRUE | FALSE;
 
