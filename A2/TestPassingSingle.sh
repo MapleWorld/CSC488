@@ -4,5 +4,5 @@
 # eg: ./TestSingle.sh var_declare.488
 
 echo TEST START
-./RUNCOMPILER.sh ./tests/$1
+./RUNCOMPILER.sh ./tests/passing/$1
 echo TEST DONE
