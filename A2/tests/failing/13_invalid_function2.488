@@ -1,0 +1,10 @@
+% Invalid function 
+{
+    %%%%% function without parameters
+    % Invalid function missing return type
+    function function_without_params_missing_return_type {
+        return with true
+    }
+
+    write "hi"
+}

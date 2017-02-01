@@ -1,9 +1,0 @@
-% Invalid return
-{
-    return 1
-    return "1"
-    return true
-    return 1 + "1"
-    return with 1 + "1"
-    return with true + "1"
-}

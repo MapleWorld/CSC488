@@ -1,9 +1,0 @@
-{
-
-    var i : Integer
-
-    procedure i(param1 : Integer, param2 : Integer) {
-        return
-    }
-
-}

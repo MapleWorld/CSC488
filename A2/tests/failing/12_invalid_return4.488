@@ -1,0 +1,4 @@
+% Invalid return
+{
+    return with 1 + "1"
+}

@@ -1,0 +1,12 @@
+% Invalid function 
+{
+    %%%%% function with parameters
+    % Invalid function parameter and type assignment
+    function function_with_params(param1 := Integer, param2 : Integer) := Integer {
+        % Invalid function return
+        return param1 + param2
+    }
+
+    % Invalid function parameter
+    function_with_params(5, "5")
+}

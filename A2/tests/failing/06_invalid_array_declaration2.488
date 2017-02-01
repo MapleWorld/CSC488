@@ -1,0 +1,5 @@
+% Invalid variable declaration with missing/invalid bound
+{   
+    var z["a"] : Integer
+    write "hi"
+}
