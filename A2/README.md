@@ -1,4 +1,4 @@
-Submission 
+# Submission Requirement
 The submitted file (using Markus) should contain:
  
 a) A README.A2 file that describes what each team member did for this assignment.
@@ -13,7 +13,7 @@ d) A tests directory containing all of the test cases that you used to test your
 - tests/failing - test to demonstrate handling of syntax errors (invalid programs)
 
 
-
+# Documentation
 This directory contains a minimal compiler skeleton that
 is sufficient to develop the programming language grammar
 for Assignment 2.
