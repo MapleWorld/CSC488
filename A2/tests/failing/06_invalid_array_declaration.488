@@ -1,0 +1,4 @@
+% Variable declaration with missing/invalid bound
+{   
+    var x[] : Integer
+}
