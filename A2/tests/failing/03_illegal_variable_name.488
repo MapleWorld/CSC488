@@ -1,0 +1,5 @@
+% Illegal Variable Name
+{
+    var 1 : Integer
+    write "hi"
+}
