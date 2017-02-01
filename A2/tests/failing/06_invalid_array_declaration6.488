@@ -1,0 +1,5 @@
+% Invalid variable declaration with missing/invalid bound
+{   
+    var p[-3276777..327679999999] : Integer
+    write "hi"
+}

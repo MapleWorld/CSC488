@@ -1,0 +1,10 @@
+% Invalid function 
+{
+    %%%%% function without parameters
+    % Invalid type assignment :=
+    function function_without_params := Boolean {
+        return with true
+    }
+
+    write "hi"
+}

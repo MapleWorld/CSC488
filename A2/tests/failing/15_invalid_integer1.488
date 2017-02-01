@@ -1,8 +1,5 @@
 % Invalid integer value
 {
     var i : Integer
-    i := +1
     i := 9999999999999999999
-    i := -99999999999999999999
-    i := 1000O
 }
