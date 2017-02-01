@@ -1,0 +1,6 @@
+% Invalid while loop expression
+{
+    while x := 5 do {
+        write "hi"
+    }
+}    

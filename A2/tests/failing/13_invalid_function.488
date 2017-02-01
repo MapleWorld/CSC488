@@ -1,0 +1,30 @@
+% Invalid function 
+{
+    %%%%% function with parameters
+    % Invalid function missing return type
+    function function_with_params_missing_return_type(param1 : Integer, param2 : Integer) {
+        write "test"
+    }
+
+    % Invalid function parameter and type assignment
+    function function_with_params(param1 := Integer, param2 : Integer) := Integer {
+        % Invalid function return
+        return param1 + param2
+    }
+
+    %%%%% function without parameters
+    % Invalid function missing return type
+    function function_without_params_missing_return_type {
+        return with true
+    }
+
+    % Invalid type assignment :=
+    function function_without_params := Boolean {
+        return with true
+    }
+
+    % Invalid function parameter
+    function_with_params(5, "5")
+
+    function_without_params
+}

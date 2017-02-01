@@ -1,0 +1,10 @@
+% Invalid syntax 
+{
+    var x : Integer
+    var y : Float
+    var s : String
+    x++
+    write 'hi'
+    print "test"
+    // Invalid comment
+}
