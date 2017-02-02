@@ -134,6 +134,8 @@
     b := ( -1 <= -1 ? false : true )            % Result true
     b := ( (-1) <= (-1) ? false : true )        % Result true
 
+    b := ( 1 >= 1 ? false : true ) and ( 1 >= 1 ? false : true )  % Result true
+
     % Precedence of Operators %
     b := false or true and false               % Result false
     b := not false or not true and not false   % Result true

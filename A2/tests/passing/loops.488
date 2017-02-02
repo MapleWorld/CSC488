@@ -75,6 +75,12 @@
         i := i + 1
     }
 
+    % While-loop not in scope
+    while true do write "hi"
+
+    % Repeat not in scope
+    repeat i := 1 until i = 1
+
     write newline
 
 }

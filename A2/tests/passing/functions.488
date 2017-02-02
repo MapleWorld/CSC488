@@ -3,6 +3,9 @@
 % A program using non-recursive functions and procedures with and without parameters
 
 {
+    var a : Integer
+    var b : Boolean
+
     %%%%% function with parameters
     function function_with_params(param1 : Integer, param2 : Integer) : Integer {
         write "function with params"
@@ -33,4 +36,8 @@
     function_without_params
     procedure_with_params(5, 5)
     procedure_without_params
+
+    % test some expressions using function
+    a := (function_without_params ? 1 : 2)
+    b := function_with_params(5, 5) > function_with_params(5, 5)
 }

@@ -1,8 +1,0 @@
-{
-  while true do {
-    write "hi"
-    write "hi"
-  }
-
-  while true do write "hi"
-}
