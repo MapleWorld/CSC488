@@ -1,2 +1,4 @@
 /bin/
 /src/compiler488/parser
+.project
+.classpath
