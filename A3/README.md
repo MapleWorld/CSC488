@@ -2,7 +2,9 @@ Assignment 3, due February 27
 
 # How it works
 Main.java read the input file, parse it, and create a AST tree using the AST class
+
 Then the ast tree is passed to Semantic class for further analysis
+
 Semantic class uses symbol table to check and perform the analysis
 
 # Compiler Design
