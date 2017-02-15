@@ -7,5 +7,3 @@ Assignment 3, due February 27
 ### Abstract Syntax Tree
 
 ### Symbol Table
-
-### Semantic Analysis
