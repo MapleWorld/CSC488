@@ -1,0 +1,11 @@
+% Invalid procedure
+{
+    %%%%% procedure with parameters
+    % Invalid procedure parameter assignment
+    procedure procedure_with_params(param1 := Integer, param2 = Integer) {
+        return 
+    }
+
+    % Invalid procedure parameter
+    procedure_with_params(5, "5")
+}

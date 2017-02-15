@@ -1,0 +1,5 @@
+% Invalid variable declaration with missing/invalid bound
+{   
+    var x[] : Integer
+    write "hi"
+}

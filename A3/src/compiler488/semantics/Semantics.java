@@ -1,6 +1,8 @@
 package compiler488.semantics;
 
 import java.io.*;
+
+import compiler488.ast.stmt.Program;
 import compiler488.symbol.SymbolTable;
 
 /** Implement semantic analysis for compiler 488 
@@ -98,5 +100,23 @@ public class Semantics {
 	}
 
 	// ADDITIONAL FUNCTIONS TO IMPLEMENT SEMANTIC ANALYSIS GO HERE
-
+	
+	/** The main driver for the class.
+     * @param ast An abstract syntax tree of the program.
+     */
+	public void Analyze(Program ast){
+		System.out.println("Semantic Analyze Method testing");
+		System.out.println(ast.toString());
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

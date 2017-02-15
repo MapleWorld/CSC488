@@ -1,0 +1,8 @@
+% Invalid statement in repeat
+{
+    var x : Integer
+    repeat
+        x := 1
+        x := 2
+    until x = 2
+}

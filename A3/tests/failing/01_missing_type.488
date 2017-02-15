@@ -1,0 +1,5 @@
+% Missing type for variable declaration
+{
+    var a 
+    write "hi"
+}

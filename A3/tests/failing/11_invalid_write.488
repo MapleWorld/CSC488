@@ -1,0 +1,4 @@
+% Invalid write output
+{
+    write 1 + "1"
+}

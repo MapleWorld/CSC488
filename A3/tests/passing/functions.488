@@ -1,0 +1,43 @@
+% Assignment    : 1
+% Author        : wulawre1
+% A program using non-recursive functions and procedures with and without parameters
+
+{
+    var a : Integer
+    var b : Boolean
+
+    %%%%% function with parameters
+    function function_with_params(param1 : Integer, param2 : Integer) : Integer {
+        write "function with params"
+        write param1 + param2
+        return with param1 + param2
+    }
+
+    %%%%% function without parameters
+    function function_without_params : Boolean {
+        write "function without params"
+        return with true
+    }
+
+    %%%%% procedure with parameters
+    procedure procedure_with_params(param1 : Integer, param2 : Integer) {
+        write "procedure without params"
+        write param1 + param2
+        return
+    }
+
+    %%%%% procedure without parameters
+    procedure procedure_without_params {
+        write "procedure without params"
+        return
+    }
+
+    function_with_params(5, 5)
+    function_without_params
+    procedure_with_params(5, 5)
+    procedure_without_params
+
+    % test some expressions using function
+    a := (function_without_params ? 1 : 2)
+    b := function_with_params(5, 5) > function_with_params(5, 5)
+}

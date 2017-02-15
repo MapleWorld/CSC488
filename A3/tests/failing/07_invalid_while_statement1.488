@@ -1,0 +1,7 @@
+% Invalid statement in while loop
+{
+    while 1 = 1 do {
+        var a := Integer
+        exit 1 + 1
+    }
+}

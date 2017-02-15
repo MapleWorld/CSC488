@@ -1,0 +1,17 @@
+% Variable declaration 
+{
+    %single boolean
+    var b : Boolean
+
+    %single integer
+    var i : Integer
+
+    %multiple boolean
+    var b_1, b_2, b_3 : Integer
+
+    %multiple integer
+    var i_1, i_2, i_3 : Integer
+
+    %Every program must have at least one statement
+    write "Test Successfully var_declare.488"
+}
