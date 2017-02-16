@@ -1377,6 +1377,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 17: // matchedStatement ::= EXIT WHEN expression
 		{
+			System.out.println("Case 17");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("matchedStatement", 6,
@@ -1388,6 +1389,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 16: // matchedStatement ::= EXIT INTCONST
 		{
+			System.out.println("Case 16");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("matchedStatement", 6,
@@ -1399,6 +1401,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 15: // matchedStatement ::= EXIT
 		{
+			System.out.println("Case 15");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("matchedStatement", 6,
@@ -1410,6 +1413,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 14: // matchedStatement ::= REPEAT statement UNTIL expression
 		{
+			System.out.println("Case 14");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("matchedStatement", 6,
@@ -1421,6 +1425,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 13: // matchedStatement ::= WHILE expression DO statement
 		{
+			System.out.println("Case 13");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("matchedStatement", 6,
@@ -1433,6 +1438,7 @@ class CUP$Parser$actions {
 		case 12: // matchedStatement ::= IF expression THEN matchedStatement
 					// ELSE matchedStatement
 		{
+			System.out.println("Case 12");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("matchedStatement", 6,
@@ -1444,6 +1450,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 11: // matchedStatement ::= variable COLON EQUAL expression
 		{
+			System.out.println("Case 11");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("matchedStatement", 6,
@@ -1455,6 +1462,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 10: // statement ::= unmatchedStatement
 		{
+			System.out.println("Case 10");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statement", 1,
@@ -1466,8 +1474,14 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 9: // statement ::= matchedStatement
 		{
+			System.out.println("Case 9");
 			Object RESULT = null;
 
+			int sleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+			int sright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+			Stmt s = (Stmt)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+			RESULT = s;
+			
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statement", 1,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1477,6 +1491,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 8: // declarations ::= declarations declaration
 		{
+			System.out.println("Case 8");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("declarations", 5,
@@ -1488,6 +1503,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 7: // declarations ::= declaration
 		{
+			System.out.println("Case 7");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("declarations", 5,
@@ -1499,6 +1515,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 6: // statements ::= statements statement
 		{
+			System.out.println("Case 6");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statements", 4,
@@ -1510,9 +1527,12 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 5: // statements ::= statement
 		{
-			System.out.println("Case 6");
+			System.out.println("Case 5");
 			Object RESULT = null;
-
+			int sleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+			int sright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+			Stmt s = (Stmt)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+			RESULT = new ASTList<Stmt>(s); 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statements", 4,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1523,9 +1543,7 @@ class CUP$Parser$actions {
 		case 4: // scope ::= L_CURLEY R_CURLEY
 		{
 			System.out.println("Case 4");
-			//Object RESULT = null;
-
-			Scope RESULT = null;
+			Object RESULT = null;
 			int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
 			int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 			Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
