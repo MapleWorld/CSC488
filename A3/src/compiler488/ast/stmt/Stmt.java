@@ -9,4 +9,8 @@ public class Stmt extends Indentable {
     public Stmt() {
         super();
     }
+    
+    public Stmt(int line, int column) {
+        super(line, column);
+    }
 }

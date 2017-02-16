@@ -4,6 +4,7 @@ import java.io.PrintStream;
 
 import compiler488.ast.ASTList;
 import compiler488.ast.Indentable;
+import compiler488.ast.type.Type;
 
 /**
  * Holds the declaration of multiple elements.
@@ -11,9 +12,10 @@ import compiler488.ast.Indentable;
 public class MultiDeclarations extends Declaration {
 	/* The elements being declared */
 	private ASTList<DeclarationPart> elements;
-
-	public MultiDeclarations () {
-		elements = new ASTList<DeclarationPart> ();
+	
+	public MultiDeclarations(Type type, ASTList<DeclarationPart> elements, int line, int column) {
+		super(null, type, line, column);
+		this.elements = elements;
 	}
 	
 	/**
@@ -23,7 +25,6 @@ public class MultiDeclarations extends Declaration {
 	public String toString() {
 		return  " : " + type ;
 	}
-
 
 	/**
 	 * Print the multiple declarations of the same type.

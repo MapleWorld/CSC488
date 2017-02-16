@@ -7,10 +7,20 @@ import compiler488.ast.expn.Expn;
  * Represents calling a procedure.
  */
 public class ProcedureCallStmt extends Stmt {
+	
 	private String name; // The name of the procedure being called.
-
 	private ASTList<Expn> arguments; // The arguments passed to the procedure.
 
+	public ProcedureCallStmt(String name, ASTList<Expn> arguments, int line, int column) {
+		super(line, column);
+		this.name = name;
+		this.arguments = arguments;
+	}
+
+	public ProcedureCallStmt(String name, int line, int column) {
+		this(name, new ASTList<Expn>(),line, column);
+	}
+	
 	/** Returns a string describing the procedure call. */
 	@Override
 	public String toString() {

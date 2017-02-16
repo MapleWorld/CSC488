@@ -7,7 +7,7 @@ import java.util.ListIterator;
 /**
  * For nodes with an arbitrary number of children.
  */
-public class ASTList<E extends AST> extends AST {
+public class ASTList<E> extends AST {
 	/*
 	 * Keep the list here. We delegate rather than subclass LinkedList
 	 * because Java won't let us override the return type for addLast.
@@ -34,6 +34,10 @@ public class ASTList<E extends AST> extends AST {
 	 */
 	public int size() {
 		return ll.size();
+	}
+	
+	public LinkedList<E> getList() {
+		return this.ll;
 	}
 
 	/**

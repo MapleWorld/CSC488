@@ -9,6 +9,11 @@ import compiler488.ast.Printable;
 public class WriteStmt extends Stmt {
 	private ASTList<Printable> outputs; // The objects to be printed.
 
+	public WriteStmt(ASTList<Printable> outputs, int line, int column) {
+		super(line, column);
+		this.outputs = outputs;
+	}
+	
 	public WriteStmt () {
 		outputs = new ASTList<Printable> ();
 	}

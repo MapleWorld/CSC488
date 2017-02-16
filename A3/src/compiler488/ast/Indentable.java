@@ -11,6 +11,10 @@ public class Indentable extends AST {
     public Indentable() {
         super();
     }
+    
+    public Indentable(int line, int column) {
+        super(line, column);
+    }
 	
 	/**
 	 * Print the whitespace that should appear at the start of the line when

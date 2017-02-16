@@ -12,6 +12,12 @@ public class AssignStmt extends Stmt {
 	 */
 	private Expn lval, rval;
 
+	public AssignStmt(Expn lval, Expn rval, int line, int column) {
+		super(line, column);
+		this.lval = lval;
+		this.rval = rval;
+	}
+	
 	/** Returns a string that describes the assignment statement. */
 	@Override
 	public String toString() {

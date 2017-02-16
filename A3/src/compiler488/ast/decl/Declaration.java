@@ -8,7 +8,13 @@ import compiler488.ast.type.Type;
  */
 public class Declaration extends Indentable {
 	/** The type of thing being declared. */
-	protected Type type=null;
+	protected Type type = null;
+
+	public Declaration(String name, Type type, int line, int column) {
+		super(line, column);
+		this.name = name;
+		this.type = type;
+	}
 
 	/** The name of the thing being declared. */
 	protected String name;

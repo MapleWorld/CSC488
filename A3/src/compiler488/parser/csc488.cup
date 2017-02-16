@@ -4,6 +4,7 @@ package compiler488.parser;
 
 import java_cup.runtime.*;		// Must always import this.
 import compiler488.ast.*;
+import compiler488.ast.Readable;
 import compiler488.ast.decl.*;
 import compiler488.ast.expn.*;
 import compiler488.ast.stmt.*;
@@ -107,17 +108,31 @@ nonterminal Stmt statement;
 nonterminal Declaration declaration;
 nonterminal ASTList<Stmt> statements;
 nonterminal ASTList<Declaration> declarations;
+nonterminal Stmt matchedStatement;
+nonterminal Stmt unmatchedStatement;
+nonterminal Printable output;
+nonterminal ASTList<Readable> inputs;
+nonterminal ASTList<Printable> outputs;
+nonterminal Type type;
+nonterminal Expn term;
+nonterminal Expn factor;
+nonterminal Expn primary;
+nonterminal Expn variable;
+nonterminal Expn negation;
+nonterminal Expn arithExpn;
+nonterminal Expn expression;
+nonterminal Expn conjunction;
+nonterminal Expn compareExpn;
+nonterminal ASTList<Expn> arguments;
+nonterminal ASTList<DeclarationPart> variablenames;
+nonterminal Stmt procedureCall;
+nonterminal ConstExpn constant;
+nonterminal ScalarDecl parameter;
+nonterminal DeclarationPart variablename;
+nonterminal ASTList<ScalarDecl> parameters;
 
-nonterminal	matchedStatement, unmatchedStatement ;
-nonterminal	variablenames,		output			;
-nonterminal	type,  	arguments,	parameters,	variable	;
-nonterminal 	expression,	variablename 			;
 
-nonterminal	inputs, outputs, bound ;
-nonterminal	procedureCall, parameter, conjunction, negation, compareExpn ;
-nonterminal	arithExpn, term, factor, primary, constant ;
-
-
+nonterminal bound;
 precedence   left ELSE ;
 
 
@@ -131,58 +146,65 @@ start with program;
  */
 
 program
-	::= scope:s                                                      		{: RESULT = new Program(s); :}
+	::= scope:s																{: RESULT = new Program(s); :}
 	;
    
 scope
-	::= L_CURLEY:b declarations:dd statements:ss R_CURLEY                     {: RESULT = new Scope(dd, ss, bleft, bright); :}
-	| L_CURLEY:b statements:ss R_CURLEY                                       {: RESULT = new Scope(ss, bleft, bright); :}
-	| L_CURLEY:b R_CURLEY                                                  	{: RESULT = new Scope(bleft, bright); :}
+	::= L_CURLEY:b declarations:dd statements:ss R_CURLEY					{: RESULT = new Scope(dd, ss, bleft, bright); :}
+	| L_CURLEY:b statements:ss R_CURLEY										{: RESULT = new Scope(ss, bleft, bright); :}
+	| L_CURLEY:b R_CURLEY													{: RESULT = new Scope(bleft, bright); :}
 	;
 
-statements	::=	statement						// sequence of statements
-		|	statements statement
-		;
+statements
+	::= statement:s                                                  		{: RESULT = new ASTList(s); :}
+	| statements:ss statement:s                                    			{: RESULT = ss.addLast(s); :}
+	;
+   
+statement
+	::=	matchedStatement:ms													{: RESULT = ms; :}
+	|	unmatchedStatement:us												{: RESULT = us; :}
+	;
+	
+declarations
+	::= declaration:d														{: RESULT = new ASTList<Declaration>(d); :}
+    |   declarations:ds declaration:d										{: RESULT = ds.addLast(d); :}
+    ;
 
-declarations	::=	declaration						// sequence of declarations
-		|	declarations declaration
-		;
+matchedStatement
+    ::= variable:var COLON EQUAL expression:expn							{: RESULT = new AssignStmt(var, expn, varleft, varright); :}
+    |   IF:_if expression:cond THEN matchedStatement:ifTrue ELSE matchedStatement:ifFalse		{: RESULT = new IfStmt(cond, ifTrue, ifFalse, _ifleft, _ifright); :}
+    |   WHILE:whl expression:cond DO statement:body							{: RESULT = new WhileDoStmt(cond, new ASTList<Stmt>(body), whlleft, whlright); :}
+    |   REPEAT:rpt statements:body UNTIL expression:cond					{: RESULT = new RepeatUntilStmt(cond, body, rptleft, rptright); :}
+    |   EXIT:ext															{: RESULT = new ExitStmt(new BoolConstExpn(true, extleft, extright), 1, extleft, extright); :}
+    |   EXIT:ext INTCONST:levels											{: RESULT = new ExitStmt(new BoolConstExpn(true, extleft, extright), levels, extleft, extright); :}
+    |   EXIT:ext WHEN expression:cond										{: RESULT = new ExitStmt(cond, 1, extleft, extright); :}
+    |   EXIT:ext INTCONST:levels WHEN expression:cond						{: RESULT = new ExitStmt(cond, levels, extleft, extright); :}
+    |   RETURN WITHX:rtnw expression:retval									{: RESULT = new ReturnStmt(retval, rtnwleft, rtnwright); :}
+    |   RETURN:rtn															{: RESULT = new ReturnStmt(rtnleft, rtnright); :}
+    |   WRITE:wrt outputs:list												{: RESULT = new WriteStmt(list, wrtleft, wrtright); :}
+    |   READ:rd inputs:list													{: RESULT = new ReadStmt(list, rdleft, rdright); :}
+    |   procedureCall:pc													{: RESULT = pc; :}
+    |   scope:s																{: RESULT = s; :}
+    ;
+    
+unmatchedStatement
+	::= IF:_if expression:cond THEN statement:ifTrue											{: RESULT = new IfStmt(cond, ifTrue, _ifleft, _ifright); :}
+    |   IF:_if expression:cond THEN matchedStatement:ifTrue ELSE unmatchedStatement:ifFalse		{: RESULT = new IfStmt(cond, ifTrue, ifFalse, _ifleft, _ifright); :}
+    ;
 
-statement	::=	matchedStatement
-		|	unmatchedStatement
-		;
+procedureCall
+    ::= IDENT:name 															{: RESULT = new ProcedureCallStmt(name, nameleft, nameright);:}
+    |   IDENT:name L_PAREN arguments:args R_PAREN							{: RESULT = new ProcedureCallStmt(name, args, nameleft, nameright); :}
+    ;
 
-matchedStatement::=	variable COLON EQUAL expression				// assignment statement
-		|	IF expression THEN matchedStatement ELSE matchedStatement // if statements
-		|	WHILE expression DO statement				// while statement
-		|	REPEAT statement  UNTIL expression			// repeat statement
-		|	EXIT							// exit statements
-		|	EXIT INTCONST
-		|	EXIT WHEN expression
-		|	EXIT INTCONST WHEN expression
-		|	RETURN WITHX  expression 
-		|	RETURN 							// return statements
-		|	WRITE outputs						// input/output statments
-		|	READ  inputs
-		|	procedureCall						// procedure call
-		|	scope							// embedded scope
-		;
-
-unmatchedStatement::=	IF expression THEN statement	
-		|	IF expression THEN matchedStatement ELSE unmatchedStatement
-		;
-
-procedureCall	::=	IDENT 							// call procedure with no parameters
-		|	IDENT L_PAREN arguments R_PAREN  			// call procedure with parameters
-		;
-
-declaration	::=	VAR variablenames COLON type			// declare scalar/array variables
-		|	FUNCTION IDENT COLON type scope			// declare function
-		|	FUNCTION  IDENT L_PAREN parameters R_PAREN COLON type scope
-		|	PROCEDURE IDENT scope			//  declare procedure
-		|	PROCEDURE IDENT L_PAREN parameters R_PAREN scope
-		;
-
+declaration
+    ::= VAR:var variablenames:names COLON type:type											{: RESULT = new MultiDeclarations(type, names, varleft, varright); :}
+    | FUNCTION:fc IDENT:name COLON type:type scope:body										{: RESULT = new RoutineDecl(name, type, body, fcleft, fcright); :}
+    | FUNCTION:fc IDENT:name L_PAREN parameters:params R_PAREN COLON type:type scope:body	{: RESULT = new RoutineDecl(name, type, params, body, fcleft, fcright); :}
+    | PROCEDURE:pcd IDENT:name scope:body													{: RESULT = new RoutineDecl(name, body, pcdleft, pcdright); :}
+    | PROCEDURE:pcd IDENT:name L_PAREN parameters:params R_PAREN scope:body					{: RESULT = new RoutineDecl(name, params, body, pcdleft, pcdright); :}
+    ;
+    
 variablenames	::=	variablename  				// list of variables being declared
 		|	variablenames COMMA variablename 
 		;

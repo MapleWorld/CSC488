@@ -9,22 +9,27 @@ import compiler488.ast.expn.*;
 public class ExitStmt extends Stmt {
 
 	// condition for 'exit when'
-        private Expn expn = null;
-	private Integer level = -1 ;
+	private Expn expn = null;
+	private Integer level = -1;
 
-	/** Returns the string <b>"exit"</b> or <b>"exit when e"</b>" 
-            or  <b>"exit"</b> level  or  <b>"exit"</b> level  when e 
-	*/
+	public ExitStmt(Expn cond, Integer level, int line, int column) {
+		super(line, column);
+		expn = cond;
+		this.level = level;
+	}
+
+	/**
+	 * Returns the string <b>"exit"</b> or <b>"exit when e"</b>" or
+	 * <b>"exit"</b> level or <b>"exit"</b> level when e
+	 */
 	@Override
 	public String toString() {
-		  {
-		    String stmt = "exit " ;
-	 	    if( level >= 0 )
-			stmt = stmt + level + " " ;
-                    if( expn != null )
-		        stmt = stmt + "when " + expn + " " ;
-		    return stmt ;
-		  }
+		String stmt = "exit ";
+		if (level >= 0)
+			stmt = stmt + level + " ";
+		if (expn != null)
+			stmt = stmt + "when " + expn + " ";
+		return stmt;
 	}
 
 	public Expn getExpn() {

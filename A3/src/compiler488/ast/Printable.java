@@ -8,4 +8,14 @@ public interface Printable {
 	 * concept with the printing of the
 	 * AST itself.
 	 */
+	
+	public void print(String str);
+
+	public void newline();
+
+	public void println(String str);
+
+	public void enterBlock();
+
+	public void exitBlock();
 }

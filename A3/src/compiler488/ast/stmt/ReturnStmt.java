@@ -12,6 +12,19 @@ public class ReturnStmt extends Stmt {
 	// The value to be returned by a function.
 	private Expn value = null;
 
+	public ReturnStmt(Expn value, int line, int column) {
+		super(line, column);
+		this.value = value;
+	}
+
+	/**
+	 * Construct a procedure <code>return</code> statement (with no return
+	 * value)
+	 */
+	public ReturnStmt(int line, int column) {
+		this(null, line, column);
+	}
+	
 	/**
 	 * Print <b>return</b> or <b>return with </b> expression on a line, by itself.
 	 * 
