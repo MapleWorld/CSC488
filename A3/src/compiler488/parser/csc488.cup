@@ -239,22 +239,25 @@ output
 	;
 
 // Why this not working???
+// Might need to create a new ReadableExpn.java class
 inputs
-    ::= variable:var													{: RESULT = new ASTList<Readable>(var); :}
-    |   inputs:list COMMA variable:var									{: RESULT = list.addLast(var); :}
+    ::= variable:var													{: RESULT = new ASTList(var); :}
+//    |   inputs:list COMMA variable:var									{: RESULT = list.addLast(var); :}
     ;
 
+arguments
+    ::= expression:e													{: RESULT = new ASTList<Expn>(e); :}
+    |   arguments:a COMMA expression:e	`								{: RESULT = a.addLast(e); :}
+    ;
+    
+parameters
+    ::= parameter:p														{: RESULT = new ASTList<ScalarDecl>(p); :}
+    |   parameters:ps COMMA parameter:p									{: RESULT = ps.addLast(p); :}
+    ;
 
-arguments	::=	expression			// list of function/procedure arguments
-		|	arguments COMMA expression
-		;
-
-parameters	::=	parameter			// list of function/procedure formal parameters
-		|	parameters COMMA parameter
-		;
-
-parameter	::=	IDENT COLON type 		// declare one parameter
-		;
+parameter
+    ::= IDENT:name COLON type:t											{: RESULT = new ScalarDecl(name, t, nameleft, nameright); :}
+    ;
 
 expression	::=	conjunction			// disjunctions, associate left-to-right
 		|	expression OR conjunction
