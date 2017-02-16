@@ -1,7 +1,7 @@
 Assignment 3, due February 27
 # Current progress
 * Completed > 60% of the token parsing from file input to class object in csc488.cup file
-* Completed > 75% of all the classes in ast folder
+* Completed > 95% of all the classes in ast folder, but will need to debug and re-design probably
 * However, haven't add any testing cases yet
 
 # How it works
