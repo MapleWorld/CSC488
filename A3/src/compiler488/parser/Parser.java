@@ -1479,8 +1479,12 @@ class CUP$Parser$actions {
 
 			int sleft = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).left;
 			int sright = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).right;
+			System.out.println("Test: " + ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value);
 			Stmt s = (Stmt) ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 			RESULT = s;
+			
+			System.out.println(s);
+			
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statement", 1,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1532,8 +1536,6 @@ class CUP$Parser$actions {
 			int sright = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).right;
 			Stmt s = (Stmt) ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 			RESULT = new ASTList<Stmt>(s);
-			System.out.println(sleft + " " + sright + " " + s);
-			
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statements", 4,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1561,7 +1563,16 @@ class CUP$Parser$actions {
 		{
 			System.out.println("Case 3");
 			Object RESULT = null;
-
+			int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+			int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+			Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
+			int sleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+			int sright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+			ASTList<Stmt> s = (ASTList<Stmt>)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+			RESULT = new Scope(bleft, bright, s); 
+			
+			//System.out.println(s);
+			
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("scope", 3,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 2)),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);

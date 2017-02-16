@@ -51,7 +51,7 @@ public class Main {
 	 * Options set by the user
 	 */
 
-	/** User option -- supress execution */
+	/** User option -- suppress execution */
 	public static boolean supressExecution = false;
 
 	// DUMP Options

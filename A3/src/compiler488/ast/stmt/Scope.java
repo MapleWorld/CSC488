@@ -26,6 +26,11 @@ public class Scope extends Stmt {
         this.setColumnNumber(columnNumber);
     }
 	
+    public Scope(int lineNumber, int columnNumber, ASTList<Stmt> stats) {
+        this(lineNumber, columnNumber);
+        this.statements = stats;
+    }
+	
     public Scope(ASTList<Declaration> decls, ASTList<Stmt> stmts, int lineNumber, int columnNumber) {
     	
         if (decls == null) {
@@ -39,6 +44,7 @@ public class Scope extends Stmt {
         } else {
             statements = stmts;
         }
+        
         this.setLineNumber(lineNumber);
         this.setColumnNumber(columnNumber);
         

@@ -60,7 +60,7 @@ public class ASTList<E extends AST> extends AST {
 	 *            How much indentation to use while printing.
 	 */
 	public void printOnSeperateLines(PrintStream out, int depth) {
-		ListIterator iterator = ll.listIterator();
+		ListIterator<E> iterator = ll.listIterator();
 		if (iterator.hasNext())
 			while (iterator.hasNext())
 				((Indentable) iterator.next()).printOn(out, depth);
