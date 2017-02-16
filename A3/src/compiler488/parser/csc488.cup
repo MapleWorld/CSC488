@@ -171,18 +171,18 @@ declarations
     ;
 
 matchedStatement
-    ::= variable:var COLON EQUAL expression:expn							{: RESULT = new AssignStmt(var, expn, varleft, varright); :}
+    ::= variable:v COLON EQUAL expression:e									{: RESULT = new AssignStmt(v, e, vleft, vright); :}
     |   IF:_if expression:cond THEN matchedStatement:ifTrue ELSE matchedStatement:ifFalse		{: RESULT = new IfStmt(cond, ifTrue, ifFalse, _ifleft, _ifright); :}
     |   WHILE:whl expression:cond DO statement:body							{: RESULT = new WhileDoStmt(cond, new ASTList<Stmt>(body), whlleft, whlright); :}
     |   REPEAT:rpt statements:body UNTIL expression:cond					{: RESULT = new RepeatUntilStmt(cond, body, rptleft, rptright); :}
-    |   EXIT:ext															{: RESULT = new ExitStmt(new BoolConstExpn(true, extleft, extright), 1, extleft, extright); :}
-    |   EXIT:ext INTCONST:levels											{: RESULT = new ExitStmt(new BoolConstExpn(true, extleft, extright), levels, extleft, extright); :}
-    |   EXIT:ext WHEN expression:cond										{: RESULT = new ExitStmt(cond, 1, extleft, extright); :}
-    |   EXIT:ext INTCONST:levels WHEN expression:cond						{: RESULT = new ExitStmt(cond, levels, extleft, extright); :}
-    |   RETURN WITHX:rtnw expression:retval									{: RESULT = new ReturnStmt(retval, rtnwleft, rtnwright); :}
+    |   EXIT:e																{: RESULT = new ExitStmt(new BoolConstExpn(true, eleft, eright), 1, eleft, eright); :}
+    |   EXIT:e INTCONST:levels												{: RESULT = new ExitStmt(new BoolConstExpn(true, eleft, eright), levels, eleft, eright); :}
+    |   EXIT:e WHEN expression:cond											{: RESULT = new ExitStmt(cond, 1, eleft, eright); :}
+    |   EXIT:e INTCONST:levels WHEN expression:cond							{: RESULT = new ExitStmt(cond, levels, eleft, eright); :}
+    |   RETURN WITHX:rtnw expression:e										{: RESULT = new ReturnStmt(e, rtnwleft, rtnwright); :}
     |   RETURN:rtn															{: RESULT = new ReturnStmt(rtnleft, rtnright); :}
-    |   WRITE:wrt outputs:list												{: RESULT = new WriteStmt(list, wrtleft, wrtright); :}
-    |   READ:rd inputs:list													{: RESULT = new ReadStmt(list, rdleft, rdright); :}
+    |   WRITE:wrt outputs:os												{: RESULT = new WriteStmt(os, wrtleft, wrtright); :}
+    |   READ:rd inputs:is													{: RESULT = new ReadStmt(is, rdleft, rdright); :}
     |   procedureCall:pc													{: RESULT = pc; :}
     |   scope:s																{: RESULT = s; :}
     ;
@@ -211,17 +211,19 @@ variablenames
     ;
 
 variablename
-    ::= IDENT:name														{: RESULT = new ScalarDeclPart(name, nameleft, nameright); :}
-    |   IDENT:name L_SQUARE INTCONST:i R_SQUARE							{: RESULT = new ArrayDeclPart(name, i, nameleft, nameright); :}
-    |   IDENT:name L_SQUARE bound:b1 DOT DOT bound:b2 R_SQUARE			{: RESULT = new ArrayDeclPart(name, b1, b2, nameleft, nameright); :}
+    ::= IDENT:i															{: RESULT = new ScalarDeclPart(i, ileft, iright); :}
+    |   IDENT:i L_SQUARE INTCONST:ic R_SQUARE							{: RESULT = new ArrayDeclPart(i, ic, ileft, iright); :}
+    |   IDENT:i L_SQUARE bound:b1 DOT DOT bound:b2 R_SQUARE				{: RESULT = new ArrayDeclPart(i, b1, b2, ileft, iright); :}
     ;
 
 // Not sure about this one
 bound		
 	::=	INTCONST:i														{: RESULT = i; :}
-	|	MINUS INTCONST:i												{: RESULT = -i; :}
+	|	MINUS INTCONST:i												{: RESULT = -i; :} 
+	//::= INTCONST:i													{: RESULT = new IntConstExpn(i, ileft, iright); :}
+	//|	MINUS:m INTCONST:i												{: RESULT = new UnaryMinusExpn(i, mleft, mright); :}
 	;
-
+	
 type
     ::= INTEGER:i 														{: RESULT = new IntegerType(ileft, iright); :}
     |   BOOLEAN:bool													{: RESULT = new BooleanType(boolleft, boolright); :}
@@ -241,7 +243,7 @@ output
 // Why this not working???
 // Might need to create a new ReadableExpn.java class
 inputs
-    ::= variable:var													{: RESULT = new ASTList(var); :}
+    ::= variable:v														{: RESULT = new ASTList(v); :}
 //    |   inputs:list COMMA variable:var									{: RESULT = list.addLast(var); :}
     ;
 
@@ -256,58 +258,69 @@ parameters
     ;
 
 parameter
-    ::= IDENT:name COLON type:t											{: RESULT = new ScalarDecl(name, t, nameleft, nameright); :}
+    ::= IDENT:i COLON type:t											{: RESULT = new ScalarDecl(i, t, ileft, iright); :}
     ;
 
-expression	::=	conjunction			// disjunctions, associate left-to-right
-		|	expression OR conjunction
-		;
+expression
+    ::= conjunction:c 													{: RESULT = c; :}
+    |   expression:e OR conjunction:c									{: RESULT = new BoolExpn("or", e, c, eleft, eright); :}
+    ;
 
-conjunction	::=	negation			// conjunctions, associate left-to-right
-		|	conjunction AND negation
-		;
+conjunction
+    ::= negation:n														{: RESULT = n; :}
+    |   conjunction:c AND negation:n									{: RESULT = new BoolExpn("and", c, n, cleft, cright); :}
+    ;
 
-negation	::=	compareExpn 			// negations
-		|	NOT negation
-		;
+negation
+    ::= compareExpn:ce													{: RESULT = ce; :}
+    |   NOT:not negation:n												{: RESULT = new NotExpn(n, notleft, notright ); :}
+    ;
+   
+compareExpn
+    ::= arithExpn:ae													{: RESULT = ae; :}
+    |   arithExpn:ae1 EQUAL arithExpn:ae2								{: RESULT = new EqualsExpn("=", ae1, ae2, ae1left, ae1right); :}
+    |   arithExpn:ae1 NOT EQUAL arithExpn:ae2							{: RESULT = new EqualsExpn("not =", ae1, ae2, ae1left, ae1right); :}
+    |   arithExpn:ae1 LESS arithExpn:ae2								{: RESULT = new CompareExpn("<", ae1, ae2, ae1left, ae1right); :}
+    |   arithExpn:ae1 LESS EQUAL arithExpn:ae2							{: RESULT = new CompareExpn("<=", ae1, ae2, ae1left, ae1right); :}
+    |   arithExpn:ae1 GREATER arithExpn:ae2								{: RESULT = new CompareExpn(">", ae1, ae2, ae1left, ae1right); :}
+    |   arithExpn:ae1 GREATER EQUAL arithExpn:ae2						{: RESULT = new CompareExpn(">=", ae1, ae2, ae1left, ae1right); :}
+    ;
 
-compareExpn	::=	arithExpn			// comparisons, do not associate
-		|	arithExpn EQUAL arithExpn
-		| 	arithExpn NOT EQUAL arithExpn
-		|	arithExpn LESS arithExpn
-		|	arithExpn LESS EQUAL arithExpn
-		|	arithExpn GREATER arithExpn
-		|	arithExpn GREATER EQUAL arithExpn
-		;
 
-arithExpn	::=	term				// expressions, associate + , - left-to-right
-		|	arithExpn  PLUS  term
-		|	arithExpn  MINUS term
-		;
+arithExpn
+    ::= term:t															{: RESULT = t; :}
+    |   arithExpn:ae PLUS term:t										{: RESULT = new ArithExpn("+", ae, t, aeleft, aeright); :}
+    |   arithExpn:ae MINUS term:t										{: RESULT = new ArithExpn("-", ae, t, aeleft, aeright); :}
+    ;
 
-term		::=	factor				// terms, associate * , /   left-to-right
-		|	term TIMES factor
-		|	term DIVIDE factor
-		;
+term
+    ::= factor:f 														{: RESULT = f; :}
+    |   term:t TIMES factor:f											{: RESULT = new ArithExpn("*", t, f, tleft, tright); :}
+    |   term:t DIVIDE factor:f											{: RESULT = new ArithExpn("/", t, f, tleft, tright); :}
+    ;
 
-factor		::=	primary				// unary minus
-		|	MINUS factor
-		;
+factor
+    ::= primary:p														{: RESULT = p; :}
+    |   MINUS:m factor:f												{: RESULT = new UnaryMinusExpn(f, mleft, mright); :}
+    ;
 
-primary		::=	constant				// integer or boolean constant
-		|	variable				// scalar, array variable or function call
-		|	IDENT L_PAREN arguments R_PAREN 	// function call
-		| 	L_PAREN  expression  R_PAREN		// parenthesized expression
-		|	L_PAREN  expression QUESTION expression COLON expression R_PAREN
-		;
-
-constant	::=	INTCONST	// integer constant
-		|	TRUE		// constant true
-		|	FALSE		// constant false
-		;
-
-variable	::=	IDENT					// scalar variable or function call
-		|	IDENT L_SQUARE expression R_SQUARE	// element of an array
-		;
+primary
+    ::= constant:c														{: RESULT = c; :}
+    |   variable:v														{: RESULT = v; :}
+    |   IDENT:i L_PAREN arguments:args R_PAREN							{: RESULT = new FunctionCallExpn(i, args, ileft, iright); :}
+    |   L_PAREN expression:e R_PAREN   									{: RESULT = e; :}
+    |   L_PAREN:lp expression:cond QUESTION expression:ifTrue COLON expression:ifFalse R_PAREN		{: RESULT = new ConditionalExpn(cond, ifTrue, ifFalse, lpleft, lpright); :}
+    ;
+   
+constant
+    ::= INTCONST:ic														{: RESULT = new IntConstExpn(ic, icleft, icright); :}
+    |   TRUE:bv															{: RESULT = new BoolConstExpn(true, bvleft, bvright ); :}
+    |   FALSE:bv														{: RESULT = new BoolConstExpn(false, bvleft, bvright); :}    
+    ;
+   
+variable
+    ::= IDENT:i															{: RESULT = new IdentExpn(i,ileft, iright); :}
+    |   IDENT:i L_SQUARE expression:e R_SQUARE							{: RESULT = new SubsExpn(i, e, ileft, iright); :}
+    ;
 
 
