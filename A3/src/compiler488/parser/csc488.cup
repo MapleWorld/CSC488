@@ -132,7 +132,7 @@ nonterminal DeclarationPart variablename;
 nonterminal ASTList<ScalarDecl> parameters;
 
 
-nonterminal bound;
+nonterminal Integer bound;
 precedence   left ELSE ;
 
 
@@ -205,35 +205,45 @@ declaration
     | PROCEDURE:pcd IDENT:name L_PAREN parameters:params R_PAREN scope:body					{: RESULT = new RoutineDecl(name, params, body, pcdleft, pcdright); :}
     ;
     
-variablenames	::=	variablename  				// list of variables being declared
-		|	variablenames COMMA variablename 
-		;
+variablenames
+    ::= variablename:name												{: RESULT = new ASTList<DeclarationPart>(name); :}
+    |   variablenames:names COMMA variablename:name						{: RESULT = names.addLast(name); :}
+    ;
 
-variablename	::=	IDENT 						// scalar variable
-		|	IDENT L_SQUARE INTCONST R_SQUARE		// array variable with upper bound
-		|	IDENT L_SQUARE bound DOT DOT bound  R_SQUARE	// array variable with upper/lower bounds
-		;
+variablename
+    ::= IDENT:name														{: RESULT = new ScalarDeclPart(name, nameleft, nameright); :}
+    |   IDENT:name L_SQUARE INTCONST:i R_SQUARE							{: RESULT = new ArrayDeclPart(name, i, nameleft, nameright); :}
+    |   IDENT:name L_SQUARE bound:b1 DOT DOT bound:b2 R_SQUARE			{: RESULT = new ArrayDeclPart(name, b1, b2, nameleft, nameright); :}
+    ;
 
-bound		::=	INTCONST					// positive array bound
-		|	MINUS INTCONST					// negative array bound
-		;
+// Not sure about this one
+bound		
+	::=	INTCONST:i														{: RESULT = i; :}
+	|	MINUS INTCONST:i												{: RESULT = -i; :}
+	;
 
-type		::=	INTEGER			// integer type
-		|	BOOLEAN			// boolean type
-		;
+type
+    ::= INTEGER:i 														{: RESULT = new IntegerType(ileft, iright); :}
+    |   BOOLEAN:bool													{: RESULT = new BooleanType(boolleft, boolright); :}
+    ;
+    
+outputs	
+	::= output:o														{: RESULT = new ASTList<Printable>(o); :}
+	|	outputs:o1 COMMA output:o2										{: RESULT = o1.addLast(o2); :}
+	;
+	
+output 
+	::= expression:e													{: RESULT = e; :}
+	|	TEXTCONST:t														{: RESULT = new TextConstExpn(t, tleft, tright); :}
+	|	NEWLINE:nl														{: RESULT = new SkipConstExpn(nlleft, nlright); :}
+	;
 
-outputs		::=	output			// list of output expressions
-		|	outputs COMMA output
-		;
-
-output		::=	expression		// integer expression
-		|	TEXTCONST		// text constant
-		|	NEWLINE			// newline constant
-		;
-
-inputs		::=	variable		// list of variables being read into
-		|	inputs COMMA variable
-		;
+/* Not working
+inputs
+    ::= variable:var													{: RESULT = new ASTList(var); :}
+    |   inputs:list COMMA variable:var									{: RESULT = list.addLast(var); :}
+    ;
+*/
 
 arguments	::=	expression			// list of function/procedure arguments
 		|	arguments COMMA expression

@@ -5,6 +5,10 @@ package compiler488.ast.decl;
  */
 public class ScalarDeclPart extends DeclarationPart {
 
+    public ScalarDeclPart(String name, int line, int column) {
+        super(name, line, column);
+    }
+    
 	/**
 	 * Returns a string describing the name of the object being
 	 * declared.
