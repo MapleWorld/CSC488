@@ -1,7 +1,10 @@
 Assignment 3, due February 27
+# Current progress
+* Completed > 60% of the token parsing from file input to class object in csc488.cup file
+* Completed > 75% of all the classes in ast folder
 
 # How it works
-Main.java read the input file, parse it, and create a AST tree using the AST class
+Main.java read the input file, parse it to object, and create a AST tree using the AST class
 
 Then the ast tree is passed to Semantic class for further analysis
 
@@ -9,7 +12,7 @@ Semantic class uses symbol table to check and perform the analysis
 
 # Compiler Design
 ### Main.java
-* Modifiy program to execute the semantic class, by calling Semantic.Analyze() method
+* Execute the semantic class, by calling Semantic.Analyze() method
 
 ### Abstract Syntax Tree
   * Needs to be complete first
