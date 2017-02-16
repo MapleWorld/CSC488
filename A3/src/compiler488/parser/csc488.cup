@@ -3,6 +3,11 @@
 package compiler488.parser;
 
 import java_cup.runtime.*;		// Must always import this.
+import compiler488.ast.*;
+import compiler488.ast.decl.*;
+import compiler488.ast.expn.*;
+import compiler488.ast.stmt.*;
+import compiler488.ast.type.*;
 
 /* User code components 1: action code components.
  * Code to be used inside the actions triggered when productions are matched.
@@ -74,23 +79,6 @@ parser code {:
 init with {:
 :};
 
-/* User code components 4: scanner specification code.
- * If you need to override the way the parser asks the scanner for the
- * next token, put your preferred method here.  Uncomment the line following
- * this comment, replace the line after that with your code, and uncomment
- * the line after that.
- */
-// scan with {:
-// your code goes here
-// :};
-
-/* Symbol lists section.
- * The names of terminals and non-terminals are not allowed to be CUP
- * reserved words.  These include "code", "action", "parser", "terminal",
- * "non", "nonterminal", "init", "scan", "with", "start", "precedence",
- * "left", "right", "nonassoc", "import", and "package".
- */
-
 // DEFINITIONS for CSC488S Source Language  Winter  2017 
 
 // Terminals returned by the scanner with no value attached.  
@@ -113,8 +101,14 @@ terminal String  TEXTCONST	;
 // Non-terminals that have no value.
 // nonterminal xxx
 
-nonterminal	program,	statement,	declaration,	scope	;
-nonterminal	statements,	declarations,	matchedStatement, unmatchedStatement ;
+nonterminal Program program;
+nonterminal Scope scope;
+nonterminal Stmt statement;
+nonterminal Declaration declaration;
+nonterminal ASTList<Stmt> statements;
+nonterminal ASTList<Declaration> declarations;
+
+nonterminal	matchedStatement, unmatchedStatement ;
 nonterminal	variablenames,		output			;
 nonterminal	type,  	arguments,	parameters,	variable	;
 nonterminal 	expression,	variablename 			;
@@ -123,18 +117,9 @@ nonterminal	inputs, outputs, bound ;
 nonterminal	procedureCall, parameter, conjunction, negation, compareExpn ;
 nonterminal	arithExpn, term, factor, primary, constant ;
 
-// Non-terminals that have a value.
-// nonterminal type  nameList ;
 
-// PLEASE NOTE: your grammar can not use the 'precedence'
-// feature of java-cup. The lines below should remain
-// commented out.
-//
-//precedence left PLUS, MINUS;
-//precedence left TIMES, DIVIDE;		// Higher precedence.
 precedence   left ELSE ;
 
-// The grammar section.
 
 // This specifies the initial symbol of the grammar.
 start with program;
@@ -145,12 +130,15 @@ start with program;
  * reads one more token before it will act on the production.
  */
 
-program		::=	scope	;				// the main program
-
-scope		::=	L_CURLEY  declarations statements  R_CURLEY  	// scope with declarations and statements
-		|	L_CURLEY statements  R_CURLEY 		// scope with statments only
-		|	L_CURLEY  R_CURLEY			// empty scope
-		;
+program
+	::= scope:s                                                      		{: RESULT = new Program(s); :}
+	;
+   
+scope
+	::= L_CURLEY:b declarations:dd statements:ss R_CURLEY                     {: RESULT = new Scope(dd, ss, bleft, bright); :}
+	| L_CURLEY:b statements:ss R_CURLEY                                       {: RESULT = new Scope(ss, bleft, bright); :}
+	| L_CURLEY:b R_CURLEY                                                  	{: RESULT = new Scope(bleft, bright); :}
+	;
 
 statements	::=	statement						// sequence of statements
 		|	statements statement

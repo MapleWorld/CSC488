@@ -19,6 +19,20 @@ public class Scope extends Stmt {
 		statements = new ASTList<Stmt>();
 	}
 	
+	public Scope(Scope scope) {
+        if (scope.getDeclarations() == null) {
+            declarations = new ASTList<Declaration>();
+        } else {
+            declarations = scope.getDeclarations();
+        }
+
+        if (scope.getStatements() == null) {
+            statements = new ASTList<Stmt>();
+        } else {
+            statements = scope.getStatements();
+        }
+    }
+	
 	public Scope(int lineNumber, int columnNumber) {
 		declarations = new ASTList<Declaration>();
 		statements = new ASTList<Stmt>();
@@ -26,7 +40,7 @@ public class Scope extends Stmt {
         this.setColumnNumber(columnNumber);
     }
 	
-    public Scope(int lineNumber, int columnNumber, ASTList<Stmt> stats) {
+    public Scope(ASTList<Stmt> stats, int lineNumber, int columnNumber) {
         this(lineNumber, columnNumber);
         this.statements = stats;
     }

@@ -7,4 +7,8 @@ public class Program extends Scope {
     public Program(Scope scope, int lineNumber, int columnNumber) {
         super(scope.getDeclarations(), scope.getStatements(), lineNumber, columnNumber);
     }
+    
+    public Program(Scope scope) {
+        super(scope);
+    }
 }
