@@ -2,6 +2,7 @@ Assignment 3, due February 27
 # Current progress
 * Completed > 60% of the token parsing from file input to class object in csc488.cup file
 * Completed > 75% of all the classes in ast folder
+* However, haven't add any testing cases yet
 
 # How it works
 Main.java read the input file, parse it to object, and create a AST tree using the AST class
