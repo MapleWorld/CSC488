@@ -1,4 +1,5 @@
 /bin/
-/src/compiler488/parser
+/src/compiler488/parser/Lexer.java
+/src/compiler488/parser/sym.java
 .project
 .classpath
