@@ -10,7 +10,7 @@ import compiler488.ast.Readable;
  */
 public class SubsExpn extends UnaryExpn implements Readable {
 
-	private String variable; // name of the array variable
+    private String variable; // name of the array variable
 
     /** First subscript. */
     private Expn subscript1;
@@ -18,18 +18,20 @@ public class SubsExpn extends UnaryExpn implements Readable {
     /** Second subscript (if any.) */
     private Expn subscript2 = null;
 
-    public SubsExpn(String variable, Expn subscript1, Expn subscript2,int left, int right) {
+    // This is wrong
+    public SubsExpn(String variable, Expn subscript1, Expn subscript2, int line, int column) {
+        super(UnaryExpn.OP_NOT, subscript1, line, column);
         this.variable = variable;
         this.subscript1 = subscript1;
         this.subscript2 = subscript2;
     }
 
-    public SubsExpn(String variable, Expn subscript1,int left, int right) {
-        this(variable, subscript1, null,left,right);
+    public SubsExpn(String variable, Expn subscript1, int line, int column) {
+        this(variable, subscript1, null, line, column);
     }
-    
+
     public Expn getSubscript1() {
-        return subscript1 ;
+        return subscript1;
     }
 
     public Expn getSubscript2() {
@@ -39,23 +41,23 @@ public class SubsExpn extends UnaryExpn implements Readable {
     public int numSubscripts() {
         return 1 + (subscript2 != null ? 1 : 0);
     }
-    
+
     public int getDimensions() {
-    	return this.subscript2 == null ? 1 : 2;
+        return this.subscript2 == null ? 1 : 2;
     }
 
-	/** Returns a string that represents the array subscript. */
-	@Override
-	public String toString() {
-		return (variable + "[" + operand + "]");
-	}
+    /** Returns a string that represents the array subscript. */
+    @Override
+    public String toString() {
+        return (variable + "[" + operand + "]");
+    }
 
-	public String getVariable() {
-		return variable;
-	}
+    public String getVariable() {
+        return variable;
+    }
 
-	public void setVariable(String variable) {
-		this.variable = variable;
-	}
+    public void setVariable(String variable) {
+        this.variable = variable;
+    }
 
 }

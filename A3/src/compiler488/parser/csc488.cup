@@ -238,12 +238,12 @@ output
 	|	NEWLINE:nl														{: RESULT = new SkipConstExpn(nlleft, nlright); :}
 	;
 
-/* Not working
+// Why this not working???
 inputs
-    ::= variable:var													{: RESULT = new ASTList(var); :}
+    ::= variable:var													{: RESULT = new ASTList<Readable>(var); :}
     |   inputs:list COMMA variable:var									{: RESULT = list.addLast(var); :}
     ;
-*/
+
 
 arguments	::=	expression			// list of function/procedure arguments
 		|	arguments COMMA expression
