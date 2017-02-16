@@ -19,6 +19,13 @@ public class Scope extends Stmt {
 		statements = new ASTList<Stmt>();
 	}
 	
+	public Scope(int lineNumber, int columnNumber) {
+		declarations = new ASTList<Declaration>();
+		statements = new ASTList<Stmt>();
+        this.setLineNumber(lineNumber);
+        this.setColumnNumber(columnNumber);
+    }
+	
     public Scope(ASTList<Declaration> decls, ASTList<Stmt> stmts, int lineNumber, int columnNumber) {
     	
         if (decls == null) {

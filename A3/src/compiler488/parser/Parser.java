@@ -621,7 +621,12 @@ class CUP$Parser$actions {
 		case 85: // variable ::= IDENT L_SQUARE expression R_SQUARE
 		{
 			Object RESULT = null;
-
+			String id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+			int midleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
+			int midright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
+			Expn exp = (Expn)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+			RESULT = new SubsExpn(id, exp, midleft, midright); 
+			
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("variable", 13,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 3)),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1505,6 +1510,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 5: // statements ::= statement
 		{
+			System.out.println("Case 6");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statements", 4,
@@ -1516,8 +1522,15 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 4: // scope ::= L_CURLEY R_CURLEY
 		{
-			Object RESULT = null;
+			System.out.println("Case 4");
+			//Object RESULT = null;
 
+			Scope RESULT = null;
+			int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+			int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+			Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+			RESULT = new Scope(bleft, bright); 
+			 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("scope", 3,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1527,6 +1540,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 3: // scope ::= L_CURLEY statements R_CURLEY
 		{
+			System.out.println("Case 3");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("scope", 3,
@@ -1538,6 +1552,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 2: // scope ::= L_CURLEY declarations statements R_CURLEY
 		{
+			System.out.println("Case 2");
 			Object RESULT = null;
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("scope", 3,
@@ -1549,7 +1564,14 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 1: // program ::= scope
 		{
+			System.out.println("Case 1");
 			Object RESULT = null;
+			
+			int scoleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+			int scoright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+			Scope sco = (Scope)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+
+			RESULT = new Program(sco, scoleft, scoright); 
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("program", 0,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),
@@ -1560,6 +1582,7 @@ class CUP$Parser$actions {
 		/* . . . . . . . . . . . . . . . . . . . . */
 		case 0: // $START ::= program EOF
 		{
+			System.out.println("Case 0");
 			Object RESULT = null;
 			int start_valleft = ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)).left;
 			int start_valright = ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)).right;
