@@ -18,6 +18,24 @@ public class Scope extends Stmt {
 		declarations = new ASTList<Declaration>();
 		statements = new ASTList<Stmt>();
 	}
+	
+    public Scope(ASTList<Declaration> decls, ASTList<Stmt> stmts, int lineNumber, int columnNumber) {
+    	
+        if (decls == null) {
+            declarations = new ASTList<Declaration>();
+        } else {
+            declarations = decls;
+        }
+
+        if (stmts == null) {
+            statements = new ASTList<Stmt>();
+        } else {
+            statements = stmts;
+        }
+        this.setLineNumber(lineNumber);
+        this.setColumnNumber(columnNumber);
+        
+    }
 
 	/**
 	 * Print a description of the <b>scope</b> construct.

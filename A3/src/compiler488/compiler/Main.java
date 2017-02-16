@@ -56,7 +56,7 @@ public class Main {
 
 	// DUMP Options
 	/** User option -- dump AST after parsing */
-	private static boolean dumpAST1 = false;
+	private static boolean dumpAST1 = true;
 	/** User option -- dump AST after semantic analysis */
 	private static boolean dumpAST2 = false;
 	/** User option -- dump compiled code before execution */
@@ -70,7 +70,7 @@ public class Main {
 	/** User option -- trace syntax analysis */
 	public static boolean traceSyntax = false;
 	/** User option -- trace AST operations */
-	public static boolean traceAST = false;
+	public static boolean traceAST = true;
 	/** User option -- trace semantic analysis */
 	public static boolean traceSemantics = false;
 	/** User option -- trace symbol table operations */
@@ -405,7 +405,14 @@ public class Main {
 				parserResult = p.debug_parse().value; // DEBUG Output
 			else
 				parserResult = p.parse().value;
+			
+			System.out.println(parserResult);
+			System.out.println("parserResult test completed");
+			
 			programAST = (Program) parserResult;
+			System.out.println("Test ProgramAST");
+			System.out.println(programAST.toString());
+			System.out.println("ProgramAST cast completed");
 		} catch (SyntaxErrorException e) { // parser has already printed an
 											// error message
 			errorOccurred = true;
@@ -445,10 +452,14 @@ public class Main {
 			// programAST.doSemantics() ;
 			// or
 			// Semantics.doIt( programAST );
+			
+			// Waiting for AST classes to be ready
+			/*
 			System.out.println("Semantic Analysis Starts");
 			Semantics semantic = new Semantics();
 			semantic.Analyze(programAST);
 			System.out.println("Semantic Analysis Ended");
+			*/
 		} catch (Exception e) {
 			System.err.println("Exception during Semantic Analysis");
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
