@@ -621,12 +621,12 @@ class CUP$Parser$actions {
 		case 85: // variable ::= IDENT L_SQUARE expression R_SQUARE
 		{
 			Object RESULT = null;
-			String id = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
-			int midleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).left;
-			int midright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)).right;
-			Expn exp = (Expn)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-			RESULT = new SubsExpn(id, exp, midleft, midright); 
-			
+			String id = (String) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 3)).value;
+			int midleft = ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 2)).left;
+			int midright = ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 2)).right;
+			Expn exp = (Expn) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)).value;
+			RESULT = new SubsExpn(id, exp, midleft, midright);
+
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("variable", 13,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 3)),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1477,11 +1477,10 @@ class CUP$Parser$actions {
 			System.out.println("Case 9");
 			Object RESULT = null;
 
-			int sleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
-			int sright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
-			Stmt s = (Stmt)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+			int sleft = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).left;
+			int sright = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).right;
+			Stmt s = (Stmt) ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 			RESULT = s;
-			
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statement", 1,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1529,10 +1528,12 @@ class CUP$Parser$actions {
 		{
 			System.out.println("Case 5");
 			Object RESULT = null;
-			int sleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
-			int sright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
-			Stmt s = (Stmt)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-			RESULT = new ASTList<Stmt>(s); 
+			int sleft = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).left;
+			int sright = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).right;
+			Stmt s = (Stmt) ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+			RESULT = new ASTList<Stmt>(s);
+			System.out.println(sleft + " " + sright + " " + s);
+			
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("statements", 4,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1544,11 +1545,11 @@ class CUP$Parser$actions {
 		{
 			System.out.println("Case 4");
 			Object RESULT = null;
-			int bleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
-			int bright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
-			Object b = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
-			RESULT = new Scope(bleft, bright); 
-			 
+			int bleft = ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)).left;
+			int bright = ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)).right;
+			Object b = (Object) ((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)).value;
+			RESULT = new Scope(bleft, bright);
+
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("scope", 3,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top - 1)),
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()), RESULT);
@@ -1584,12 +1585,12 @@ class CUP$Parser$actions {
 		{
 			System.out.println("Case 1");
 			Object RESULT = null;
-			
-			int scoleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
-			int scoright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
-			Scope sco = (Scope)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 
-			RESULT = new Program(sco, scoleft, scoright); 
+			int scoleft = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).left;
+			int scoright = ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).right;
+			Scope sco = (Scope) ((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+
+			RESULT = new Program(sco, scoleft, scoright);
 
 			CUP$Parser$result = parser.getSymbolFactory().newSymbol("program", 0,
 					((java_cup.runtime.Symbol) CUP$Parser$stack.peek()),

@@ -18,15 +18,15 @@ public class ASTList<E extends AST> extends AST {
 	 * Create an empty list.
 	 */
 	public ASTList() {
-		ll = new LinkedList<E>();
+		this.ll = new LinkedList<E>();
 	}
 
 	/**
 	 * Create a list with one element.
 	 */
 	public ASTList(E ast) {
-		ll = new LinkedList<E>();
-		ll.addLast(ast);
+		this.ll = new LinkedList<E>();
+		this.ll.addLast(ast);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class ASTList<E extends AST> extends AST {
 	 * However, we like the conciseness gained when such methods return the
 	 * target object.
 	 */
-	public ASTList addLast(E ast) {
+	public ASTList<E> addLast(E ast) {
 		ll.addLast(ast);
 		return this;
 	}
@@ -69,7 +69,7 @@ public class ASTList<E extends AST> extends AST {
 	}
 
 	/**
-	 * Return the contatenation of the strings obtained by sending
+	 * Return the concatenation of the strings obtained by sending
 	 * <b>toString</b> to each element.
 	 */
 	@Override
@@ -77,9 +77,10 @@ public class ASTList<E extends AST> extends AST {
 		if (0 == ll.size())
 			return "";
 		else {
+			
 			ListIterator<E> iterator = ll.listIterator();
-
-			StringBuffer result = new StringBuffer(iterator.next().toString());
+			E temp = iterator.next();
+			StringBuffer result = new StringBuffer(temp.toString());
 			while (iterator.hasNext())
 				result.append(", " + iterator.next());
 
