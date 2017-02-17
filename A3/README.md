@@ -21,12 +21,11 @@ Semantic class uses symbol table to check and perform the analysis
 
 ### Symbol Table
 
-### Semantic Class
+### Semantic Analysis & Code Generation
+There are several choices for implementing semantic analysis and code generation.
 
-1. Analyze method
-  * Use a stack to loop through the entire ProgramAST 
-  * During each iteration, pop the top node of the stack, perform semantic analysis on it
-  * Add any children of the current node to the stack
+1. Implement a Visitor pattern with double dispatch as described in the course text book.
 
-2. Semantic Analyze
-  * Details goes here
+2. Build semantic analysis and code generation into the AST classes. For example, add member functions doSemantics and doCodeGen to each of the AST classes. Most of these member functions will be simple and easy to implement. If you are comfortable with recursive tree processing, this is probably the least effort approach.
+
+3. Build a separate class that does the tree walk starting from the root of the AST. This approach might require changing some of the AST fields from private to public. Skeleton classes for this approach are provided as a part of the software packages for Assignments 3 .. 5, but it is your choice whether you use them.
