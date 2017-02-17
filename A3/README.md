@@ -13,7 +13,8 @@ Semantic class uses symbol table to check and perform the analysis
 
 # Compiler Design
 ### Main.java
-* Execute the semantic class, by calling Semantic.Analyze() method
+* Parse the file content
+* Execute the semantic class
 
 ### Abstract Syntax Tree
   * Needs to be complete first
