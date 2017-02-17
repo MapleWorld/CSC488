@@ -65,11 +65,14 @@ public class ASTList<E> extends AST {
 	 */
 	public void printOnSeperateLines(PrintStream out, int depth) {
 		ListIterator<E> iterator = ll.listIterator();
-		if (iterator.hasNext())
-			while (iterator.hasNext())
+		if (iterator.hasNext()){
+			while (iterator.hasNext()){
 				((Indentable) iterator.next()).printOn(out, depth);
-		else
+				out.print('\n');
+			}
+		} else{
 			Indentable.printIndentOn(out, depth, ">>empty<<\n");
+		}
 	}
 
 	/**

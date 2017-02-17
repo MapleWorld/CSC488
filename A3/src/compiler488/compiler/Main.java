@@ -70,7 +70,7 @@ public class Main {
 	/** User option -- trace syntax analysis */
 	public static boolean traceSyntax = false;
 	/** User option -- trace AST operations */
-	public static boolean traceAST = true;
+	public static boolean traceAST = false;
 	/** User option -- trace semantic analysis */
 	public static boolean traceSemantics = false;
 	/** User option -- trace symbol table operations */
@@ -406,13 +406,8 @@ public class Main {
 			else
 				parserResult = p.parse().value;
 			
-			System.out.println(parserResult);
-			System.out.println("parserResult test completed");
-			
-			programAST = (Program) parserResult;
-			System.out.println("Test ProgramAST");
-			System.out.println(programAST.toString());
-			System.out.println("ProgramAST cast completed");
+			programAST = (Program) parserResult;;
+	
 		} catch (SyntaxErrorException e) { // parser has already printed an
 											// error message
 			errorOccurred = true;
@@ -454,12 +449,10 @@ public class Main {
 			// Semantics.doIt( programAST );
 			
 			// Waiting for AST classes to be ready
-			/*
 			System.out.println("Semantic Analysis Starts");
 			Semantics semantic = new Semantics();
 			semantic.Analyze(programAST);
 			System.out.println("Semantic Analysis Ended");
-			*/
 		} catch (Exception e) {
 			System.err.println("Exception during Semantic Analysis");
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());

@@ -21,7 +21,7 @@
 
     %%%%% procedure with parameters
     procedure procedure_with_params(param1 : Integer, param2 : Integer) {
-        write "procedure without params"
+        write "procedure with params"
         write param1 + param2
         return
     }

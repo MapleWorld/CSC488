@@ -15,10 +15,7 @@ public class RoutineDecl extends Declaration {
 	 * The formal parameters of the function/procedure and the statements to
 	 * execute when the procedure is called.
 	 */
-	private RoutineBody routineBody;
-
-	/** The body of this routine (if any.) */
-	private Scope body = null;
+	private RoutineBody routineBody = new RoutineBody();
 
 	/**
 	 * Construct a function with parameters, and a definition of the body.
@@ -30,7 +27,7 @@ public class RoutineDecl extends Declaration {
 	public RoutineDecl(String name, Type type, ASTList<ScalarDecl> parameters, Scope body, int line, int column) {
 		super(name, type, line, column);
 		this.routineBody.setParameters(parameters);
-		this.body = body;
+		this.routineBody.setBody(body);
 	}
 
 	/**
@@ -53,7 +50,7 @@ public class RoutineDecl extends Declaration {
 	public RoutineDecl(String name, ASTList<ScalarDecl> parameters, Scope body, int line, int column) {
 		this(name, null, parameters, body, line, column);
 		this.routineBody.setParameters(parameters);
-		this.body = body;
+		this.routineBody.setBody(body);
 	}
 
 	/**
@@ -98,11 +95,4 @@ public class RoutineDecl extends Declaration {
 		this.routineBody = routineBody;
 	}
 
-	public Scope getBody() {
-		return body;
-	}
-
-	public void setBody() {
-		this.body = body;
-	}
 }

@@ -105,8 +105,7 @@ public class Semantics {
      * @param ast An abstract syntax tree of the program.
      */
 	public void Analyze(Program ast){
-		System.out.println("Semantic Analyze Method testing");
-		System.out.println(ast.toString());
+		System.out.println("Semantic Analyze Method Invoked");
 	}
 }
 

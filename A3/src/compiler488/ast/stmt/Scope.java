@@ -79,6 +79,8 @@ public class Scope extends Stmt {
 
 		declarations.printOnSeperateLines(out, depth + 1);
 
+		out.print('\n');
+		
 		Indentable.printIndentOnLn(out, depth, "statements");
 
 		statements.printOnSeperateLines(out, depth + 1);
