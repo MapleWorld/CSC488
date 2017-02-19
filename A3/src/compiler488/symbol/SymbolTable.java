@@ -22,7 +22,7 @@ public class SymbolTable {
     public final static String version = "Winter 2017" ;
 
     public enum ScopeType {
-        PROGRAM, FUNCTION, PROCEDURE, ORDINARY;
+        PROGRAM, FUNCTION, PROCEDURE, ORDINARY, LOOP;
     }
 
     // current scope
