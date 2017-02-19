@@ -1,6 +1,8 @@
-package compiler488.symbol;
+Apackage compiler488.symbol;
 
 import java.io.*;
+import java.util.*;
+import comiler488.ast.type.Type;
 
 /** Symbol Table
  *  This almost empty class is a framework for implementing
@@ -9,54 +11,171 @@ import java.io.*;
  *  Each implementation can change/modify/delete this class
  *  as they see fit.
  *
- *  @author  <B> PUT YOUR NAMES HERE </B>
+ *  @author  <B> zixuan </B>
  */
 
 public class SymbolTable {
 	
-	/** String used by Main to print symbol table
-         *  version information.
+    /** String used by Main to print symbol table
+     *  version information.
+     */
+    public final static String version = "Winter 2017" ;
+
+    public enum ScopeType {
+        PROGRAM, FUNCTION, PROCEDURE, ORDINARY;
+    }
+
+    // current scope
+    private int scopeIndex;
+    // to keep track of symbols in outer scopes
+    private Deque<SymbolList> stack; 
+    // all symbols in the program
+    private HashMap<String, SymbolTableEntry> table;
+
+    /** Symbol Table  constructor
+     *  Create and initialize a symbol table 
+     */
+    public SymbolTable() {
+        scopeIndex = 0;
+        stack = new Deque<SymbolList>();
+        table = new HashMap<String, SymbolTableEntry>();
+    }
+
+    /** The rest of Symbol Table
+     *  Data structures, public and private functions
+     *  to implement the Symbol Table
+     *  GO HERE.				
+     */
+
+    /**
+     *  Returns true iff successfully adding the given 
+     *  ident and entry to this Symbol Table.
+     */
+    public boolean addSymbol(String ident, SymbolTableEntry entry) {
+        SymbolTableEntry oldEntry = table.get(ident);
+        // ensures that ident is not already declared under current scope
+        if (oldEntry && oldEntry.scopeIndex == scopeIndex)
+            return false;
+        entry.setScope(scopeIndex);
+        table.put(ident, entry);
+        stack.peekFirst().add(ident, oldEntry);
+        return true;
+    }
+
+    /** Returns the corresponding Symbol Table Entry of ident,
+     *  null if ident is not in this Symbol Table.
+     */
+    public SymbolTableEntry getEntry(String ident) {
+        return table.get(ident);
+    } 
+
+    /**
+     * Adds a new scope to this Symbol Table
+     */
+    public void startScope(ScopeType newScope) {
+        scopeIndex++;
+        stack.addFirst(new SymbolList(newScope));
+    }
+    
+    /**
+     * Adds a new scope to this Symbol Table
+     */
+    public void startFunctionScope(Type returnType) {
+        startScope(ScopeType.FUNCTION);
+        
+    }    
+
+    /**
+     * Removes the current scope from this Symbol Table
+     */
+    public void endScope() {
+        stack.removeFirst().updateSymbols();
+        scopeIndex--;
+    }
+
+    /**
+     * Returns the current Scope Type.
+     */
+    public Scope getScopeType() {
+        stack.peekFirst().getScopeType();
+    }
+
+    /** SymbolList
+     *  This class keeps track of all previously declared symbols.
+     */
+    private class SymbolList {
+        private ScopeType sType;
+        private Type returnType = null;
+        private LinkedList<Symbol> symbols;
+
+        /** SymbolList constructor */
+        public SymbolList(ScopeType sType) {
+            this.sType = sType;
+            symbols = new LinkedList<Symbol> ();
+        }
+
+        public SymbolList(ScopeType sType, Type returnType) {
+            this.returnType = returnType;
+            this(sType);
+        }   
+
+        /** Returns the Scope Type of this Symbol List */
+        public ScopeType getScopeType() {
+            return sType;
+        }
+
+        /** Returns the return Type of this Symbol List */
+        public ScopeType getReturnType() {
+            return returnType;
+        }
+
+        /**
+         * Adds a new symbol with id and entry
          */
+        public void add(String id, SymbolTableEntry entry) {
+            symbols.add(new Symbol(id, entry));
+        }
 
-	public final static String version = "Winter 2017" ;
+        /**
+         * Updates the symbol table with symbols in this Symbol List,
+         * if a symbol entry is null, remove the entry from the symbol table.
+         */
+        public void updateSymbols() {
+            for (Symbol oldSymbol : symbols) {
+                // checks if symbol is only declared under current scope
+                if (!oldSymbol.getEntry()) 
+                    table.remove(oldSymbol.getIdentifier());
+                else
+                    table.put(oldSymbol.getIdentifier(), oldSymbol.getEntry());
+            }
+        }
 
-	/** Symbol Table  constructor
-         *  Create and initialize a symbol table 
-	 */
-	public SymbolTable  (){
-	
-	}
+        /** Symbol
+         *  This class is used to keep track of the symbol
+         *  in the outer scope when the current scope
+         *  uses the same identifier to declare variables.
+         */
+        private class Symbol {
+            private String identifier;
+            private SymbolTableEntry symbol;
 
-	/**  Initialize - called once by semantic analysis  
-	 *                at the start of  compilation     
-	 *                May be unnecessary if constructor
- 	 *                does all required initialization	
-	 */
-	public void Initialize() {
-	
-	   /**   Initialize the symbol table             
-	    *	Any additional symbol table initialization
-	    *  GOES HERE                                	
-	    */
-	   
-	}
-
-	/**  Finalize - called once by Semantics at the end of compilation
-	 *              May be unnecessary 		
-	 */
-	public void Finalize(){
-	
-	  /**  Additional finalization code for the 
-	   *  symbol table  class GOES HERE.
-	   *  
-	   */
-	}
-	
-
-	/** The rest of Symbol Table
-	 *  Data structures, public and private functions
- 	 *  to implement the Symbol Table
-	 *  GO HERE.				
-	 */
-
+            /** Symbol constructor
+             *  Create Symbol with given identifier and entry
+             */
+            public Symbol(String identifier, SymbolTableEntry entry) {
+                this.identifier = identifier;
+                this.entry = entry;
+            }
+            
+            /** Returns identifier of the symbol. */
+            public String getIdentifier() {
+                return identifier;
+            }
+            
+            /** Returns the symbol table entry of the symbol. */
+            public SymbolTableEntry getEntry() {
+                return entry;
+            }
+        }
+    }
 }
