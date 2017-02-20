@@ -1,7 +1,10 @@
 package compiler488.ast.stmt;
 
 import java.io.PrintStream;
+import java.util.LinkedList;
+import java.util.List;
 
+import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.Indentable;
 import compiler488.ast.decl.Declaration;
@@ -18,7 +21,7 @@ public class Scope extends Stmt {
 		declarations = new ASTList<Declaration>();
 		statements = new ASTList<Stmt>();
 	}
-	
+
 	public Scope(Scope scope) {
         if (scope.getDeclarations() == null) {
             declarations = new ASTList<Declaration>();
@@ -32,21 +35,21 @@ public class Scope extends Stmt {
             statements = scope.getStatements();
         }
     }
-	
+
 	public Scope(int lineNumber, int columnNumber) {
 		declarations = new ASTList<Declaration>();
 		statements = new ASTList<Stmt>();
         this.setLineNumber(lineNumber);
         this.setColumnNumber(columnNumber);
     }
-	
+
     public Scope(ASTList<Stmt> stats, int lineNumber, int columnNumber) {
         this(lineNumber, columnNumber);
         this.statements = stats;
     }
-	
+
     public Scope(ASTList<Declaration> decls, ASTList<Stmt> stmts, int lineNumber, int columnNumber) {
-    	
+
         if (decls == null) {
             declarations = new ASTList<Declaration>();
         } else {
@@ -58,15 +61,22 @@ public class Scope extends Stmt {
         } else {
             statements = stmts;
         }
-        
+
         this.setLineNumber(lineNumber);
         this.setColumnNumber(columnNumber);
-        
+
+    }
+
+    public List<AST> getChildren() {
+        LinkedList<AST> children = new LinkedList<AST>();
+        children.add(declarations);
+        children.add(statements);
+        return children;
     }
 
 	/**
 	 * Print a description of the <b>scope</b> construct.
-	 * 
+	 *
 	 * @param out
 	 *            Where to print the description.
 	 * @param depth
@@ -80,7 +90,7 @@ public class Scope extends Stmt {
 		declarations.printOnSeperateLines(out, depth + 1);
 
 		out.print('\n');
-		
+
 		Indentable.printIndentOnLn(out, depth, "statements");
 
 		statements.printOnSeperateLines(out, depth + 1);

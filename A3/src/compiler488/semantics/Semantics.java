@@ -10,7 +10,7 @@ import compiler488.ast.stmt.Program;
 import compiler488.symbol.SymbolTable;
 
 /** Implement semantic analysis for compiler 488
- *  @author  <B> Lawrence Wu</B>
+ *  @author  <B>Lawrence Wu</B>
  */
 public class Semantics {
     public static final String version = "Winter 2017" ;
@@ -89,7 +89,7 @@ public class Semantics {
         /*  FEEL FREE TO ignore or replace this procedure            */
         /*************************************************************/
 
-        System.out.println("Semantic Action: S" + actionNumber  );
+        System.out.println("Semantic Action: S" + actionNumber);
         return ;
     }
 
@@ -102,9 +102,9 @@ public class Semantics {
         // Do a DFS on the program and check every node.
         Deque<AST> stack = new LinkedList<AST>();
         stack.add(ast);
-
         while (!stack.isEmpty()) {
             AST currentNode = stack.pop();
+            System.out.println(currentNode.getClass());
             List<AST> children = currentNode.getChildren();
             for (AST child : children) {
                 stack.push(child);
