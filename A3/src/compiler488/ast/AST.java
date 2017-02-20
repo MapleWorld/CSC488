@@ -8,7 +8,6 @@ import java.util.List;
  * @author  Ou Ye
  */
 public class AST {
-
 	public final static String version = "Winter 2017";
 
     private AST parent;

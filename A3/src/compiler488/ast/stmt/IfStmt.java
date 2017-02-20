@@ -1,7 +1,10 @@
 package compiler488.ast.stmt;
 
 import java.io.PrintStream;
+import java.util.LinkedList;
+import java.util.List;
 
+import compiler488.ast.AST;
 import compiler488.ast.Indentable;
 import compiler488.ast.expn.Expn;
 
@@ -28,11 +31,21 @@ public class IfStmt extends Stmt {
 	public IfStmt(Expn condition, Stmt whenTrue, int line, int column) {
 		this(condition, whenTrue, null, line, column);
 	}
-	
+
+    public List<AST> getChildren() {
+        LinkedList<AST> children = new LinkedList<AST>();
+        children.add(condition);
+        children.add(whenTrue);
+        if (whenFalse != null) {
+            children.add(whenFalse);
+        }
+        return children;
+    }
+
 	/**
 	 * Print a description of the <b>if-then-else</b> construct. If the
 	 * <b>else</b> part is empty, just print an <b>if-then</b> construct.
-	 * 
+	 *
 	 * @param out
 	 *            Where to print the description.
 	 * @param depth
