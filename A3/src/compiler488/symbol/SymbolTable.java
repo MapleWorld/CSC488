@@ -6,7 +6,7 @@ import compiler488.ast.type.Type;
 
 /** Symbol Table
  *  This almost empty class is a framework for implementing
- 1;95;0c*  a Symbol Table class for the CSC488S compiler
+ *  a Symbol Table class for the CSC488S compiler
  *
  *  Each implementation can change/modify/delete this class
  *  as they see fit.
