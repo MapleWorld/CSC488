@@ -1,5 +1,9 @@
 package compiler488.ast.stmt;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import compiler488.ast.AST;
 import compiler488.ast.expn.Expn;
 
 /**
@@ -17,7 +21,14 @@ public class AssignStmt extends Stmt {
 		this.lval = lval;
 		this.rval = rval;
 	}
-	
+
+    public List<AST> getChildren() {
+        LinkedList<AST> children = new LinkedList<AST>();
+        children.add(lval);
+        children.add(rval);
+        return children;
+    }
+
 	/** Returns a string that describes the assignment statement. */
 	@Override
 	public String toString() {
