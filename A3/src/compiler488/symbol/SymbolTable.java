@@ -1,13 +1,13 @@
-Apackage compiler488.symbol;
+package compiler488.symbol;
 
 import java.io.*;
 import java.util.*;
-import comiler488.ast.type.Type;
+import compiler488.ast.type.Type;
 
 /** Symbol Table
  *  This almost empty class is a framework for implementing
  *  a Symbol Table class for the CSC488S compiler
- *  
+ *
  *  Each implementation can change/modify/delete this class
  *  as they see fit.
  *
@@ -15,7 +15,7 @@ import comiler488.ast.type.Type;
  */
 
 public class SymbolTable {
-	
+
     /** String used by Main to print symbol table
      *  version information.
      */
@@ -28,12 +28,12 @@ public class SymbolTable {
     // current scope
     private int scopeIndex;
     // to keep track of symbols in outer scopes
-    private Deque<SymbolList> stack; 
+    private Deque<SymbolList> stack;
     // all symbols in the program
     private HashMap<String, SymbolTableEntry> table;
 
     /** Symbol Table  constructor
-     *  Create and initialize a symbol table 
+     *  Create and initialize a symbol table
      */
     public SymbolTable() {
         scopeIndex = 0;
@@ -44,11 +44,11 @@ public class SymbolTable {
     /** The rest of Symbol Table
      *  Data structures, public and private functions
      *  to implement the Symbol Table
-     *  GO HERE.				
+     *  GO HERE.
      */
 
     /**
-     *  Returns true iff successfully adding the given 
+     *  Returns true iff successfully adding the given
      *  ident and entry to this Symbol Table.
      */
     public boolean addSymbol(String ident, SymbolTableEntry entry) {
@@ -67,7 +67,7 @@ public class SymbolTable {
      */
     public SymbolTableEntry getEntry(String ident) {
         return table.get(ident);
-    } 
+    }
 
     /**
      * Adds a new scope to this Symbol Table
@@ -76,14 +76,14 @@ public class SymbolTable {
         scopeIndex++;
         stack.addFirst(new SymbolList(newScope));
     }
-    
+
     /**
      * Adds a new scope to this Symbol Table
      */
     public void startFunctionScope(Type returnType) {
         startScope(ScopeType.FUNCTION);
-        
-    }    
+
+    }
 
     /**
      * Removes the current scope from this Symbol Table
@@ -117,7 +117,7 @@ public class SymbolTable {
         public SymbolList(ScopeType sType, Type returnType) {
             this.returnType = returnType;
             this(sType);
-        }   
+        }
 
         /** Returns the Scope Type of this Symbol List */
         public ScopeType getScopeType() {
@@ -143,7 +143,7 @@ public class SymbolTable {
         public void updateSymbols() {
             for (Symbol oldSymbol : symbols) {
                 // checks if symbol is only declared under current scope
-                if (!oldSymbol.getEntry()) 
+                if (!oldSymbol.getEntry())
                     table.remove(oldSymbol.getIdentifier());
                 else
                     table.put(oldSymbol.getIdentifier(), oldSymbol.getEntry());
@@ -166,12 +166,12 @@ public class SymbolTable {
                 this.identifier = identifier;
                 this.entry = entry;
             }
-            
+
             /** Returns identifier of the symbol. */
             public String getIdentifier() {
                 return identifier;
             }
-            
+
             /** Returns the symbol table entry of the symbol. */
             public SymbolTableEntry getEntry() {
                 return entry;

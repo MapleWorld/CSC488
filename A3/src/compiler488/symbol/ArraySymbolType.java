@@ -1,6 +1,6 @@
 package compiler488.symbol;
 
-import comiler488.ast.type.Type;
+import compiler488.ast.type.Type;
 
 /** Array Symbol Type
  *  A Symbol Type class for an array of Boolean or Integer variables.
@@ -13,13 +13,13 @@ public class ArraySymbolType extends SymbolType {
     int upperBound;
     int lowerBound;
 
-    public ScalarSymbolType(Type type, int uBound, int lBound) {
+    public void ScalarSymbolType(Type type, int uBound, int lBound) {
         this.type = type;
         upperBound = uBound;
         lowerBound = lBound;
     }
 
-    public ScalarSymbolType(Type type, int uBound) {
+    public void ScalarSymbolType(Type type, int uBound) {
         this(type, uBound, 1);
     }
 
