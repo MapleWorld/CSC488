@@ -13,7 +13,7 @@ public class FunctionSymbolType extends SymbolType {
     int paramCount;
 
     public FunctionSymbolType(Type returnType) {
-        type = returntype;
+        type = returnType;
         paramCount = 0;
     }
 

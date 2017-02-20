@@ -6,7 +6,7 @@ import compiler488.ast.type.Type;
 
 /** Symbol Table
  *  This almost empty class is a framework for implementing
- *  a Symbol Table class for the CSC488S compiler
+ 1;95;0c*  a Symbol Table class for the CSC488S compiler
  *
  *  Each implementation can change/modify/delete this class
  *  as they see fit.
@@ -28,7 +28,7 @@ public class SymbolTable {
     // current scope
     private int scopeIndex;
     // to keep track of symbols in outer scopes
-    private Deque<SymbolList> stack;
+    private ArrayDeque<SymbolList> stack;
     // all symbols in the program
     private HashMap<String, SymbolTableEntry> table;
 
@@ -37,7 +37,7 @@ public class SymbolTable {
      */
     public SymbolTable() {
         scopeIndex = 0;
-        stack = new Deque<SymbolList>();
+        stack = new ArrayDeque<SymbolList>();
         table = new HashMap<String, SymbolTableEntry>();
     }
 
@@ -54,11 +54,11 @@ public class SymbolTable {
     public boolean addSymbol(String ident, SymbolTableEntry entry) {
         SymbolTableEntry oldEntry = table.get(ident);
         // ensures that ident is not already declared under current scope
-        if (oldEntry && oldEntry.scopeIndex == scopeIndex)
+        if (oldEntry != null && oldEntry.getScope() == scopeIndex)
             return false;
         entry.setScope(scopeIndex);
         table.put(ident, entry);
-        stack.peekFirst().add(ident, oldEntry);
+        stack.peek().add(ident, oldEntry);
         return true;
     }
 
@@ -74,7 +74,7 @@ public class SymbolTable {
      */
     public void startScope(ScopeType newScope) {
         scopeIndex++;
-        stack.addFirst(new SymbolList(newScope));
+        stack.push(new SymbolList(newScope));
     }
 
     /**
@@ -89,15 +89,15 @@ public class SymbolTable {
      * Removes the current scope from this Symbol Table
      */
     public void endScope() {
-        stack.removeFirst().updateSymbols();
+        stack.pop().updateSymbols();
         scopeIndex--;
     }
 
     /**
      * Returns the current Scope Type.
      */
-    public Scope getScopeType() {
-        stack.peekFirst().getScopeType();
+    public ScopeType getScopeType() {
+        return stack.peek().getScopeType();
     }
 
     /** SymbolList
@@ -116,7 +116,8 @@ public class SymbolTable {
 
         public SymbolList(ScopeType sType, Type returnType) {
             this.returnType = returnType;
-            this(sType);
+            this.sType = sType;
+            symbols = new LinkedList<Symbol> ();
         }
 
         /** Returns the Scope Type of this Symbol List */
@@ -125,7 +126,7 @@ public class SymbolTable {
         }
 
         /** Returns the return Type of this Symbol List */
-        public ScopeType getReturnType() {
+        public Type getReturnType() {
             return returnType;
         }
 
@@ -143,7 +144,7 @@ public class SymbolTable {
         public void updateSymbols() {
             for (Symbol oldSymbol : symbols) {
                 // checks if symbol is only declared under current scope
-                if (!oldSymbol.getEntry())
+                if (oldSymbol.getEntry() == null)
                     table.remove(oldSymbol.getIdentifier());
                 else
                     table.put(oldSymbol.getIdentifier(), oldSymbol.getEntry());
@@ -157,7 +158,7 @@ public class SymbolTable {
          */
         private class Symbol {
             private String identifier;
-            private SymbolTableEntry symbol;
+            private SymbolTableEntry entry;
 
             /** Symbol constructor
              *  Create Symbol with given identifier and entry

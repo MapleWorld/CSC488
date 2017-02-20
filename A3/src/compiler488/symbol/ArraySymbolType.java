@@ -13,13 +13,13 @@ public class ArraySymbolType extends SymbolType {
     int upperBound;
     int lowerBound;
 
-    public void ScalarSymbolType(Type type, int uBound, int lBound) {
+    public ArraySymbolType(Type type, int uBound, int lBound) {
         this.type = type;
         upperBound = uBound;
         lowerBound = lBound;
     }
 
-    public void ScalarSymbolType(Type type, int uBound) {
+    public ArraySymbolType(Type type, int uBound) {
         this(type, uBound, 1);
     }
 
