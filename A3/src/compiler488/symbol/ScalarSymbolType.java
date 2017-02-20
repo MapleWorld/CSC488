@@ -1,6 +1,6 @@
 package compiler488.symbol;
 
-import comiler488.ast.type.Type;
+import compiler488.ast.type.Type;
 
 /** Scalar Symbol Type
  *  A Symbol Type class for a single Boolean or Integer variable.
