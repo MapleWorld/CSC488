@@ -9,7 +9,6 @@ import compiler488.symbol.SymbolTable;
  *  @author  <B> Lawrence Wu</B>
  */
 public class Semantics {
-
     public static final String version = "Winter 2017" ;
 
     /** flag for tracing semantic analysis */
@@ -19,17 +18,13 @@ public class Semantics {
     public FileWriter Tracer;
     public File f;
 
-
-
     /** SemanticAnalyzer constructor */
-    public Semantics (){
-
+    public Semantics () {
     }
 
     /**  semanticsInitialize - called once by the parser at the      */
     /*                        start of  compilation                 */
     void Initialize() {
-
         /*   Initialize the symbol table             */
 
         // Symbol.Initialize();
@@ -39,13 +34,11 @@ public class Semantics {
         /*  semantic analysis module                 */
         /*  GOES HERE                                */
         /*********************************************/
-
     }
 
     /**  semanticsFinalize - called by the parser once at the        */
     /*                      end of compilation                      */
     void Finalize(){
-
         /*  Finalize the symbol table                 */
 
         // Symbol.Finalize();
@@ -55,20 +48,18 @@ public class Semantics {
         /*  semantics analysis module                 */
         /*  GOES here.                                */
         /**********************************************/
-
     }
 
     /**
      *  Perform one semantic analysis action
      *  @param  actionNumber  semantic analysis action number
      */
-    void semanticAction( int actionNumber ) {
-
-        if( traceSemantics ){
-            if(traceFile.length() > 0 ){
-                //output trace to the file represented by traceFile
-                try{
-                    //open the file for writing and append to it
+    void semanticAction(int actionNumber) {
+        if (traceSemantics) {
+            if (traceFile.length() > 0) {
+                // output trace to the file represented by traceFile
+                try {
+                    // open the file for writing and append to it
                     File f = new File(traceFile);
                     Tracer = new FileWriter(traceFile, true);
 
@@ -81,11 +72,10 @@ public class Semantics {
                             " could be opened/created.  It may be in use.");
                 }
             }
-            else{
-                //output the trace to standard out.
+            else {
+                // output the trace to standard out.
                 System.out.println("Sematics: S" + actionNumber );
             }
-
         }
 
         /*************************************************************/
@@ -104,7 +94,8 @@ public class Semantics {
     /** The main driver for the class.
      * @param ast An abstract syntax tree of the program.
      */
-    public void Analyze(Program ast){
+    public void Analyze(Program ast) {
         System.out.println("Semantic Analyze Method Invoked");
+        System.out.println(ast.getClass());
     }
 }

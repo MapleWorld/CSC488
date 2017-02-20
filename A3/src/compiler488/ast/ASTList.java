@@ -3,6 +3,7 @@ package compiler488.ast;
 import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.List;
 
 /**
  * For nodes with an arbitrary number of children.
@@ -35,10 +36,14 @@ public class ASTList<E> extends AST {
 	public int size() {
 		return ll.size();
 	}
-	
+
 	public LinkedList<E> getList() {
 		return this.ll;
 	}
+
+    public List<AST> getChildren() {
+        return (List<AST>) getList();
+    }
 
 	/**
 	 * Append an element to the list, then return the list. This is a
@@ -57,7 +62,7 @@ public class ASTList<E> extends AST {
 	 * elements are typically printed on seperate lines, otherwise they may
 	 * not implement <b>printOn</b>. If the list is empty, print
 	 * <b>&gt;&gt;empty&lt;&lt;</b> follwed by a new-line.
-	 * 
+	 *
 	 * @param out
 	 *            Where to print the list.
 	 * @param depth
@@ -84,7 +89,7 @@ public class ASTList<E> extends AST {
 		if (0 == ll.size())
 			return "";
 		else {
-			
+
 			ListIterator<E> iterator = ll.listIterator();
 			E temp = iterator.next();
 			StringBuffer result = new StringBuffer(temp.toString());

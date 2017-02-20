@@ -24,10 +24,10 @@ public class ReturnStmt extends Stmt {
 	public ReturnStmt(int line, int column) {
 		this(null, line, column);
 	}
-	
+
 	/**
 	 * Print <b>return</b> or <b>return with </b> expression on a line, by itself.
-	 * 
+	 *
 	 * @param out
 	 *            Where to print.
 	 * @param depth
