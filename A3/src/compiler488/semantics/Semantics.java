@@ -1,7 +1,11 @@
 package compiler488.semantics;
 
 import java.io.*;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
+import compiler488.ast.AST;
 import compiler488.ast.stmt.Program;
 import compiler488.symbol.SymbolTable;
 
@@ -95,7 +99,16 @@ public class Semantics {
      * @param ast An abstract syntax tree of the program.
      */
     public void Analyze(Program ast) {
-        System.out.println("Semantic Analyze Method Invoked");
-        System.out.println(ast.getClass());
+        // Do a DFS on the program and check every node.
+        Deque<AST> stack = new LinkedList<AST>();
+        stack.add(ast);
+
+        while (!stack.isEmpty()) {
+            AST currentNode = stack.pop();
+            List<AST> children = currentNode.getChildren();
+            for (AST child : children) {
+                stack.push(child);
+            }
+        }
     }
 }
