@@ -81,8 +81,8 @@ public class SymbolTable {
      * Adds a new scope to this Symbol Table
      */
     public void startFunctionScope(Type returnType) {
-        startScope(ScopeType.FUNCTION);
-
+        scopeIndex++;
+        stack.push(new SymbolList(ScopeType.FUNCTION, returnType));
     }
 
     /**
