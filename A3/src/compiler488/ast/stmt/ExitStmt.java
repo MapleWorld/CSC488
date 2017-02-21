@@ -1,5 +1,9 @@
 package compiler488.ast.stmt;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import compiler488.ast.AST;
 import compiler488.ast.expn.*;
 
 /**
@@ -17,6 +21,12 @@ public class ExitStmt extends Stmt {
 		expn = cond;
 		this.level = level;
 	}
+
+    public List<AST> getChildren() {
+        LinkedList<AST> children = new LinkedList<AST>();
+        children.add(expn);
+        return children;
+    }
 
 	/**
 	 * Returns the string <b>"exit"</b> or <b>"exit when e"</b>" or

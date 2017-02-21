@@ -1,5 +1,9 @@
 package compiler488.ast.stmt;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.expn.Expn;
 
@@ -16,6 +20,13 @@ public abstract class LoopingStmt extends Stmt
 		this.expn = expn;
 		this.body = body;
 	}
+
+    public List<AST> getChildren() {
+        LinkedList<AST> children = new LinkedList<AST>();
+        children.add(expn);
+        children.add(body);
+        return children;
+    }
 
 	public LoopingStmt(ASTList<Stmt> body, int line, int column) {
 		this(null, body, line, column);

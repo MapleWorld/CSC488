@@ -1,5 +1,9 @@
 package compiler488.ast.stmt;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.expn.Expn;
 
@@ -7,7 +11,7 @@ import compiler488.ast.expn.Expn;
  * Represents calling a procedure.
  */
 public class ProcedureCallStmt extends Stmt {
-	
+
 	private String name; // The name of the procedure being called.
 	private ASTList<Expn> arguments; // The arguments passed to the procedure.
 
@@ -20,7 +24,13 @@ public class ProcedureCallStmt extends Stmt {
 	public ProcedureCallStmt(String name, int line, int column) {
 		this(name, new ASTList<Expn>(),line, column);
 	}
-	
+
+    public List<AST> getChildren() {
+        LinkedList<AST> children = new LinkedList<AST>();
+        children.add(arguments);
+        return children;
+    }
+
 	/** Returns a string describing the procedure call. */
 	@Override
 	public String toString() {
