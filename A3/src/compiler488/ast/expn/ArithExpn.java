@@ -18,4 +18,8 @@ public class ArithExpn extends BinaryExpn {
                 (opSymbol == OP_TIMES) ||
                 (opSymbol == OP_DIVIDE));
     }
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

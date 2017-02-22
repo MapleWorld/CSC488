@@ -50,4 +50,8 @@ public class AssignStmt extends Stmt {
 	public void setRval(Expn rval) {
 		this.rval = rval;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

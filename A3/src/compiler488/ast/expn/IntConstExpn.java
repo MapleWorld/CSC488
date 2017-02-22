@@ -23,4 +23,8 @@ public class IntConstExpn extends ConstExpn
 	public void setValue(Integer value) {
 		this.value = value;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

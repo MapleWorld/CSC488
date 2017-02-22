@@ -40,4 +40,8 @@ public class Expn extends AST implements Printable {
 		// TODO Auto-generated method stub
 		
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

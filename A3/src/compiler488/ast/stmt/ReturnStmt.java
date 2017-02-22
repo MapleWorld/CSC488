@@ -49,4 +49,8 @@ public class ReturnStmt extends Stmt {
 	public void setValue(Expn value) {
 		this.value = value;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

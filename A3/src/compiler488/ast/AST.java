@@ -58,4 +58,8 @@ public class AST {
     public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
     }
+
+    public void doSemantics() {
+        throw new UnsupportedOperationException("doSemantics() not implemented for AST.")
+    }
 }

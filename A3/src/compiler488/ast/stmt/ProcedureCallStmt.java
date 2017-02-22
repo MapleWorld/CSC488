@@ -55,4 +55,8 @@ public class ProcedureCallStmt extends Stmt {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

@@ -9,4 +9,8 @@ public class Type extends AST {
     public Type(int line, int column) {
         super(line, column);
     }
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

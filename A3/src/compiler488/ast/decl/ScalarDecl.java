@@ -20,4 +20,10 @@ public class ScalarDecl extends Declaration {
 	public String toString() {
 		return  name + " : " + type ;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
+    
+    
 }

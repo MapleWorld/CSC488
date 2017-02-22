@@ -17,4 +17,8 @@ public class ScalarDeclPart extends DeclarationPart {
 	public String toString() {
 		return name;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

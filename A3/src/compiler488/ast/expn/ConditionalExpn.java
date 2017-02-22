@@ -44,4 +44,8 @@ public class ConditionalExpn extends Expn {
     public void setTrueValue(Expn trueValue) {
         this.trueValue = trueValue;
     }
+    
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

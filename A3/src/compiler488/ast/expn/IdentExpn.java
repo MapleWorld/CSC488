@@ -28,4 +28,8 @@ public class IdentExpn extends Expn implements Readable {
     public void setIdent(String ident) {
         this.ident = ident;
     }
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

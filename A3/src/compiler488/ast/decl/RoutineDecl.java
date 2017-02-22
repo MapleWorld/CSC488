@@ -95,4 +95,7 @@ public class RoutineDecl extends Declaration {
 		this.routineBody = routineBody;
 	}
 
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

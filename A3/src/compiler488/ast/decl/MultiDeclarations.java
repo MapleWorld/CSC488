@@ -48,4 +48,8 @@ public class MultiDeclarations extends Declaration {
 	public void setElements(ASTList<DeclarationPart> elements) {
 		this.elements = elements;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

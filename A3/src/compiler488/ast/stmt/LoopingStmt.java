@@ -47,4 +47,8 @@ public abstract class LoopingStmt extends Stmt
 		this.body = body;
 	}
 
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
+
 }

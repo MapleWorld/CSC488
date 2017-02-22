@@ -41,4 +41,8 @@ public class FunctionCallExpn extends Expn {
         this.ident = ident;
     }
 
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
+
 }

@@ -14,4 +14,8 @@ public class EqualsExpn extends BinaryExpn {
         assert ((opSymbol == OP_EQUAL) ||
                 (opSymbol == OP_NOT_EQUAL));
     }
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

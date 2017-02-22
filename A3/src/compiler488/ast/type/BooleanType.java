@@ -14,4 +14,8 @@ public class BooleanType extends Type {
 	public String toString() {
 		return "boolean";
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

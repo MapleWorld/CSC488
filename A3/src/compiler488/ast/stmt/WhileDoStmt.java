@@ -33,4 +33,8 @@ public class WhileDoStmt extends LoopingStmt {
 				iterator.next().printOn(out, depth + 1);
 		Indentable.printIndentOnLn(out, depth, "End while-do");
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

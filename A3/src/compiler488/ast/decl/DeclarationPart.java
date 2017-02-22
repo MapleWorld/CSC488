@@ -23,4 +23,8 @@ public class DeclarationPart extends AST {
         this.name = name;
     }
 
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
+
 }

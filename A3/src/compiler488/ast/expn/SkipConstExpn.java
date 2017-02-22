@@ -17,4 +17,8 @@ public class SkipConstExpn extends ConstExpn implements Printable {
 	public String toString() {
 		return " newline ";
 	}
+    
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

@@ -60,4 +60,7 @@ public class SubsExpn extends UnaryExpn implements Readable {
         this.variable = variable;
     }
 
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

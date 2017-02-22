@@ -41,4 +41,8 @@ public class WriteStmt extends Stmt {
 	public void setOutputs(ASTList<Printable> outputs) {
 		this.outputs = outputs;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

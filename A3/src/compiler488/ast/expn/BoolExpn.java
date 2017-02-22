@@ -14,4 +14,8 @@ public class BoolExpn extends BinaryExpn {
         assert ((opSymbol == OP_OR) ||
                 (opSymbol == OP_AND));
     }
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

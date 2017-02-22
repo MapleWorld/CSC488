@@ -46,4 +46,9 @@ public class BinaryExpn extends Expn
 	public void setRight(Expn right) {
 		this.right = right;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
+
 }

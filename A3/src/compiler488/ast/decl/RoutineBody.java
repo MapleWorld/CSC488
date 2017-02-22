@@ -48,4 +48,8 @@ public class RoutineBody extends Indentable {
 	public void setParameters(ASTList<ScalarDecl> parameters) {
 		this.parameters = parameters;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

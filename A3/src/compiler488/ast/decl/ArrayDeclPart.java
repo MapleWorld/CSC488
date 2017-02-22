@@ -54,4 +54,8 @@ public class ArrayDeclPart extends DeclarationPart {
     public void setSize(Integer size) {
         this.size = size;
     }
+    
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

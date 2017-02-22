@@ -13,4 +13,8 @@ public class Stmt extends Indentable {
     public Stmt(int line, int column) {
         super(line, column);
     }
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

@@ -25,4 +25,8 @@ public class BoolConstExpn extends ConstExpn
 	public void setValue(boolean value) {
 		this.value = value;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

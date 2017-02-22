@@ -18,4 +18,8 @@ public class CompareExpn extends BinaryExpn {
                 (opSymbol == OP_GREATER) ||
                 (opSymbol == OP_GREATER_EQUAL));
     }
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

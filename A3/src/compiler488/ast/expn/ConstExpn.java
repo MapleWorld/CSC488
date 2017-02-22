@@ -8,4 +8,8 @@ public class ConstExpn extends Expn {
 	public ConstExpn(int line, int column) {
 		super(line, column);
 	}
+    
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

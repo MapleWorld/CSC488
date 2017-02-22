@@ -34,4 +34,8 @@ public class Declaration extends Indentable {
 	public void setType(Type type) {
 		this.type = type;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

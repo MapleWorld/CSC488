@@ -42,4 +42,8 @@ public class ReadStmt extends Stmt {
 	public void setInputs(ASTList<Readable> inputs) {
 		this.inputs = inputs;
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

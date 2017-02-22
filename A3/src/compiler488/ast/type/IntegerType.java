@@ -14,4 +14,8 @@ public class IntegerType extends Type {
 	public String toString() {
 		return "integer";
 	}
+
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
 }

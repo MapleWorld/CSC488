@@ -114,4 +114,8 @@ public class Scope extends Stmt {
 		this.statements = statements;
 	}
 
+    public void doSemantics() {
+        // do semantic analysis for this node
+    }
+
 }
