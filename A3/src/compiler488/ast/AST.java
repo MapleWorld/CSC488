@@ -60,6 +60,6 @@ public class AST {
     }
 
     public void doSemantics() {
-        throw new UnsupportedOperationException("doSemantics() not implemented for AST.")
+        throw new UnsupportedOperationException("doSemantics() not implemented for AST.");
     }
 }
