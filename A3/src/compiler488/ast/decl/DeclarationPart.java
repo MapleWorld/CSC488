@@ -1,6 +1,8 @@
 package compiler488.ast.decl;
 
 import compiler488.ast.AST;
+import compiler488.symbol.*;
+import java.util.*;
 
 /**
  * The common features of declarations' parts.
@@ -23,8 +25,9 @@ public class DeclarationPart extends AST {
         this.name = name;
     }
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg, Type type) {
         // do semantic analysis for this node
+        return null;
     }
 
 }
