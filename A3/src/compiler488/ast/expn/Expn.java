@@ -18,37 +18,35 @@ public class Expn extends AST implements Printable {
     @Override
     public void print(String str) {
         // TODO Auto-generated method stub
-	
+
     }
-    
+
     @Override
     public void newline() {
         // TODO Auto-generated method stub
-	
+
     }
-    
+
     @Override
     public void println(String str) {
         // TODO Auto-generated method stub
-	
+
     }
 
     @Override
     public void enterBlock() {
         // TODO Auto-generated method stub
-	
+
     }
 
     @Override
     public void exitBlock() {
         // TODO Auto-generated method stub
-	
+
     }
 
     public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
-
         // do semantic analysis for this node
 		return null;
-
     }
 }
