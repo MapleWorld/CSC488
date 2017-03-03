@@ -1,4 +1,4 @@
-Bpackage compiler488.ast.expn;
+package compiler488.ast.expn;
 
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
@@ -27,6 +27,6 @@ public class NotExpn extends UnaryExpn {
                                        "S30",
                                        "expected Boolean operand"));
         // S20
-        return new BooleanType(lineNumber, columnNumber);
+        return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }
 }

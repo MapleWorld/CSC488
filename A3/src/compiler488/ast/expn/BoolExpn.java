@@ -40,6 +40,6 @@ public class BoolExpn extends BinaryExpn {
                                        "expected Boolean operand"));
 
         // S20
-        return new BooleanType(lineNumber, columnNumber);
+        return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }
 }

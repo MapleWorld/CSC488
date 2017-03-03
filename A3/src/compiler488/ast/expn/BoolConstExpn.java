@@ -1,7 +1,8 @@
 package compiler488.ast.expn;
 
 import compiler488.ast.type.BooleanType;
-import compiler488.symbol.*;                                                                                                                                                                               import java.util.*;
+import compiler488.symbol.*;    
+import compiler488.ast.type.*;                                                                                                                                                                           import java.util.*;
  
 /**
  * Boolean literal constants.
@@ -32,6 +33,6 @@ public class BoolConstExpn extends ConstExpn
     /** Returns the type of this BoolConstExpn */
     public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // S20
-        return new BooleanType(lineNumber, columnNumber);
+        return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }
 }

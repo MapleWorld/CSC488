@@ -44,6 +44,6 @@ public class ArithExpn extends BinaryExpn {
                                        "expected Integer operand"));
 
         // S21
-        return new IntegerType(lineNumber, columnNumber);
+        return new IntegerType(this.getLineNumber(), this.getColumnNumber());
     }
 }

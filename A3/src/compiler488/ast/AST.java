@@ -1,6 +1,9 @@
 package compiler488.ast;
 
 import java.util.List;
+import compiler488.symbol.*;
+import java.util.*;
+import compiler488.ast.type.*;
 
 /**
  * This is a placeholder at the top of the Abstract Syntax Tree hierarchy. It is
@@ -59,7 +62,8 @@ public class AST {
         this.columnNumber = columnNumber;
     }
 
-    public void doSemantics() {
-        throw new UnsupportedOperationException("doSemantics() not implemented for AST.");
+    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+        // do semantic analysis for this node
+		return null;
     }
 }

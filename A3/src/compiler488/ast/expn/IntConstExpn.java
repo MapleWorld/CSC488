@@ -1,8 +1,8 @@
 package compiler488.ast.expn;
 
-import compiler488.ast.type.IntegerType;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.ast.type.*;
 
 /**
  * Represents a literal integer constant.
@@ -31,6 +31,6 @@ public class IntConstExpn extends ConstExpn
     /** Returns the type of this IntConstExpn */
     public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // S21
-        return new IntegerType(lineNumber, columnNumber);
+        return new IntegerType(this.getLineNumber(), this.getColumnNumber());
     }
 }

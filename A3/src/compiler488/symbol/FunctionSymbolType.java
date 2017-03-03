@@ -1,6 +1,8 @@
 package compiler488.symbol;
 
-import compiler488.ast.type.Type;
+import compiler488.ast.type.*;
+import compiler488.ast.expn.*;
+import compiler488.ast.*;
 
 /** Function Symbol Type
  *  A Symbol Type class for a function.
@@ -9,26 +11,33 @@ import compiler488.ast.type.Type;
  */
 
 public class FunctionSymbolType extends SymbolType {
-    Type type;
+    Type returnType;
     int paramCount;
+    ASTList<Expn> arguments;
 
-    public FunctionSymbolType(Type returnType) {
-        type = returnType;
-        paramCount = 0;
+    public FunctionSymbolType(Type returnType, ASTList<Expn> arguments) {
+        this.returnType = returnType;
+        this.arguments = arguments;
+        this.paramCount = arguments.size();
     }
 
     /** Returns the type of this Function Symbol Type */
     public Type getReturnType() {
-        return type;
+        return this.returnType;
     }
 
     /** Increases the parameter count by 1. */
     public void addParameter() {
-        paramCount++;
+        this.paramCount++;
     }
 
     /** Returns the parameter count. */
     public int getParamCount() {
-        return paramCount;
+        return this.paramCount;
+    }
+
+    /** Returns the arguments. */
+    public ASTList<Expn> getArguments() {
+        return this.arguments;
     }
 }

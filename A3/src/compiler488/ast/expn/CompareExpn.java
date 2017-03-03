@@ -44,7 +44,7 @@ public class CompareExpn extends BinaryExpn {
                                        "expected Integer operand"));
 
         // S20
-        return new BooleanType(lineNumber, columnNumber);
+        return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }
 
 }

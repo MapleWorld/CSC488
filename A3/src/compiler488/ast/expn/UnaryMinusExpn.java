@@ -26,6 +26,6 @@ public class UnaryMinusExpn extends UnaryExpn {
                                        "S31",
                                        "expected Integer operand"));
         // S21
-        return new IntegerType(lineNumber, columnNumber);
+        return new IntegerType(this.getLineNumber(), this.getColumnNumber());
     }
 }

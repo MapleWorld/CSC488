@@ -56,8 +56,8 @@ public class ConditionalExpn extends Expn {
     public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // do semantic analysis for this node
         Type condType = condition.doSemantics(table, errorMsg);
-        Type trueType = trueType.doSemantics(table, errorMsg);
-        Type falseType = falseType.doSemantics(table, errorMsg);
+        Type trueType = trueValue.doSemantics(table, errorMsg);
+        Type falseType = falseValue.doSemantics(table, errorMsg);
 
         // S30
         if (condType == null || !(condType instanceof BooleanType))
@@ -70,7 +70,7 @@ public class ConditionalExpn extends Expn {
         // S33
         if (trueType == null || falseType == null || 
             !(trueType.getClass().equals(falseType.getClass())))
-            errorMsg.add(String.format("%d:%d: error %s: %s\n"
+            errorMsg.add(String.format("%d:%d: error %s: %s\n",
                                        trueType.getLineNumber(),
                                        trueType.getColumnNumber(),
                                        "S33",
@@ -85,13 +85,13 @@ public class ConditionalExpn extends Expn {
         // checks if the randomly selected type is exactly the type expected
         // and fail otherwise - not consistent)
         if (trueType != null) {
-            trueType.setLineNumber(lineNumber);
-            trueType.setColumnNumber(columnNumber);
+            trueType.setLineNumber(this.getLineNumber());
+            trueType.setColumnNumber(this.getColumnNumber());
             return trueType;
         }
         else if (falseType != null) {
-            falseType.setLineNumber(lineNumber);
-            falseType.setColumnNumber(columnNumber);
+            falseType.setLineNumber(this.getLineNumber());
+            falseType.setColumnNumber(this.getColumnNumber());
             return falseType;
         }
         else

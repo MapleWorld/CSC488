@@ -36,7 +36,7 @@ public class IdentExpn extends Expn implements Readable {
     /** Returns the type of this IdentExpn based on table (null if this
      *  IdentExpn is not in the table).
      */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, LinkedList<String> errMsg) {
         // do semantic analysis for this node
         SymbolTableEntry entry = table.getEntry(ident);
         boolean err = false;
@@ -49,18 +49,18 @@ public class IdentExpn extends Expn implements Readable {
                 // S26
                 Type identType = ((ScalarSymbolType)entryType).getType();
                 if (identType instanceof BooleanType)
-                    return new BooleanType(lineNumber, columnNumber);
+                    return new BooleanType(this.getLineNumber(), this.getColumnNumber());
                 else if (identType instanceof IntegerType)
-                    return new IntegerType(lineNumber, columnNumber);
+                    return new IntegerType(this.getLineNumber(), this.getColumnNumber());
             }
         }
 
         // either there is no ident in table or ident is not a scalar
         // var in table
         errMsg.add(String.format("%d:%d: error %s: %s\n",
-                                 lineNumber, columnNumber,
+                                 this.getLineNumber(), this.getColumnNumber(),
                                  "S37",
-                                 "identifier has not been declared as a scalar variable");
+                                 "identifier has not been declared as a scalar variable"));
 
         return null;
     }

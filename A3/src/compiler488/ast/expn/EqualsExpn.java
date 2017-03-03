@@ -29,11 +29,11 @@ public class EqualsExpn extends BinaryExpn {
         if (leftType == null || rightType == null || 
             !(leftType.getClass().equals(rightType.getClass())))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",
-                                       lineNumber, columnNumber,
+                                       this.getLineNumber(), this.getColumnNumber(),
                                        "S32",
                                        "the left and right operands are not the same type"));
 
         // S20
-        return new BooleanType(lineNumber, columnNumber);
+        return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }
 }
