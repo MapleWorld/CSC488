@@ -10,11 +10,11 @@ public final class ExpnSemantics {
         this.returning = returning;
         this.type = type;
     }
-    
+
     public boolean isReturning() {
         return returning;
     }
-    
+
     public Type getType() {
         return type;
     }
