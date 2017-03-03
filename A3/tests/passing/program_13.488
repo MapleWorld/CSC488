@@ -1,3 +1,4 @@
+% Mutiple variables read statement
 {
     var m, n : Integer
     read m, n

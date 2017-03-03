@@ -1,0 +1,23 @@
+
+# CSC488 A3
+
+We decided to split up the work depending on our schedule, and communicating through facebook.
+
+In the inital phase, we worked on the AST design and its implementation, and 
+whoever that was available next worked on the symbol table. The last step was mostly implementing
+the semantic analysis which all of us worked on it together, each contributing part of the 
+implementation and testing. 
+
+- **Ou** - Mostly AST implementation and test cases
+- **Zixuan** - 
+- **Theresa** - 
+- **Gregory** - 
+- **Lawrence** - 
+
+         Name       |   CDF
+    -------------------------
+    Ou Ye           | yeou
+    Zixuan          | jinzi2
+    Theresa         | matheres
+    Gregory         | wlodare1
+    Lawrence        | wulawre1

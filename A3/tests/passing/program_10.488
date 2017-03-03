@@ -1,3 +1,4 @@
+% Various array declaration with bound
 {
     var simple[1] : Integer
     var longer[32767] : Integer
