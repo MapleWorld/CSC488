@@ -1,6 +1,9 @@
 package compiler488.ast.expn;
 
 import compiler488.ast.Readable;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
+import java.util.*;
 
 /**
  * References to an array element variable
@@ -60,7 +63,9 @@ public class SubsExpn extends UnaryExpn implements Readable {
         this.variable = variable;
     }
 
-    public void doSemantics() {
+    /** Returns the type of this array in table and checks the array is valid */
+    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // do semantic analysis for this node
+        
     }
 }

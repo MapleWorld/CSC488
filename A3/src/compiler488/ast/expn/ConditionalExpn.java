@@ -1,5 +1,9 @@
 package compiler488.ast.expn;
 
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
+import java.util.*;
+
 /** Represents a conditional expression (i.e., x>0?3:4). */
 public class ConditionalExpn extends Expn {
     private Expn condition; // Evaluate this to decide which value to yield.
@@ -45,7 +49,52 @@ public class ConditionalExpn extends Expn {
         this.trueValue = trueValue;
     }
     
-    public void doSemantics() {
+    /** Checks the condition of this conditional expression is 
+     * of Boolean type. Also checks the expressions after ? are of the
+     * same type and returns this type as the result type.
+     */
+    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // do semantic analysis for this node
+        Type condType = condition.doSemantics(table, errorMsg);
+        Type trueType = trueType.doSemantics(table, errorMsg);
+        Type falseType = falseType.doSemantics(table, errorMsg);
+
+        // S30
+        if (condType == null || !(condType instanceof BooleanType))
+            errorMsg.add(String.format("%d:%d: error %s: %s\n",
+                                       condType.getLineNumber(),
+                                       condType.getColumnNumber(),
+                                       "S30",
+                                       "expected Boolean type condition"));
+        
+        // S33
+        if (trueType == null || falseType == null || 
+            !(trueType.getClass().equals(falseType.getClass())))
+            errorMsg.add(String.format("%d:%d: error %s: %s\n"
+                                       trueType.getLineNumber(),
+                                       trueType.getColumnNumber(),
+                                       "S33",
+                                       "the result expressions in conditional are not the same type"));
+        
+        // S24
+        // returns the type of trueType
+        // if trueType is null, returns type of falseType
+        // if both are null, returns null (no way to know the
+        // type of the condition expressions, shouldn't just return
+        // a random type because the compiler will pass the semantics
+        // checks if the randomly selected type is exactly the type expected
+        // and fail otherwise - not consistent)
+        if (trueType != null) {
+            trueType.setLineNumber(lineNumber);
+            trueType.setColumnNumber(columnNumber);
+            return trueType;
+        }
+        else if (falseType != null) {
+            falseType.setLineNumber(lineNumber);
+            falseType.setColumnNumber(columnNumber);
+            return falseType;
+        }
+        else
+            return null;
     }
 }
