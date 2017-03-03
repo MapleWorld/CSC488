@@ -1,4 +1,4 @@
-% various valid if-statements
+% Various valid if-statements
 {
     if true
     then write "hi"
