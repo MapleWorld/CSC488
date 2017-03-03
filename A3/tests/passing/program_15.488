@@ -1,4 +1,4 @@
-% various valid loops
+% Various valid loops
 {
     while 5 do write "blah"
 

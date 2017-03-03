@@ -14,12 +14,65 @@ program_4.488 - Variable re-assignment.
 program_5.488 - Single function with params.
 program_6.488 - Single procedure with params.
 program_7.488 - Infinite while loop.
-program_8.488 - 
+program_8.488 - Various valid if-statements
 program_9.488 - Various valid if-statements with no indent.
 program_10.488 - Various array declaration with bound.
 program_11.488 - Write statment with multiple newlines.
 program_12.488 - Single variable read statement.
 program_13.488 - Mutiple variables read statement.
 program_14.488 - Recursively function with mutiple read and write.
+program_15.488 - Various valid loops
 
 Failing Test Cases:
+
+00_empty_file.488 - Empty file is not allowed.
+01_missing_type.488 - Missing type for variable declaration
+02_missing_statement.488 - Test syntax error detection
+03_invalid_variable_name.488 - Illegal Variable Name
+04_declaration_after_statement.488 - Declaration After Statement
+05_invalid_assignment.488 - Invalid variable assignment
+06_invalid_array_declaration0.488 - Invalid variable declaration with missing/invalid bound
+06_invalid_array_declaration1.488 - Invalid variable declaration with missing/invalid bound
+06_invalid_array_declaration2.488 - Invalid variable declaration with missing/invalid bound
+06_invalid_array_declaration3.488 - Invalid variable declaration with missing/invalid bound
+06_invalid_array_declaration4.488 - Invalid variable declaration with missing/invalid bound
+06_invalid_array_declaration5.488 - Invalid variable declaration with missing/invalid bound
+06_invalid_array_declaration6.488 - Invalid variable declaration with missing/invalid bound
+06_invalid_array_declaration7.488 - Invalid variable declaration with missing/invalid bound
+07_invalid_while_statement.488 - Invalid statement in while loop
+07_invalid_while_statement1.488 - Invalid statement in while loop
+08_invalid_while_expression.488 - Invalid while loop expression
+09_invalid_repeat_statement0.488 - Invalid statement in repeat
+09_invalid_repeat_statement1.488 - Invalid statement in repeat
+10_invalid_repeat_expression.488 - Invalid repeat expression
+11_invalid_write.488 - Invalid write output
+12_invalid_return0.488 - Invalid return
+12_invalid_return1.488 - Invalid return
+12_invalid_return2.488 - Invalid return
+12_invalid_return3.488 - Invalid return
+12_invalid_return4.488 - Invalid return
+12_invalid_return5.488 - Invalid return
+13_invalid_function0.488 - Invalid function
+13_invalid_function1.488 - Invalid function
+13_invalid_function2.488 - Invalid function
+13_invalid_function3.488 - Invalid function
+14_invalid_procedure0.488 - Invalid procedure
+15_invalid_integer0.488 - Invalid integer value
+15_invalid_integer1.488 - Invalid integer value
+15_invalid_integer2.488 - Invalid integer value
+16_invalid_syntax.488 - Invalid syntax
+17_invalid_if_else_statement0.488 - Invalid if statement
+17_invalid_if_else_statement1.488 - Invalid if statement
+17_invalid_if_else_statement2.488 - Invalid if statement
+17_invalid_if_else_statement3.488 - Invalid if statement
+18_invalid_scope.488 - Missing end bracket
+19_invalid_scopes.488 - Invalid nested scopes
+20_invalid_exit.488 - Invalid exit statement
+21_invalid_exit_when.488 - Invalid exit when statement
+22_invalid_operator0.488 - Invalid associativity
+22_invalid_operator1.488 - Invalid associativity
+22_invalid_operator2.488 - Invalid associativity
+22_invalid_operator3.488 - Invalid associativity
+22_invalid_operator4.488 - Invalid associativity
+22_invalid_operator5.488 - Invalid associativity
+23_invalid_read.488 - Invalid read statement

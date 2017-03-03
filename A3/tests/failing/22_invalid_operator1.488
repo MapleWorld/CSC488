@@ -1,4 +1,4 @@
-% invalid associativity
+% Invalid associativity
 {
     var a,b,c : Boolean
     a := true

@@ -1,3 +1,4 @@
+% Invalid exit statement
 {
     exit "exit"
 }
