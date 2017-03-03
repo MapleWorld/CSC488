@@ -56,7 +56,7 @@ public class Main {
 
 	// DUMP Options
 	/** User option -- dump AST after parsing */
-	private static boolean dumpAST1 = true;
+	private static boolean dumpAST1 = false;
 	/** User option -- dump AST after semantic analysis */
 	private static boolean dumpAST2 = false;
 	/** User option -- dump compiled code before execution */
@@ -450,8 +450,9 @@ public class Main {
 			
 			// Waiting for AST classes to be ready
 			System.out.println("Semantic Analysis Starts");
-			Semantics semantic = new Semantics();
-			semantic.Analyze(programAST);
+			programAST.doSemantics();
+			//Semantics semantic = new Semantics();
+			//semantic.Analyze(programAST);
 			System.out.println("Semantic Analysis Ended");
 		} catch (Exception e) {
 			System.err.println("Exception during Semantic Analysis");

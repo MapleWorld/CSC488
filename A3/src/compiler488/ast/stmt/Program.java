@@ -12,7 +12,4 @@ public class Program extends Scope {
         super(scope);
     }
 
-    public void doSemantics() {
-        // do semantic analysis for this node
-    }
 }

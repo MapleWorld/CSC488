@@ -49,11 +49,11 @@ public class SymbolTable {
 
     /**
      *  Returns true iff successfully adding the given
-     *  ident and entry to this Symbol Table.
+     *  indent and entry to this Symbol Table.
      */
     public boolean addSymbol(String ident, SymbolTableEntry entry) {
         SymbolTableEntry oldEntry = table.get(ident);
-        // ensures that ident is not already declared under current scope
+        // ensures that indent is not already declared under current scope
         if (oldEntry != null && oldEntry.getScope() == scopeIndex)
             return false;
         entry.setScope(scopeIndex);
@@ -63,7 +63,7 @@ public class SymbolTable {
     }
 
     /** Returns the corresponding Symbol Table Entry of ident,
-     *  null if ident is not in this Symbol Table.
+     *  null if indent is not in this Symbol Table.
      */
     public SymbolTableEntry getEntry(String ident) {
         return table.get(ident);
