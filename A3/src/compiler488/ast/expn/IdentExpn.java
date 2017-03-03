@@ -29,7 +29,8 @@ public class IdentExpn extends Expn implements Readable {
         this.ident = ident;
     }
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // do semantic analysis for this node
+        return new ScalarType(this.getLineNumber(), this.getColumnNumber());
     }
 }
