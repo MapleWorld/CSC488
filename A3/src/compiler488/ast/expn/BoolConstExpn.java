@@ -1,9 +1,9 @@
 package compiler488.ast.expn;
 
 import compiler488.ast.type.BooleanType;
-import compiler488.symbol.*;    
+import compiler488.symbol.*;
 import compiler488.ast.type.*;                                                                                                                                                                           import java.util.*;
- 
+
 /**
  * Boolean literal constants.
  */
@@ -18,20 +18,20 @@ public class BoolConstExpn extends ConstExpn
 
     /** Returns the value of the boolean constant */
     @Override
-    public String toString () { 
+    public String toString () {
 	return ( value ? "(true)" : "(false)" );
     }
 
     public boolean getValue() {
         return value;
     }
-    
+
     public void setValue(boolean value) {
         this.value = value;
     }
 
     /** Returns the type of this BoolConstExpn */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
         // S20
         return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }

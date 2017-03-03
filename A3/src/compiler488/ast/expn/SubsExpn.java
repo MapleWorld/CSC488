@@ -64,7 +64,7 @@ public class SubsExpn extends UnaryExpn implements Readable {
     }
 
     /** Returns the type of this array in table and checks the array is valid */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
         // do semantic analysis for this node
 
         SymbolTableEntry entry = table.getEntry(variable);

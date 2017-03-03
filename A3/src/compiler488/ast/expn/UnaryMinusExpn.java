@@ -12,10 +12,10 @@ public class UnaryMinusExpn extends UnaryExpn {
         super(UnaryExpn.OP_MINUS, operand, line, column);
     }
 
-    /** 
-     * Checks the type of the operand and returns Integer type 
+    /**
+     * Checks the type of the operand and returns Integer type
      */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
         // do semantic analysis for this node
         Type operandType = operand.doSemantics(table, errorMsg);
         // S31

@@ -1,5 +1,7 @@
 package compiler488.compiler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.*;
 
 import compiler488.parser.*;
@@ -405,9 +407,9 @@ public class Main {
 				parserResult = p.debug_parse().value; // DEBUG Output
 			else
 				parserResult = p.parse().value;
-			
+
 			programAST = (Program) parserResult;;
-	
+
 		} catch (SyntaxErrorException e) { // parser has already printed an
 											// error message
 			errorOccurred = true;
@@ -442,15 +444,15 @@ public class Main {
 			}
 
 		try {
-			// INSERT CODE HERE TO DO SEMANTIC ANALYSIS
-			// e.g.
-			// programAST.doSemantics() ;
-			// or
-			// Semantics.doIt( programAST );
-			
-			// Waiting for AST classes to be ready
+            // Do semantic analysis here.
 			System.out.println("Semantic Analysis Starts");
-			programAST.doSemantics();
+            SymbolTable symbolTable = new SymbolTable();
+            List<String> errorMessages = new ArrayList<String>();
+			programAST.doSemantics(symbolTable, errorMessages);
+			System.out.println(errorMessages);
+            for (int i = 0; i < errorMessages.size(); i++) {
+			    System.out.println(errorMessages.get(i));
+            }
 			System.out.println("Semantic Analysis Ended");
 		} catch (Exception e) {
 			System.err.println("Exception during Semantic Analysis");

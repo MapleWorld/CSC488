@@ -1,10 +1,13 @@
 package compiler488.ast.decl;
 
 import java.io.PrintStream;
+import java.util.List;
 
 import compiler488.ast.ASTList;
 import compiler488.ast.Indentable;
 import compiler488.ast.type.Type;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
 
 /**
  * Holds the declaration of multiple elements.
@@ -49,8 +52,9 @@ public class MultiDeclarations extends Declaration {
 		this.elements = elements;
 	}
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         // TODO: S47: Associate type with variables
-        elements.doSemantics();
+        // elements.doSemantics();
+        return null;
     }
 }

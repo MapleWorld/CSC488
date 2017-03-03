@@ -1,0 +1,12 @@
+% various valid if-statements
+{
+    if true
+    then write "hi"
+
+    if 5
+    then write "bye"
+
+    if 5
+    then write "asdf"
+    else write "afdgafd"
+}

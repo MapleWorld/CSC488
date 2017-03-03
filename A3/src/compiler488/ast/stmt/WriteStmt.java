@@ -7,6 +7,9 @@ import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.Printable;
 
+import compiler488.symbol.*;
+import compiler488.ast.type.*;
+
 /**
  * The command to write data on the output device.
  */
@@ -42,7 +45,8 @@ public class WriteStmt extends Stmt {
 		this.outputs = outputs;
 	}
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         // do semantic analysis for this node
+        return null;
     }
 }

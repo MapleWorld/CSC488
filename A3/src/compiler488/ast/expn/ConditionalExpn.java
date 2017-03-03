@@ -48,12 +48,12 @@ public class ConditionalExpn extends Expn {
     public void setTrueValue(Expn trueValue) {
         this.trueValue = trueValue;
     }
-    
-    /** Checks the condition of this conditional expression is 
+
+    /** Checks the condition of this conditional expression is
      * of Boolean type. Also checks the expressions after ? are of the
      * same type and returns this type as the result type.
      */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
         // do semantic analysis for this node
         Type condType = condition.doSemantics(table, errorMsg);
         Type trueType = trueValue.doSemantics(table, errorMsg);
@@ -66,16 +66,16 @@ public class ConditionalExpn extends Expn {
                                        condType.getColumnNumber(),
                                        "S30",
                                        "expected Boolean type condition"));
-        
+
         // S33
-        if (trueType == null || falseType == null || 
+        if (trueType == null || falseType == null ||
             !(trueType.getClass().equals(falseType.getClass())))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",
                                        trueType.getLineNumber(),
                                        trueType.getColumnNumber(),
                                        "S33",
                                        "the result expressions in conditional are not the same type"));
-        
+
         // S24
         // returns the type of trueType
         // if trueType is null, returns type of falseType

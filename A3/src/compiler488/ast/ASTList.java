@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.List;
 
+import compiler488.symbol.*;
+import compiler488.ast.type.*;
+
 /**
  * For nodes with an arbitrary number of children.
  */
@@ -100,11 +103,12 @@ public class ASTList<E> extends AST {
 		}
 	}
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         List<AST> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
             System.out.println(children.get(i).getClass());
-            children.get(i).doSemantics();
+            children.get(i).doSemantics(table, errorMessages);
         }
+        return null;
     }
 }
