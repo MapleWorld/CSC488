@@ -103,7 +103,7 @@ public class ASTList<E> extends AST {
     public void doSemantics() {
         List<AST> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
-            // System.out.println(children.get(i).getClass());
+            System.out.println(children.get(i).getClass());
             children.get(i).doSemantics();
         }
     }

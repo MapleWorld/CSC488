@@ -12,12 +12,12 @@ import compiler488.ast.type.Type;
 public class MultiDeclarations extends Declaration {
 	/* The elements being declared */
 	private ASTList<DeclarationPart> elements;
-	
+
 	public MultiDeclarations(Type type, ASTList<DeclarationPart> elements, int line, int column) {
 		super(null, type, line, column);
 		this.elements = elements;
 	}
-	
+
 	/**
 	 * Returns a string that describes the array.
 	 */
@@ -28,7 +28,7 @@ public class MultiDeclarations extends Declaration {
 
 	/**
 	 * Print the multiple declarations of the same type.
-	 * 
+	 *
 	 * @param out
 	 *            Where to print the description.
 	 * @param depth
@@ -50,6 +50,7 @@ public class MultiDeclarations extends Declaration {
 	}
 
     public void doSemantics() {
-        // do semantic analysis for this node
+        // TODO: S47: Associate type with variables
+        elements.doSemantics();
     }
 }
