@@ -115,7 +115,10 @@ public class Scope extends Stmt {
 	}
 
     public void doSemantics() {
-        // do semantic analysis for this node
+        List<AST> children = getChildren();
+        for (int i = 0; i < children.size(); i++) {
+            // System.out.println(children.get(i).getClass());
+            children.get(i).doSemantics();
+        }
     }
-
 }

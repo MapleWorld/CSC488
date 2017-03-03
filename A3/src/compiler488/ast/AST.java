@@ -42,10 +42,6 @@ public class AST {
         this.parent = parent;
     }
 
-    public List<AST> getChildren() {
-        throw new UnsupportedOperationException("getChildren() not implemented for AST.");
-    }
-
     public int getLineNumber() {
         return this.lineNumber;
     }
@@ -62,8 +58,7 @@ public class AST {
         this.columnNumber = columnNumber;
     }
 
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
-        // do semantic analysis for this node
-		return null;
+    public void doSemantics() {
+        throw new UnsupportedOperationException("doSemantics not implemented for AST.");
     }
 }

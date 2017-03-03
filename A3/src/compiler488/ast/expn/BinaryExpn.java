@@ -15,18 +15,18 @@ public class BinaryExpn extends Expn
         this.left = left;
         this.right = right;
     }
-    
+
     /** Returns a string that represents the binary expression. */
     @Override
     public String toString ()
     {
 	return ("(" + left + ")" + opSymbol + "(" + right + ")");
     }
-    
+
     public Expn getLeft() {
         return left;
     }
-    
+
     public void setLeft(Expn left) {
         this.left = left;
     }
