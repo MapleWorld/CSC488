@@ -1,0 +1,4 @@
+{
+    var m, n : Integer
+    read m, n
+}

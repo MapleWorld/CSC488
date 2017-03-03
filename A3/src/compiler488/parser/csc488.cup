@@ -131,7 +131,6 @@ nonterminal ScalarDecl parameter;
 nonterminal DeclarationPart variablename;
 nonterminal ASTList<ScalarDecl> parameters;
 
-
 nonterminal Integer bound;
 precedence   left ELSE ;
 
@@ -240,16 +239,14 @@ output
 	|	NEWLINE:nl														{: RESULT = new SkipConstExpn(nlleft, nlright); :}
 	;
 
-// Why this not working???
-// Might need to create a new ReadableExpn.java class
 inputs
-    ::= variable:v														{: RESULT = new ASTList(v); :}
-//    |   inputs:list COMMA variable:var									{: RESULT = list.addLast(var); :}
+    ::= variable:v														{: RESULT = new ASTList(new ReadableExpn(v)); :}
+    |   inputs:list COMMA variable:var									{: RESULT = list.addLast(new ReadableExpn(var)); :}
     ;
 
 arguments
     ::= expression:e													{: RESULT = new ASTList<Expn>(e); :}
-    |   arguments:a COMMA expression:e	`								{: RESULT = a.addLast(e); :}
+    |   arguments:a COMMA expression:e									{: RESULT = a.addLast(e); :}
     ;
     
 parameters
