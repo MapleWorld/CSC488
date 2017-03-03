@@ -45,7 +45,7 @@ public class Expn extends AST implements Printable {
 
     }
 
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
         // do semantic analysis for this node
 		return null;
     }

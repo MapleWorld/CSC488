@@ -44,7 +44,7 @@ public class FunctionCallExpn extends Expn {
         this.ident = ident;
     }
 
-    public Type doSemantics(SymbolTable table, LinkedList<String> errMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errMsg) {
 
         SymbolTableEntry entry = table.getEntry(ident);
 

@@ -24,7 +24,7 @@ public class CompareExpn extends BinaryExpn {
     }
 
     /** Checks the semantics of both operands and returns Boolean type */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
         // do semantic analysis for this node
         Type leftType = left.doSemantics(table, errorMsg);
         Type rightType = right.doSemantics(table, errorMsg);

@@ -106,7 +106,7 @@ public class ASTList<E> extends AST {
     public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         List<AST> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
-            // System.out.println(children.get(i).getClass());
+            System.out.println(children.get(i).getClass());
             children.get(i).doSemantics(table, errorMessages);
         }
         return null;
