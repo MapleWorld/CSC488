@@ -6,6 +6,9 @@ import java.util.List;
 import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.expn.Expn;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
+
 
 /**
  * Represents the common parts of loops.
@@ -13,17 +16,17 @@ import compiler488.ast.expn.Expn;
 public abstract class LoopingStmt extends Stmt
 {
     protected ASTList<Stmt> body ;	  		// body of the loop
-    protected Expn expn;          	// Loop condition
+    protected Expn condition;          	// Loop condition
 
-	public LoopingStmt(Expn expn, ASTList<Stmt> body, int line, int column) {
+	public LoopingStmt(Expn condition, ASTList<Stmt> body, int line, int column) {
 		super(line, column);
-		this.expn = expn;
+		this.condition = condition;
 		this.body = body;
 	}
 
     public List<AST> getChildren() {
         LinkedList<AST> children = new LinkedList<AST>();
-        children.add(expn);
+        children.add(condition);
         children.add(body);
         return children;
     }
@@ -31,12 +34,12 @@ public abstract class LoopingStmt extends Stmt
 	public LoopingStmt(ASTList<Stmt> body, int line, int column) {
 		this(null, body, line, column);
 	}
-	public Expn getExpn() {
-		return expn;
+	public Expn getCondition() {
+		return condition;
 	}
 
-	public void setExpn(Expn expn) {
-		this.expn = expn;
+	public void setCondition(Expn condition) {
+		this.condition = condition;
 	}
 
 	public ASTList<Stmt> getBody() {
@@ -47,8 +50,15 @@ public abstract class LoopingStmt extends Stmt
 		this.body = body;
 	}
 
-    public void doSemantics() {
-        // do semantic analysis for this node
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+        // S30: check that expression is boolean.
+        Type conditionType = condition.doSemantics(table, errorMessages);
+        if (!(conditionType instanceof BooleanType)) {
+            errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "S30",
+                              "type of expression is not boolean"));
+        }
+        return null;
     }
-
 }
