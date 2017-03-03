@@ -5,6 +5,8 @@ import java.util.List;
 
 import compiler488.ast.AST;
 import compiler488.ast.expn.*;
+import compiler488.symbol.*;
+import compiler488.ast.type.*;
 
 /**
  * Represents the command to exit from a loop.
@@ -58,4 +60,20 @@ public class ExitStmt extends Stmt {
 		this.level = level;
 	}
 
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+        // TODO: Check S50.
+        // S50: Exit only when in a loop.
+        SymbolTable.ScopeType currentScope = table.getScopeType();
+        if (currentScope != SymbolTable.ScopeType.LOOP) {
+            errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "S50",
+                              "Exit statement is outside a loop"));
+        }
+
+        // TODO:
+        // S53: Check that integer is greater than 0 and <= number of containing loops.
+
+        return null;
+    }
 }
