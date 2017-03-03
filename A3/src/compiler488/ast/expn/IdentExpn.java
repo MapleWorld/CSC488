@@ -47,7 +47,7 @@ public class IdentExpn extends Expn implements Readable {
             entryType = entry.getType();
             if (entryType instanceof ScalarSymbolType) {
                 // S26
-                Type identType = entryType.getType();
+                Type identType = ((ScalarSymbolType)entryType).getType();
                 if (identType instanceof BooleanType)
                     return new BooleanType(lineNumber, columnNumber);
                 else if (identType instanceof IntegerType)
