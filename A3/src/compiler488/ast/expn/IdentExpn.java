@@ -31,6 +31,8 @@ public class IdentExpn extends Expn implements Readable {
 
     public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // do semantic analysis for this node
+
+        // .cup checks S37
         return new ScalarType(this.getLineNumber(), this.getColumnNumber());
     }
 }
