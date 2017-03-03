@@ -9,6 +9,9 @@ import compiler488.ast.Indentable;
 import compiler488.ast.expn.Expn;
 import compiler488.ast.type.*;
 
+import compiler488.symbol.*;
+import compiler488.ast.type.*;
+
 /**
  * Represents an if-then or an if-then-else construct.
  */
@@ -87,15 +90,15 @@ public class IfStmt extends Stmt {
 		this.whenTrue = whenTrue;
 	}
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         // S30: check that expression is boolean.
-        // Type conditionType = condition.doSemantics();
-        /*
-        errMsg.add(String.format("%d:%d: error: %s %s %s\n",
-                                    this.getLineNumber(), this.getColumnNumber(),
-                                    "referenced function",
-                                    this.ident,
-                                    "not found."));
-        */
+        Type conditionType = condition.doSemantics(table, errorMessages);
+        if (!(conditionType instanceof BooleanType)) {
+            errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "S30",
+                              "type of expression is not boolean"));
+        }
+        return null;
     }
 }
