@@ -1,8 +1,8 @@
+% Recursively function with mutiple read and write
 {
     var a : Integer
     var b : Boolean
 
-    %%%%% function with parameters
     function A(m : Integer, n : Integer) : Integer {
         if m = 0 then
             return with n + 1

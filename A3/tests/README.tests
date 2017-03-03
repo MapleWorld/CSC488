@@ -1,0 +1,26 @@
+A1a.488 - From assignment 1, a program that uses all arithmetic, logical, 
+            and comparison operators.
+A1b.488 - From assignment 1, a program using arrays including all forms of
+        array declaration, positive and negative bounds.
+A1c.488 - From assignment 1, a program using all forms of loop building and
+        loop exit constructs.
+A1d.488 - From assignment 1, a program using non-recursive functions and
+        procedures with and without parameters.
+A1e.488 - From assignment 1, a program using recursive functions and
+        procedures with and without parameters.
+
+program_0.488 - Basic empty scope test.
+program_1.488 - Single statment.
+program_2.488 - Single variable declaration.
+program_3.488 - Multiple variables declaration.
+program_4.488 - Variable re-assignment.
+program_5.488 - Single function with params.
+program_6.488 - Single procedure with params.
+program_7.488 - Infinite while loop.
+program_8.488 - 
+program_9.488 - Various valid if-statements with no indent.
+program_10.488 - Various array declaration with bound.
+program_11.488 - Write statment with multiple newlines.
+program_12.488 - Single variable read statement.
+program_13.488 - Mutiple variables read statement.
+program_14.488 - Recursively function with mutiple read and write.
