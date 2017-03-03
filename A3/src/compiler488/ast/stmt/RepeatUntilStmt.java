@@ -31,7 +31,7 @@ public class RepeatUntilStmt extends LoopingStmt {
 		if (iterator.hasNext())
 			while (iterator.hasNext())
 				iterator.next().printOn(out, depth + 1);
-		Indentable.printIndentOnLn(out, depth, " until "  + expn );
+		Indentable.printIndentOnLn(out, depth, " until "  + condition );
 
 	}
 }
