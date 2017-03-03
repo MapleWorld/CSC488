@@ -45,7 +45,6 @@ public class FunctionCallExpn extends Expn {
     }
 
     public Type doSemantics(SymbolTable table, LinkedList<String> errMsg) {
-        //   S44,
 
         SymbolTableEntry entry = table.getEntry(ident);
 
@@ -78,7 +77,7 @@ public class FunctionCallExpn extends Expn {
 
         } else if (symbol.getParamCount() == this.getArguments().size()) { // S43
 
-            // Ensure argument types match
+            // Ensure argument types match, S44
             ASTList<Expn> givenArgs = symbol.getArguments();
             ASTList<Expn> neededArgs = this.getArguments();
             for (int i = 0; i < symbol.getParamCount(); i++) {
