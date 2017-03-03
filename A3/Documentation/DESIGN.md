@@ -22,10 +22,13 @@ variablename
     ;
 ```
 
+Extra Classes:
+ReadableExpn.class - To convert expression into readable object
+
 # Symbol Table:
 
 
-# Semantic Analysis Design
+# Semantic Analysis Design:
 
 
 

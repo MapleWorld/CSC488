@@ -1,4 +1,4 @@
-% missing end bracket
+% Missing end bracket
 {
     var a : Integer
     a := 1
