@@ -19,12 +19,12 @@ public class SymbolTableEntry {
     public SymbolType getType() {
         return type;
     }
-    
+
     /** Returns the number of the scope where the symbol is declared */
     public int getScope() {
         return scope;
     }
-   
+
     /** Sets this Symbol Table Entry's scope as scope */
     public void setScope(int scope) {
         this.scope = scope;

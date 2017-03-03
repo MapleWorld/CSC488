@@ -6,6 +6,8 @@ import java.util.List;
 import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.expn.Expn;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
 
 /**
  * Represents calling a procedure.
@@ -56,7 +58,30 @@ public class ProcedureCallStmt extends Stmt {
 		this.name = name;
 	}
 
-    public void doSemantics() {
-        // do semantic analysis for this node
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+        SymbolTableEntry procedure = table.getEntry(name);
+        ProcedureSymbolType procedureType = (ProcedureSymbolType) procedure.getType();
+
+        // TODO: Check S42 and S43.
+        if (arguments == null) {
+            // S42: Check that the function or procedure has no parameters.
+            if (procedureType.getParamCount() != 0) {
+                errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "S42",
+                              "Procedure has parameters."));
+            }
+        } else {
+            // S43: Check that the number of arguments is equal to the number of
+            // formal parameters.
+            if (procedureType.getParamCount() != arguments.size()) {
+                errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "S43",
+                              "Procedure is called with incorrect number of parameters."));
+            }
+        }
+
+        return null;
     }
 }

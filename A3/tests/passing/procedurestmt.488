@@ -1,0 +1,20 @@
+% A program using non-recursive functions with parameters
+{
+    %%%%% procedure without parameters
+    procedure procedure_without_params {
+        return
+    }
+
+
+    %%%%% procedure with parameters
+    procedure procedure_with_params(param1 : Integer, param2 : Integer) {
+        write "procedure with params"
+        write param1 + param2
+        return
+    }
+
+    procedure_with_params
+    procedure_with_params(5, 5)
+    procedure_with_params(5, 5, 5)
+    write "test"
+}
