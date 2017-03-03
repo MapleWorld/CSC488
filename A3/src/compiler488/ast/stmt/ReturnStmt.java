@@ -1,9 +1,13 @@
 package compiler488.ast.stmt;
 
+import java.util.List;
+
 import java.io.PrintStream;
 
 import compiler488.ast.Indentable;
 import compiler488.ast.expn.Expn;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
 
 /**
  * The command to return from a function or procedure.
@@ -50,7 +54,29 @@ public class ReturnStmt extends Stmt {
 		this.value = value;
 	}
 
-    public void doSemantics() {
-        // do semantic analysis for this node
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+        // TODO: Check S51.
+        // S51 & S52: Return only when in a function or a procedure.
+        SymbolTable.ScopeType currentScope = table.getScopeType();
+        if (value == null) {
+            if (currentScope != SymbolTable.ScopeType.PROCEDURE) {
+                errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                                  this.getLineNumber(), this.getColumnNumber(),
+                                  "S51",
+                                  "Return statement is outside a procedure"));
+            }
+        } else {
+            if (currentScope != SymbolTable.ScopeType.FUNCTION) {
+                errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                                  this.getLineNumber(), this.getColumnNumber(),
+                                  "S51",
+                                  "Return statement is outside a function"));
+            }
+        }
+
+
+        // TODO:
+        // S35: Check that the expression type matches the return type of enclosing function.
+        return null;
     }
 }
