@@ -42,8 +42,4 @@ public class UnaryExpn extends Expn {
     public void setOpSymbol(String opSymbol) {
         this.opSymbol = opSymbol;
     }
-
-    public void doSemantics() {
-        // do semantic analysis for this node
-    }
 }

@@ -39,7 +39,6 @@ public class IdentExpn extends Expn implements Readable {
     public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // do semantic analysis for this node
         SymbolTableEntry entry = table.getEntry(ident);
-        boolean err = false;
         SymbolType entryType;
         
         // S37
@@ -57,10 +56,11 @@ public class IdentExpn extends Expn implements Readable {
 
         // either there is no ident in table or ident is not a scalar
         // var in table
-        errMsg.add(String.format("%d:%d: error %s: %s\n",
-                                 lineNumber, columnNumber,
-                                 "S37",
-                                 "identifier has not been declared as a scalar variable");
+        errorMsg.add(String.format("%d:%d: error %s: %s\n",
+                                   lineNumber, columnNumber,
+                                   "S37",
+                                   "identifier \"" + ident +
+                                   "\" has not been declared as a scalar variable"));
 
         return null;
     }

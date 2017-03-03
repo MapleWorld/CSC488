@@ -27,7 +27,4 @@ public class TextConstExpn extends ConstExpn implements Printable {
         this.value = value;
     }
 
-    public void doSemantics() {
-        // do semantic analysis for this node
-    }
 }
