@@ -407,9 +407,9 @@ public class Main {
 				parserResult = p.debug_parse().value; // DEBUG Output
 			else
 				parserResult = p.parse().value;
-			
+
 			programAST = (Program) parserResult;;
-	
+
 		} catch (SyntaxErrorException e) { // parser has already printed an
 											// error message
 			errorOccurred = true;

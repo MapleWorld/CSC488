@@ -1,6 +1,6 @@
 package compiler488.ast.expn;
 
-import compiler488.symbol.*; 
+import compiler488.symbol.*;
 import compiler488.ast.type.*;
 import java.util.*;
 
@@ -36,11 +36,11 @@ public class IdentExpn extends Expn implements Readable {
     /** Returns the type of this IdentExpn based on table (null if this
      *  IdentExpn is not in the table).
      */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errMsg) {
         // do semantic analysis for this node
         SymbolTableEntry entry = table.getEntry(ident);
         SymbolType entryType;
-        
+
         // S37
         if (entry != null) {
             entryType = entry.getType();

@@ -5,6 +5,8 @@ import java.util.List;
 
 import compiler488.ast.AST;
 import compiler488.ast.expn.Expn;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
 
 /**
  * Holds the assignment of an expression to a variable.
@@ -51,7 +53,16 @@ public class AssignStmt extends Stmt {
 		this.rval = rval;
 	}
 
-    public void doSemantics() {
-        // do semantic analysis for this node
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+        // S34: Check that variable and expression in assignment are the same type.
+        Type lvalType = lval.doSemantics(table, errorMessages);
+        Type rvalType = rval.doSemantics(table, errorMessages);
+        if (lvalType != rvalType) {
+            errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "S34",
+                              "variable and expression in assignment are not the same type"));
+        }
+        return null;
     }
 }

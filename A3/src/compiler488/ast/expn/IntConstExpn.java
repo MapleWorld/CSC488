@@ -29,7 +29,7 @@ public class IntConstExpn extends ConstExpn
     }
 
     /** Returns the type of this IntConstExpn */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
         // S21
         return new IntegerType(this.getLineNumber(), this.getColumnNumber());
     }
