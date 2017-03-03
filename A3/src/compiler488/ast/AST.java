@@ -58,7 +58,7 @@ public class AST {
         this.columnNumber = columnNumber;
     }
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         throw new UnsupportedOperationException("doSemantics not implemented for AST.");
     }
 }
