@@ -8,6 +8,8 @@ import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.Indentable;
 import compiler488.ast.decl.Declaration;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
 
 /**
  * Represents the declarations and instructions of a scope construct.
@@ -114,11 +116,12 @@ public class Scope extends Stmt {
 		this.statements = statements;
 	}
 
-    public void doSemantics() {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         List<AST> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
             // System.out.println(children.get(i).getClass());
-            children.get(i).doSemantics();
+            children.get(i).doSemantics(table, errorMessages);
         }
+        return null;
     }
 }

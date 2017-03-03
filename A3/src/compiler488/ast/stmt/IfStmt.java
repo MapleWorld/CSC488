@@ -7,6 +7,7 @@ import java.util.List;
 import compiler488.ast.AST;
 import compiler488.ast.Indentable;
 import compiler488.ast.expn.Expn;
+import compiler488.ast.type.*;
 
 /**
  * Represents an if-then or an if-then-else construct.
@@ -85,4 +86,16 @@ public class IfStmt extends Stmt {
 	public void setWhenTrue(Stmt whenTrue) {
 		this.whenTrue = whenTrue;
 	}
+
+    public void doSemantics() {
+        // S30: check that expression is boolean.
+        // Type conditionType = condition.doSemantics();
+        /*
+        errMsg.add(String.format("%d:%d: error: %s %s %s\n",
+                                    this.getLineNumber(), this.getColumnNumber(),
+                                    "referenced function",
+                                    this.ident,
+                                    "not found."));
+        */
+    }
 }
