@@ -77,7 +77,7 @@ public class FunctionCallExpn extends Expn {
 
         } else if (symbol.getParamCount() == this.getArguments().size()) { // S43
 
-            // Ensure argument types match, S44
+            // Ensure argument types match, S44, S45, S36
             ASTList<Expn> givenArgs = symbol.getArguments();
             ASTList<Expn> neededArgs = this.getArguments();
             for (int i = 0; i < symbol.getParamCount(); i++) {
