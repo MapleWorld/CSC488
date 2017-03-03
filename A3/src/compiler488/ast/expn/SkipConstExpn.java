@@ -12,13 +12,10 @@ public class SkipConstExpn extends ConstExpn implements Printable {
         super(line, column);
     }
     
-	/** Returns the string <b>"skip"</b>. */
-	@Override
-	public String toString() {
-		return " newline ";
-	}
-    
-    public void doSemantics() {
-        // do semantic analysis for this node
+    /** Returns the string <b>"skip"</b>. */
+    @Override
+    public String toString() {
+        return " newline ";
     }
+
 }

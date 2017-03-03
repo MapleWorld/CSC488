@@ -66,7 +66,40 @@ public class SubsExpn extends UnaryExpn implements Readable {
     /** Returns the type of this array in table and checks the array is valid */
     public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
         // do semantic analysis for this node
+
+        SymbolTableEntry entry = table.getEntry(variable);
+        SymbolType entryType;
+
+        // S31
+        Type operandType = operand.doSemantics(table, errorMsg);
+        if (operandType == null || !(operandType instanceof IntegerType))
+            errorMsg.add(String.format("%d:%d: error %s: %s\n",
+                                       operand.getLineNumber(),
+                                       operand.getColumnNumber(),
+                                       "S31",
+                                       "expected array index to be an Integer"));
+
+        // S38
+        if (entry != null) {
+            entryType = entry.getType();
+            if (entryType instanceof ArraySymbolType) {
+                // S27
+                Type arrayType = ((ArraySymbolType)entryType).getType();
+                if (arrayType instanceof BooleanType)
+                    return new BooleanType(this.getLineNumber(), this.getColumnNumber());
+                else if (arrayType instanceof IntegerType)
+                    return new IntegerType(this.getLineNumber(), this.getColumnNumber());
+            }
+        }
+
+        errorMsg.add(String.format("%d:%d: error %s: %s\n",
+                                   this.getLineNumber(), this.getColumnNumber(),
+                                   "S38",
+                                   "arrayname \"" + variable +
+                                   "\" has not been declared as an array"));
+
         return null;
+
         
     }
 }
