@@ -15,18 +15,18 @@ import compiler488.ast.type.*;
 public class ExitStmt extends Stmt {
 
 	// condition for 'exit when'
-	private Expn expn = null;
+	private Expn condition = null;
 	private Integer level = -1;
 
 	public ExitStmt(Expn cond, Integer level, int line, int column) {
 		super(line, column);
-		expn = cond;
+		condition = cond;
 		this.level = level;
 	}
 
     public List<AST> getChildren() {
         LinkedList<AST> children = new LinkedList<AST>();
-        children.add(expn);
+        children.add(condition);
         return children;
     }
 
@@ -39,17 +39,17 @@ public class ExitStmt extends Stmt {
 		String stmt = "exit ";
 		if (level >= 0)
 			stmt = stmt + level + " ";
-		if (expn != null)
-			stmt = stmt + "when " + expn + " ";
+		if (condition != null)
+			stmt = stmt + "when " + condition + " ";
 		return stmt;
 	}
 
-	public Expn getExpn() {
-		return expn;
+	public Expn getCondition() {
+		return condition;
 	}
 
-	public void setExpn(Expn expn) {
-		this.expn = expn;
+	public void setCondition(Expn condition) {
+		this.condition = condition;
 	}
 
 	public Integer getLevel() {
@@ -73,6 +73,16 @@ public class ExitStmt extends Stmt {
 
         // TODO:
         // S53: Check that integer is greater than 0 and <= number of containing loops.
+
+        // TODO: Check S30.
+        // S30: Check expression is boolean.
+        Type conditionType = condition.doSemantics(table, errorMessages);
+        if (!(conditionType instanceof BooleanType)) {
+            errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "S30",
+                              "type of expression is not boolean"));
+        }
 
         return null;
     }

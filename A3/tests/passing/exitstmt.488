@@ -1,11 +1,13 @@
 {
-    exit
+    % exit
 
-    while true do exit
+    % while true do exit
 
-    repeat exit until false
+    % repeat exit until false
 
     % function A(m : Integer, n : Integer) : Integer {
         % exit
     % }
+
+    exit when 5
 }
