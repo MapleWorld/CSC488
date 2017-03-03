@@ -14,13 +14,14 @@ program_4.488 - Variable re-assignment.
 program_5.488 - Single function with params.
 program_6.488 - Single procedure with params.
 program_7.488 - Infinite while loop.
-program_8.488 - 
+program_8.488 - Various valid if-statements
 program_9.488 - Various valid if-statements with no indent.
 program_10.488 - Various array declaration with bound.
 program_11.488 - Write statment with multiple newlines.
 program_12.488 - Single variable read statement.
 program_13.488 - Mutiple variables read statement.
 program_14.488 - Recursively function with mutiple read and write.
+program_15.488 - Various valid loops
 
 Failing Test Cases:
 
