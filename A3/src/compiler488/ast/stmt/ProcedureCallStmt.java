@@ -59,8 +59,22 @@ public class ProcedureCallStmt extends Stmt {
 	}
 
     public Type doSemantics(SymbolTable table, List<String> errorMessages) {
-        SymbolTableEntry procedure = table.getEntry(name);
-        ProcedureSymbolType procedureType = (ProcedureSymbolType) procedure.getType();
+        SymbolTableEntry entry = table.getEntry(name);
+        if (entry == null) {
+            errorMessages.add(String.format("%d:%d: error: %s %s %s\n",
+                              this.getLineNumber(), this.getColumnNumber(),
+                              "referenced procedure", name, "not found."));
+            return null;
+        }
+
+        if (!(entry.getType() instanceof ProcedureSymbolType)) {
+            errorMessages.add(String.format("%d:%d: error: %s %s\n",
+                                    this.getLineNumber(), this.getColumnNumber(),
+                                    name, "is not a function."));
+            return null;
+        }
+
+        ProcedureSymbolType procedureType = (ProcedureSymbolType) entry.getType();
 
         // TODO: Check S42 and S43.
         if (arguments == null) {
@@ -69,7 +83,7 @@ public class ProcedureCallStmt extends Stmt {
                 errorMessages.add(String.format("%d:%d: error %s: %s\n",
                               this.getLineNumber(), this.getColumnNumber(),
                               "S42",
-                              "Procedure has parameters."));
+                              "Nullary procedure called with parameters."));
             }
         } else {
             // S43: Check that the number of arguments is equal to the number of
@@ -79,6 +93,21 @@ public class ProcedureCallStmt extends Stmt {
                               this.getLineNumber(), this.getColumnNumber(),
                               "S43",
                               "Procedure is called with incorrect number of parameters."));
+                return null;
+            }
+
+            // Check that the argument types match.
+            ASTList<Expn> givenArgs = this.getArguments();
+            ASTList<Expn> neededArgs = procedureType.getArguments();
+            for (int i = 0; i < procedureType.getParamCount(); i++) {
+                if (!((neededArgs.getList().get(i).doSemantics(table, errorMessages) instanceof IntegerType && givenArgs.getList().get(i).doSemantics(table, errorMessages) instanceof IntegerType) ||
+                      (neededArgs.getList().get(i).doSemantics(table, errorMessages) instanceof BooleanType && givenArgs.getList().get(i).doSemantics(table, errorMessages) instanceof BooleanType))) {
+                        errorMessages.add(String.format("%d:%d: error: %s %s\n",
+                                neededArgs.getList().get(i).getLineNumber(), neededArgs.getList().get(i).getColumnNumber(),
+                                "Parameter types mismatched for procedure",
+                                name));
+                        return null;
+                    }
             }
         }
 

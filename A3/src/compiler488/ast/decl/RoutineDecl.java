@@ -65,7 +65,7 @@ public class RoutineDecl extends Declaration {
 	public RoutineDecl(String name, Scope body, int line, int column) {
 		this(name, null, new ASTList<ScalarDecl>(), body, line, column);
 	}
-	
+
 	/**
 	 * Returns a string indicating that this is a function with return type or a
 	 * procedure, name, Type parameters, if any, are listed later by routineBody
@@ -81,7 +81,7 @@ public class RoutineDecl extends Declaration {
 
 	/**
 	 * Prints a description of the function/procedure.
-	 * 
+	 *
 	 * @param out Where to print the description.
 	 * @param depth How much indentation to use while printing.
 	 */
@@ -99,17 +99,20 @@ public class RoutineDecl extends Declaration {
 		this.routineBody = routineBody;
 	}
 
-    public void doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
 
 		if (this.type == null) { // Procedure
 
 			if (this.routineBody.getParameters().size() == 0) { // Procedure without parameters
 
+				// S17
+				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(null)));
+
 				// S08
 				table.startFunctionScope(this.type);
 
 				// S17, S13
-				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType()));
+				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(null)));
 
 				// S09
 				table.endScope();
@@ -122,9 +125,10 @@ public class RoutineDecl extends Declaration {
 				// S18, S13
 				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(this.routineBody.getParameters())));
 
+				// S13, isn't this in this.routineBody?
+
 				// S09
 				table.endScope();
-				
 			}
 
 		} else { // Function
@@ -154,7 +158,6 @@ public class RoutineDecl extends Declaration {
 			}
 
 		}
-
-
+        return null;
     }
 }
