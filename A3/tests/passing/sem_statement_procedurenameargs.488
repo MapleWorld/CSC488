@@ -1,0 +1,7 @@
+{
+	procedure rec_procedure_with_param ( n : Integer , is_valid : Boolean ) {
+		write "blah"
+	}
+
+	rec_procedure(2, true)
+}
