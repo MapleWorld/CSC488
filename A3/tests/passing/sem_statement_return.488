@@ -1,3 +1,5 @@
-procedure blarb {
-    return
+{
+    procedure blarb {
+        return
+    }
 }
