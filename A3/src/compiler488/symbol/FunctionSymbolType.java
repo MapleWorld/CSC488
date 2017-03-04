@@ -1,5 +1,6 @@
 package compiler488.symbol;
 
+import compiler488.ast.decl.*;
 import compiler488.ast.type.*;
 import compiler488.ast.expn.*;
 import compiler488.ast.*;
@@ -13,9 +14,9 @@ import compiler488.ast.*;
 public class FunctionSymbolType extends SymbolType {
     Type returnType;
     int paramCount;
-    ASTList<Expn> arguments;
+    ASTList<ScalarDecl> arguments;
 
-    public FunctionSymbolType(Type returnType, ASTList<Expn> arguments) {
+    public FunctionSymbolType(Type returnType, ASTList<ScalarDecl> arguments) {
         this.returnType = returnType;
         this.arguments = arguments;
 
@@ -41,7 +42,7 @@ public class FunctionSymbolType extends SymbolType {
     }
 
     /** Returns the arguments. */
-    public ASTList<Expn> getArguments() {
+    public ASTList<ScalarDecl> getArguments() {
         return this.arguments;
     }
 }

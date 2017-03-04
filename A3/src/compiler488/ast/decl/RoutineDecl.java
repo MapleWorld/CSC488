@@ -65,7 +65,7 @@ public class RoutineDecl extends Declaration {
 	public RoutineDecl(String name, Scope body, int line, int column) {
 		this(name, null, new ASTList<ScalarDecl>(), body, line, column);
 	}
-	
+
 	/**
 	 * Returns a string indicating that this is a function with return type or a
 	 * procedure, name, Type parameters, if any, are listed later by routineBody
@@ -81,7 +81,7 @@ public class RoutineDecl extends Declaration {
 
 	/**
 	 * Prints a description of the function/procedure.
-	 * 
+	 *
 	 * @param out Where to print the description.
 	 * @param depth How much indentation to use while printing.
 	 */
@@ -112,7 +112,7 @@ public class RoutineDecl extends Declaration {
 				table.startFunctionScope(this.type);
 
 				// S17, S13
-				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType()));
+				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(null)));
 
 				// S09
 				table.endScope();
@@ -129,7 +129,6 @@ public class RoutineDecl extends Declaration {
 
 				// S09
 				table.endScope();
-				
 			}
 
 		} else { // Function
@@ -159,7 +158,6 @@ public class RoutineDecl extends Declaration {
 			}
 
 		}
-
-
+        return null;
     }
 }

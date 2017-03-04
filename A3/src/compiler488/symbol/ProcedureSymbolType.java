@@ -1,5 +1,6 @@
 package compiler488.symbol;
 
+import compiler488.ast.decl.*;
 import compiler488.ast.expn.*;
 import compiler488.ast.*;
 
@@ -11,9 +12,9 @@ import compiler488.ast.*;
 
 public class ProcedureSymbolType extends SymbolType {
     int paramCount;
-    ASTList<Expn> arguments;
+    ASTList<ScalarDecl> arguments;
 
-    public ProcedureSymbolType(ASTList<Expn> arguments) {
+    public ProcedureSymbolType(ASTList<ScalarDecl> arguments) {
         this.arguments = arguments;
         paramCount = 0;
     }
@@ -29,7 +30,7 @@ public class ProcedureSymbolType extends SymbolType {
     }
 
     /** Returns the arguments. */
-    public ASTList<Expn> getArguments() {
+    public ASTList<ScalarDecl> getArguments() {
         return this.arguments;
     }
 }
