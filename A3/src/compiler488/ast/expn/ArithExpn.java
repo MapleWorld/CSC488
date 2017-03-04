@@ -26,20 +26,20 @@ public class ArithExpn extends BinaryExpn {
     /** Checks the semantics of both operands and returns Integer type */
     public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
-        Type leftType = left.doSemantics(table, errorMsg);
-        Type rightType = right.doSemantics(table, errorMsg);
+        Type leftType = left.doSemantics(table, errorMsg, null);
+        Type rightType = right.doSemantics(table, errorMsg, null);
 
         // S31
         if (leftType == null || !(leftType instanceof IntegerType))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",
-                                       leftType.getLineNumber(),
-                                       leftType.getColumnNumber(),
+                                       this.getLineNumber(),
+                                       this.getColumnNumber(),
                                        "S31",
                                        "expected Integer operand"));
         if (rightType == null || !(rightType instanceof IntegerType))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",
-                                       rightType.getLineNumber(),
-                                       rightType.getColumnNumber(),
+                                       this.getLineNumber(),
+                                       this.getColumnNumber(),
                                        "S31",
                                        "expected Integer operand"));
 

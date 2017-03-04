@@ -72,7 +72,7 @@ public class SubsExpn extends UnaryExpn implements Readable {
         SymbolType entryType;
 
         // S31
-        Type operandType = operand.doSemantics(table, errorMsg);
+        Type operandType = operand.doSemantics(table, errorMsg, null);
         if (operandType == null || !(operandType instanceof IntegerType))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",
                                        operand.getLineNumber(),

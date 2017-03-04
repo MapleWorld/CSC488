@@ -48,7 +48,7 @@ public class WriteStmt extends Stmt {
         while (iterator.hasNext()) {
             Expn nextVal = (Expn)iterator.next();
             // S31
-            Type result = nextVal.doSemantics(table, errorMsg, scp);
+            Type result = nextVal.doSemantics(table, errorMsg, null);
             if (result == null || (!(nextVal instanceof SkipConstExpn) && 
                                    !(nextVal instanceof TextConstExpn) &&
                                    !(result instanceof IntegerType)))

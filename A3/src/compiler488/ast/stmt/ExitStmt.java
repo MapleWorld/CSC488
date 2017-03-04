@@ -84,7 +84,7 @@ public class ExitStmt extends Stmt {
 
         // S30: Check expression is boolean.
         if (condition != null) {
-            Type conditionType = condition.doSemantics(table, errorMessages);
+            Type conditionType = condition.doSemantics(table, errorMessages, null);
             if (!(conditionType instanceof BooleanType)) {
                 errorMessages.add(String.format("%d:%d: error %s: %s\n",
                                                 this.getLineNumber(), this.getColumnNumber(),

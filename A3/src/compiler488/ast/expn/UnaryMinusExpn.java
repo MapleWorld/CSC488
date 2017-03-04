@@ -18,7 +18,7 @@ public class UnaryMinusExpn extends UnaryExpn {
     public Type doSemantics(SymbolTable table, List<String> errorMsg, 
                             SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
-        Type operandType = operand.doSemantics(table, errorMsg);
+        Type operandType = operand.doSemantics(table, errorMsg, null);
         // S31
         if (operandType == null || !(operandType instanceof IntegerType))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",

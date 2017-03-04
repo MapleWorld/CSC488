@@ -23,8 +23,8 @@ public class EqualsExpn extends BinaryExpn {
     public Type doSemantics(SymbolTable table, List<String> errorMsg, 
                             SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
-        Type leftType = left.doSemantics(table, errorMsg);
-        Type rightType = right.doSemantics(table, errorMsg);
+        Type leftType = left.doSemantics(table, errorMsg, null);
+        Type rightType = right.doSemantics(table, errorMsg, null);
 
         // S32
         if (leftType == null || rightType == null || 

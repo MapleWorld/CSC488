@@ -53,7 +53,7 @@ public class ReadStmt extends Stmt {
         ListIterator<Readable> iterator = elemList.listIterator();
         while (iterator.hasNext()) {
             Expn nextVal = (Expn)iterator.next();
-            Type result = nextVal.doSemantics(table, errorMsg, scp);
+            Type result = nextVal.doSemantics(table, errorMsg, null);
             // S31
             if (result == null || !(result instanceof IntegerType))
                 errorMsg.add(String.format("%d:%d: error %s: %s\n",

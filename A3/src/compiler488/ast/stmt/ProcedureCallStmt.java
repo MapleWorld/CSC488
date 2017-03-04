@@ -106,10 +106,10 @@ public class ProcedureCallStmt extends Stmt {
             ASTList<Expn> givenArgs = this.getArguments();
             ASTList<ScalarDecl> neededArgs = procedureType.getArguments();
             for (int i = 0; i < procedureType.getParamCount(); i++) {
-                if (!((neededArgs.getList().get(i).doSemantics(table, errorMessages) instanceof IntegerType && 
-                       givenArgs.getList().get(i).doSemantics(table, errorMessages) instanceof IntegerType) ||
-                      (neededArgs.getList().get(i).doSemantics(table, errorMessages) instanceof BooleanType && 
-                       givenArgs.getList().get(i).doSemantics(table, errorMessages) instanceof BooleanType))) {
+                if (!((neededArgs.getList().get(i).getType() instanceof IntegerType && 
+                       givenArgs.getList().get(i).doSemantics(table, errorMessages, null) instanceof IntegerType) ||
+                      (neededArgs.getList().get(i).getType() instanceof BooleanType && 
+                       givenArgs.getList().get(i).doSemantics(table, errorMessages, null) instanceof BooleanType))) {
                     errorMessages.add(String.format("%d:%d: error %s: %s %s\n",
                                                     neededArgs.getList().get(i).getLineNumber(), 
                                                     neededArgs.getList().get(i).getColumnNumber(),

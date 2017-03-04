@@ -72,16 +72,16 @@ public class ReturnStmt extends Stmt {
                                   this.getLineNumber(), this.getColumnNumber(),
                                   "S51",
                                   "Return statement is outside a function"));
+            
+                // S35: Check that the expression type matches the return type of enclosing function.
+                Type result = value.doSemantics(table, errorMessages, null);
+                if (result == null || !(table.getReturnType().getClass().equals(result.getClass())))
+                    errorMessages.add(String.format("%d:%d: error %s: %s\n", 
+                                                    this.getLineNumber(), this.getColumnNumber(),
+                                                    "S35",
+                                                    "expression type does not match the return type of enclosing function"));
             }
-            // S35: Check that the expression type matches the return type of enclosing function.
-            Type result = value.doSemantics(table, errorMessages, null);
-            if (!(table.getReturnType().getClass().equals(result.getClass())))
-                errorMessages.add(String.format("%d:%d: error %s: %s\n", 
-                                                this.getLineNumber(), this.getColumnNumber(),
-                                                "S35",
-                                                "expression type does not match the return type of enclosing function"));
         }
-
         return null;
     }
 }

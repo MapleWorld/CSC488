@@ -240,8 +240,8 @@ output
 	;
 
 inputs
-    ::= variable:v														{: RESULT = new ASTList(new ReadableExpn(v)); :}
-    |   inputs:list COMMA variable:var									{: RESULT = list.addLast(new ReadableExpn(var)); :}
+    ::= variable:v														{: RESULT = new ASTList<Readable>((Readable)v); :}
+    |   inputs:list COMMA variable:var									{: RESULT = list.addLast((Readable)var); :}
     ;
 
 arguments

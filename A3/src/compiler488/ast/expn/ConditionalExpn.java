@@ -55,15 +55,15 @@ public class ConditionalExpn extends Expn {
      */
     public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
-        Type condType = condition.doSemantics(table, errorMsg);
-        Type trueType = trueValue.doSemantics(table, errorMsg);
-        Type falseType = falseValue.doSemantics(table, errorMsg);
+        Type condType = condition.doSemantics(table, errorMsg, null);
+        Type trueType = trueValue.doSemantics(table, errorMsg, null);
+        Type falseType = falseValue.doSemantics(table, errorMsg, null);
 
         // S30
         if (condType == null || !(condType instanceof BooleanType))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",
-                                       condType.getLineNumber(),
-                                       condType.getColumnNumber(),
+                                       this.getLineNumber(),
+                                       this.getColumnNumber(),
                                        "S30",
                                        "expected Boolean type condition"));
 
@@ -71,8 +71,8 @@ public class ConditionalExpn extends Expn {
         if (trueType == null || falseType == null ||
             !(trueType.getClass().equals(falseType.getClass())))
             errorMsg.add(String.format("%d:%d: error %s: %s\n",
-                                       trueType.getLineNumber(),
-                                       trueType.getColumnNumber(),
+                                       this.getLineNumber(),
+                                       this.getColumnNumber(),
                                        "S33",
                                        "the result expressions in conditional are not the same type"));
 

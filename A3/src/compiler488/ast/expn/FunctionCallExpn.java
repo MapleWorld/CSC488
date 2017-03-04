@@ -85,10 +85,10 @@ public class FunctionCallExpn extends Expn {
             ASTList<Expn> givenArgs = this.getArguments();
             for (int i = 0; i < symbol.getParamCount(); i++) {
 
-                if (!((neededArgs.getList().get(i).doSemantics(table, errMsg) instanceof IntegerType && 
-                       givenArgs.getList().get(i).doSemantics(table, errMsg) instanceof IntegerType) ||
-                    (neededArgs.getList().get(i).doSemantics(table, errMsg) instanceof BooleanType && 
-                     givenArgs.getList().get(i).doSemantics(table, errMsg) instanceof BooleanType))) {
+                if (!((neededArgs.getList().get(i).getType() instanceof IntegerType && 
+                       givenArgs.getList().get(i).doSemantics(table, errMsg, null) instanceof IntegerType) ||
+                      (neededArgs.getList().get(i).getType() instanceof BooleanType && 
+                       givenArgs.getList().get(i).doSemantics(table, errMsg, null) instanceof BooleanType))) {
                         errMsg.add(String.format("%d:%d: error %s: %s %s\n",
                                                  neededArgs.getList().get(i).getLineNumber(), 
                                                  neededArgs.getList().get(i).getColumnNumber(),
