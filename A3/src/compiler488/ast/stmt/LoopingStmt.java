@@ -14,10 +14,10 @@ import compiler488.symbol.*;
  */
 public abstract class LoopingStmt extends Stmt
 {
-    protected ASTList<Stmt> body;	// body of the loop
+    protected Stmt body;                // body of the loop
     protected Expn condition;          	// Loop condition
 
-    public LoopingStmt(Expn condition, ASTList<Stmt> body, int line, int column) {
+    public LoopingStmt(Expn condition, Stmt body, int line, int column) {
         super(line, column);
         this.condition = condition;
         this.body = body;
@@ -30,7 +30,7 @@ public abstract class LoopingStmt extends Stmt
         return children;
     }
 
-    public LoopingStmt(ASTList<Stmt> body, int line, int column) {
+    public LoopingStmt(Stmt body, int line, int column) {
         this(null, body, line, column);
     }
 
@@ -42,11 +42,11 @@ public abstract class LoopingStmt extends Stmt
         this.condition = condition;
     }
 
-    public ASTList<Stmt> getBody() {
+    public Stmt getBody() {
         return body;
     }
 
-    public void setBody(ASTList<Stmt> body) {
+    public void setBody(Stmt body) {
         this.body = body;
     }
 
@@ -62,10 +62,8 @@ public abstract class LoopingStmt extends Stmt
                               "type of expression is not boolean"));
         }
 
-        LinkedList<Stmt> elemList = body.getList();
-        ListIterator<Stmt> iterator = elemList.listIterator();
-        while (iterator.hasNext())
-            (iterator.next()).doSemantics(table, errorMessages, SymbolTable.ScopeType.LOOP);
+
+        body.doSemantics(table, errorMessages, SymbolTable.ScopeType.LOOP);
         return null;
     }
 }

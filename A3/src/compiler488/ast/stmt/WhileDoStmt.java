@@ -12,7 +12,7 @@ import compiler488.ast.expn.Expn;
  */
 public class WhileDoStmt extends LoopingStmt {
     
-    public WhileDoStmt(Expn expn, ASTList<Stmt> body, int line, int column) {
+    public WhileDoStmt(Expn expn, Stmt body, int line, int column) {
         super(expn, body, line, column);
     }
     
@@ -27,10 +27,7 @@ public class WhileDoStmt extends LoopingStmt {
     @Override
     public void printOn(PrintStream out, int depth) {
         Indentable.printIndentOnLn(out, depth, "while " + condition + " do");
-        ListIterator<Stmt> iterator = body.getList().listIterator();
-        if (iterator.hasNext())
-            while (iterator.hasNext())
-                iterator.next().printOn(out, depth + 1);
+        body.printOn(out, depth + 1);
         Indentable.printIndentOnLn(out, depth, "End while-do");
     }
 }
