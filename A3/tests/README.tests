@@ -22,6 +22,20 @@ program_12.488 - Single variable read statement.
 program_13.488 - Mutiple variables read statement.
 program_14.488 - Recursively function with mutiple read and write.
 program_15.488 - Various valid loops
+exitstmt.488 - Exit statement
+procedurestmt.488 - A program using non-recursive functions with parameters
+sem_statement_exit.488 - While loop statement exit
+sem_statement_exitinteger.488 - While loop statement exit on integer
+sem_statement_exitwhen.488 - While loop statement exit on condition
+sem_statement_ifthen.488 - If write statement
+sem_statement_ifthenelse.488 - If else write statement
+sem_statement_procedurename.488 - Procedure with no param no return
+sem_statement_procedurenameargs.488 - Procedure with params
+sem_statement_repeatuntil.488 - Repeat write until condition
+sem_statement_return.488 - Procedure with no param but return empty
+sem_statement_returnwith.488 - Function with return type integer
+sem_statement_variable.488 - Basic variable declaration
+sem_statement_whiledo.488 - Basic while loop
 
 Failing Test Cases:
 
@@ -76,3 +90,15 @@ Failing Test Cases:
 22_invalid_operator4.488 - Invalid associativity
 22_invalid_operator5.488 - Invalid associativity
 23_invalid_read.488 - Invalid read statement
+sem_statement_exit.488 - Exit statement
+sem_statement_exitinteger.488 - Incorrect exit statement on integer
+sem_statement_exitwhen.488 - Incorrect while loop statement exit on integer
+sem_statement_ifthen.488 - Incorrect If write statement with integer condition
+sem_statement_ifthenelse.488 - Incorrect If else write statement on integer condition
+sem_statement_procedurename.488 - Incorrect number of param for procedure
+sem_statement_procedurenameargs.488 - Incorrect number of param for procedure
+sem_statement_repeatuntil.488 - Incorrect condition on repeat statement
+sem_statement_return.488 - Incorrect empty return statement
+sem_statement_returnwith.488 - Incorrect function return type
+sem_statement_variable.488 - Incorrect variable type assignment
+sem_statement_whiledo.488 - Incorrect while loop condition statement
