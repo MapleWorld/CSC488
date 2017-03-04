@@ -19,21 +19,12 @@ public class FunctionSymbolType extends SymbolType {
     public FunctionSymbolType(Type returnType, ASTList<ScalarDecl> arguments) {
         this.returnType = returnType;
         this.arguments = arguments;
-
-        if (arguments != null)
-            this.paramCount = arguments.size();
-        else
-            this.paramCount = 0;
+        this.paramCount = arguments.size();
     }
 
     /** Returns the type of this Function Symbol Type */
     public Type getReturnType() {
         return this.returnType;
-    }
-
-    /** Increases the parameter count by 1. */
-    public void addParameter() {
-        this.paramCount++;
     }
 
     /** Returns the parameter count. */

@@ -5,51 +5,62 @@ import java.io.PrintStream;
 import compiler488.ast.ASTList;
 import compiler488.ast.Indentable;
 import compiler488.ast.stmt.Scope;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
+import java.util.*;
 
 /**
  * Represents the parameters and instructions associated with a
  * function or procedure.
  */
 public class RoutineBody extends Indentable {
-	private ASTList<ScalarDecl> parameters; // The formal parameters of the routine.
+    private ASTList<ScalarDecl> parameters; // The formal parameters of the routine.
+    
+    private Scope body; // Execute this scope when routine is called.
 
-	private Scope body; // Execute this scope when routine is called.
+    /**
+     * Print a description of the formal parameters and the scope for this
+     * routine.
+     * 
+     * @param out
+     *            Where to print the description.
+     * @param depth
+     *            How much indentation to use while printing.
+     */
+    @Override
+    public void printOn(PrintStream out, int depth) {
+        if (parameters != null)
+            out.println("(" + parameters + ")");
+        else
+            out.println(" ");
+        body.printOn(out, depth);
+    }
+    
+    public Scope getBody() {
+        return body;
+    }
 
-	/**
-	 * Print a description of the formal parameters and the scope for this
-	 * routine.
-	 * 
-	 * @param out
-	 *            Where to print the description.
-	 * @param depth
-	 *            How much indentation to use while printing.
-	 */
-	@Override
-	public void printOn(PrintStream out, int depth) {
-		if (parameters != null)
-			out.println("(" + parameters + ")");
-		else
-			out.println(" ");
-		body.printOn(out, depth);
-	}
+    public void setBody(Scope body) {
+        this.body = body;
+    }
 
-	public Scope getBody() {
-		return body;
-	}
+    public ASTList<ScalarDecl> getParameters() {
+        return parameters;
+    }
+    
+    public void setParameters(ASTList<ScalarDecl> parameters) {
+        this.parameters = parameters;
+    }
 
-	public void setBody(Scope body) {
-		this.body = body;
-	}
-
-	public ASTList<ScalarDecl> getParameters() {
-		return parameters;
-	}
-
-	public void setParameters(ASTList<ScalarDecl> parameters) {
-		this.parameters = parameters;
-	}
-
-    public void doSemantics() {
+    /** Semantics checks on this routine body */
+    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
         // do semantic analysis for this node
+        LinkedList<ScalarDecl> paramList = parameters.getList();
+        ListIterator<ScalarDecl> iterator = paramList.listIterator();
+        while (iterator.hasNext())
+            (iterator.next()).doSemantics(table, errorMessages);
+        
+        body.doSemantics(table, errorMessages);
+        return null;
     }
 }

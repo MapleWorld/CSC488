@@ -117,7 +117,10 @@ public class Scope extends Stmt {
 
     /** Checks semantics of this Scope */
     public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scpType) {
-        table.startScope(scpType);
+        if (scpType == SymbolTable.ScopeType.LOOP)
+            table.startLoopScope();
+        else
+            table.startScope(scpType);
         this.doSemantics(table, errorMessages);
         table.endScope();
         return null;

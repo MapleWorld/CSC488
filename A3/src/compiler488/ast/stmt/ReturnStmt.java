@@ -54,7 +54,8 @@ public class ReturnStmt extends Stmt {
         this.value = value;
     }
 
-    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages, 
+                            SymbolTable.ScopeType scp) {
         // TODO: Check S51.
         // S51 & S52: Return only when in a function or a procedure.
         SymbolTable.ScopeType currentScope = table.getScopeType();
@@ -62,7 +63,7 @@ public class ReturnStmt extends Stmt {
             if (currentScope != SymbolTable.ScopeType.PROCEDURE) {
                 errorMessages.add(String.format("%d:%d: error %s: %s\n",
                                   this.getLineNumber(), this.getColumnNumber(),
-                                  "S51",
+                                  "S52",
                                   "Return statement is outside a procedure"));
             }
         } else {
@@ -72,11 +73,15 @@ public class ReturnStmt extends Stmt {
                                   "S51",
                                   "Return statement is outside a function"));
             }
+            // S35: Check that the expression type matches the return type of enclosing function.
+            Type result = value.doSemantics(table, errorMessages, null);
+            if (!(table.getReturnType().getClass().equals(result.getClass())))
+                errorMessages.add(String.format("%d:%d: error %s: %s\n", 
+                                                this.getLineNumber(), this.getColumnNumber(),
+                                                "S35",
+                                                "expression type does not match the return type of enclosing function"));
         }
 
-
-        // TODO:
-        // S35: Check that the expression type matches the return type of enclosing function.
         return null;
     }
 }

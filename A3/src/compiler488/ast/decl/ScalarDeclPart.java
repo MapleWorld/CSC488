@@ -26,8 +26,7 @@ public class ScalarDeclPart extends DeclarationPart {
         // do semantic analysis for this node
         // S10, S47
         boolean success = table.addSymbol(name, 
-                                          new SymbolTableEntry(new ScalarSymbolType(idType, 
-                                                                                    false)));
+                                          new SymbolTableEntry(new ScalarSymbolType(idType)));
 
         // S37
         if (!success)

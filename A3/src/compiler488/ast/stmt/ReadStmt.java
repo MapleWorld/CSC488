@@ -1,8 +1,5 @@
 package compiler488.ast.stmt;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import compiler488.ast.AST;
 import compiler488.ast.ASTList;
 import compiler488.ast.Readable;
@@ -49,22 +46,22 @@ public class ReadStmt extends Stmt {
         this.inputs = inputs;
     }
 
+    /** Checks the semantics on inputs */
     public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
         LinkedList<Readable> elemList = inputs.getList();
         ListIterator<Readable> iterator = elemList.listIterator();
         while (iterator.hasNext()) {
-            Readable nextVal = iterator.next();
+            Expn nextVal = (Expn)iterator.next();
+            Type result = nextVal.doSemantics(table, errorMsg, scp);
             // S31
-            if (nextVal instanceof IdentExpn || nextVal instanceof SubsExpn) {
-                Type result = ((Expn)nextVal).doSemantics(table, errorMsg, scp);
-                if (result == null || !(result instanceof IntegerType))
-                    errorMsg.add(String.format("%d:%d: error %s: %s\n",
-                                               ((Expn)nextVal).getLineNumber(),
-                                               ((Expn)nextVal).getColumnNumber(),
-                                               "S31",
-                                               "expected Integer inputs"));
-            }
+            if (result == null || !(result instanceof IntegerType))
+                errorMsg.add(String.format("%d:%d: error %s: %s\n",
+                                           nextVal.getLineNumber(),
+                                           nextVal.getColumnNumber(),
+                                           "S31",
+                                           "expected Integer inputs"));
+            
         }
         return null;
     }

@@ -10,11 +10,9 @@ import compiler488.ast.type.Type;
 
 public class ScalarSymbolType extends SymbolType {
     Type type;
-    boolean isParam;
 
-    public ScalarSymbolType(Type type, boolean isParameter) {
+    public ScalarSymbolType(Type type) {
         this.type = type;
-        isParam = isParameter;
     }
 
     /** Returns the type of this Scalar Symbol Type */
@@ -22,8 +20,4 @@ public class ScalarSymbolType extends SymbolType {
         return type;
     }
 
-    /** Return true iff this ScalarSymbolType is a parameter */
-    public boolean isParameter() {
-        return isParam;
-    }
 }

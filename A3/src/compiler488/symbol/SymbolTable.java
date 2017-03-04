@@ -76,6 +76,18 @@ public class SymbolTable {
         scopeIndex++;
         stack.push(new SymbolList(newScope));
     }
+    
+    /**
+     * Adds a new scope to this Symbol Table
+     */
+    public void startLoopScope() {
+        int numLoop = 1;
+        if (getScopeType() == ScopeType.LOOP)
+            numLoop += getNumLoop();
+
+        scopeIndex++;
+        stack.push(new SymbolList(ScopeType.LOOP, numLoop));
+    }
 
     /**
      * Adds a new scope to this Symbol Table
@@ -100,6 +112,18 @@ public class SymbolTable {
         return stack.peek().getScopeType();
     }
 
+   
+    /** Returns the return type of this scope */
+    public Type getReturnType() {
+        return stack.peek().getReturnType();
+    }
+
+    /** Returns the number of loops that this scope resides in */
+    public int getNumLoop() {
+        return stack.peek().getNumLoop();
+    }
+    
+
     /** SymbolList
      *  This class keeps track of all previously declared symbols.
      */
@@ -107,8 +131,9 @@ public class SymbolTable {
         private ScopeType sType;
         private Type returnType = null;
         private LinkedList<Symbol> symbols;
+        private int numLoop = 0;
 
-        /** SymbolList constructor */
+        /** SymbolList constructors */
         public SymbolList(ScopeType sType) {
             this.sType = sType;
             symbols = new LinkedList<Symbol> ();
@@ -116,6 +141,12 @@ public class SymbolTable {
 
         public SymbolList(ScopeType sType, Type returnType) {
             this.returnType = returnType;
+            this.sType = sType;
+            symbols = new LinkedList<Symbol> ();
+        }
+
+        public SymbolList(ScopeType sType, int numLoop) {
+            this.numLoop = numLoop;
             this.sType = sType;
             symbols = new LinkedList<Symbol> ();
         }
@@ -128,6 +159,11 @@ public class SymbolTable {
         /** Returns the return Type of this Symbol List */
         public Type getReturnType() {
             return returnType;
+        }
+
+        /** Returns the number of loops that this scope resides in */
+        public int getNumLoop() {
+            return numLoop;
         }
 
         /**

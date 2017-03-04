@@ -16,12 +16,7 @@ public class ProcedureSymbolType extends SymbolType {
 
     public ProcedureSymbolType(ASTList<ScalarDecl> arguments) {
         this.arguments = arguments;
-        paramCount = 0;
-    }
-
-    /** Increases the parameter count by 1. */
-    public void addParameter() {
-        paramCount++;
+        paramCount = arguments.size();
     }
 
     /** Returns the parameter count. */

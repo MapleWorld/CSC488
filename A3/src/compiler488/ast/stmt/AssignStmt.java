@@ -12,17 +12,17 @@ import compiler488.symbol.*;
  * Holds the assignment of an expression to a variable.
  */
 public class AssignStmt extends Stmt {
-	/*
-	 * lval is the location being assigned to, and rval is the value being
-	 * assigned.
-	 */
-	private Expn lval, rval;
+    /*
+     * lval is the location being assigned to, and rval is the value being
+     * assigned.
+     */
+    private Expn lval, rval;
 
-	public AssignStmt(Expn lval, Expn rval, int line, int column) {
-		super(line, column);
-		this.lval = lval;
-		this.rval = rval;
-	}
+    public AssignStmt(Expn lval, Expn rval, int line, int column) {
+        super(line, column);
+        this.lval = lval;
+        this.rval = rval;
+    }
 
     public List<AST> getChildren() {
         LinkedList<AST> children = new LinkedList<AST>();
