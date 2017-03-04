@@ -158,6 +158,6 @@ public class RoutineDecl extends Declaration {
 			}
 
 		}
-        return null;
+        return this.type;
     }
 }
