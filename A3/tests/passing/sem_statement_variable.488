@@ -1,0 +1,4 @@
+{
+    var a : Integer
+    a := 5
+}

@@ -22,7 +22,7 @@ public class ScalarDeclPart extends DeclarationPart {
         return name;
     }
 
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg, Type idType) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, Type idType) {
         // do semantic analysis for this node
         // S10, S47
         boolean success = table.addSymbol(name, 

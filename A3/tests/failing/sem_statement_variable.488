@@ -1,0 +1,4 @@
+{
+    var a : Boolean
+    a := 5
+}
