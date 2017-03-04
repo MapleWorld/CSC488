@@ -65,7 +65,7 @@ public class ArrayDeclPart extends DeclarationPart {
     }
     
     /** Adds name to symbol table and checks if name is already declared */
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg, Type idType) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, Type idType) {
         // do semantic analysis for this node
         boolean success;
 

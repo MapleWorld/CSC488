@@ -26,7 +26,7 @@ public class DeclarationPart extends AST {
         this.name = name;
     }
 
-    public Type doSemantics(SymbolTable table, LinkedList<String> errorMsg, Type type) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, Type type) {
         // do semantic analysis for this node
         return null;
     }
