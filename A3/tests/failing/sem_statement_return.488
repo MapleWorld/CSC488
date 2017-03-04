@@ -1,3 +1,4 @@
+% Incorrect empty return statement
 {
     return
 }

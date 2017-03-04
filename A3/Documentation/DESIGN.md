@@ -27,6 +27,21 @@ ReadableExpn.class - To convert expression into readable object
 
 # Symbol Table:
 
+The symbol table contains several properties:
+
+ - the index of the current scope
+ - a stack of SymbolLists
+ - a mapping from identifiers to its attribute properties
+
+ The SymbolList keeps track of all previously declared symbols in a scope,
+ so symbols declared in an outer scope don't raise an error. The scopes it
+ does this for are: PROGRAM, FUNCTION, PROCEDURE, LOOP.
+
+ Each identifier has a corresponding entry in the symbol table of abstract type
+ SymbolTableEntry. Each entry contains attributes of each identifier depending on
+ its type. If the identifier is a boolean or integer, it tracked its type. If
+ it is a function or procedure, it keeps track of its parameters and return type
+ (if it's a function). If it's an array, it keeps track of its bounds and type.
 
 # Semantic Analysis Design:
 
