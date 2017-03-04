@@ -11,7 +11,7 @@ public class ScalarDecl extends Declaration {
     public ScalarDecl(String name, Type type, int line, int column) {
         super(name, type, line, column);
     }
-    
+
 	/**
 	 * Returns a string describing the name and type of the object being
 	 * declared.
@@ -24,6 +24,4 @@ public class ScalarDecl extends Declaration {
     public void doSemantics() {
         // do semantic analysis for this node
     }
-    
-    
 }

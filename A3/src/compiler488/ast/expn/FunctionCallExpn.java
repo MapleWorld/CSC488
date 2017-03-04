@@ -67,8 +67,6 @@ public class FunctionCallExpn extends Expn {
 
         FunctionSymbolType symbol = (FunctionSymbolType) entry.getType();
         if (symbol.getParamCount() == 0) { //S42
-            
-
             // S28
             if (symbol.getReturnType() instanceof BooleanType)
                 return new BooleanType(this.getLineNumber(), this.getColumnNumber());

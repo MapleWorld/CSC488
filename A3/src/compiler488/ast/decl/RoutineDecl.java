@@ -99,14 +99,14 @@ public class RoutineDecl extends Declaration {
 		this.routineBody = routineBody;
 	}
 
-    public void doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
 
 		if (this.type == null) { // Procedure
 
 			if (this.routineBody.getParameters().size() == 0) { // Procedure without parameters
 
 				// S17
-				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType()));
+				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(null)));
 
 				// S08, S09 already done by routineBody
 
@@ -120,7 +120,7 @@ public class RoutineDecl extends Declaration {
 				// S08, S09 already done by routineBody
 
 				// S13, isn't this in this.routineBody?
-				
+
 			}
 
 		} else { // Function
