@@ -18,7 +18,11 @@ public class FunctionSymbolType extends SymbolType {
     public FunctionSymbolType(Type returnType, ASTList<Expn> arguments) {
         this.returnType = returnType;
         this.arguments = arguments;
-        this.paramCount = arguments.size();
+
+        if (arguments != null)
+            this.paramCount = arguments.size();
+        else
+            this.paramCount = 0;
     }
 
     /** Returns the type of this Function Symbol Type */
