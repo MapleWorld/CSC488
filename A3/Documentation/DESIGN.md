@@ -31,5 +31,17 @@ ReadableExpn.class - To convert expression into readable object
 # Semantic Analysis Design:
 
 
+     Should describe all of the mechanisms that they
+     added to the skeleton to implement semantic analysis.
+     e.g. type tracking, scope tracking, etc.
+     What method did they use to process the AST?
+
+
+To implement semantic analysis, we had to add type tracking, and scope tracking to the skeleton. We tracked type by adding an entry to the symbol table for each node, and then looking up each reference to a variable in the symbol table. Scopes were also tracked using the symbol table. 
+
+For semantic analysis, we decided to build doSemantics() into east AST class and then recursively processed the tree. doSemantics() required that the symbol table and error messages be passed in, so that the symbol table could be checked and updated, as well as the error messages.
+
+The two goals for our methods were that the semantic analysis of each AST class would only be based on the information associated with its node, which avoids dependency on the structure of the surrounding parts of the AST. The other goal was to provide clear error messages. To do this, we saved the line and column of each error. 
+
 
 
