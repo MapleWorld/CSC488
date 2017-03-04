@@ -7,6 +7,10 @@ import compiler488.ast.Indentable;
 import compiler488.ast.stmt.Scope;
 import compiler488.ast.type.Type;
 
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
+import java.util.*;
+
 /**
  * Represents the declaration of a function or procedure.
  */
@@ -95,7 +99,62 @@ public class RoutineDecl extends Declaration {
 		this.routineBody = routineBody;
 	}
 
-    public void doSemantics() {
-        // do semantic analysis for this node
+    public void doSemantics(SymbolTable table, LinkedList<String> errorMsg) {
+
+		if (this.type == null) { // Procedure
+
+			if (this.routineBody.getParameters().size() == 0) { // Procedure without parameters
+
+				// S08
+				table.startFunctionScope(this.type);
+
+				// S17, S13
+				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType()));
+
+				// S09
+				table.endScope();
+
+			} else { // Procedure with parameters
+
+				// S08
+				table.startFunctionScope(this.type);
+
+				// S18, S13
+				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(this.routineBody.getParameters())));
+
+				// S09
+				table.endScope();
+				
+			}
+
+		} else { // Function
+
+			if (this.routineBody.getParameters().size() == 0) { // Function without parameters
+
+				// S04
+				table.startFunctionScope(this.type);
+
+				// S11, S13
+				table.addSymbol(this.name, new SymbolTableEntry(new FunctionSymbolType(this.type, null)));
+
+				// S05
+				table.endScope();
+
+			} else { // Function with parameters
+
+				// S04
+				table.startFunctionScope(this.type);
+
+				// S12, S13
+				table.addSymbol(this.name, new SymbolTableEntry(new FunctionSymbolType(this.type, this.routineBody.getParameters())));
+
+				// S05
+				table.endScope();
+
+			}
+
+		}
+
+
     }
 }
