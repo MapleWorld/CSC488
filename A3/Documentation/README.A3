@@ -8,8 +8,8 @@ whoever that was available next worked on the symbol table. The last step was mo
 the semantic analysis which all of us worked on it together, each contributing part of the 
 implementation and testing. 
 
-- **Ou** - Mostly AST implementation and test cases
-- **Zixuan** - 
+- **Ou** - Worked on AST implementation and testing.
+- **Zixuan** - Worked on semantic analysis and symbol table implementation and testing.
 - **Grzegorz** - Worked on testing & implementing Semantic Analysis.
 - **Theresa** - Worked on semantic analysis and testing
 - **Lawrence** - Worked on semantic analysis and testing
