@@ -125,14 +125,11 @@ public class RoutineDecl extends Declaration {
 				// S18, S13
 				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(this.routineBody.getParameters())));
 
-<<<<<<< HEAD
 				// S13, isn't this in this.routineBody?
 
-=======
 				// S09
 				table.endScope();
 				
->>>>>>> 28771d0b8a1458cb50115f5e457b9307c2c9c359
 			}
 
 		} else { // Function
