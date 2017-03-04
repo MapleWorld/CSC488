@@ -1,8 +1,7 @@
 package compiler488.ast.stmt;
 
 import java.io.PrintStream;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import compiler488.ast.AST;
 import compiler488.ast.ASTList;
@@ -76,52 +75,64 @@ public class Scope extends Stmt {
         return children;
     }
 
-	/**
-	 * Print a description of the <b>scope</b> construct.
-	 *
-	 * @param out
-	 *            Where to print the description.
-	 * @param depth
-	 *            How much indentation to use while printing.
-	 */
-	@Override
-	public void printOn(PrintStream out, int depth) {
-		Indentable.printIndentOnLn(out, depth, "Scope");
-		Indentable.printIndentOnLn(out, depth, "declarations");
+    /**
+     * Print a description of the <b>scope</b> construct.
+     *
+     * @param out
+     *            Where to print the description.
+     * @param depth
+     *            How much indentation to use while printing.
+     */
+    @Override
+    public void printOn(PrintStream out, int depth) {
+        Indentable.printIndentOnLn(out, depth, "Scope");
+        Indentable.printIndentOnLn(out, depth, "declarations");
+        
+        declarations.printOnSeperateLines(out, depth + 1);
+        
+        out.print('\n');
+        
+        Indentable.printIndentOnLn(out, depth, "statements");
+        
+        statements.printOnSeperateLines(out, depth + 1);
 
-		declarations.printOnSeperateLines(out, depth + 1);
+        Indentable.printIndentOnLn(out, depth, "End Scope");
+    }
 
-		out.print('\n');
+    public ASTList<Declaration> getDeclarations() {
+        return declarations;
+    }
 
-		Indentable.printIndentOnLn(out, depth, "statements");
+    public ASTList<Stmt> getStatements() {
+        return statements;
+    }
 
-		statements.printOnSeperateLines(out, depth + 1);
+    public void setDeclarations(ASTList<Declaration> declarations) {
+        this.declarations = declarations;
+    }
 
-		Indentable.printIndentOnLn(out, depth, "End Scope");
-	}
+    public void setStatements(ASTList<Stmt> statements) {
+        this.statements = statements;
+    }
 
-	public ASTList<Declaration> getDeclarations() {
-		return declarations;
-	}
+    /** Checks semantics of this Scope */
+    public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scpType) {
+        table.startScope(scpType);
+        this.doSemantics(table, errorMessages);
+        table.endScope();
+        return null;
+    }
 
-	public ASTList<Stmt> getStatements() {
-		return statements;
-	}
-
-	public void setDeclarations(ASTList<Declaration> declarations) {
-		this.declarations = declarations;
-	}
-
-	public void setStatements(ASTList<Stmt> statements) {
-		this.statements = statements;
-	}
-
+     /** Checks semantics on this Scope without adding new scope to table*/
     public Type doSemantics(SymbolTable table, List<String> errorMessages) {
-        List<AST> children = getChildren();
-        for (int i = 0; i < children.size(); i++) {
-            // System.out.println(children.get(i).getClass());
-            children.get(i).doSemantics(table, errorMessages);
-        }
+        LinkedList<Declaration> declList = declarations.getList();
+        ListIterator<Declaration> declIterator = declList.listIterator();
+        while (declIterator.hasNext())
+            (declIterator.next()).doSemantics(table, errorMessages, null);
+        LinkedList<Stmt> stmtList = statements.getList();
+        ListIterator<Stmt> stmtIterator = stmtList.listIterator();
+        while (stmtIterator.hasNext()) 
+            (stmtIterator.next()).doSemantics(table, errorMessages, null);
         return null;
     }
 }

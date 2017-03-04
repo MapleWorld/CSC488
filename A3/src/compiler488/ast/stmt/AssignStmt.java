@@ -31,37 +31,40 @@ public class AssignStmt extends Stmt {
         return children;
     }
 
-	/** Returns a string that describes the assignment statement. */
-	@Override
-	public String toString() {
-		return "Assignment: " + lval + " := " + rval;
-	}
+    /** Returns a string that describes the assignment statement. */
+    @Override
+    public String toString() {
+        return "Assignment: " + lval + " := " + rval;
+    }
+    
+    public Expn getLval() {
+        return lval;
+    }
 
-	public Expn getLval() {
-		return lval;
-	}
+    public void setLval(Expn lval) {
+        this.lval = lval;
+    }
 
-	public void setLval(Expn lval) {
-		this.lval = lval;
-	}
+    public Expn getRval() {
+        return rval;
+    }
 
-	public Expn getRval() {
-		return rval;
-	}
+    public void setRval(Expn rval) {
+        this.rval = rval;
+    }
 
-	public void setRval(Expn rval) {
-		this.rval = rval;
-	}
-
-    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+    /** Checks the left hand side and the right hand side of assignments 
+     * and makes sure they are the same type. */
+    public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scpType) {
         // S34: Check that variable and expression in assignment are the same type.
-        Type lvalType = lval.doSemantics(table, errorMessages);
-        Type rvalType = rval.doSemantics(table, errorMessages);
-        if (lvalType != rvalType) {
+        Type lvalType = lval.doSemantics(table, errorMessages, null);
+        Type rvalType = rval.doSemantics(table, errorMessages, null);
+        if (lvalType == null || rvalType == null || 
+            !(lvalType.getClass().equals(rvalType.getClass()))) {
             errorMessages.add(String.format("%d:%d: error %s: %s\n",
-                              this.getLineNumber(), this.getColumnNumber(),
-                              "S34",
-                              "variable and expression in assignment are not the same type"));
+                                            this.getLineNumber(), this.getColumnNumber(),
+                                            "S34",
+                                            "variable and expression in assignment are not the same type"));
         }
         return null;
     }

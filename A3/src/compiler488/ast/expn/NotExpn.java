@@ -15,7 +15,8 @@ public class NotExpn extends UnaryExpn {
     /**
      * Checks the type of the operand and returns with Boolean type
      */
-    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, 
+                            SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
         Type operandType = operand.doSemantics(table, errorMsg);
 

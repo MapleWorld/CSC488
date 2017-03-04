@@ -53,7 +53,7 @@ public class ConditionalExpn extends Expn {
      * of Boolean type. Also checks the expressions after ? are of the
      * same type and returns this type as the result type.
      */
-    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
         Type condType = condition.doSemantics(table, errorMsg);
         Type trueType = trueValue.doSemantics(table, errorMsg);

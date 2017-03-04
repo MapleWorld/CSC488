@@ -29,7 +29,8 @@ public class IntConstExpn extends ConstExpn
     }
 
     /** Returns the type of this IntConstExpn */
-    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg,
+                            SymbolTable.ScopeType scp) {
         // S21
         return new IntegerType(this.getLineNumber(), this.getColumnNumber());
     }

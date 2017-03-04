@@ -60,7 +60,7 @@ public class ExitStmt extends Stmt {
 		this.level = level;
 	}
 
-    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scpType) {
         // TODO: Check S50.
         // S50: Exit only when in a loop.
         SymbolTable.ScopeType currentScope = table.getScopeType();

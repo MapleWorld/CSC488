@@ -45,24 +45,28 @@ public class FunctionCallExpn extends Expn {
         this.ident = ident;
     }
 
-    public Type doSemantics(SymbolTable table, List<String> errMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errMsg, 
+                            SymbolTable.ScopeType scp) {
 
         SymbolTableEntry entry = table.getEntry(ident);
 
+        // S40
         if (entry == null) {
-            errMsg.add(String.format("%d:%d: error: %s %s %s\n",
-                                    this.getLineNumber(), this.getColumnNumber(),
-                                    "referenced function",
-                                    this.ident,
-                                    "not found."));
+            errMsg.add(String.format("%d:%d: error %s: %s %s %s\n",
+                                     this.getLineNumber(), this.getColumnNumber(),
+                                     "S40",
+                                     "referenced function",
+                                     this.ident,
+                                     "not found."));
             return null;
         }
 
         if (!(entry.getType() instanceof FunctionSymbolType)) {
-            errMsg.add(String.format("%d:%d: error: %s %s\n",
-                                    this.getLineNumber(), this.getColumnNumber(),
-                                    this.ident,
-                                    "is not a function."));
+            errMsg.add(String.format("%d:%d: error %s: %s %s\n",
+                                     this.getLineNumber(), this.getColumnNumber(),
+                                     "S40",
+                                     this.ident,
+                                     "is not a function."));
             return null;
         }
 
@@ -81,12 +85,16 @@ public class FunctionCallExpn extends Expn {
             ASTList<Expn> givenArgs = this.getArguments();
             for (int i = 0; i < symbol.getParamCount(); i++) {
 
-                if (!((neededArgs.getList().get(i).doSemantics(table, errMsg) instanceof IntegerType && givenArgs.getList().get(i).doSemantics(table, errMsg) instanceof IntegerType) ||
-                    (neededArgs.getList().get(i).doSemantics(table, errMsg) instanceof BooleanType && givenArgs.getList().get(i).doSemantics(table, errMsg) instanceof BooleanType))) {
-                        errMsg.add(String.format("%d:%d: error: %s %s\n",
-                                neededArgs.getList().get(i).getLineNumber(), neededArgs.getList().get(i).getColumnNumber(),
-                                "Parameter types mismatched for function",
-                                this.ident));
+                if (!((neededArgs.getList().get(i).doSemantics(table, errMsg) instanceof IntegerType && 
+                       givenArgs.getList().get(i).doSemantics(table, errMsg) instanceof IntegerType) ||
+                    (neededArgs.getList().get(i).doSemantics(table, errMsg) instanceof BooleanType && 
+                     givenArgs.getList().get(i).doSemantics(table, errMsg) instanceof BooleanType))) {
+                        errMsg.add(String.format("%d:%d: error %s: %s %s\n",
+                                                 neededArgs.getList().get(i).getLineNumber(), 
+                                                 neededArgs.getList().get(i).getColumnNumber(),
+                                                 "S43",
+                                                 "Parameter types mismatched for function",
+                                                 this.ident));
                         return null;
                     }
 
@@ -98,10 +106,11 @@ public class FunctionCallExpn extends Expn {
             else if (symbol.getReturnType() instanceof IntegerType)
                 return new IntegerType(this.getLineNumber(), this.getColumnNumber());
         } else {
-            errMsg.add(String.format("%d:%d: error: %s %s\n",
-                                    this.getLineNumber(), this.getColumnNumber(),
-                                    "Invalid number of parameters for function",
-                                    this.ident));
+            errMsg.add(String.format("%d:%d: error %s: %s %s\n",
+                                     this.getLineNumber(), this.getColumnNumber(),
+                                     "S28",
+                                     "Invalid number of parameters for function",
+                                     this.ident));
             return null;
         }
 

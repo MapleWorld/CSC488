@@ -1,41 +1,44 @@
 package compiler488.ast.decl;
 
 import compiler488.ast.Indentable;
-import compiler488.ast.type.Type;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
+import java.util.*;
 
 /**
  * The common features of declarations.
  */
 public class Declaration extends Indentable {
-	/** The type of thing being declared. */
-	protected Type type = null;
+    /** The type of thing being declared. */
+    protected Type type = null;
+    
+    public Declaration(String name, Type type, int line, int column) {
+        super(line, column);
+        this.name = name;
+        this.type = type;
+    }
+    
+    /** The name of the thing being declared. */
+    protected String name;
 
-	public Declaration(String name, Type type, int line, int column) {
-		super(line, column);
-		this.name = name;
-		this.type = type;
-	}
+    public String getName() {
+        return name;
+    }
 
-	/** The name of the thing being declared. */
-	protected String name;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Type getType() {
+        return type;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setType(Type type) {
+        this.type = type;
+    }
 
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
-	}
-
-    public void doSemantics() {
-        // do semantic analysis for this node
+    public Type doSemantics(SymbolTable table, List<String> errorMessages, 
+                            SymbolTable.ScopeType scp) {
+        return null;
     }
 }

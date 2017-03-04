@@ -24,7 +24,7 @@ public class ArithExpn extends BinaryExpn {
     }
 
     /** Checks the semantics of both operands and returns Integer type */
-    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
         Type leftType = left.doSemantics(table, errorMsg);
         Type rightType = right.doSemantics(table, errorMsg);

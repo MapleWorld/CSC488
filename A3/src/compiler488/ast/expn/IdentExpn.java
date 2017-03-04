@@ -36,7 +36,8 @@ public class IdentExpn extends Expn implements Readable {
     /** Returns the type of this IdentExpn based on table (null if this
      *  IdentExpn is not in the table).
      */
-    public Type doSemantics(SymbolTable table, List<String> errMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errMsg, 
+                            SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
         SymbolTableEntry entry = table.getEntry(ident);
         SymbolType entryType;

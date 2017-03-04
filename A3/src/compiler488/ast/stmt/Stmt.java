@@ -1,6 +1,10 @@
 package compiler488.ast.stmt;
 
 import compiler488.ast.Indentable;
+import compiler488.ast.type.*;
+import compiler488.symbol.*;
+import java.util.*;
+
 
 /**
  * A placeholder for statements.
@@ -14,8 +18,7 @@ public class Stmt extends Indentable {
         super(line, column);
     }
 
-    public void doSemantics() {
-        // TODO: do semantic analysis for this node
-        throw new UnsupportedOperationException("doSemantics not implemented for Stmt.");
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
+        return null;
     }
 }

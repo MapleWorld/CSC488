@@ -99,7 +99,7 @@ public class RoutineDecl extends Declaration {
 		this.routineBody = routineBody;
 	}
 
-    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
 
 		if (this.type == null) { // Procedure
 

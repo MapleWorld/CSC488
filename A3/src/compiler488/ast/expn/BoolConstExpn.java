@@ -31,7 +31,8 @@ public class BoolConstExpn extends ConstExpn
     }
 
     /** Returns the type of this BoolConstExpn */
-    public Type doSemantics(SymbolTable table, List<String> errorMsg) {
+    public Type doSemantics(SymbolTable table, List<String> errorMsg, 
+                            SymbolTable.ScopeType scp) {
         // S20
         return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }

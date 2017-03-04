@@ -45,7 +45,7 @@ public class WriteStmt extends Stmt {
 		this.outputs = outputs;
 	}
 
-    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
         return null;
     }
