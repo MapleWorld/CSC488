@@ -1,3 +1,4 @@
+% Basic variable declaration
 {
     var a : Integer
     a := 5
