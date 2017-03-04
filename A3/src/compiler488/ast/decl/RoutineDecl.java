@@ -105,21 +105,25 @@ public class RoutineDecl extends Declaration {
 
 			if (this.routineBody.getParameters().size() == 0) { // Procedure without parameters
 
-				// S17
+				// S08
+				table.startFunctionScope(this.type);
+
+				// S17, S13
 				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType()));
 
-				// S08, S09 already done by routineBody
-
-				// S13, isn't this in this.routineBody?
+				// S09
+				table.endScope();
 
 			} else { // Procedure with parameters
 
-				// S18
+				// S08
+				table.startFunctionScope(this.type);
+
+				// S18, S13
 				table.addSymbol(this.name, new SymbolTableEntry(new ProcedureSymbolType(this.routineBody.getParameters())));
 
-				// S08, S09 already done by routineBody
-
-				// S13, isn't this in this.routineBody?
+				// S09
+				table.endScope();
 				
 			}
 
@@ -127,21 +131,25 @@ public class RoutineDecl extends Declaration {
 
 			if (this.routineBody.getParameters().size() == 0) { // Function without parameters
 
-				// S11
+				// S04
+				table.startFunctionScope(this.type);
+
+				// S11, S13
 				table.addSymbol(this.name, new SymbolTableEntry(new FunctionSymbolType(this.type, null)));
 
-				// S04, S05 already done by routineBody
-
-				// S13, isn't this in this.routineBody?
+				// S05
+				table.endScope();
 
 			} else { // Function with parameters
 
-				// S12
+				// S04
+				table.startFunctionScope(this.type);
+
+				// S12, S13
 				table.addSymbol(this.name, new SymbolTableEntry(new FunctionSymbolType(this.type, this.routineBody.getParameters())));
 
-				// S04, S05 already done by routineBody
-
-				// S13, isn't this in this.routineBody?
+				// S05
+				table.endScope();
 
 			}
 
