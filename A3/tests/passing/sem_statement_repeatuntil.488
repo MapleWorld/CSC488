@@ -1,0 +1,3 @@
+{
+    repeat write "blah" until false
+}

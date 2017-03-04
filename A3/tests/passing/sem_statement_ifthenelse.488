@@ -1,0 +1,3 @@
+{
+    if true then write "ohai" else write "blah"
+}
