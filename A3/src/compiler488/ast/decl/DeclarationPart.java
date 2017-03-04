@@ -1,6 +1,7 @@
 package compiler488.ast.decl;
 
 import compiler488.ast.AST;
+import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
 

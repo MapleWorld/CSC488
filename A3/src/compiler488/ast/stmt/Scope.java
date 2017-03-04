@@ -15,16 +15,16 @@ import compiler488.symbol.*;
  * Represents the declarations and instructions of a scope construct.
  */
 public class Scope extends Stmt {
-	private ASTList<Declaration> declarations; // The declarations at the top.
+    private ASTList<Declaration> declarations; // The declarations at the top.
+    
+    private ASTList<Stmt> statements; // The statements to execute.
 
-	private ASTList<Stmt> statements; // The statements to execute.
+    public Scope() {
+        declarations = new ASTList<Declaration>();
+        statements = new ASTList<Stmt>();
+    }
 
-	public Scope() {
-		declarations = new ASTList<Declaration>();
-		statements = new ASTList<Stmt>();
-	}
-
-	public Scope(Scope scope) {
+    public Scope(Scope scope) {
         if (scope.getDeclarations() == null) {
             declarations = new ASTList<Declaration>();
         } else {
@@ -38,9 +38,9 @@ public class Scope extends Stmt {
         }
     }
 
-	public Scope(int lineNumber, int columnNumber) {
-		declarations = new ASTList<Declaration>();
-		statements = new ASTList<Stmt>();
+    public Scope(int lineNumber, int columnNumber) {
+        declarations = new ASTList<Declaration>();
+        statements = new ASTList<Stmt>();
         this.setLineNumber(lineNumber);
         this.setColumnNumber(columnNumber);
     }

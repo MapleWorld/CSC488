@@ -53,11 +53,11 @@ public class MultiDeclarations extends Declaration {
     }
 
     /* Performs semantics checks on each element of this MultiDeclartion */
-    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+    public Type doSemantics(SymbolTable table, LinkedList<String> errorMessages) {
         LinkedList<DeclarationPart> elemList = elements.getList();
-        ListIterator<E> iterator = elemList.listIterator();
+        ListIterator<DeclarationPart> iterator = elemList.listIterator();
         while (iterator.hasNext())
-            ((DeclarationPart) iterator.next()).doSemantics(table, errorMessages, type);
+            (iterator.next()).doSemantics(table, errorMessages, this.getType());
         return null;
     }
 }

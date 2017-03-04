@@ -73,7 +73,7 @@ public class ArrayDeclPart extends DeclarationPart {
         if (hasUpperBoundOnly)
             // S48
             success = table.addSymbol(name, 
-                                      new ArrayTableEntry(new ArraySymbolType(idType, 
+                                      new SymbolTableEntry(new ArraySymbolType(idType, 
                                                                               ub)));
         else {
             // S46
@@ -81,10 +81,10 @@ public class ArrayDeclPart extends DeclarationPart {
                 errorMsg.add(String.format("%d:%d: error %s: %s\n",
                                            this.getLineNumber(),
                                            this.getColumnNumber(),
-                                           "S46"
+                                           "S46",
                                            "expected lower bound <= upper bound"));
             success = table.addSymbol(name,
-                                      new ArrayTableEntry(new ArraySymbolType(idType,
+                                      new SymbolTableEntry(new ArraySymbolType(idType,
                                                                               ub, lb)));
         }            
 
