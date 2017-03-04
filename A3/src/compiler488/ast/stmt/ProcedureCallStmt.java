@@ -5,6 +5,7 @@ import java.util.List;
 
 import compiler488.ast.AST;
 import compiler488.ast.ASTList;
+import compiler488.ast.decl.*;
 import compiler488.ast.expn.Expn;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
@@ -98,7 +99,7 @@ public class ProcedureCallStmt extends Stmt {
 
             // Check that the argument types match.
             ASTList<Expn> givenArgs = this.getArguments();
-            ASTList<Expn> neededArgs = procedureType.getArguments();
+            ASTList<ScalarDecl> neededArgs = procedureType.getArguments();
             for (int i = 0; i < procedureType.getParamCount(); i++) {
                 if (!((neededArgs.getList().get(i).doSemantics(table, errorMessages) instanceof IntegerType && givenArgs.getList().get(i).doSemantics(table, errorMessages) instanceof IntegerType) ||
                       (neededArgs.getList().get(i).doSemantics(table, errorMessages) instanceof BooleanType && givenArgs.getList().get(i).doSemantics(table, errorMessages) instanceof BooleanType))) {
