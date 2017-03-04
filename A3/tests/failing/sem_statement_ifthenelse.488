@@ -1,3 +1,4 @@
+% Incorrect If else write statement on integer condition
 {
     if 5 then write "wow" else write "blah"
 }

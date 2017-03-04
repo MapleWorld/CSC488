@@ -1,3 +1,4 @@
+% Incorrect function return type
 {
     function add_one : Integer {
         return with true

@@ -90,3 +90,15 @@ Failing Test Cases:
 22_invalid_operator4.488 - Invalid associativity
 22_invalid_operator5.488 - Invalid associativity
 23_invalid_read.488 - Invalid read statement
+sem_statement_exit.488 - Exit statement
+sem_statement_exitinteger.488 - Incorrect exit statement on integer
+sem_statement_exitwhen.488 - Incorrect while loop statement exit on integer
+sem_statement_ifthen.488 - Incorrect If write statement with integer condition
+sem_statement_ifthenelse.488 - Incorrect If else write statement on integer condition
+sem_statement_procedurename.488 - Incorrect number of param for procedure
+sem_statement_procedurenameargs.488 - Incorrect number of param for procedure
+sem_statement_repeatuntil.488 - Incorrect condition on repeat statement
+sem_statement_return.488 - Incorrect empty return statement
+sem_statement_returnwith.488 - Incorrect function return type
+sem_statement_variable.488 - Incorrect variable type assignment
+sem_statement_whiledo.488 - Incorrect while loop condition statement
