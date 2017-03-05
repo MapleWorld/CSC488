@@ -22,9 +22,6 @@ variablename
     ;
 ```
 
-Extra Classes:
-ReadableExpn.class - To convert expression into readable object
-
 # Symbol Table:
 
 The symbol table contains several properties:
