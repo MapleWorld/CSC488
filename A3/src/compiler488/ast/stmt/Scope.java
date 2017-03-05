@@ -70,13 +70,6 @@ public class Scope extends Stmt {
 
     }
 
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(declarations);
-        children.add(statements);
-        return children;
-    }
-
     /**
      * Print a description of the <b>scope</b> construct.
      *

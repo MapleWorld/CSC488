@@ -21,12 +21,6 @@ public class WriteStmt extends Stmt {
         outputs = new ASTList<Printable> ();
     }
     
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(outputs);
-        return children;
-    }
-    
     /** Returns a description of the <b>write</b> statement. */
     @Override
     public String toString() {

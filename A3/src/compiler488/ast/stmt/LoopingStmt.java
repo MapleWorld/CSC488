@@ -23,13 +23,6 @@ public abstract class LoopingStmt extends Stmt
         this.body = body;
     }
 
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(condition);
-        children.add(body);
-        return children;
-    }
-
     public LoopingStmt(Stmt body, int line, int column) {
         this(null, body, line, column);
     }

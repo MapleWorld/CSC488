@@ -28,12 +28,6 @@ public class ProcedureCallStmt extends Stmt {
         this(name, new ASTList<Expn>(),line, column);
     }
     
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(arguments);
-        return children;
-    }
-
     /** Returns a string describing the procedure call. */
     @Override
     public String toString() {

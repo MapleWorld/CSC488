@@ -36,16 +36,6 @@ public class IfStmt extends Stmt {
         this(condition, whenTrue, null, line, column);
     }
 
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(condition);
-        children.add(whenTrue);
-        if (whenFalse != null) {
-            children.add(whenFalse);
-        }
-        return children;
-    }
-
     /**
      * Print a description of the <b>if-then-else</b> construct. If the
      * <b>else</b> part is empty, just print an <b>if-then</b> construct.

@@ -26,12 +26,6 @@ public class ReadStmt extends Stmt {
         this.inputs = inputs;
     }
 
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(inputs);
-        return children;
-    }
-
     /** Returns a string describing the <b>read</b> statement. */
     @Override
     public String toString() {
