@@ -17,6 +17,8 @@ public class Scope extends Stmt {
     private ASTList<Declaration> declarations; // The declarations at the top.
     
     private ASTList<Stmt> statements; // The statements to execute.
+    private SymbolTable.ScopeType currScpType; // this scope's type
+
 
     public Scope() {
         declarations = new ASTList<Declaration>();
@@ -115,12 +117,17 @@ public class Scope extends Stmt {
         this.statements = statements;
     }
 
+    public void setScpType(SymbolTable.ScopeType scpType) {
+        this.currScpType = scpType;
+    }
+
     /** Checks semantics of this Scope */
     public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scpType) {
         if (scpType == SymbolTable.ScopeType.LOOP)
             table.startLoopScope();
         else
             table.startScope(scpType);
+        this.currScpType = scpType;
         this.doSemantics(table, errorMessages);
         table.endScope();
         return null;
@@ -135,7 +142,7 @@ public class Scope extends Stmt {
         LinkedList<Stmt> stmtList = statements.getList();
         ListIterator<Stmt> stmtIterator = stmtList.listIterator();
         while (stmtIterator.hasNext()) 
-            (stmtIterator.next()).doSemantics(table, errorMessages, null);
+            (stmtIterator.next()).doSemantics(table, errorMessages, this.currScpType);
         return null;
     }
 }

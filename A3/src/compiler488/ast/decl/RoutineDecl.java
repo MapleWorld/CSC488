@@ -116,7 +116,7 @@ public class RoutineDecl extends Declaration {
             
             // S08
             table.startScope(SymbolTable.ScopeType.PROCEDURE);
-            
+            routineBody.getBody().setScpType(SymbolTable.ScopeType.PROCEDURE);
             routineBody.doSemantics(table, errorMsg);
 
             // S09
@@ -136,7 +136,7 @@ public class RoutineDecl extends Declaration {
             
             // S04
             table.startFunctionScope(this.type);
-            
+            routineBody.getBody().setScpType(SymbolTable.ScopeType.FUNCTION);
             routineBody.doSemantics(table, errorMsg);
 
             // S05

@@ -73,8 +73,11 @@ public class SymbolTable {
      * Adds a new scope to this Symbol Table
      */
     public void startScope(ScopeType newScope) {
+        if (newScope == ScopeType.ORDINARY)
+            stack.push(new SymbolList(newScope, getNumLoop()));
+        else
+            stack.push(new SymbolList(newScope));
         scopeIndex++;
-        stack.push(new SymbolList(newScope));
     }
     
     /**
@@ -109,13 +112,30 @@ public class SymbolTable {
      * Returns the current Scope Type.
      */
     public ScopeType getScopeType() {
-        return stack.peek().getScopeType();
+        ScopeType scp = stack.peek().getScopeType();
+        ArrayDeque<SymbolList> tmp = new ArrayDeque<SymbolList> ();
+        while (scp == ScopeType.ORDINARY) {
+            tmp.push(stack.pop());
+            scp = stack.peek().getScopeType();
+        }
+        while (tmp.size() > 0)
+            stack.push(tmp.pop());
+        return scp;
     }
 
    
     /** Returns the return type of this scope */
     public Type getReturnType() {
-        return stack.peek().getReturnType();
+        ScopeType scp = stack.peek().getScopeType();
+        ArrayDeque<SymbolList> tmp = new ArrayDeque<SymbolList> ();
+        while (scp == ScopeType.ORDINARY) {
+            tmp.push(stack.pop());
+            scp = stack.peek().getScopeType();
+        }
+        Type retType = stack.peek().getReturnType();
+        while (tmp.size() > 0)
+            stack.push(tmp.pop());
+        return retType;
     }
 
     /** Returns the number of loops that this scope resides in */

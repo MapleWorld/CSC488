@@ -7,6 +7,7 @@
     %%%%% declarations
     var global_int : Integer
     var global_int_proc : Integer
+    var result : Boolean
     
     %%%%% recursive funtion without parameters (include one nested function)
     % returns the sum from 1 to global_int, 0 if global_int is smaller than 1
@@ -83,8 +84,7 @@
     global_int := 3
     write "OUTPUT FOR RECURSIVE FUNCTION NO PARAMATERS (EXPECTED: 6) : " , 
           rec_function_without_param , newline
-    write "OUTPUT FOR RECURSIVE FUNCTION WITH PARAMATERS (EXPECTED: true) : " ,
-          rec_function_with_param ( 3 , 0 , true ) , newline
+    result := rec_function_with_param ( 3 , 0 , true )
 
     global_int_proc := 2
     rec_procedure_without_param
