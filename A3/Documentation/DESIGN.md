@@ -38,8 +38,8 @@ The symbol table contains several properties:
  replaced by the declaration with the same symbol name in the current scope. 
  The SymbolList also keeps track the type of the current scope - one of 
  {PROGRAM, FUNCTION, PROCEDURE, LOOP, ORDINARY (for if-statments)}.
- We do not differentiate between major and minor scope; they all get handled in the same way.
- When a new scope is started, the symbol table pushes a new SymbolList to its stack and
+ We do not differentiate between major and minor scopes; they all get handled in the same way.
+ When a new scope is started, the symbol table pushes a new SymbolList to the stack and
  updates the index of the current scope. When the scope is ended, the symbol table restores
  the old values from the current SymbolList back to the mapping, 
  removes the SymbolList from its stack, and correctly updates the index number of the current scope. 
