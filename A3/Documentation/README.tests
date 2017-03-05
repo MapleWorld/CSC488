@@ -6,93 +6,36 @@ A1c.488 - From assignment 1, a program using all forms of loop building and loop
 A1d.488 - From assignment 1, a program using non-recursive functions and procedures with and without parameters.
 A1e.488 - From assignment 1, a program using recursive functions and procedures with and without parameters.
 
-program_0.488 - Basic empty scope test.
-program_1.488 - Single statment.
-program_2.488 - Single variable declaration.
-program_3.488 - Multiple variables declaration.
-program_4.488 - Variable re-assignment.
-program_5.488 - Single function with params.
-program_6.488 - Single procedure with params.
-program_7.488 - Infinite while loop.
+nested_routine_decl.488 - nested procedure and function 
+nested_scopes.488 - nested scopes
+variable_scope.488 - Identifier re-declaration in nested scope
+program_0.488 - Basic empty scope test
+program_1.488 - Single statment
+program_2.488 - Single variable declaration
+program_3.488 - Multiple variables declaration
+program_4.488 - Variable re-assignment
+program_6.488 - Single procedure with params
 program_8.488 - Various valid if-statements
-program_9.488 - Various valid if-statements with no indent.
-program_10.488 - Various array declaration with bound.
-program_11.488 - Write statment with multiple newlines.
-program_12.488 - Single variable read statement.
-program_13.488 - Mutiple variables read statement.
-program_14.488 - Recursively function with mutiple read and write.
+program_9.488 - Various valid if-statements with no indent
+program_10.488 - Various array declaration with bound
+program_11.488 - Write statment with multiple newlines
+program_12.488 - Single variable read statement
+program_13.488 - Mutiple variables read statement
+program_14.488 - Recursive function with mutiple read and write.
 program_15.488 - Various valid loops
-exitstmt.488 - Exit statement
-procedurestmt.488 - A program using non-recursive functions with parameters
-sem_statement_exit.488 - While loop statement exit
-sem_statement_exitinteger.488 - While loop statement exit on integer
-sem_statement_exitwhen.488 - While loop statement exit on condition
-sem_statement_ifthen.488 - If write statement
-sem_statement_ifthenelse.488 - If else write statement
-sem_statement_procedurename.488 - Procedure with no param no return
-sem_statement_procedurenameargs.488 - Procedure with params
-sem_statement_repeatuntil.488 - Repeat write until condition
+sem_statement_exit.488 - exit statement
+sem_statement_exitinteger.488 - exit on integer
+sem_statement_exitwhen.488 - exit on condition
+sem_statement_exitintegerwhen.488 - exit on integer on condition
 sem_statement_return.488 - Procedure with no param but return empty
 sem_statement_returnwith.488 - Function with return type integer
 sem_statement_variable.488 - Basic variable declaration
-sem_statement_whiledo.488 - Basic while loop
 
 Failing Test Cases:
 
-00_empty_file.488 - Empty file is not allowed.
-01_missing_type.488 - Missing type for variable declaration
-02_missing_statement.488 - Test syntax error detection
-03_invalid_variable_name.488 - Illegal Variable Name
-04_declaration_after_statement.488 - Declaration After Statement
-05_invalid_assignment.488 - Invalid variable assignment
-06_invalid_array_declaration0.488 - Invalid variable declaration with missing/invalid bound
-06_invalid_array_declaration1.488 - Invalid variable declaration with missing/invalid bound
-06_invalid_array_declaration2.488 - Invalid variable declaration with missing/invalid bound
-06_invalid_array_declaration3.488 - Invalid variable declaration with missing/invalid bound
-06_invalid_array_declaration4.488 - Invalid variable declaration with missing/invalid bound
-06_invalid_array_declaration5.488 - Invalid variable declaration with missing/invalid bound
-06_invalid_array_declaration6.488 - Invalid variable declaration with missing/invalid bound
-06_invalid_array_declaration7.488 - Invalid variable declaration with missing/invalid bound
-07_invalid_while_statement.488 - Invalid statement in while loop
-07_invalid_while_statement1.488 - Invalid statement in while loop
-08_invalid_while_expression.488 - Invalid while loop expression
-09_invalid_repeat_statement0.488 - Invalid statement in repeat
-09_invalid_repeat_statement1.488 - Invalid statement in repeat
-10_invalid_repeat_expression.488 - Invalid repeat expression
-11_invalid_write.488 - Invalid write output
-12_invalid_return0.488 - Invalid return
-12_invalid_return1.488 - Invalid return
-12_invalid_return2.488 - Invalid return
-12_invalid_return3.488 - Invalid return
-12_invalid_return4.488 - Invalid return
-12_invalid_return5.488 - Invalid return
-13_invalid_function0.488 - Invalid function
-13_invalid_function1.488 - Invalid function
-13_invalid_function2.488 - Invalid function
-13_invalid_function3.488 - Invalid function
-14_invalid_procedure0.488 - Invalid procedure
-15_invalid_integer0.488 - Invalid integer value
-15_invalid_integer1.488 - Invalid integer value
-15_invalid_integer2.488 - Invalid integer value
-16_invalid_syntax.488 - Invalid syntax
-17_invalid_if_else_statement0.488 - Invalid if statement
-17_invalid_if_else_statement1.488 - Invalid if statement
-17_invalid_if_else_statement2.488 - Invalid if statement
-17_invalid_if_else_statement3.488 - Invalid if statement
-18_invalid_scope.488 - Missing end bracket
-19_invalid_scopes.488 - Invalid nested scopes
-20_invalid_exit.488 - Invalid exit statement
-21_invalid_exit_when.488 - Invalid exit when statement
-22_invalid_operator0.488 - Invalid associativity
-22_invalid_operator1.488 - Invalid associativity
-22_invalid_operator2.488 - Invalid associativity
-22_invalid_operator3.488 - Invalid associativity
-22_invalid_operator4.488 - Invalid associativity
-22_invalid_operator5.488 - Invalid associativity
-23_invalid_read.488 - Invalid read statement
-sem_statement_exit.488 - Exit statement
+sem_statement_exit.488 - Exit statement (invalid scope type)
 sem_statement_exitinteger.488 - Incorrect exit statement on integer
-sem_statement_exitwhen.488 - Incorrect while loop statement exit on integer
+sem_statement_exitwhen.488 - Incorrect loop exit with condition
 sem_statement_ifthen.488 - Incorrect If write statement with integer condition
 sem_statement_ifthenelse.488 - Incorrect If else write statement on integer condition
 sem_statement_procedurename.488 - Incorrect number of param for procedure
@@ -102,3 +45,24 @@ sem_statement_return.488 - Incorrect empty return statement
 sem_statement_returnwith.488 - Incorrect function return type
 sem_statement_variable.488 - Incorrect variable type assignment
 sem_statement_whiledo.488 - Incorrect while loop condition statement
+array_S31.488 - Incorrect usage on array subscription, validate its type and existence
+program_5.488 - Function misuage
+binary_S31.488 - Incorrect usage on binary expressions (arithmetic and boolean), validate the result type
+read.488 - Incorrect read statement, validate inputs type
+binary_S32.488 - Incorrect usage on binary expressions (equality) , validate the result type
+scalar_S20.488 - Incorrect usage on boolean type scalar value, validate its type
+bracket_expn_S23.488 - Incorrect usage on (expression), validate the type 
+scalar_S21.488 - Incorrect usage on integer type scalar value, validate its type
+cond_expn_S33.488 - Incorrect usage on conditional expressions, validate its type 
+scalar_decl.488 - Redeclaration in the same scope
+function_S43.488 - Function call misuage, validate its paramaters and type                  
+sem_statement_returnwith_2.488 - Return with misusage, validate the scope it is in
+function_decl.488 - Function re-declaration and parameter re-declaration
+not_S30.488 - Not expressions misusage
+param_S25.488 - Parameter redeclaration       
+sem_statement_exitintegerwhen.488 - Exit on integer with condition (incorrect integer value)
+unary_minus_S31.488 - Incorrect unary minus expression, validate its usage and type
+procedure_decl.488 - Procedure redeclaration       
+write.488 - Incorrect write statement, validate outputs type
+procedurestmt.488 - Incorrect procedure call, validate the type and parameters  
+sem_statement_exitwhen_2.488 - Invalid scope to call exit on condition
