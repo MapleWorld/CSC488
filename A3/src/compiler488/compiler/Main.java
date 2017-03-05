@@ -445,15 +445,15 @@ public class Main {
 
 		try {
                     // Do semantic analysis here.
-                    System.out.println("Semantic Analysis Starts");
+                    System.out.println("Semantic Analysis Starts\n");
                     SymbolTable symbolTable = new SymbolTable();
                     List<String> errorMessages = new ArrayList<String>();
                     programAST.doSemantics(symbolTable, errorMessages, SymbolTable.ScopeType.PROGRAM);
 
                     for (int i = 0; i < errorMessages.size(); i++) {
-                        System.out.println(errorMessages.get(i));
+                        System.out.print(errorMessages.get(i));
                     }
-                    System.out.println("Semantic Analysis Ended");
+                    System.out.println("\nSemantic Analysis Ended");
 		} catch (Exception e) {
 			System.err.println("Exception during Semantic Analysis");
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
