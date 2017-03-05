@@ -9,29 +9,7 @@
 
 {
 
-    %%%% Function to test results of integer arrays
-    function test_equality_integer(expected : Integer, actual : Integer) : Integer {
-        var test_passed : Integer
-        
-        if expected = actual
-        then test_passed := 1 
-        else test_passed := 0
 
-        write test_passed
-        return with test_passed
-    }
-    
-    %%%% Function to test results of boolean arrays
-    function test_equality_boolean(expected : Boolean, actual : Boolean) : Integer {
-        var test_passed : Integer
-        
-        if expected = actual
-        then test_passed := 1 
-        else test_passed := 0
-
-        write test_passed
-        return with test_passed
-    }
     %%%% Declaring arrays 
 
     var simple[1] : Integer
@@ -53,69 +31,47 @@
     %%%% Reference array elements using integers
     
     simple[1] := 1
-    test_equality_integer(simple[1], 1)
     
     longer[32767] := 32767
-    test_equality_integer(longer[32767], 32767)
     
     sequential[3] := true
-    test_equality_boolean(sequential[3], true)
     
     negatives[-100] := false
-    test_equality_boolean(negatives[-100], false)
-    
+
     negatives[0] := true
-    test_equality_boolean(negatives[0], true)
-    
+
     negative_and_positive[-3] := -3
-    test_equality_integer(negative_and_positive[-3], -3)
     
     largest[0] := 0
-    test_equality_integer(largest[0], 0)
     
     largest[-32767] := -32767
-    test_equality_integer(largest[-32767], -32767)
+
     
     %%%% Reference array elements using expresions
     
-    test_equality_integer(simple[2-1], 1)
-    
     sequential[y] := false
-    test_equality_boolean(sequential[y], false)
     
     largest[543-123] := 420
-    test_equality_integer(largest[543-123], 420)
     
     negatives[-100] := true
-    test_equality_boolean(negatives[-90-10], true)
     
     negatives[-45] := false
-    test_equality_boolean(negatives[-90+45], false)
    
     negative_and_positive[z + y] := -1
-    test_equality_integer(negative_and_positive[z + y], -1)
     
     negative_and_positive[-5+10-3] := 2
-    test_equality_integer(negative_and_positive[-5+10-3], 2)
     
     largest[-50*50] := -250
-    test_equality_integer(largest[-50*50], -250)
     
     largest[-11*-11] := 121
-    test_equality_integer(largest[-11*-11], 121)
     
     largest[120/-12] := -10
-    test_equality_integer(largest[120/-12], -10)
     
     largest[2+120/-12-y] := -12
-    test_equality_integer(largest[2+120/-12-y], -12)
 
     %%%% Modify array elements
     simple[1] := -5
-    sequential[y] := b
 
-    %%%% Test modified values
-    test_equality_integer(simple[1], -5)
-    test_equality_boolean(sequential[y], b)
+    sequential[y] := b
 
 }

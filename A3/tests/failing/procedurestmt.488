@@ -1,7 +1,7 @@
 % A program using non-recursive functions with parameters
 {
     %%%%% procedure without parameters
-    procedure procedure_without_params {
+    procedure procedure_with_params {
         return
     }
 

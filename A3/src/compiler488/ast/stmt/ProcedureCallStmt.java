@@ -77,7 +77,7 @@ public class ProcedureCallStmt extends Stmt {
 
         ProcedureSymbolType procedureType = (ProcedureSymbolType) entry.getType();
 
-        if (arguments.size() != 0) {
+        if (arguments.size() == 0) {
             // S42: Check that the function or procedure has no parameters.
             if (procedureType.getParamCount() != 0) {
                 errorMessages.add(String.format("%d:%d: error %s: %s\n",

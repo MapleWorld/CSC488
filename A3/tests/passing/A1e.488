@@ -74,7 +74,7 @@
             return
         else {
             helper ( n - 1 )
-            rec_procedure_without_param ( n - 1 , is_valid )
+            rec_procedure_with_param ( n - 1 , is_valid )
             return
         }
     }

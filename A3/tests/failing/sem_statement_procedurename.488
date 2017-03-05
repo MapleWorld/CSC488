@@ -1,8 +1,0 @@
-% Incorrect number of param for procedure
-{
-	procedure rec_procedure_with_param () {
-		write "blah"
-	}
-
-	rec_procedure_with_param(2, true)
-}
