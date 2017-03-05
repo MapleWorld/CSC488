@@ -73,9 +73,9 @@ public class RoutineDecl extends Declaration {
     @Override
     public String toString() {
         if (type == null) {
-            return " procedure " + name;
+            return "procedure " + name;
 		} else {
-            return " function " + name + " : " + type;
+            return "function " + name + " : " + type;
         }
     }
     

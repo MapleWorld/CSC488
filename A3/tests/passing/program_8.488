@@ -3,10 +3,10 @@
     if true
     then write "hi"
 
-    if true then
-    if true then
-    else write "hi"
-
+    if true then 
+    if true then 
+    else write "hi" 
+    
     if true then {
        write "hi"
     } else {
