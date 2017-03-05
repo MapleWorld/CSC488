@@ -86,20 +86,10 @@ public class ProcedureCallStmt extends Stmt {
                               "Nullary procedure called with parameters."));
             }
         } else {
-            // S43: Check that the number of arguments is equal to the number of
-            // formal parameters.
-            if (procedureType.getParamCount() != arguments.size()) {
-                errorMessages.add(String.format("%d:%d: error %s: %s\n",
-                              this.getLineNumber(), this.getColumnNumber(),
-                              "S43",
-                              "Procedure is called with incorrect number of parameters."));
-                return null;
-            }
-
             // Check that the argument types match.
             ASTList<Expn> givenArgs = this.getArguments();
             ASTList<ScalarDecl> neededArgs = procedureType.getArguments();
-            for (int i = 0; i < procedureType.getParamCount(); i++) {
+            for (int i = 0; i < Math.min(this.getArguments().size(), procedureType.getParamCount()); i++) {
                 if (!((neededArgs.getList().get(i).getType() instanceof IntegerType && 
                        givenArgs.getList().get(i).doSemantics(table, errorMessages, null) instanceof IntegerType) ||
                       (neededArgs.getList().get(i).getType() instanceof BooleanType && 
@@ -110,9 +100,18 @@ public class ProcedureCallStmt extends Stmt {
                                                     "S36",
                                                     "Parameter types mismatched for procedure",
                                                     name));
-                    return null;
-                }
+                 }
             }
+            
+            // S43: Check that the number of arguments is equal to the number of
+            // formal parameters.
+            if (procedureType.getParamCount() != arguments.size()) {
+                errorMessages.add(String.format("%d:%d: error %s: %s\n",
+                                                this.getLineNumber(), this.getColumnNumber(),
+                                                "S43",
+                                                "Procedure is called with incorrect number of parameters."));
+            }
+            
         }
 
         return null;

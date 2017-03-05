@@ -1,0 +1,23 @@
+{
+    % test parameters can be actually used
+    function b (c : Integer, d : Boolean) : Integer {
+        var a : Integer
+        var f : Boolean
+        a := d
+        f := c
+        return with 1
+    }
+    
+    procedure e (c : Boolean, d : Integer) {
+       var a : Boolean
+       var f : Integer
+       a := d
+       f := c
+       return
+    }
+
+    e(true, 1)
+}
+     
+
+    

@@ -1,0 +1,23 @@
+{
+    % test identifier inside another scope could be re-declared
+    function b (c : Integer, d : Boolean) : Integer {
+        var a : Integer
+        var f : Boolean
+        a := c
+        f := d
+        return with 1
+    }
+    
+    procedure e (c : Boolean, d : Integer) {
+       var a : Boolean
+       var f : Integer
+       var b : Boolean 
+
+       return
+    }
+
+    e(true, 1)
+}
+     
+
+    

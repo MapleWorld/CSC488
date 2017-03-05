@@ -1,0 +1,11 @@
+{
+    % assign Integer const to Boolean
+    var a : Boolean
+    var b : Integer
+
+    a := 1
+    
+    % assign Integer var to Boolean
+    b := 1
+    a := b
+}

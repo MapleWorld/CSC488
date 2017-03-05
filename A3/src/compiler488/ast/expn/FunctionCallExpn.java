@@ -72,18 +72,26 @@ public class FunctionCallExpn extends Expn {
 
         FunctionSymbolType symbol = (FunctionSymbolType) entry.getType();
         if (symbol.getParamCount() == 0) { //S42
+            if (symbol.getParamCount() != this.getArguments().size()) 
+                errMsg.add(String.format("%d:%d: error %s: %s %s\n",
+                                         this.getLineNumber(), this.getColumnNumber(),
+                                         "S28",
+                                         "Invalid number of parameters for function",
+                                         this.ident));
+
             // S28
             if (symbol.getReturnType() instanceof BooleanType)
                 return new BooleanType(this.getLineNumber(), this.getColumnNumber());
             else if (symbol.getReturnType() instanceof IntegerType)
                 return new IntegerType(this.getLineNumber(), this.getColumnNumber());
 
-        } else if (symbol.getParamCount() == this.getArguments().size()) { // S43
+        } else { // S43
 
             // Ensure argument types match, S44, S45, S36
             ASTList<ScalarDecl> neededArgs = symbol.getArguments();
             ASTList<Expn> givenArgs = this.getArguments();
-            for (int i = 0; i < symbol.getParamCount(); i++) {
+
+            for (int i = 0; i < Math.min(symbol.getParamCount(), this.getArguments().size()); i++) {
 
                 if (!((neededArgs.getList().get(i).getType() instanceof IntegerType && 
                        givenArgs.getList().get(i).doSemantics(table, errMsg, null) instanceof IntegerType) ||
@@ -95,25 +103,24 @@ public class FunctionCallExpn extends Expn {
                                                  "S43",
                                                  "Parameter types mismatched for function",
                                                  this.ident));
-                        return null;
-                    }
+                }
 
             }
-
+            
+            if (symbol.getParamCount() != this.getArguments().size()) 
+                errMsg.add(String.format("%d:%d: error %s: %s %s\n",
+                                         this.getLineNumber(), this.getColumnNumber(),
+                                         "S28",
+                                         "Invalid number of parameters for function",
+                                         this.ident));
+            
             // S28
             if (symbol.getReturnType() instanceof BooleanType)
                 return new BooleanType(this.getLineNumber(), this.getColumnNumber());
             else if (symbol.getReturnType() instanceof IntegerType)
                 return new IntegerType(this.getLineNumber(), this.getColumnNumber());
-        } else {
-            errMsg.add(String.format("%d:%d: error %s: %s %s\n",
-                                     this.getLineNumber(), this.getColumnNumber(),
-                                     "S28",
-                                     "Invalid number of parameters for function",
-                                     this.ident));
-            return null;
-        }
-
+        } 
+        
         return null;
 
     }
