@@ -1,3 +1,5 @@
+All tests are used to verify the correctness of the semantics (especially the failing tests) and the AST generation.
+
 Passing Test Cases:
 
 A1a.488 - From assignment 1, a program that uses all arithmetic, logical, and comparison operators.
@@ -30,22 +32,22 @@ sem_statement_exitintegerwhen.488 - exit on integer on condition
 sem_statement_return.488 - Procedure with no param but return empty
 sem_statement_returnwith.488 - Function with return type integer
 sem_statement_variable.488 - Basic variable declaration
-S24.488 - S24 Set result type to type of conditional expressions
-S37.488 - S37 Check that identifier has been declared as a scalar variable
-S38.488 - S38 Check that identifier has been declared as an array
-S39.488 - S39 Check identifier has been declared as a parameter
+S24.488 - S24 Set result type to type of conditional expressions (to verify the correctness of the symbol table)
+S37.488 - S37 Check that identifier has been declared as a scalar variable (to verify the correctness of the symbol table)
+S38.488 - S38 Check that identifier has been declared as an array (to verify the correctness of the symbol table)
+S39.488 - S39 Check identifier has been declared as a parameter (to verify the correctness of the symbol table)
 
 Failing Test Cases:
 
-function_decl.488 - Function re-declaration and parameter re-declaration
-procedure_decl.488 - Procedure redeclaration       
+function_decl.488 - Function re-declaration and parameter re-declaration (to verify the correctness of the symbol table)
+procedure_decl.488 - Procedure redeclaration (to verify the correctness of the symbol table)      
 procedurestmt.488 - Incorrect procedure call, validate the type and parameters  
 sem_statement_exitwhen_2.488 - Invalid scope to call exit on condition
-sem_statement_returnwith_2.488 - Return with misusage, validate the scope it is in
-sem_statement_exitintegerwhen.488 - Exit on integer with condition (incorrect integer value)
-sem_statement_exit.488 - Exit statement (invalid scope type)
-sem_statement_exitinteger.488 - Incorrect exit statement on integer
-sem_statement_exitwhen.488 - Incorrect loop exit with condition
+sem_statement_returnwith_2.488 - Return with misusage, validate the scope it is in (to verify the correctness of the symbol table)
+sem_statement_exitintegerwhen.488 - Exit on integer with condition (incorrect integer value) (to verify the correctness of the symbol table)
+sem_statement_exit.488 - Exit statement (invalid scope type) (to verify the correctness of the symbol table)
+sem_statement_exitinteger.488 - Incorrect exit statement on integer (to verify the correctness of the symbol table)
+sem_statement_exitwhen.488 - Incorrect loop exit with condition (to verify the correctness of the symbol table)
 sem_statement_ifthen.488 - Incorrect If write statement with integer condition
 sem_statement_ifthenelse.488 - Incorrect If else write statement on integer condition
 sem_statement_procedurename.488 - Incorrect number of param for procedure
@@ -56,7 +58,7 @@ sem_statement_returnwith.488 - Incorrect function return type
 sem_statement_variable.488 - Incorrect variable type assignment
 sem_statement_whiledo.488 - Incorrect while loop condition statement
 program_5.488 - Function misuage
-scalar_decl.488 - Redeclaration in the same scope
+scalar_decl.488 - Redeclaration in the same scope (to verify the correctness of the symbol table)
 read.488 - Incorrect read statement, validate inputs type
 write.488 - Incorrect write statement, validate outputs type
 S20_scalar.488 - Incorrect usage on boolean type scalar value, validate its type
@@ -69,9 +71,9 @@ S31_array_S31.488 - Incorrect usage on array subscription, validate its type and
 S31_binary_S31.488 - Incorrect usage on binary expressions (arithmetic and boolean), validate the result type
 S32_binary.488 - Incorrect usage on binary expressions (equality) , validate the result type
 S33_cond_expn.488 - Incorrect usage on conditional expressions, validate its type 
-S37.488 - Identifier has not been declared as a scalar variable
-S38.488 - Identifier has not been declared as an array
-S39.488 - Identifier has not been declared as a parameter
-S43_function.488 - Function call misuage, validate its paramaters and type                  
+S37.488 - Identifier has not been declared as a scalar variable (to verify the correctness of the symbol table)
+S38.488 - Identifier has not been declared as an array (to verify the correctness of the symbol table)
+S39.488 - Identifier has not been declared as a parameter (to verify the correctness of the symbol table)
+S43_function.488 - Function call misuage, validate its paramaters and type (to verify the correctness of the symbol table)                 
 
 
