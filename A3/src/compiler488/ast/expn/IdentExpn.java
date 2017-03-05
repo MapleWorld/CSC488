@@ -1,6 +1,8 @@
 package compiler488.ast.expn;
 
 import compiler488.symbol.*;
+import compiler488.ast.*;
+import compiler488.ast.expn.*;
 import compiler488.ast.type.*;
 import java.util.*;
 
@@ -52,6 +54,12 @@ public class IdentExpn extends Expn implements Readable {
                     return new BooleanType(this.getLineNumber(), this.getColumnNumber());
                 else if (identType instanceof IntegerType)
                     return new IntegerType(this.getLineNumber(), this.getColumnNumber());
+            }
+            else if (entryType instanceof FunctionSymbolType) {
+                FunctionCallExpn func = new FunctionCallExpn(ident, new ASTList<Expn> (),
+                                                             this.getLineNumber(),
+                                                             this.getColumnNumber());
+                return func.doSemantics(table, errMsg, scp);
             }
         }
 
