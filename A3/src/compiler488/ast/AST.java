@@ -30,7 +30,8 @@ public class AST {
      * @param columnNumber the column number
      */
     public AST(int lineNumber, int columnNumber) {
-        this.lineNumber = lineNumber;
+        // the cup file causes the lineNumber to be off by 1
+        this.lineNumber = lineNumber + 1;
         this.columnNumber = columnNumber;
     }
 

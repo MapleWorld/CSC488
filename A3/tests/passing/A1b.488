@@ -10,24 +10,24 @@
 {
 
     %%%% Function to test results of integer arrays
-    function test_equality_integer(expected : Integer, actual : Integer) : Boolean {
-        var test_passed : Boolean
+    function test_equality_integer(expected : Integer, actual : Integer) : Integer {
+        var test_passed : Integer
         
         if expected = actual
-        then test_passed := true 
-        else test_passed := false
+        then test_passed := 1 
+        else test_passed := 0
 
         write test_passed
         return with test_passed
     }
     
     %%%% Function to test results of boolean arrays
-    function test_equality_boolean(expected : Boolean, actual : Boolean) : Boolean {
-        var test_passed : Boolean
+    function test_equality_boolean(expected : Boolean, actual : Boolean) : Integer {
+        var test_passed : Integer
         
         if expected = actual
-        then test_passed := true 
-        else test_passed := false
+        then test_passed := 1 
+        else test_passed := 0
 
         write test_passed
         return with test_passed
