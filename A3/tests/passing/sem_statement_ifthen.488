@@ -1,4 +1,0 @@
-% If write statement
-{
-    if true then write "ohai"
-}

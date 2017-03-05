@@ -1,4 +1,0 @@
-% If else write statement
-{
-    if true then write "ohai" else write "blah"
-}

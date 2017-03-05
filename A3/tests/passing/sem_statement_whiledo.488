@@ -1,4 +1,0 @@
-% Basic while loop
-{
-    while true do write "wow"
-}

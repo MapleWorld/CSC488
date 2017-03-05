@@ -1,5 +1,10 @@
 % Basic variable declaration
 {
     var a : Integer
+    var b : Boolean
+
+    var c[1], d[3], e, f[22..34] : Integer
+    var k[2], g, z[1..3] : Boolean
+
     a := 5
 }

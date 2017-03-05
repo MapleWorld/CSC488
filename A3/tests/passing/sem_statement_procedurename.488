@@ -1,9 +1,0 @@
-% Procedure with no param no return
-{
-	procedure rec_procedure_without_param {
-		write "blah"
-	}
-
-    rec_procedure_without_param
-
-}

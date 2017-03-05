@@ -67,7 +67,7 @@ public class ExitStmt extends Stmt {
         }
 
         // S53: Check that integer is greater than 0 and <= number of containing loops.
-        if (level != -1) {
+        else if (level != -1) {
             if (level <= 0 || level > table.getNumLoop())
                 errorMessages.add(String.format("%d:%d: error %s: %s\n",
                                                 this.getLineNumber(), this.getColumnNumber(),

@@ -1,4 +1,0 @@
-% Repeat write until condition
-{
-    repeat write "blah" until false
-}

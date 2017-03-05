@@ -174,9 +174,9 @@ matchedStatement
     |   IF:_if expression:cond THEN matchedStatement:ifTrue ELSE matchedStatement:ifFalse		{: RESULT = new IfStmt(cond, ifTrue, ifFalse, _ifleft, _ifright); :}
     |   WHILE:whl expression:cond DO statement:body							{: RESULT = new WhileDoStmt(cond, body, whlleft, whlright); :}
     |   REPEAT:rpt statement:body UNTIL expression:cond					{: RESULT = new RepeatUntilStmt(cond, body, rptleft, rptright); :}
-    |   EXIT:e																{: RESULT = new ExitStmt(new BoolConstExpn(true, eleft, eright), 1, eleft, eright); :}
+    |   EXIT:e																{: RESULT = new ExitStmt(new BoolConstExpn(true, eleft, eright), -1, eleft, eright); :}
     |   EXIT:e INTCONST:levels												{: RESULT = new ExitStmt(new BoolConstExpn(true, eleft, eright), levels, eleft, eright); :}
-    |   EXIT:e WHEN expression:cond											{: RESULT = new ExitStmt(cond, 1, eleft, eright); :}
+    |   EXIT:e WHEN expression:cond											{: RESULT = new ExitStmt(cond, -1, eleft, eright); :}
     |   EXIT:e INTCONST:levels WHEN expression:cond							{: RESULT = new ExitStmt(cond, levels, eleft, eright); :}
     |   RETURN WITHX:rtnw expression:e										{: RESULT = new ReturnStmt(e, rtnwleft, rtnwright); :}
     |   RETURN:rtn															{: RESULT = new ReturnStmt(rtnleft, rtnright); :}

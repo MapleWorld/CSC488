@@ -1,7 +1,24 @@
 % Various valid loops
 {
 
-    while true do write "blahh"
+    while true do {
+        write "blahh"
+        if true then write "blahh"
+        repeat {
+            write "blah"
+        } until true
+    }
 
+    repeat {
+        repeat {
+            var a : Integer
+            while true do {
+                write "blah"
+            }
+            a := 1
+        } until (1 + 1 = 2)
+    } until true
+
+    while true do write "blahh"
     repeat write "blah" until true
 }
