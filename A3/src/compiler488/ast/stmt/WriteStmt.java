@@ -49,9 +49,9 @@ public class WriteStmt extends Stmt {
             Expn nextVal = (Expn)iterator.next();
             // S31
             Type result = nextVal.doSemantics(table, errorMsg, null);
-            if (result == null || (!(nextVal instanceof SkipConstExpn) && 
-                                   !(nextVal instanceof TextConstExpn) &&
-                                   !(result instanceof IntegerType)))
+            if (!(nextVal instanceof SkipConstExpn) && 
+                !(nextVal instanceof TextConstExpn) &&
+                (result == null || !(result instanceof IntegerType)))
                 errorMsg.add(String.format("%d:%d: error %s: %s\n",
                                            nextVal.getLineNumber(),
                                            nextVal.getColumnNumber(),
