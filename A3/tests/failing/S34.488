@@ -1,0 +1,6 @@
+% S34 Vriable and expression in assignment are not the same type
+{
+     var a : Integer
+     var b : Boolean
+     a := b
+}

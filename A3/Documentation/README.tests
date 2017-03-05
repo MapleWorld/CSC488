@@ -30,9 +30,19 @@ sem_statement_exitintegerwhen.488 - exit on integer on condition
 sem_statement_return.488 - Procedure with no param but return empty
 sem_statement_returnwith.488 - Function with return type integer
 sem_statement_variable.488 - Basic variable declaration
+S24.488 - S24 Set result type to type of conditional expressions
+S37.488 - S37 Check that identifier has been declared as a scalar variable
+S38.488 - S38 Check that identifier has been declared as an array
+S39.488 - S39 Check identifier has been declared as a parameter
 
 Failing Test Cases:
 
+function_decl.488 - Function re-declaration and parameter re-declaration
+procedure_decl.488 - Procedure redeclaration       
+procedurestmt.488 - Incorrect procedure call, validate the type and parameters  
+sem_statement_exitwhen_2.488 - Invalid scope to call exit on condition
+sem_statement_returnwith_2.488 - Return with misusage, validate the scope it is in
+sem_statement_exitintegerwhen.488 - Exit on integer with condition (incorrect integer value)
 sem_statement_exit.488 - Exit statement (invalid scope type)
 sem_statement_exitinteger.488 - Incorrect exit statement on integer
 sem_statement_exitwhen.488 - Incorrect loop exit with condition
@@ -45,24 +55,23 @@ sem_statement_return.488 - Incorrect empty return statement
 sem_statement_returnwith.488 - Incorrect function return type
 sem_statement_variable.488 - Incorrect variable type assignment
 sem_statement_whiledo.488 - Incorrect while loop condition statement
-array_S31.488 - Incorrect usage on array subscription, validate its type and existence
 program_5.488 - Function misuage
-binary_S31.488 - Incorrect usage on binary expressions (arithmetic and boolean), validate the result type
-read.488 - Incorrect read statement, validate inputs type
-binary_S32.488 - Incorrect usage on binary expressions (equality) , validate the result type
-scalar_S20.488 - Incorrect usage on boolean type scalar value, validate its type
-bracket_expn_S23.488 - Incorrect usage on (expression), validate the type 
-scalar_S21.488 - Incorrect usage on integer type scalar value, validate its type
-cond_expn_S33.488 - Incorrect usage on conditional expressions, validate its type 
 scalar_decl.488 - Redeclaration in the same scope
-function_S43.488 - Function call misuage, validate its paramaters and type                  
-sem_statement_returnwith_2.488 - Return with misusage, validate the scope it is in
-function_decl.488 - Function re-declaration and parameter re-declaration
-not_S30.488 - Not expressions misusage
-param_S25.488 - Parameter redeclaration       
-sem_statement_exitintegerwhen.488 - Exit on integer with condition (incorrect integer value)
-unary_minus_S31.488 - Incorrect unary minus expression, validate its usage and type
-procedure_decl.488 - Procedure redeclaration       
+read.488 - Incorrect read statement, validate inputs type
 write.488 - Incorrect write statement, validate outputs type
-procedurestmt.488 - Incorrect procedure call, validate the type and parameters  
-sem_statement_exitwhen_2.488 - Invalid scope to call exit on condition
+S20_scalar.488 - Incorrect usage on boolean type scalar value, validate its type
+S21_scalar.488 - Incorrect usage on integer type scalar value, validate its type
+S23_bracket_expn.488 - Incorrect usage on (expression), validate the type 
+S25_param.488 - Parameter redeclaration
+S30_not.488 - Not expressions misusage 
+S31_unary_minus.488 - Incorrect unary minus expression, validate its usage and type
+S31_array_S31.488 - Incorrect usage on array subscription, validate its type and existence
+S31_binary_S31.488 - Incorrect usage on binary expressions (arithmetic and boolean), validate the result type
+S32_binary.488 - Incorrect usage on binary expressions (equality) , validate the result type
+S33_cond_expn.488 - Incorrect usage on conditional expressions, validate its type 
+S37.488 - Identifier has not been declared as a scalar variable
+S38.488 - Identifier has not been declared as an array
+S39.488 - Identifier has not been declared as a parameter
+S43_function.488 - Function call misuage, validate its paramaters and type                  
+
+

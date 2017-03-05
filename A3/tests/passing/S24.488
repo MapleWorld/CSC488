@@ -1,0 +1,8 @@
+% S24 Set result type to type of conditional expressions
+{
+    var a : Integer
+    var b : Boolean
+
+    a := ( 1 > 2 ? 1 : 2 )  
+    b := ( 1 > 2 ? false : true )  
+}
