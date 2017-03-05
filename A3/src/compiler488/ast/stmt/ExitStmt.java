@@ -24,12 +24,6 @@ public class ExitStmt extends Stmt {
         this.level = level;
     }
     
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(condition);
-        return children;
-    }
-
     /**
      * Returns the string <b>"exit"</b> or <b>"exit when e"</b>" or
      * <b>"exit"</b> level or <b>"exit"</b> level when e

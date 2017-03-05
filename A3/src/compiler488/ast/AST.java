@@ -39,10 +39,6 @@ public class AST {
         return parent;
     }
 
-    public List<AST> getChildren() {        
-         throw new UnsupportedOperationException("getChildren() not implemented for AST.");        
-    }
-
     public void setParent(AST parent) {
         this.parent = parent;
     }

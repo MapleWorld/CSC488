@@ -24,13 +24,6 @@ public class AssignStmt extends Stmt {
         this.rval = rval;
     }
 
-    public List<AST> getChildren() {
-        LinkedList<AST> children = new LinkedList<AST>();
-        children.add(lval);
-        children.add(rval);
-        return children;
-    }
-
     /** Returns a string that describes the assignment statement. */
     @Override
     public String toString() {
