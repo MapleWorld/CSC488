@@ -1,6 +1,0 @@
-% Invalid variable assignment
-{
-    var i : Integer
-    i := 2
-    i := "a"
-}

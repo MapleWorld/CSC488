@@ -11,7 +11,7 @@ import compiler488.ast.type.*;
  * @author  Ou Ye
  */
 public class AST {
-	public final static String version = "Winter 2017";
+    public final static String version = "Winter 2017";
 
     private AST parent;
     private int lineNumber;

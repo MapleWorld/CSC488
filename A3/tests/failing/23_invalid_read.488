@@ -1,4 +1,0 @@
-% Invalid read statement
-{
-    read i := 0
-}

@@ -7,6 +7,7 @@ import compiler488.ast.ASTList;
 import compiler488.ast.expn.Expn;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
+import compiler488.ast.stmt.Scope;
 
 
 /**
@@ -62,8 +63,13 @@ public abstract class LoopingStmt extends Stmt
                               "type of expression is not boolean"));
         }
 
-
-        body.doSemantics(table, errorMessages, SymbolTable.ScopeType.LOOP);
+        if (body instanceof Scope)
+            body.doSemantics(table, errorMessages, SymbolTable.ScopeType.LOOP);
+        else {
+            table.startLoopScope();
+            body.doSemantics(table, errorMessages, null);
+            table.endScope();
+        }
         return null;
     }
 }

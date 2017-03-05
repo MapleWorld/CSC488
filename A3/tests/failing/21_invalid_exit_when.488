@@ -1,5 +1,0 @@
-% Invalid exit when statement
-{
-    var x : Integer
-    exit when i := 0
-}

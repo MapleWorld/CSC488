@@ -1,4 +1,0 @@
-% Invalid return
-{
-    return with true + "1"
-}

@@ -1,10 +1,7 @@
 % Various valid loops
 {
-    while 5 do write "blah"
 
     while true do write "blahh"
-
-    repeat write "blah" until 5
 
     repeat write "blah" until true
 }

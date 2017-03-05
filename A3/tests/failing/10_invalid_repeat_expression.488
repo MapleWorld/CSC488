@@ -1,6 +1,0 @@
-% Invalid repeat expression
-{
-    repeat {
-        write "hi"
-    } until 1 := 5
-}

@@ -1,6 +1,0 @@
-% Test syntax error detection
-{
-  var i : Integer
-  var b, c, d : Boolean
-  % No statements
-}

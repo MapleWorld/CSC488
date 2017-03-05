@@ -1,5 +1,0 @@
-% Invalid integer value
-{
-    var i : Integer
-    i := 9999999999999999999
-}

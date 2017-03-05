@@ -1,9 +1,0 @@
-% Invalid associativity
-{
-    var a,b,c : Integer
-    var d : Boolean
-    a := 1
-    b := 2
-    c := 3
-    d := (a >= b >= c)
-}

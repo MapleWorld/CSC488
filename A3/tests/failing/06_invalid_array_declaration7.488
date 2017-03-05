@@ -1,5 +1,0 @@
-% Invalid variable declaration with missing/invalid bound
-{   
-    var x[32767][32767] : Integer
-    write "hi"
-}

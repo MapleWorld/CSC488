@@ -1,6 +1,0 @@
-% Invalid statement in repeat
-{
-    repeat {
-        var x : Integer
-    } until false
-}

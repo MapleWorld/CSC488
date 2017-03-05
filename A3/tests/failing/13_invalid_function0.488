@@ -1,8 +1,0 @@
-% Invalid function 
-{
-    %%%%% function with parameters
-    % Invalid function missing return type
-    function function_with_params_missing_return_type(param1 : Integer, param2 : Integer) {
-        write "test"
-    }
-}

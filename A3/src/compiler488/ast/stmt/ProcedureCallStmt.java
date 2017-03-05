@@ -37,7 +37,7 @@ public class ProcedureCallStmt extends Stmt {
     /** Returns a string describing the procedure call. */
     @Override
     public String toString() {
-        if (arguments!=null)
+        if (arguments.size() != 0)
             return "Procedure call: " + name + " (" + arguments + ")";
         else
             return "Procedure call: " + name + " ";
@@ -60,7 +60,7 @@ public class ProcedureCallStmt extends Stmt {
     }
     
     /** Semantics Checks for this procedure call */
-    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+    public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scp) {
         SymbolTableEntry entry = table.getEntry(name);
         if (entry == null) {
             errorMessages.add(String.format("%d:%d: error %s: %s %s %s\n",
@@ -83,7 +83,7 @@ public class ProcedureCallStmt extends Stmt {
 
         ProcedureSymbolType procedureType = (ProcedureSymbolType) entry.getType();
 
-        if (arguments == null) {
+        if (arguments.size() != 0) {
             // S42: Check that the function or procedure has no parameters.
             if (procedureType.getParamCount() != 0) {
                 errorMessages.add(String.format("%d:%d: error %s: %s\n",

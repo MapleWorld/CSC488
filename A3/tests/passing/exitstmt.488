@@ -2,13 +2,15 @@
 {
     % exit
 
-    % while true do exit
+    while true do exit
 
-    % repeat exit until false
+    repeat exit until false
 
-    % function A(m : Integer, n : Integer) : Integer {
-        % exit
-    % }
-
-    exit when 5
+    while true do
+    while true do exit 2
+    
+    repeat repeat repeat exit 1 until false until false until false
+    
+    while true do
+    repeat exit 2 when true until false
 }

@@ -103,11 +103,11 @@ public class ASTList<E> extends AST {
 		}
 	}
 
-    public Type doSemantics(SymbolTable table, List<String> errorMessages) {
+        public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scp) {
         List<AST> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
             System.out.println(children.get(i).getClass());
-            children.get(i).doSemantics(table, errorMessages);
+            children.get(i).doSemantics(table, errorMessages, null);
         }
         return null;
     }

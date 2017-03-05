@@ -1,8 +1,0 @@
-% Invalid associativity
-{
-    var a,b,c : Boolean
-    a := true
-    b := false
-    c := false
-    a := (a = b = c)
-}

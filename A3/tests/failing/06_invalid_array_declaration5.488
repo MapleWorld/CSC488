@@ -1,5 +1,0 @@
-% Invalid variable declaration with missing/invalid bound
-{   
-    var q[1 .. 10 .. 20] : Integer
-    write "hi"
-}

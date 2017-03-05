@@ -1,5 +1,0 @@
-% Declaration After Statement
-{
-    i := 1
-    var i : Integer
-}
