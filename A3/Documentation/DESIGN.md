@@ -33,15 +33,21 @@ The symbol table contains several properties:
  - a stack of SymbolLists
  - a mapping from identifiers to its attribute properties
 
- The SymbolList keeps track of all previously declared symbols in a scope,
- so symbols declared in an outer scope don't raise an error. The scopes it
- does this for are: PROGRAM, FUNCTION, PROCEDURE, LOOP.
+ The SymbolList keeps track of all previously declared symbols when a new declaration occurs in the current scope.
+ It also keeps track the type of current scope - one of {PROGRAM, FUNCTION, PROCEDURE, LOOP, ORDINARY (for if-statments)}.
+ We do not differentiate between major and minor scope, they all get handled in the same way.
+ The symbol table also keeps track of the index of the current scope, when a new declaration happens, it checks if the 
+ identifier has already been declared in the current scope by checking the scope index stored in the identifier mapping.
+ If the identifier is declared already, the old value gets pushed to the current SymbolList on the stack.
+
 
  Each identifier has a corresponding entry in the symbol table of abstract type
  SymbolTableEntry. Each entry contains attributes of each identifier depending on
  its type. If the identifier is a boolean or integer, it tracked its type. If
  it is a function or procedure, it keeps track of its parameters and return type
- (if it's a function). If it's an array, it keeps track of its bounds and type.
+ (if it's a function). If it's an array, it keeps track of its bounds and type. 
+ These information gets used to check the corresponding rules.
+
 
 # Semantic Analysis Design:
 
