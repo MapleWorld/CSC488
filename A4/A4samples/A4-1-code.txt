@@ -155,14 +155,100 @@ SUB       % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,
 Store     % Stack: 1 4 -3 -12 0 True False False True True undefinedx565
 
 % t := j > k
+ADDR 0 9  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 
+ADDR 0 1  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) addr(0,1)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 4
+ADDR 0 2  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 4 addr(0,2)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 4 -3
+SWAP      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) -3 4
+LT        % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True
+STORE     % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 
+
 % t := j >= k
+ADDR 0 9  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 
+ADDR 0 1  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) addr(0,1)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 4
+ADDR 0 2  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 4 addr(0,2)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 4 -3
+SWAP      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) -3 4
+LT        % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True
+ADDR 0 1  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True addr(0,1)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True 4
+ADDR 0 2  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True 4 addr(0,2)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True 4 -3
+EQ        % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True False
+OR        % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True
+STORE     % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 
+
+
 % q := r = s
+ADDR 0 6  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,6)
+ADDR 0 7  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,6) addr(0,7)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,6) False
+ADDR 0 8  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,6) False addr(0,8)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,6) False True
+EQ        % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,6) False
+STORE     % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,6)
+
 % t := s not = r
+ADDR 0 9  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9)
+PUSH 1    % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 1
+ADDR 0 8  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 1 addr(0,8)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 1 True
+ADDR 0 7  % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 1 True addr(0,7)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 1 True False
+EQ        % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) 1 False
+SUB       % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,9) True
+Store     % Stack: 1 4 -3 -12 0 True False False True True undefinedx565
+
 % A[5] := 5
+ADDR 0 14 % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,14)
+PUSH 5    % Stack: 1 4 -3 -12 0 True False False True True undefinedx565 addr(0,14) 5
+STORE     % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560
+
 % B[i+1] := A[j-2]
+ADDR 0 17 % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,17)
+ADDR 0 0  % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,17) addr(0,0)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,17) 1
+PUSH 1    % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,17) 1 1
+ADD       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,17) 2
+ADD       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19)
+ADDR 0 10 % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19) addr(0,10)
+ADDR 0 1  % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19) addr(0,10) addr(0,1)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19) addr(0,10) 4
+PUSH 2    % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19) addr(0,10) 4 2
+SUB       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19) addr(0,10) 2
+ADD       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19) addr(0,12)
+LOAD      % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,19) undefined
+STORE     % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560
+
+
 % C[-4] := p or q
+ADDR 0 171 % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,171)
+ADDR 0 5   % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,171) addr(0,5)
+LOAD       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,171) True
+ADDR 0 6   % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,171) True addr(0,6)
+LOAD       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,171) True False
+OR         % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx560 addr(0,171) True
+STORE      % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389
+
+
 % r := D[ i + 200 ]
-}
+ADDR 0 7   % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7)
+ADDR 0 173 % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7) addr(0,173)
+ADDR 0 0   % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7) addr(0,173) addr(0,0)
+LOAD       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7) addr(0,173) 1
+PUSH 200   % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7) addr(0,173) 1 200
+ADD        % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7) addr(0,173) 201
+ADD        % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7) addr(0,373)
+LOAD       % Stack: 1 4 -3 -12 0 True False False True True undefinedx4 5 undefinedx156 True undefinedx389 addr(0,7) undefined
+STORE      % Stack: 1 4 -3 -12 0 True False undefined True True undefinedx4 5 undefinedx156 True undefinedx389
+
+
+% }
+% TODO: verify this
+PUSH 573   % Stack: 1 4 -3 -12 0 True False undefined True True undefinedx4 5 undefinedx156 True undefinedx389 573
+POPN       % Stack:
 
 
 
