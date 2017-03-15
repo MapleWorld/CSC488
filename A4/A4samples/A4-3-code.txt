@@ -186,33 +186,33 @@ BR                              % Branch to line 30
 
     F_Comparison_False:             % Label
 
-    % Calling P
-    ADDR 2 0                        % Create major scope
-    PUSHMT                          % Push stack pointer on stack
-    SETD 2                          % Set display entry
+        % Calling P
+        ADDR 2 0                        % Create major scope
+        PUSHMT                          % Push stack pointer on stack
+        SETD 2                          % Set display entry
 
-    % var e, f: Integer 
-    PUSH undefined                  % Push undefined to stack
-    PUSH 2                          % Push 2 to stack
-    DUPN                            % Duplicate the last item on the stack 2 times
+        % var e, f: Integer 
+        PUSH undefined                  % Push undefined to stack
+        PUSH 2                          % Push 2 to stack
+        DUPN                            % Duplicate the last item on the stack 2 times
 
-    ADDR 0 5                        % Pointing to q
-    LOAD                            % Adds q's value to stack
+        ADDR 0 5                        % Pointing to q
+        LOAD                            % Adds q's value to stack
 
-    PUSH P_FALSE                    % Adds label P_FALSE to stack
-    BF                              % if not q, go to P_FALSE
+        PUSH P_FALSE                    % Adds label P_FALSE to stack
+        BF                              % if not q, go to P_FALSE
 
-    % Conditional was true
-    PUSH RETURN                     % Push label RETURN to stack
-    BR                              % Goto RETURN
+        % Conditional was true
+        PUSH RETURN                     % Push label RETURN to stack
+        BR                              % Goto RETURN
 
-    P_FALSE:
-        ADDR 2 0                        % Pointing to e
-        ADDR 0 0                        % Pointing to a
-        LOAD                            % Adds a's value to stack
-        STORE                           % e := a
+        P_FALSE:
+            ADDR 2 0                        % Pointing to e
+            ADDR 0 0                        % Pointing to a
+            LOAD                            % Adds a's value to stack
+            STORE                           % e := a
 
-    RETURN:                             % Label
-        PUSH 2                          % There are 2 local variables for procedure P
-        POPN                            % Destory local variables
-        HALT                            % Stop program
+        RETURN:                             % Label
+            PUSH 2                          % There are 2 local variables for procedure P
+            POPN                            % Destory local variables
+            HALT                            % Stop program
