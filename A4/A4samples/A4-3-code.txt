@@ -212,7 +212,7 @@ BR                              % Branch to line 30
             LOAD                            % Adds a's value to stack
             STORE                           % e := a
 
-        RETURN:                             % Label
-            PUSH 2                          % There are 2 local variables for procedure P
-            POPN                            % Destory local variables
-            HALT                            % Stop program
+    RETURN:                             % Label
+        PUSH 2                          % There are 2 local variables for procedure P
+        POPN                            % Destory local variables
+        HALT                            % Stop program
