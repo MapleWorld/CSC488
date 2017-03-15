@@ -161,16 +161,15 @@ BR                              % Branch to line 30
         BR                              % Goto label F_RETURN
 
         % Conditional was false, compute (c - m)
-        F_ELSE:                         % Label
+        F_ELSE:                             % Label
             ADDR 0 2                        % Pointing at c
             LOAD                            % Adds c's value to stack
-
             ADDR 2 0                        % Pointing at m
             LOAD                            % Adds m's value to stack
-
             SUB                             % c - m
 
-        F_RETURN:                       % Label
+        F_RETURN:                           % Label
+            PUSHMT                          % Push stack pointer on stack
             SETD 1                          % Set display entry
             ADDR 2 2                        % Pointing at F's return value
             LOAD                            % Adds F's return value to stack
