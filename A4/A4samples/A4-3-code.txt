@@ -101,7 +101,6 @@ BR                              % Branch to line 30
         G_RETURN:                           % Label
             % Saving G's return value at the top of stack
             ADDR 2 2                        % Pointing at G's return value
-            SWAP
             STORE
 
             % Destroy the local variables in function G
