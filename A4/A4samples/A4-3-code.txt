@@ -213,6 +213,5 @@ BR                              % Branch to line 30
             STORE                           % e := a
 
     RETURN:                             % Label
-        PUSH 2                          % There are 2 local variables for procedure P
         POPN                            % Destory local variables
         HALT                            % Stop program
