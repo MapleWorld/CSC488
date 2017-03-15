@@ -1,0 +1,205 @@
+ADDR 0 0                        % Starting point
+PUSHMT                          % Push stack pointer on stack
+SETD 0                          % Set display entry
+
+% var a, b, c, d: Integer
+PUSH undefined                  % Push undefined to stack
+PUSH 4                          % Push 4 to stack
+DUPN                            % Duplicate the last item on the stack 4 times
+
+% var p, q, r, s: Boolean
+PUSH undefined                  % Push undefined to stack
+PUSH 4                          % Push 4 to stack
+DUPN                            % Duplicate the last item on the stack 4 times
+
+PUSH 30                         % Stack: undefinedx8 30
+BR                              % Branch to line 30
+
+% Q(not p or q, b * c, p not = q)
+ADDR 1 0                        % Create major scope
+PUSHMT                          % Push stack pointer on stack
+SETD 1                          % Set display entry
+
+% Evaluate Q's params
+% not p or q
+ADDR 0 4                        % Pointing at p
+LOAD                            % Adds p's value to stack
+NEG                             % not p
+
+ADDR 0 5                        % Pointing at q
+LOAD                            % Add q's value to stack
+OR                              % not p or q
+
+% b * c
+ADDR 0 1                        % Pointing at b
+LOAD                            % Add b's value to stack
+
+ADDR 0 2                        % Pointing at c
+LOAD                            % Adding c's value to stack
+
+MUL                             % b * c
+
+% p not = q
+ADDR 0 4                        % Pointing at p
+LOAD                            % Adds p's value to stack
+
+ADDR 0 5                        % Pointing at q
+LOAD                            % Add q's value to stack
+
+EQ                              % p = q
+NEG                             % p not = q
+
+% Calling Q
+% var t, u, v: Integer 
+PUSH undefined                  % Push undefined to stack
+PUSH 3                          % Push 3 to stack
+DUPN                            % Duplicate the last item on the stack 3 times
+
+% Calling G --> G < 7
+ADDR 2 0                        % Create major scope
+PUSHMT                          % Push stack pointer on stack
+SETD 2                          % Set display entry
+
+% var w, x: Integer 
+PUSH undefined                  % Push undefined to stack
+PUSH 2                          % Push 2 to stack
+DUPN                            % Duplicate the last item on the stack 2 times
+
+ADDR 1 0                        % Pointing at m       
+LOAD                            % Adds m's value to stack
+
+ADDR 1 2                        % Pointing at p
+LOAD                            % Adds p's value to stack
+
+OR                              % m or p
+
+PUSH G_FALSE                    % Adds label G_FALSE to stack
+BF                              % If (m or p) = False, goto G_FALSE
+
+% Conditional was true
+ADDR 1 5                        % Pointing at v
+LOAD                            % Adds v's value to stack
+
+ADDR 1 1                        % Pointing at n
+LOAD                            % Adds n's value to stack
+
+ADD                             % v + n
+
+PUSH G_RETURN                   % Adds label G_RETURN to stack
+BR                              % goto G_RETURN
+
+G_FALSE:                        % Label
+ADDR 1 4                        % Pointing at u
+LOAD                            % Adds u's value to stack
+
+ADDR 0 1                        % Pointing at b
+LOAD                            % Adds b's value to stack
+
+SUB                             % u - b
+
+G_RETURN:                       % Label
+SETD 1                          % Set display entry
+ADDR 2 2                        % Pointing at G's return value
+LOAD                            % Adds G's return value to stack
+
+% G's return value is in ADDR 1 6
+PUSH 7                          % Add 7 to the stack
+
+LT                              % G's return value < 7
+
+PUSH G_Comparison_False         % Push the label G_Comparison_False to stack
+BF                              % Go to G_Comparison_False if false
+
+% Conditional was true
+PUSH RETURN                     % Push label RETURN to stack
+BR                              % Goto label RETURN
+
+G_Comparison_False:             % Label
+
+% Calling F
+% F(t, not r)
+ADDR 2 0                        % Create major scope
+PUSHMT                          % Push stack pointer on stack
+SETD 2                          % Set display entry
+
+ADDR 1 3                        % Pointing at t
+LOAD                            % Adds t's value to stack
+
+ADDR 0 6                        % Pointing at r
+LOAD                            % Adds r's value to stack
+NEG                             % r = -r
+
+ADDR 2 1                        % Pointing at n
+LOAD                            % Adds n's value to stack
+
+PUSH F_ELSE                     % Adds label F_ELSE to stack
+BF                              % if n is false, we go to F_ELSE
+
+% Conditional was true
+ADDR 2 0                        % Pointing at m
+LOAD                            % Adds m's value to stack
+
+ADDR 0 1                        % Pointing at b
+LOAD                            % Adds b's value to stack
+
+ADD                             % m + b
+
+PUSH F_RETURN                   % Adds label F_RETURN to stack
+BR                              % Goto label F_RETURN
+
+F_ELSE:                         % Label
+ADDR 0 2                        % Pointing at c
+LOAD                            % Adds c's value to stack
+
+ADDR 2 0                        % Pointing at m
+LOAD                            % Adds m's value to stack
+
+SUB                             % c - m
+
+F_RETURN:                       % Label
+SETD 1                          % Set display entry
+ADDR 2 2                        % Pointing at F's return value
+LOAD                            % Adds F's return value to stack
+
+% F's return value is in ADDR 1 6
+PUSH 17                         % Add 17 to the stack
+
+EQ                              % F's return value = 17
+
+PUSH F_Comparison_False         % Push the label F_Comparison_False to stack
+BF                              % Go to F_Comparison_False if false
+
+% Conditional was true
+PUSH RETURN                     % Push label RETURN to stack
+BR                              % Goto label RETURN
+
+F_Comparison_False:             % Label
+
+% Calling P
+ADDR 2 0                        % Create major scope
+PUSHMT                          % Push stack pointer on stack
+SETD 2                          % Set display entry
+
+% var e, f: Integer 
+PUSH undefined                  % Push undefined to stack
+PUSH 2                          % Push 2 to stack
+DUPN                            % Duplicate the last item on the stack 2 times
+
+ADDR 0 5                        % Pointing to q
+LOAD                            % Adds q's value to stack
+
+PUSH P_FALSE                    % Adds label P_FALSE to stack
+BF                              % if not q, go to P_FALSE
+
+% Conditional was true
+PUSH RETURN                     % Push label RETURN to stack
+BR                              % Goto RETURN
+
+P_FALSE:
+ADDR 2 0                        % Pointing to e
+ADDR 0 0                        % Pointing to a
+LOAD                            % Adds a's value to stack
+STORE                           % e := a
+
+RETURN:                         % Label
+HALT                            % Stop program
