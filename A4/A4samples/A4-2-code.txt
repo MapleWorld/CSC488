@@ -1,0 +1,441 @@
+% {                                                        % 2 - 2
+% INSTRUCTION ADDR 0 - 1
+PUSHMT
+SETD 0
+
+%  var a, b, c, d : Integer                                % 2 - 3
+%  var p, q, r : Boolean                                   % 2 - 4
+% also allocating storage for variable in minor scopes
+% INSTRUCTION ADDR 2 - 4
+PUSH UNDEFINED
+PUSH 17
+DUPN
+
+%  a := b + c - d * c + b / c                              % 2 - 5
+% INSTRUCTION ADDR 5
+ADDR 0 0
+
+% INSTRUCTION ADDR 6 - 10
+ADDR 0 1
+LOAD
+ADDR 0 2
+LOAD
+ADD
+
+% INSTRUCTION ADDR 11 - 15
+ADDR 0 3
+LOAD
+ADDR 0 2
+LOAD
+MUL
+
+% INSTRUCTION ADDR 16
+SUB
+
+% INSTRUCTION ADDR 17 - 21
+ADDR 0 1
+LOAD
+ADDR 0 2
+LOAD
+DIV
+
+% INSTRUCTION ADDR 22 - 23
+ADD
+STORE
+
+
+%  p := not false or not q and r                           % 2 - 6
+% INSTRUCTION ADDR 24
+ADDR 0 4
+
+% INSTRUCTION ADDR 25 - 27
+PUSH 1
+PUSH MACHINE_FALSE
+SUB
+
+% INSTRUCTION ADDR 28 - 36
+PUSH 1
+ADDR 0 5
+LOAD
+SUB
+ADDR 0 6
+LOAD
+ADD
+PUSH 2
+EQ
+
+% INSTRUCTION ADDR 37 - 38
+OR
+STORE
+
+
+%  if p then a  := 3                                       % 2 - 7
+% INSTRUCTION ADDR 39 - 45
+ADDR 0 4
+LOAD
+PUSH 46
+BF
+ADDR 0 0
+PUSH 3
+STORE
+
+
+%  if p or not p then b := 2 else b := 0                   % 2 - 8
+% INSTURCTION ADDR 46 - 52
+ADDR 0 4
+LOAD
+PUSH 1
+ADDR 0 4
+LOAD
+SUB
+OR
+
+% INSTRUCTION ADDR 53 - 54
+PUSH 60
+BF
+
+% INSTRUCTION ADDR 55 - 57 
+ADDR 0 1
+PUSH 2
+STORE
+
+% INSTRUCTION ADDR 58 - 59
+PUSH 63
+BR
+
+% INSTRUCTION ADDR 60 - 62
+ADDR 0 1
+PUSH 0
+STORE
+
+
+%  while c < 7 do c := 6                                   % 2 - 9
+% INSTRUCTION ADDR 63 - 68  
+ADDR 0 2
+LOAD
+PUSH 7
+LT
+PUSH 74
+BF
+
+% INSTRUCTION ADDR 69 - 73
+ADDR 0 2
+PUSH 6
+STORE
+PUSH 63
+BR
+
+
+%  while true do b := b + 1                                % 2 - 10
+% INSTRUCTION ADDR 74 - 84
+PUSH MACHINE_TRUE
+PUSH 85
+BF
+ADDR 0 1
+ADDR 0 1
+LOAD
+PUSH 1
+ADD
+STORE
+PUSH 74
+BR
+
+%  repeat { a := 3 exit b := 7 } until false               % 2 - 11
+% INSTRUCTION 85 - 95
+ADDR 0 0
+PUSH 3
+STORE
+PUSH 96
+BR
+ADDR 0 1
+PUSH 7
+STORE
+PUSH MACHINE_FALSE
+PUSH 85
+BF
+
+
+%  while q or r and not p do exit when b not= 10           % 2 - 12
+% INSTRUCTION 96 - 107
+ADDR 0 5
+LOAD
+
+ADDR 0 6
+LOAD
+
+PUSH 1
+ADDR 0 4
+LOAD
+SUB
+
+ADD
+PUSH 2
+EQ
+
+OR
+
+% INSTRUCTION 108 - 121
+PUSH 122
+BF
+
+PUSH 1
+
+PUSH 1
+ADDR 0 1
+LOAD
+PUSH 10
+EQ
+SUB
+
+SUB
+PUSH 122
+BF
+
+PUSH 96
+BR
+
+
+%  write "Value is ", a / b, " or not ", newline           % 2 - 13
+% INSTRUCTION 122 - 139
+PUSH 86
+PRINTC
+PUSH 65
+PRINTC
+PUSH 108
+PRINTC
+PUSH 117
+PRINTC
+PUSH 101
+PRINTC
+PUSH 32
+PRINTC
+PUSH 105
+PRINTC
+PUSH 115
+PRINTC
+PUSH 32
+PRINTC
+
+% INSTRUCTION 140 - 145 
+ADDR 0 0
+LOAD
+ADDR 0 1
+LOAD
+DIV
+PRINTI
+
+% INSTRUCTION 146 - 163
+PUSH 32
+PRINTC
+PUSH 111
+PRINTC
+PUSH 114
+PRINTC
+PUSH 32
+PRINTC
+PUSH 110
+PRINTC
+PUSH 111
+PRINTC
+PUSH 116
+PRINTC
+PUSH 32
+PRINTC
+
+PUSH 10
+PRINTC
+
+
+%  read a, c, b                                            % 2 - 14
+% INSTRUCTION 164 - 172
+ADDR 0 0
+READI
+STORE
+
+ADDR 0 2
+READI
+STORE
+
+ADDR 0 1
+READI
+STORE
+
+
+%  {                                                       % 2 - 15
+%      var a, b, c: Boolean                                % 2 - 16
+%      a := not p or q                                     % 2 - 17
+% INSTRUCTION 173 - 181
+ADDR 0 7
+PUSH 1
+ADDR 0 4
+LOAD
+SUB
+ADDR 0 5
+LOAD
+OR
+STORE
+
+
+%      {                                                   % 2 - 18
+%          var p, q, r: Integer                            % 2 - 19
+%          p := (b ? q : r)                                % 2 - 20
+% INSTRUCTION 182 - 193
+ADDR 0 10
+ADDR 0 8
+LOAD
+PUSH 191
+BF
+ADDR 0 11
+LOAD
+PUSH 193
+BR
+ADDR 0 12
+LOAD
+STORE
+
+%      }                                                   % 2 - 21
+%  }                                                       % 2 - 22
+
+
+%  while true do {                                         % 2 - 23
+% INSTRUCTION 194 - 196
+PUSH MACHINE_TRUE
+PUSH 286
+BF
+
+
+%      exit when p or r                                    % 2 - 24
+% INSTRUCTION 197 - 205
+PUSH 1
+ADDR 0 4
+LOAD
+ADDR 0 6
+LOAD
+OR
+SUB
+PUSH 286
+BF
+
+
+%      repeat {                                            % 2 - 25
+%          var w, x: Integer                               % 2 - 26
+%          if w <= a then exit                             % 2 - 27
+% INSTRUCTION 206 - 220
+ADDR 0 13
+LOAD
+ADDR 0 0
+LOAD
+LT
+ADDR 0 13
+LOAD
+ADDR 0 0
+LOAD
+EQ
+OR
+PUSH 221
+BF
+PUSH 284
+BR
+
+
+%          while p or q or r do                            % 2 - 28
+% INSTRUCTION 221 - 230
+ADDR 0 4
+LOAD
+ADDR 0 5
+LOAD
+OR
+ADDR 0 6
+LOAD
+OR
+PUSH 273
+BF
+
+
+%          {                                               % 2 - 29
+%              var t, u: Integer                           % 2 - 30
+%                  p := not q                              % 2 - 31
+% INSTRUCTION 231 - 236
+ADDR 0 4
+PUSH 1
+ADDR 0 5
+LOAD
+SUB
+STORE
+
+
+%                  t := (p or q ? t + 1 : t - 1)           % 2 - 32
+% INSTRUCTION 237 - 255 
+ADDR 0 15
+ADDR 0 4
+LOAD
+ADDR 0 5
+LOAD
+OR
+PUSH 251
+BF
+ADDR 0 15
+LOAD
+PUSH 1
+ADD
+PUSH 255
+BR
+ADDR 0 15
+LOAD
+PUSH 1
+SUB
+STORE
+
+%                  exit 3 when t > 12                      % 2 - 33
+% INSTRUCTION 256 - 270
+PUSH 1
+PUSH 1
+ADDR 0 15
+LOAD
+PUSH 12
+LT
+ADDR 0 15
+LOAD
+PUSH 12
+EQ
+OR
+SUB
+SUB
+PUSH 286
+BF
+
+%              } % while                                   % 2 - 34
+% INSTRUCTION 271 - 272
+PUSH 221
+BR
+
+%          exit 2                                          % 2 - 35
+% INSTRUCTION 273 - 274
+PUSH 286
+BR
+
+
+%      } until p and r % repeat                            % 2 - 36
+% INSTRUCTION 275 - 283
+ADDR 0 4
+LOAD
+ADDR 0 6
+LOAD
+ADD
+PUSH 2
+EQ
+PUSH 206
+BF
+
+%  } %while                                                % 2 - 37
+% INSTRUCTION 284 - 285
+PUSH 194
+BR
+
+%}                                                         % 2 - 38
+% INSTRUCTION 286 - 290
+PUSHMT
+ADDR 0 0
+SUB
+POPN
+HALT
