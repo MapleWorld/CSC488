@@ -129,7 +129,7 @@ BR                              % Branch to line 30
     PUSH RETURN                     % Push label RETURN to stack
     BR                              % Goto label RETURN
 
-    G_COMPARISON_FALSE              % Label
+    G_COMPARISON_FALSE:              % Label
 
         % Calling F
         % F(t, not r)
