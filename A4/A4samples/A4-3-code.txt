@@ -22,9 +22,10 @@ BR                              % Branch to line 30
 
     % Evaluate Q's params
     % not p or q
+    PUSH 1
     ADDR 0 4                        % Pointing at p
     LOAD                            % Adds p's value to stack
-    NEG                             % not p
+    SUB                             % not p
 
     ADDR 0 5                        % Pointing at q
     LOAD                            % Add q's value to stack
@@ -40,6 +41,8 @@ BR                              % Branch to line 30
     MUL                             % b * c
 
     % p not = q
+    PUSH 1
+
     ADDR 0 4                        % Pointing at p
     LOAD                            % Adds p's value to stack
 
@@ -47,7 +50,7 @@ BR                              % Branch to line 30
     LOAD                            % Add q's value to stack
 
     EQ                              % p = q
-    NEG                             % p not = q
+    SUB                             % p not = q
 
     % Calling Q
     % var t, u, v: Integer 
@@ -119,14 +122,14 @@ BR                              % Branch to line 30
     PUSH 7                          % Add 7 to the stack
     LT                              % G's return value < 7
 
-    PUSH G_Comparison_False         % Push the label G_Comparison_False to stack
-    BF                              % Go to G_Comparison_False if false
+    PUSH G_COMPARISON_FALSE         % Push the label G_COMPARISON_FALSE to stack
+    BF                              % Go to G_COMPARISON_FALSE if false
 
     % Conditional was true
     PUSH RETURN                     % Push label RETURN to stack
     BR                              % Goto label RETURN
 
-    G_Comparison_False:             % Label
+    G_COMPARISON_FALSE              % Label
 
         % Calling F
         % F(t, not r)
@@ -137,9 +140,10 @@ BR                              % Branch to line 30
         ADDR 1 3                        % Pointing at t
         LOAD                            % Adds t's value to stack
 
+        PUSH 1                          
         ADDR 0 6                        % Pointing at r
         LOAD                            % Adds r's value to stack
-        NEG                             % r = -r
+        SUB                             % r = r - 1
 
         ADDR 2 1                        % Pointing at n
         LOAD                            % Adds n's value to stack
@@ -177,14 +181,14 @@ BR                              % Branch to line 30
     PUSH 17                         % Add 17 to the stack
     EQ                              % F's return value = 17
 
-    PUSH F_Comparison_False         % Push the label F_Comparison_False to stack
-    BF                              % Go to F_Comparison_False if false
+    PUSH F_COMPARISON_FALSE         % Push the label F_COMPARISON_FALSE to stack
+    BF                              % Go to F_COMPARISON_FALSE if false
 
     % Conditional was true
     PUSH RETURN                     % Push label RETURN to stack
     BR                              % Goto label RETURN
 
-    F_Comparison_False:             % Label
+    F_COMPARISON_FALSE:             % Label
 
         % Calling P
         ADDR 2 0                        % Create major scope
