@@ -1,0 +1,6 @@
+% Incorrect while loop statement exit on integer
+{
+    while true do {
+        exit when 5
+    }
+}

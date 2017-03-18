@@ -1,0 +1,77 @@
+% Assignment    : 1
+% Author        : matheres
+%
+% A program using arrays including all forms of array declaration, positive and negative bounds.
+% This program initializes arrays of various sizes, up to the max and min range of integers. 
+% Values are then assigned to particular indices of the array. 
+% The expected value of the array at a particular index is passed to a test function which checks whether 
+% the value of the array at a particular index is the expected value. 
+
+{
+
+
+    %%%% Declaring arrays 
+
+    var simple[1] : Integer
+    var longer[32767] : Integer
+    var sequential[1..5] : Boolean
+    var negatives[-100..-9] : Boolean
+    var negative_and_positive[-5..5] : Integer
+    var largest[-32767..32767] : Integer
+
+    % Declare test variables
+    var y, z : Integer
+    var b : Boolean
+    y := 4
+    z := -5
+    b := true
+
+
+    %%%% Assign values to array elements
+    %%%% Reference array elements using integers
+    
+    simple[1] := 1
+    
+    longer[32767] := 32767
+    
+    sequential[3] := true
+    
+    negatives[-100] := false
+
+    negatives[0] := true
+
+    negative_and_positive[-3] := -3
+    
+    largest[0] := 0
+    
+    largest[-32767] := -32767
+
+    
+    %%%% Reference array elements using expresions
+    
+    sequential[y] := false
+    
+    largest[543-123] := 420
+    
+    negatives[-100] := true
+    
+    negatives[-45] := false
+   
+    negative_and_positive[z + y] := -1
+    
+    negative_and_positive[-5+10-3] := 2
+    
+    largest[-50*50] := -250
+    
+    largest[-11*-11] := 121
+    
+    largest[120/-12] := -10
+    
+    largest[2+120/-12-y] := -12
+
+    %%%% Modify array elements
+    simple[1] := -5
+
+    sequential[y] := b
+
+}

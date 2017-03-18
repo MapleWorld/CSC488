@@ -1,0 +1,6 @@
+% While loop statement exit on condition
+{
+    while true do {
+        exit when false
+    }
+}   

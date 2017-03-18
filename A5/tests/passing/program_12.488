@@ -1,0 +1,6 @@
+% Single variable read statement
+{
+    var m, n : Integer
+    read m
+    read n
+}

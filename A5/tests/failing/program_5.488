@@ -1,0 +1,16 @@
+% A program using non-recursive functions with parameters
+{
+    var a : Integer
+    var b : Boolean
+
+    %%%%% function with parameters
+    function function_with_params(param1 : Integer, param2 : Integer) : Integer {
+        write "function with params"
+        write param1 + param2
+        return with param1 + param2
+    }
+
+    function_with_params(5, 5)
+    write "test"
+
+}

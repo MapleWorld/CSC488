@@ -1,0 +1,7 @@
+% Procedure with no param but return empty
+{
+    procedure blarb {
+        return
+    }
+    write "blah"
+}

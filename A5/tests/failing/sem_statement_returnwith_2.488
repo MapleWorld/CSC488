@@ -1,0 +1,7 @@
+{
+   % invalid scope for return with
+   procedure name (s : Integer) {
+      return with true
+   }
+   name(1)
+}

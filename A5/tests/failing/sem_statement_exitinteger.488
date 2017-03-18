@@ -1,0 +1,4 @@
+% Incorrect exit statement on integer
+{
+    exit 5
+}

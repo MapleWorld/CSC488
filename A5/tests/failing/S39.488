@@ -1,0 +1,18 @@
+% S39 Identifier has not been declared as a parameter
+{
+    var a : Integer
+    var b : Boolean
+
+    %%%%% function with parameters
+    function function_with_params(param1 : Integer) : Integer {
+        if param2 then write param1
+    }
+
+    %%%%% procedure with parameters
+    procedure procedure_with_params(param1 : Integer) {
+        if param2 then write param1
+    }
+
+    a := function_with_params(a, b)
+    procedure_with_params(a, b)
+}

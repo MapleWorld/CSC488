@@ -1,0 +1,16 @@
+% Re-assignment
+{
+    var x, y : Integer
+
+    x := 5
+    x := 6
+    x := 7
+    y := 8
+    x := 9
+    y := 10
+    y := 11
+
+    write x
+    write y
+
+}

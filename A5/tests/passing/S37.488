@@ -1,0 +1,5 @@
+% S37 Check that identifier has been declared as a scalar variable
+{
+    var a : Integer
+    write a
+}

@@ -1,0 +1,15 @@
+% loop statement exit on integer
+{
+    while true do {
+        exit 1
+    }
+
+    while true do exit 1
+
+    while true do 
+        repeat {
+            repeat {
+               exit 2
+            } until true
+        } until true
+}

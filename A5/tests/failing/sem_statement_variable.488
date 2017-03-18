@@ -1,0 +1,5 @@
+% Incorrect variable type assignment
+{
+    var a : Boolean
+    a := 5
+}

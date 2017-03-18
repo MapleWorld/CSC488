@@ -1,0 +1,8 @@
+{
+    var i : Integer
+    function add_one : Integer {
+           return with 1
+    }
+
+    i := add_one
+}

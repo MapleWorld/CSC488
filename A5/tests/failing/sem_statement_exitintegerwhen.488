@@ -1,0 +1,13 @@
+{
+   % invalid exit int when expn
+   exit 1 when 1
+
+   while true do {
+      while true do {
+      exit 100 when true }}
+
+   repeat {
+     repeat {
+         exit 0 when true
+     } until true } until true
+}

@@ -1,0 +1,92 @@
+% Assignment    : 1
+% Author        : jinzi2
+% A program using recursive functions and procedures with and without parameters
+% include at least one nested procedure and one nested function declaration
+
+{
+    %%%%% declarations
+    var global_int : Integer
+    var global_int_proc : Integer
+    var result : Boolean
+    
+    %%%%% recursive funtion without parameters (include one nested function)
+    % returns the sum from 1 to global_int, 0 if global_int is smaller than 1
+    function rec_function_without_param : Integer {
+        function add_one : Integer {
+            return with global_int + 1
+        }
+
+
+        if global_int <= 0
+        then
+            return with 0
+        else {
+            global_int := global_int - 1
+            return with add_one + rec_function_without_param
+        }
+    }
+
+    %%%%% recursive function with parameters
+    % returns true iff sum + 1 + 2 + ... + n is over 5 and is_valid  
+    function rec_function_with_param ( n : Integer , sum : Integer , 
+                                       is_valid : Boolean ) : Boolean {
+        if is_valid = false
+        then
+            return with false
+        else {
+            if ( n > 5 ) or ( sum > 5 )
+            then
+                return with true
+            else {
+                if n <= 0
+                then 
+                    return with false
+                else 
+                    return with rec_function_with_param ( n - 1, sum + n, true )
+            }
+        }
+    }
+
+    %%%%% recusive procedure without parameters
+    % calls the procedure itself for global_int_proc times
+    procedure rec_procedure_without_param {
+        if global_int_proc <= 0
+        then 
+            return
+        else {
+            global_int_proc := global_int_proc - 1
+            write "calling the procedure itself with global_int_proc being " ,
+                global_int_proc , newline
+            rec_procedure_without_param
+            return
+        }
+    }
+
+    %%%%% recusive procedure with parameters (include nested procedure)
+    % calls the procedure itself for n times, does nothing if not is_valid
+    procedure rec_procedure_with_param ( n : Integer , is_valid : Boolean ) {
+        procedure helper ( n : Integer ) {
+            write "calling the procedure itself with n being " , n , newline
+        }
+
+        if ( is_valid not= true ) or ( n < 1 )
+        then
+            return
+        else {
+            helper ( n - 1 )
+            rec_procedure_with_param ( n - 1 , is_valid )
+            return
+        }
+    }
+
+
+    %%%%% Using the functions & procedures
+    global_int := 3
+    write "OUTPUT FOR RECURSIVE FUNCTION NO PARAMATERS (EXPECTED: 6) : " , 
+          rec_function_without_param , newline
+    result := rec_function_with_param ( 3 , 0 , true )
+
+    global_int_proc := 2
+    rec_procedure_without_param
+    rec_procedure_with_param ( 2 , true )
+}

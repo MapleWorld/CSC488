@@ -1,0 +1,7 @@
+% While loop statement exit
+{
+    while true do {
+        write "hey"
+        exit
+    }
+}

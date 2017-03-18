@@ -1,0 +1,4 @@
+% S38 Identifier has not been declared as an array
+{
+    if b[1] then write a[1]
+}

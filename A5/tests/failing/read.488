@@ -1,0 +1,7 @@
+{
+     % read non int variable
+     var a, b[2] : Boolean
+
+     read a, b[1]
+     read b[2]
+}

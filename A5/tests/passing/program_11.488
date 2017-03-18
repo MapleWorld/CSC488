@@ -1,0 +1,4 @@
+% Write statment with multiple newlines
+{
+    write "!?", newline, newline
+}

@@ -1,0 +1,7 @@
+% S38 Check that identifier has been declared as an array
+{
+    var a[1] : Integer
+    var b[1] : Boolean
+
+    if b[1] then write a[1]
+}

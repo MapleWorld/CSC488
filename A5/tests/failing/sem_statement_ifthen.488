@@ -1,0 +1,4 @@
+% Incorrect If write statement with integer condition
+{
+    if 5 then write "hey"
+}
