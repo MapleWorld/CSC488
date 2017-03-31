@@ -105,9 +105,8 @@ public class CodeGen
 	Machine.setMSP((short)  1 );   	/* where memory stack begins */
 	Machine.setMLP((short) ( Machine.memorySize -1 ) );
 				            /* limit of stack */
-    Machine.writeMemory((short)  0 , Machine.HALT );
 
-    instructions.PrintStringInstructions();
+    instructions.WriteToMemory();
 
 	return;
 	}

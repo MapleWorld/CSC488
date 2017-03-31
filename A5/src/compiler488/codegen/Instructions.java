@@ -1,5 +1,6 @@
 package compiler488.codegen;
 
+import compiler488.runtime.*;
 import java.util.*;
 
 public class Instructions {
@@ -28,9 +29,14 @@ public class Instructions {
         }
     }
 
-    public void PrintInstructions() {
-        for (int i=0; i<instructions.size(); i++) {
-            System.out.println(instructions.get(i));
+    public void WriteToMemory() {
+        for (int i = 0; i < instructions.size(); i++) {
+            Short opcode = instructions.get(i);
+		    try {
+                Machine.writeMemory((short) i, opcode);
+            } catch (MemoryAddressException e) {
+			    System.err.println("Exception during WriteToMemory: " + e.getMessage());
+            }
         }
     }
 }

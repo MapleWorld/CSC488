@@ -25,5 +25,13 @@ public class Program extends Scope {
         instructions.add(null, (short) 0);
 
         super.doCodeGenChildren(instructions);
+
+        instructions.add("PUSHMT", Machine.PUSHMT);
+        instructions.add("ADDR", Machine.ADDR);
+        instructions.add(null, (short) 0);
+        instructions.add(null, (short) 0);
+        instructions.add("SUB", Machine.SUB);
+        instructions.add("POPN", Machine.POPN);
+        instructions.add("HALT", Machine.HALT);
     }
 }

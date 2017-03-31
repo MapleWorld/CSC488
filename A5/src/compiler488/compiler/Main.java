@@ -537,6 +537,7 @@ public class Main {
 
 		dumpStream = System.out;
 		try {
+			System.out.println("MACHINE IS RUNNING");
 			Machine.run();
 		} catch (ExecutionException e) {
 			System.err.println("Exception during Machine Execution" + e.getMessage());
