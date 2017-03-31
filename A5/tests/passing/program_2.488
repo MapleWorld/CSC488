@@ -1,11 +1,5 @@
-% Variable declaration 
 {
-    %single boolean
-    var b : Boolean
-
-    %single integer
-    var i : Integer
-
-    %Every program must have at least one statement
-    write "passed"
+    var b : Integer
+    b := 5
+    write b
 }

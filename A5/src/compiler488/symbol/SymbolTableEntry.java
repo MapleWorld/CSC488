@@ -9,6 +9,8 @@ package compiler488.symbol;
 public class SymbolTableEntry {
     private SymbolType type;
     private int scope;
+    private int lexicalLevel;
+    private int orderNumber;
 
     /** Symbol Table Entry constructor */
     public SymbolTableEntry(SymbolType type) {
@@ -28,6 +30,11 @@ public class SymbolTableEntry {
     /** Sets this Symbol Table Entry's scope as scope */
     public void setScope(int scope) {
         this.scope = scope;
+    }
+
+    public void setAddress(int lexicalLevel, int orderNumber) {
+        this.lexicalLevel = lexicalLevel;
+        this.orderNumber = orderNumber;
     }
 
 }

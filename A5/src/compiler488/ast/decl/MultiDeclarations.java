@@ -7,6 +7,7 @@ import compiler488.ast.ASTList;
 import compiler488.ast.Indentable;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
+import compiler488.codegen.Instructions;
 
 /**
  * Holds the declaration of multiple elements.
@@ -60,5 +61,12 @@ public class MultiDeclarations extends Declaration {
         while (iterator.hasNext())
             (iterator.next()).doSemantics(table, errorMessages, this.getType());
         return null;
+    }
+
+    public void doCodeGeneration(Instructions instructions) {
+        LinkedList<DeclarationPart> elemList = elements.getList();
+        ListIterator<DeclarationPart> iterator = elemList.listIterator();
+        while (iterator.hasNext())
+            (iterator.next()).doCodeGeneration(instructions);
     }
 }

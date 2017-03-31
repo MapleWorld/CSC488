@@ -27,6 +27,10 @@ public class SymbolTable {
 
     // current scope
     private int scopeIndex;
+    // lexical level
+    private int lexicalLevel;
+    // order number
+    private int orderNumber;
     // to keep track of symbols in outer scopes
     private ArrayDeque<SymbolList> stack;
     // all symbols in the program
@@ -37,6 +41,7 @@ public class SymbolTable {
      */
     public SymbolTable() {
         scopeIndex = 0;
+        lexicalLevel = 0;
         stack = new ArrayDeque<SymbolList>();
         table = new HashMap<String, SymbolTableEntry>();
     }
@@ -57,6 +62,20 @@ public class SymbolTable {
         if (oldEntry != null && oldEntry.getScope() == scopeIndex)
             return false;
         entry.setScope(scopeIndex);
+
+        // set address of identifier
+        entry.setAddress(lexicalLevel, orderNumber);
+
+        // increment order number by size of identifier
+        int size;
+        if (entry.getType() instanceof ArraySymbolType) {
+            ArraySymbolType arrayEntryType = (ArraySymbolType) entry.getType();
+            size = arrayEntryType.getUpperBound() - arrayEntryType.getLowerBound();
+        } else {
+            size = 1;
+        }
+        orderNumber = orderNumber + size;
+
         table.put(ident, entry);
         stack.peek().add(ident, oldEntry);
         return true;
@@ -72,14 +91,25 @@ public class SymbolTable {
     /**
      * Adds a new scope to this Symbol Table
      */
+    // This is called on every scope except for loop and function.
     public void startScope(ScopeType newScope) {
-        if (newScope == ScopeType.ORDINARY)
+        if (newScope == ScopeType.ORDINARY) {
             stack.push(new SymbolList(newScope, getNumLoop()));
-        else
+        } else {
             stack.push(new SymbolList(newScope));
+        }
+
         scopeIndex++;
+
+        // we don't increment the lexical level for minor scopes
+        // (since we don't want to create a new activation record)
+        if (newScope == ScopeType.ORDINARY || newScope == ScopeType.LOOP) {
+        } else {
+            lexicalLevel++;
+            orderNumber = 0;
+        }
     }
-    
+
     /**
      * Adds a new scope to this Symbol Table
      */
@@ -89,6 +119,7 @@ public class SymbolTable {
             numLoop += getNumLoop();
 
         scopeIndex++;
+        // don't increment lexicalLevel because loop is a minor scope
         stack.push(new SymbolList(ScopeType.LOOP, numLoop));
     }
 
@@ -97,6 +128,8 @@ public class SymbolTable {
      */
     public void startFunctionScope(Type returnType) {
         scopeIndex++;
+        lexicalLevel++;
+        orderNumber = 0;
         stack.push(new SymbolList(ScopeType.FUNCTION, returnType));
     }
 
@@ -104,6 +137,18 @@ public class SymbolTable {
      * Removes the current scope from this Symbol Table
      */
     public void endScope() {
+        // check the scope type of the top of the stack -- only decrement lexical level
+        // if it's not a minor scope.
+        // TODO
+        SymbolList top = stack.peek();
+        ScopeType scopetype = top.getScopeType();
+        if (scopetype == ScopeType.ORDINARY || scopetype == ScopeType.LOOP) {
+            // do nothing
+        } else {
+            lexicalLevel--;
+            // MAYBE restore last order number?
+        }
+
         stack.pop().updateSymbols();
         scopeIndex--;
     }
