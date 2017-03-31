@@ -101,12 +101,13 @@ public class CodeGen
         // - setMSP to list.size()
         // - writeMemory all the instructions
 
- 	Machine.setPC( (short) 0 ) ;		/* where code to be executed begins */
-	Machine.setMSP((short)  1 );   	/* where memory stack begins */
+    instructions.WriteToMemory();
+
+ 	Machine.setPC( (short) 0) ;		/* where code to be executed begins */
+	Machine.setMSP(instructions.getMSP());   	/* where memory stack begins */
 	Machine.setMLP((short) ( Machine.memorySize -1 ) );
 				            /* limit of stack */
 
-    instructions.WriteToMemory();
 
 	return;
 	}

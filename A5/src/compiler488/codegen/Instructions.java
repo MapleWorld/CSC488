@@ -39,4 +39,8 @@ public class Instructions {
             }
         }
     }
+
+    public short getMSP() {
+        return (short) (instructions.size() + 1);
+    }
 }
