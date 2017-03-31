@@ -138,4 +138,25 @@ public class Scope extends Stmt {
             (stmtIterator.next()).doSemantics(table, errorMessages, this.currScpType);
         return null;
     }
+
+    public void doCodeGeneration(List<Short> instructions) {
+
+        // C01
+
+        // C02
+    }
+
+    public void doCodeGenChildren(List<Short> instructions) {
+        LinkedList<Declaration> declList = declarations.getList();
+        ListIterator<Declaration> declIterator = declList.listIterator();
+
+        while (declIterator.hasNext())
+            (declIterator.next()).doCodeGeneration(instructions);
+
+        LinkedList<Stmt> stmtList = statements.getList();
+        ListIterator<Stmt> stmtIterator = stmtList.listIterator();
+
+        while (stmtIterator.hasNext())
+            (stmtIterator.next()).doCodeGeneration(instructions);
+    }
 }

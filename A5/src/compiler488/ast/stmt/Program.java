@@ -22,7 +22,7 @@ public class Program extends Scope {
         instructions.add(Machine.PUSHMT);
         instructions.add(Machine.SETD);
         instructions.add((short) 0);
-
-        super.doCodeGeneration(instructions);
+    
+        super.doCodeGenChildren(instructions);
     }
 }
