@@ -112,31 +112,6 @@ public class CodeGen
 	return;
 	}
 
-    /** Procedure to implement code generation based on code generation
-     *  action number
-     * @param actionNumber  code generation action to perform
-     */
-    void generateCode( int actionNumber )
-	{
-	if( traceCodeGen )
-	    {
-		//output the standard trace stream
-		Main.traceStream.println("CodeGen: C" +  actionNumber );
-	    }
-
-	/****************************************************************/
-	/*  Code to implement the code generation actions GOES HERE     */
-	/*  This dummy code generator just prints the actionNumber      */
-	/*  In Assignment 5, you'll implement something more interesting */
-        /*                                                               */
-        /*  FEEL FREE TO ignore or replace this procedure                */
-	/****************************************************************/
-
-        System.out.println("Codegen: C" + actionNumber );
-	return;
-	}
-
-    //  ADDITIONAL FUNCTIONS TO IMPLEMENT CODE GENERATION GO HERE
    public void Generate(AST root)
 	{
         instructions = new Instructions();
