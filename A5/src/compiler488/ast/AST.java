@@ -62,4 +62,9 @@ public class AST {
     public Type doSemantics(SymbolTable table, List<String> errorMessages, SymbolTable.ScopeType scp) {
         throw new UnsupportedOperationException("doSemantics not implemented for AST.");
     }
+
+    public void doCodeGeneration() {
+        throw new UnsupportedOperationException("doCodeGeneration not implemented for AST.");
+    }
+
 }

@@ -502,7 +502,7 @@ public class Main {
 
             CodeGen codegen = new CodeGen();
             codegen.Initialize();
-            codegen.Generate();
+            codegen.Generate(programAST);
             codegen.Finalize();
 
 			System.out.println("End of Code Generation");

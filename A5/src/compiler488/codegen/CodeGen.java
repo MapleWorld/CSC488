@@ -5,6 +5,7 @@ import java.util.*;
 import compiler488.compiler.Main;
 import compiler488.runtime.Machine;
 import compiler488.runtime.MemoryAddressException;
+import compiler488.ast.*;
 
 /**      CodeGenerator.java
  *<pre>
@@ -136,9 +137,9 @@ public class CodeGen
 	}
 
     //  ADDITIONAL FUNCTIONS TO IMPLEMENT CODE GENERATION GO HERE
-   public void Generate()
+   public void Generate(AST root)
 	{
-        System.out.println("Begin generating code here.");
+        root.doCodeGeneration();
 	    return;
 	}
 }
