@@ -3,6 +3,8 @@ package compiler488.ast.stmt;
 import java.util.*;
 import compiler488.runtime.Machine; 
 
+
+
 /**
  * Placeholder for the scope that is the entire program
  */
@@ -21,7 +23,6 @@ public class Program extends Scope {
         instructions.add(Machine.SETD);
         instructions.add((short) 0);
 
-        
-
+        super.doCodeGeneration(instructions);
     }
 }
