@@ -498,12 +498,24 @@ public class Main {
 			// programAST.doCodeGen() ;
 			// or
 			// codeGen.doIt( programAST );
+			System.out.println("Beginning Code Generation");
+
+            CodeGen codegen = new CodeGen();
+            codegen.Initialize();
+            codegen.Generate();
+            codegen.Finalize();
+
+			System.out.println("End of Code Generation");
 		} catch (Exception e) {
 			System.err.println("Exception during Code Generation");
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			e.printStackTrace();
 			errorOccurred = true;
 		}
+
+        if (dumpCode) {
+            // print out code here
+        }
 
 		if (errorOccurred) {
 			System.out.println("Processing Terminated due to errors");

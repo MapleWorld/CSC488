@@ -72,7 +72,7 @@ public class CodeGen
      */
 
    /** Additional initialization for Code Generation (if required) */
-   void Initialize()
+   public void Initialize()
 	{
 	/********************************************************/
 	/* Initialization code for the code generator GOES HERE */
@@ -89,7 +89,7 @@ public class CodeGen
      *  Called once at the end of code generation.
      *  @throws MemoryAddressException
      */
-    void Finalize()
+    public void Finalize()
         throws MemoryAddressException     // from Machine.writeMemory
 	{
 	/********************************************************/
@@ -105,8 +105,8 @@ public class CodeGen
  	Machine.setPC( (short) 0 ) ;		/* where code to be executed begins */
 	Machine.setMSP((short)  1 );   	/* where memory stack begins */
 	Machine.setMLP((short) ( Machine.memorySize -1 ) );
-					/* limit of stack */
-        Machine.writeMemory((short)  0 , Machine.HALT );
+				            /* limit of stack */
+    Machine.writeMemory((short)  0 , Machine.HALT );
 
 	return;
 	}
@@ -135,6 +135,10 @@ public class CodeGen
 	return;
 	}
 
-     //  ADDITIONAL FUNCTIONS TO IMPLEMENT CODE GENERATION GO HERE
-
+    //  ADDITIONAL FUNCTIONS TO IMPLEMENT CODE GENERATION GO HERE
+   public void Generate()
+	{
+        System.out.println("Begin generating code here.");
+	    return;
+	}
 }
