@@ -5,6 +5,7 @@ import compiler488.ast.*;
 import compiler488.ast.expn.*;
 import compiler488.symbol.*;
 import compiler488.ast.type.*;
+import compiler488.codegen.Instructions;
 
 /**
  * The command to write data on the output device.
@@ -56,7 +57,7 @@ public class WriteStmt extends Stmt {
         return null;
     }
 
-    public void doCodeGeneration(List<Short> instructions) {
+    public void doCodeGeneration(Instructions instructions) {
         LinkedList<Printable> elemList = outputs.getList();
         ListIterator<Printable> iterator = elemList.listIterator();
         while (iterator.hasNext()) {

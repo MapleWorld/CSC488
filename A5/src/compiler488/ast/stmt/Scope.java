@@ -9,6 +9,7 @@ import compiler488.ast.Indentable;
 import compiler488.ast.decl.Declaration;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
+import compiler488.codegen.Instructions;
 
 /**
  * Represents the declarations and instructions of a scope construct.
@@ -139,14 +140,14 @@ public class Scope extends Stmt {
         return null;
     }
 
-    public void doCodeGeneration(List<Short> instructions) {
+    public void doCodeGeneration(Instructions instructions) {
 
         // C01
 
         // C02
     }
 
-    public void doCodeGenChildren(List<Short> instructions) {
+    public void doCodeGenChildren(Instructions instructions) {
         LinkedList<Declaration> declList = declarations.getList();
         ListIterator<Declaration> declIterator = declList.listIterator();
 

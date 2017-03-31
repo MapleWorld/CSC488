@@ -4,6 +4,7 @@ import java.util.List;
 import compiler488.symbol.*;
 import java.util.*;
 import compiler488.ast.type.*;
+import compiler488.codegen.Instructions;
 
 /**
  * This is a placeholder at the top of the Abstract Syntax Tree hierarchy. It is
@@ -63,7 +64,7 @@ public class AST {
         throw new UnsupportedOperationException("doSemantics not implemented for AST.");
     }
 
-    public void doCodeGeneration(List<Short> instructions) {
+    public void doCodeGeneration(Instructions instructions) {
         System.out.println(this.getClass());
         throw new UnsupportedOperationException("doCodeGeneration not implemented for AST.");
     }

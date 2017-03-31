@@ -1,5 +1,6 @@
 package compiler488.ast;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 public interface Printable {
 
@@ -20,5 +21,5 @@ public interface Printable {
 
 	public void exitBlock();
 
-    public void doCodeGenerationForWrite(List<Short> instructions);
+    public void doCodeGenerationForWrite(Instructions instructions);
 }

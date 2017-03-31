@@ -3,6 +3,7 @@ package compiler488.ast.expn;
 import compiler488.ast.Printable;
 import java.util.*;
 import compiler488.runtime.Machine;
+import compiler488.codegen.Instructions;
 
 /**
  * Represents a literal text constant.
@@ -29,11 +30,11 @@ public class TextConstExpn extends ConstExpn implements Printable {
         this.value = value;
     }
 
-    public void doCodeGenerationForWrite(List<Short> instructions) {
+    public void doCodeGenerationForWrite(Instructions instructions) {
         for (int i = 0; i < value.length(); i++) {
-            instructions.add(Machine.PUSH);
-            instructions.add((short) value.charAt(i));
-            instructions.add(Machine.PRINTC);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add(null, (short) value.charAt(i));
+            instructions.add("PRINTC", Machine.PRINTC);
         }
     }
 

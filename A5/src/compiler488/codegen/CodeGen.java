@@ -6,6 +6,7 @@ import compiler488.compiler.Main;
 import compiler488.runtime.Machine;
 import compiler488.runtime.MemoryAddressException;
 import compiler488.ast.*;
+import compiler488.codegen.Instructions;
 
 /**      CodeGenerator.java
  *<pre>
@@ -56,7 +57,7 @@ public class CodeGen
     /** flag for tracing code generation */
     private boolean traceCodeGen = Main.traceCodeGen ;
 
-    private List<Short> instructions;
+    private Instructions instructions;
 
     /**
      *  Constructor to initialize code generation
@@ -106,10 +107,7 @@ public class CodeGen
 				            /* limit of stack */
     Machine.writeMemory((short)  0 , Machine.HALT );
 
-    for (int i=0; i<instructions.size(); i++) {
-        System.out.println(instructions.get(i));
-    }
-
+    instructions.PrintStringInstructions();
 
 	return;
 	}
@@ -141,8 +139,8 @@ public class CodeGen
     //  ADDITIONAL FUNCTIONS TO IMPLEMENT CODE GENERATION GO HERE
    public void Generate(AST root)
 	{
-        instructions = new ArrayList<Short>();
-
+        instructions = new Instructions();
+        instructions.Initialize();
         root.doCodeGeneration(instructions);
 	    return;
 	}

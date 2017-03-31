@@ -8,7 +8,7 @@ import compiler488.parser.*;
 import compiler488.ast.AST;
 import compiler488.ast.stmt.Program;
 import compiler488.symbol.SymbolTable;
-import compiler488.codegen.CodeGen;
+import compiler488.codegen.*;
 import compiler488.runtime.*;
 
 /**

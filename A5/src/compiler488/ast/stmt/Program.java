@@ -2,6 +2,7 @@ package compiler488.ast.stmt;
 
 import java.util.*;
 import compiler488.runtime.Machine; 
+import compiler488.codegen.Instructions;
 
 
 
@@ -17,12 +18,12 @@ public class Program extends Scope {
         super(scope);
     }
 
-    public void doCodeGeneration(List<Short> instructions) {
+    public void doCodeGeneration(Instructions instructions) {
         // C00
-        instructions.add(Machine.PUSHMT);
-        instructions.add(Machine.SETD);
-        instructions.add((short) 0);
-    
+        instructions.add("PUSHMT", Machine.PUSHMT);
+        instructions.add("SETD", Machine.SETD);
+        instructions.add(null, (short) 0);
+
         super.doCodeGenChildren(instructions);
     }
 }
