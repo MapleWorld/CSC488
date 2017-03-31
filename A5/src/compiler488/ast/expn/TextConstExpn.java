@@ -1,6 +1,8 @@
 package compiler488.ast.expn;
 
 import compiler488.ast.Printable;
+import java.util.*;
+import compiler488.runtime.Machine;
 
 /**
  * Represents a literal text constant.
@@ -25,6 +27,14 @@ public class TextConstExpn extends ConstExpn implements Printable {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public void doCodeGenerationForWrite(List<Short> instructions) {
+        for (int i = 0; i < value.length(); i++) {
+            instructions.add(Machine.PUSH);
+            instructions.add((short) value.charAt(i));
+            instructions.add(Machine.PRINTC);
+        }
     }
 
 }

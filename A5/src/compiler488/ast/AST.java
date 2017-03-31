@@ -64,6 +64,7 @@ public class AST {
     }
 
     public void doCodeGeneration(List<Short> instructions) {
+        System.out.println(this.getClass());
         throw new UnsupportedOperationException("doCodeGeneration not implemented for AST.");
     }
 

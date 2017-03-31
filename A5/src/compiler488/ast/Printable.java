@@ -1,4 +1,5 @@
 package compiler488.ast;
+import java.util.*;
 
 public interface Printable {
 
@@ -18,4 +19,6 @@ public interface Printable {
 	public void enterBlock();
 
 	public void exitBlock();
+
+    public void doCodeGenerationForWrite(List<Short> instructions);
 }
