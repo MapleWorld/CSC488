@@ -15,5 +15,6 @@ public class Program extends Scope {
     public void doCodeGeneration() {
         // C00
         System.out.println("Generate code for program");
+
     }
 }

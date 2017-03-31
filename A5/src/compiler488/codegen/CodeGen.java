@@ -56,6 +56,8 @@ public class CodeGen
     /** flag for tracing code generation */
     private boolean traceCodeGen = Main.traceCodeGen ;
 
+    private List<short> instructions;
+
     /**
      *  Constructor to initialize code generation
      */
@@ -93,16 +95,11 @@ public class CodeGen
     public void Finalize()
         throws MemoryAddressException     // from Machine.writeMemory
 	{
-	/********************************************************/
-	/* Finalization code for the code generator GOES HERE.  */
-	/*                                                      */
-	/* This procedure is called once at the end of code     */
-	/* generation                                           */
-	/********************************************************/
+        // TODO:
+        // - get instruction list here
+        // - setMSP to list.size()
+        // - writeMemory all the instructions
 
-	//  REPLACE THIS CODE WITH YOUR OWN CODE
-	//  THIS CODE generates a single HALT instruction
-        //  as an example.
  	Machine.setPC( (short) 0 ) ;		/* where code to be executed begins */
 	Machine.setMSP((short)  1 );   	/* where memory stack begins */
 	Machine.setMLP((short) ( Machine.memorySize -1 ) );
