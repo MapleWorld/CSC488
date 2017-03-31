@@ -56,7 +56,7 @@ public class CodeGen
     /** flag for tracing code generation */
     private boolean traceCodeGen = Main.traceCodeGen ;
 
-    private List<short> instructions;
+    private List<Short> instructions;
 
     /**
      *  Constructor to initialize code generation
@@ -106,6 +106,11 @@ public class CodeGen
 				            /* limit of stack */
     Machine.writeMemory((short)  0 , Machine.HALT );
 
+    for (int i=0; i<instructions.size(); i++) {
+        System.out.println(instructions.get(i));
+    }
+
+
 	return;
 	}
 
@@ -136,7 +141,9 @@ public class CodeGen
     //  ADDITIONAL FUNCTIONS TO IMPLEMENT CODE GENERATION GO HERE
    public void Generate(AST root)
 	{
-        root.doCodeGeneration();
+        instructions = new ArrayList<Short>();
+
+        root.doCodeGeneration(instructions);
 	    return;
 	}
 }

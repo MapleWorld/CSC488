@@ -63,7 +63,7 @@ public class AST {
         throw new UnsupportedOperationException("doSemantics not implemented for AST.");
     }
 
-    public void doCodeGeneration() {
+    public void doCodeGeneration(List<Short> instructions) {
         throw new UnsupportedOperationException("doCodeGeneration not implemented for AST.");
     }
 

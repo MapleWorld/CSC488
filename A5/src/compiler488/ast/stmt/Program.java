@@ -1,5 +1,8 @@
 package compiler488.ast.stmt;
 
+import java.util.*;
+import compiler488.runtime.Machine; 
+
 /**
  * Placeholder for the scope that is the entire program
  */
@@ -12,9 +15,13 @@ public class Program extends Scope {
         super(scope);
     }
 
-    public void doCodeGeneration() {
+    public void doCodeGeneration(List<Short> instructions) {
         // C00
-        System.out.println("Generate code for program");
+        instructions.add(Machine.PUSHMT);
+        instructions.add(Machine.SETD);
+        instructions.add((short) 0);
+
+        
 
     }
 }
