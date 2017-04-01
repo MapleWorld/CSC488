@@ -64,7 +64,7 @@ public class AST {
         throw new UnsupportedOperationException("doSemantics not implemented for AST.");
     }
 
-    public void doCodeGeneration(Instructions instructions) {
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
         System.out.println(this.getClass());
         throw new UnsupportedOperationException("doCodeGeneration not implemented for AST.");
     }

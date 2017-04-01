@@ -1,6 +1,7 @@
 package compiler488.ast;
 import java.util.*;
 import compiler488.codegen.Instructions;
+import compiler488.symbol.*;
 
 public interface Printable {
 
@@ -21,5 +22,5 @@ public interface Printable {
 
 	public void exitBlock();
 
-    public void doCodeGenerationForWrite(Instructions instructions);
+    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table);
 }

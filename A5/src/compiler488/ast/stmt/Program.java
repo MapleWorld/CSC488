@@ -3,7 +3,7 @@ package compiler488.ast.stmt;
 import java.util.*;
 import compiler488.runtime.Machine; 
 import compiler488.codegen.Instructions;
-
+import compiler488.symbol.*;
 
 
 /**
@@ -18,13 +18,13 @@ public class Program extends Scope {
         super(scope);
     }
 
-    public void doCodeGeneration(Instructions instructions) {
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
         // C00
         instructions.add("PUSHMT", Machine.PUSHMT);
         instructions.add("SETD", Machine.SETD);
         instructions.add(null, (short) 0);
 
-        super.doCodeGenChildren(instructions);
+        super.doCodeGenChildren(instructions, numVars, table);
 
         instructions.add("PUSHMT", Machine.PUSHMT);
         instructions.add("ADDR", Machine.ADDR);

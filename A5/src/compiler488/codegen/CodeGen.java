@@ -7,6 +7,7 @@ import compiler488.runtime.Machine;
 import compiler488.runtime.MemoryAddressException;
 import compiler488.ast.*;
 import compiler488.codegen.Instructions;
+import compiler488.symbol.SymbolTable;
 
 /**      CodeGenerator.java
  *<pre>
@@ -42,10 +43,9 @@ import compiler488.codegen.Instructions;
  * @author  <B> PUT YOUR NAMES HERE </B>
  */
 
-public class CodeGen
-    {
-      /** version string for Main's -V */
-      public static final String version = "Winter 2017" ;
+public class CodeGen {
+    /** version string for Main's -V */
+    public static final String version = "Winter 2017" ;
 
     /** initial value for memory stack pointer */
     private short startMSP;
@@ -62,10 +62,9 @@ public class CodeGen
     /**
      *  Constructor to initialize code generation
      */
-    public CodeGen()
-	{
+    public CodeGen() {
 	// YOUR CONSTRUCTOR GOES HERE.
-	}
+    }
 
     // Utility procedures used for code generation GO HERE.
 
@@ -75,9 +74,8 @@ public class CodeGen
      *  May be unnecesary if constructor does everything.
      */
 
-   /** Additional initialization for Code Generation (if required) */
-   public void Initialize()
-	{
+    /** Additional initialization for Code Generation (if required) */
+    public void Initialize() {
 	/********************************************************/
 	/* Initialization code for the code generator GOES HERE */
 	/* This procedure is called once before codeGeneration  */
@@ -85,7 +83,7 @@ public class CodeGen
 	/********************************************************/
 
 	return;
-	}
+    }
 
 
     /**
@@ -94,14 +92,13 @@ public class CodeGen
      *  @throws MemoryAddressException
      */
     public void Finalize()
-        throws MemoryAddressException     // from Machine.writeMemory
-	{
+        throws MemoryAddressException {    // from Machine.writeMemory
         // TODO:
         // - get instruction list here
         // - setMSP to list.size()
         // - writeMemory all the instructions
 
-    instructions.WriteToMemory();
+        instructions.WriteToMemory();
 
  	Machine.setPC( (short) 0) ;		/* where code to be executed begins */
 	Machine.setMSP(instructions.getMSP());   	/* where memory stack begins */
@@ -110,13 +107,13 @@ public class CodeGen
 
 
 	return;
-	}
+    }
 
-   public void Generate(AST root)
-	{
+    public void Generate(AST root, Deque<Integer> numVars) {
         instructions = new Instructions();
+        SymbolTable table = new SymbolTable();
         instructions.Initialize();
-        root.doCodeGeneration(instructions);
+        root.doCodeGeneration(instructions, numVars, table);
 	    return;
-	}
+    }
 }

@@ -4,6 +4,7 @@ import compiler488.ast.Printable;
 import java.util.*;
 import compiler488.runtime.Machine;
 import compiler488.codegen.Instructions;
+import compiler488.symbol.*;
 
 /**
  * Represents a literal text constant.
@@ -30,7 +31,8 @@ public class TextConstExpn extends ConstExpn implements Printable {
         this.value = value;
     }
 
-    public void doCodeGenerationForWrite(Instructions instructions) {
+    /** Adds instructions to print the text constant */
+    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
         for (int i = 0; i < value.length(); i++) {
             instructions.add("PUSH", Machine.PUSH);
             instructions.add(null, (short) value.charAt(i));

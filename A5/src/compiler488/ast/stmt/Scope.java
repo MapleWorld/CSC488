@@ -140,24 +140,24 @@ public class Scope extends Stmt {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions) {
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
 
         // C01
 
         // C02
     }
 
-    public void doCodeGenChildren(Instructions instructions) {
+    public void doCodeGenChildren(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
         LinkedList<Declaration> declList = declarations.getList();
         ListIterator<Declaration> declIterator = declList.listIterator();
 
         while (declIterator.hasNext())
-            (declIterator.next()).doCodeGeneration(instructions);
+            (declIterator.next()).doCodeGeneration(instructions, numVars, table);
 
         LinkedList<Stmt> stmtList = statements.getList();
         ListIterator<Stmt> stmtIterator = stmtList.listIterator();
 
         while (stmtIterator.hasNext())
-            (stmtIterator.next()).doCodeGeneration(instructions);
+            (stmtIterator.next()).doCodeGeneration(instructions, numVars, table);
     }
 }

@@ -3,7 +3,7 @@ package compiler488.compiler;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
-
+import java.util.Deque;
 import compiler488.parser.*;
 import compiler488.ast.AST;
 import compiler488.ast.stmt.Program;
@@ -374,6 +374,7 @@ public class Main {
 	public static void main(String argv[]) {
 		Object parserResult; // the result of parsing and AST building
 		Program programAST = null;
+                Deque<Integer> numVars = null; 
 
 		/* process user options and arguments */
 		try {
@@ -452,6 +453,7 @@ public class Main {
                         System.out.print(errorMessages.get(i));
                     }
                     System.out.println("\nSemantic Analysis Ended");
+                    numVars = symbolTable.getNumVars();
 		} catch (Exception e) {
 			System.err.println("Exception during Semantic Analysis");
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -500,10 +502,10 @@ public class Main {
 			// codeGen.doIt( programAST );
 			System.out.println("Beginning Code Generation");
 
-            CodeGen codegen = new CodeGen();
-            codegen.Initialize();
-            codegen.Generate(programAST);
-            codegen.Finalize();
+                        CodeGen codegen = new CodeGen();
+                        codegen.Initialize();
+                        codegen.Generate(programAST, numVars);
+                        codegen.Finalize();
 
 			System.out.println("End of Code Generation");
 		} catch (Exception e) {

@@ -63,10 +63,10 @@ public class MultiDeclarations extends Declaration {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions) {
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
         LinkedList<DeclarationPart> elemList = elements.getList();
         ListIterator<DeclarationPart> iterator = elemList.listIterator();
         while (iterator.hasNext())
-            (iterator.next()).doCodeGeneration(instructions);
+            (iterator.next()).doCodeGeneration(instructions, numVars, table);
     }
 }

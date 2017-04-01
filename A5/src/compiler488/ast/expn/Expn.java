@@ -5,7 +5,8 @@ import compiler488.ast.Printable;
 import compiler488.symbol.*;
 import java.util.*;
 import compiler488.ast.type.*;
-
+import compiler488.runtime.Machine;
+import compiler488.codegen.Instructions;
 
 /**
  * A placeholder for all expressions.
@@ -45,9 +46,14 @@ public class Expn extends AST implements Printable {
 
     }
 
+    @Override
     public Type doSemantics(SymbolTable table, List<String> errorMsg, 
                             SymbolTable.ScopeType scp) {
         // do semantic analysis for this node
 		return null;
+    }
+
+    @Override
+    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
     }
 }
