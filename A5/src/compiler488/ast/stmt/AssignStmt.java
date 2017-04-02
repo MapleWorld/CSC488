@@ -7,6 +7,7 @@ import compiler488.ast.AST;
 import compiler488.ast.expn.Expn;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
+import compiler488.runtime.Machine;
 
 /**
  * Holds the assignment of an expression to a variable.
@@ -60,5 +61,15 @@ public class AssignStmt extends Stmt {
                                             "variable and expression in assignment are not the same type"));
         }
         return null;
+    }
+
+    /** Emits code to store the value on RHS to LHS's address */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table,
+                                 SymbolTable.ScopeType scp) {
+        // this will only put the address of lval on the stack without loading the value
+        lval.doCodeGenerationVariable(instructions, numVars, table, null);
+
+        rval.doCodeGeneration(instructions, numVars, table, null);
+        instructions.add("STORE", Machine.STORE);
     }
 }
