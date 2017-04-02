@@ -34,6 +34,10 @@ public class SymbolTable {
     private HashMap<String, SymbolTableEntry> table;
     // total variable sizes in the order of major scopes
     private ArrayDeque<Integer> numVars;
+    // maps numLoop to list of memoryAddr that needs to be filled with the code address at end of numLoop 
+    private HashMap<Integer, LinkedList<Integer>> loopAddr;
+    // list of memoryAddr that needs to be filled with the code address at end of function/procedure
+    private LinkedList<Integer> routineAddr;
 
 
     /** Symbol Table  constructor
@@ -45,6 +49,8 @@ public class SymbolTable {
         stack = new ArrayDeque<SymbolList>();
         table = new HashMap<String, SymbolTableEntry>();
         numVars = new ArrayDeque<Integer>();
+        loopAddr = new HashMap<Integer, LinkedList<Integer>>();
+        routineAddr = new LinkedList<Integer>();
     }
 
     /** The rest of Symbol Table
@@ -199,6 +205,35 @@ public class SymbolTable {
         return lexicalLevel;
     }
 
+    /** Returns the list of address to be filled at the end of numLoop */
+    public LinkedList<Integer> getLoopAddr(int numLoop) {
+        return loopAddr.remove(numLoop);
+    }
+
+    /** Returns the list of address to be filled at the end of the routine */
+    public LinkedList<Integer> getRoutineAddr() {
+        LinkedList<Integer> val = routineAddr;
+        routineAddr = new LinkedList<Integer>();
+        return val;
+    }
+
+    /** Added addr to the list of address to be filled at the end of numLoop */
+    public void addLoopAddr(int numLoop, int addr) {
+        LinkedList<Integer> val = loopAddr.get(numLoop);
+        if (val == null) {
+            val = new LinkedList<Integer>();
+            val.add(addr);
+            loopAddr.put(numLoop, val);
+        }
+        else
+            val.add(addr);
+    }
+    
+    /** Added addr to the list of address to be filled at the end of the routine */
+    public void addRoutineAddr(int addr) {
+        routineAddr.add(addr);
+    }
+    
     /** SymbolList
      *  This class keeps track of all previously declared symbols.
      */

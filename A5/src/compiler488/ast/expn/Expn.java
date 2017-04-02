@@ -53,7 +53,19 @@ public class Expn extends AST implements Printable {
 		return null;
     }
 
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
+    }
+
     @Override
-    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table, SymbolTable.ScopeType scp) {
+    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, 
+                                         SymbolTable table, SymbolTable.ScopeType scp) {
+        doCodeGeneration(instructions, numVars, table, scp);
+        instructions.add("PRINTI", Machine.PRINTI);
+    }
+
+    /** This will only contain content when the expn is IdentExpn or SubsExpn */
+    public void doCodeGenerationVariable(Instructions instructions, Deque<Integer> numVars,
+                                         SymbolTable table, SymbolTable.ScopeType scp) {
     }
 }

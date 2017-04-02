@@ -70,9 +70,17 @@ public class RoutineBody extends Indentable {
                                  SymbolTable table) {
         LinkedList<ScalarDecl> paramList = parameters.getList();
         ListIterator<ScalarDecl> iterator = paramList.listIterator();
-        while (iterator.hasNext())
+        int numParams = 0;
+        while (iterator.hasNext()) {
             (iterator.next()).doCodeGeneration(instructions, numVars, table);
-        
+            numParams++;
+        }
+
+        // numVars includes the parameters; have to make sure parameters are not counted 
+        int size = numVars.removeFirst();
+        size -= numParams;
+        numVars.addFirst(size);
+
         body.doCodeGenChildren(instructions, numVars, table);
     }
 }
