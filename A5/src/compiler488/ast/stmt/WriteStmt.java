@@ -57,11 +57,11 @@ public class WriteStmt extends Stmt {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table, SymbolTable.ScopeType scp) {
         LinkedList<Printable> elemList = outputs.getList();
         ListIterator<Printable> iterator = elemList.listIterator();
         while (iterator.hasNext()) {
-            iterator.next().doCodeGenerationForWrite(instructions, numVars, table);
+            iterator.next().doCodeGenerationForWrite(instructions, numVars, table, null);
         }
     }
 }

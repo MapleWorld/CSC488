@@ -12,7 +12,7 @@ import compiler488.codegen.Instructions;
  * @author  Ou Ye
  */
 public class AST {
-	public final static String version = "Winter 2017";
+    public final static String version = "Winter 2017";
 
     private AST parent;
     private int lineNumber;
@@ -64,7 +64,8 @@ public class AST {
         throw new UnsupportedOperationException("doSemantics not implemented for AST.");
     }
 
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
         System.out.println(this.getClass());
         throw new UnsupportedOperationException("doCodeGeneration not implemented for AST.");
     }

@@ -45,8 +45,8 @@ public class Instructions {
         }
     }
 
-    /** gets the addr of msp */
-    public short getMSP() {
+    /** Returns the size of instructions */
+    public short getSize() {
         return (short)instructions.size();
     }
 }

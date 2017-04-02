@@ -39,7 +39,10 @@ public class ScalarDeclPart extends DeclarationPart {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions) {
-        // addSymbol
+    /** Does code generation on this scalar variable declaration */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, Type idType) {
+        // addSymbol to symbol table to determine the lexical level and order number
+        table.addSymbol(name, new SymbolTableEntry(new ScalarSymbolType(idType)));
     }
 }

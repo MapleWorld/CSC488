@@ -4,6 +4,7 @@ import compiler488.ast.AST;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 /**
  * The common features of declarations' parts.
@@ -31,4 +32,6 @@ public class DeclarationPart extends AST {
         return null;
     }
 
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table,
+                                 Type type) {}
 }

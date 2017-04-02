@@ -10,6 +10,7 @@ import compiler488.ast.type.Type;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 /**
  * Represents the declaration of a function or procedure.
@@ -145,4 +146,32 @@ public class RoutineDecl extends Declaration {
         }
         return null;
     }
+
+    /** Does code generation on this routine declaration and saves the starting address of the routine to symbol table */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table,
+                                 SymbolTable.ScopeType scp) {
+        if (this.type == null) { // Procedure
+            ProcedureSymbolType pst = new ProcedureSymbolType(this.routineBody.getParameters());
+            pst.setStartAddr(instructions.getSize());
+            SymbolTableEntry ste = new SymbolTableEntry(pst);
+            table.addSymbol(this.name, ste);
+
+            table.startScope(SymbolTable.ScopeType.PROCEDURE);
+            routineBody.getBody().setScpType(SymbolTable.ScopeType.PROCEDURE);
+            routineBody.doCodeGeneration(instructions, numVars, table);
+
+            table.endScope();            
+        } else { // Function
+            FunctionSymbolType fst = new FunctionSymbolType(this.type, this.routineBody.getParameters());
+            fst.setStartAddr(instructions.getSize());
+            table.addSymbol(this.name, 
+                            new SymbolTableEntry(fst));
+ 
+            table.startFunctionScope(this.type);
+            routineBody.getBody().setScpType(SymbolTable.ScopeType.FUNCTION);
+            routineBody.doCodeGeneration(instructions, numVars, table);
+            table.endScope();
+        }
+    }
+        
 }

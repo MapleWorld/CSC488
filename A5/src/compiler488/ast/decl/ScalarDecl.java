@@ -3,6 +3,7 @@ package compiler488.ast.decl;
 import compiler488.ast.type.Type;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 /**
  * Represents the declaration of a simple variable.
@@ -27,5 +28,11 @@ public class ScalarDecl extends Declaration {
         // do semantic analysis for this node
         ScalarDeclPart sdp = new ScalarDeclPart(this.name, this.getLineNumber(), this.getColumnNumber());
         return sdp.doSemantics(table, errorMsg, this.type);
+    }
+
+    /** Does code generation on this ScalarDecl by determining the parameter's lexical level and order number */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+        ScalarDeclPart sdp = new ScalarDeclPart(this.name, this.getLineNumber(), this.getColumnNumber());
+        sdp.doCodeGeneration(instructions, numVars, table, this.type);
     }
 }

@@ -22,5 +22,5 @@ public interface Printable {
 
 	public void exitBlock();
 
-    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table);
+        public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table, SymbolTable.ScopeType scpType);
 }

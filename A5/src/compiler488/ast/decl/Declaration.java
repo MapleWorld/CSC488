@@ -4,6 +4,7 @@ import compiler488.ast.Indentable;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 /**
  * The common features of declarations.
@@ -41,4 +42,7 @@ public class Declaration extends Indentable {
                             SymbolTable.ScopeType scp) {
         return null;
     }
+
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scp) {}
 }

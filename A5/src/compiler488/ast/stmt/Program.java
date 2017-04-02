@@ -18,20 +18,19 @@ public class Program extends Scope {
         super(scope);
     }
 
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+    /** Emits code to prepare and end program execution */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
         // C00
         instructions.add("PUSHMT", Machine.PUSHMT);
         instructions.add("SETD", Machine.SETD);
         instructions.add(null, (short) 0);
-
+        
+        table.startScope(scpType);
         super.doCodeGenChildren(instructions, numVars, table);
+        table.endScope();
 
-        instructions.add("PUSHMT", Machine.PUSHMT);
-        instructions.add("ADDR", Machine.ADDR);
-        instructions.add(null, (short) 0);
-        instructions.add(null, (short) 0);
-        instructions.add("SUB", Machine.SUB);
-        instructions.add("POPN", Machine.POPN);
+        // C01
         instructions.add("HALT", Machine.HALT);
     }
 }

@@ -15,6 +15,7 @@ public class FunctionSymbolType extends SymbolType {
     Type returnType;
     int paramCount;
     ASTList<ScalarDecl> arguments;
+    int startAddr;
 
     public FunctionSymbolType(Type returnType, ASTList<ScalarDecl> arguments) {
         this.returnType = returnType;
@@ -35,5 +36,15 @@ public class FunctionSymbolType extends SymbolType {
     /** Returns the arguments. */
     public ASTList<ScalarDecl> getArguments() {
         return this.arguments;
+    }
+
+    /** Sets the function code's starting addr to addr */
+    public void setStartAddr(int addr) {
+        this.startAddr = addr;
+    }
+
+    /** Returns the function code's starting addr */
+    public int getStartAddr() {
+        return this.startAddr;
     }
 }

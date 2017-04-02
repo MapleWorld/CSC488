@@ -54,6 +54,6 @@ public class Expn extends AST implements Printable {
     }
 
     @Override
-    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table, SymbolTable.ScopeType scp) {
     }
 }

@@ -68,12 +68,12 @@ public class SymbolTable {
         entry.setAddress(lexicalLevel, stack.peek().getOrderNumber());
 
         // increment order number by size of identifier
-        int size;
+        int size = 0;
         if (entry.getType() instanceof ArraySymbolType) {
             ArraySymbolType arrayEntryType = (ArraySymbolType) entry.getType();
             // language.pdf says upperbound is inclusive
             size = arrayEntryType.getUpperBound() - arrayEntryType.getLowerBound() + 1;
-        } else {
+        } else if (entry.getType() instanceof ScalarSymbolType) {
             size = 1;
         }
         stack.peek().updateOrderNumber(size);
@@ -194,6 +194,10 @@ public class SymbolTable {
         return stack.peek().getNumLoop();
     }
     
+    /** Returns the current lexical level */
+    public int getLexicalLevel() {
+        return lexicalLevel;
+    }
 
     /** SymbolList
      *  This class keeps track of all previously declared symbols.

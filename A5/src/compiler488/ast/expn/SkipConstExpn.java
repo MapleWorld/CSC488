@@ -24,7 +24,7 @@ public class SkipConstExpn extends ConstExpn implements Printable {
 
     /** Adds instruction to print newline */
     public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, 
-                                 SymbolTable table) {
+                                         SymbolTable table, SymbolTable.ScopeType scpType) {
         instructions.add("PUSH", Machine.PUSH);
         instructions.add(null, (short) '\n');
         instructions.add("PRINTC", Machine.PRINTC);

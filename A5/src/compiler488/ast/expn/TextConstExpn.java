@@ -32,7 +32,7 @@ public class TextConstExpn extends ConstExpn implements Printable {
     }
 
     /** Adds instructions to print the text constant */
-    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+    public void doCodeGenerationForWrite(Instructions instructions, Deque<Integer> numVars, SymbolTable table, SymbolTable.ScopeType scpType) {
         for (int i = 0; i < value.length(); i++) {
             instructions.add("PUSH", Machine.PUSH);
             instructions.add(null, (short) value.charAt(i));

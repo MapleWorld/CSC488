@@ -10,6 +10,7 @@ import compiler488.ast.decl.Declaration;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 
 /**
  * Represents the declarations and instructions of a scope construct.
@@ -140,24 +141,63 @@ public class Scope extends Stmt {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
-
-        // C01
-
-        // C02
+    /** Does code generation on this Scope */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
+        // This is used for determining lexical level for decalarations(function/procedure) and other minor scopes
+        // The procedure/function entrance and exit code will be emitted when the procedure/function gets called
+        if (scpType == SymbolTable.ScopeType.LOOP)
+            table.startLoopScope();
+        else
+            table.startScope(scpType);
+        this.currScpType = scpType;
+        this.doCodeGenChildren(instructions, numVars, table);
+        table.endScope();
     }
 
-    public void doCodeGenChildren(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+    /** Does code generation on every declaration and statements in this scope */
+    public void doCodeGenChildren(Instructions instructions, Deque<Integer> numVars, 
+                                  SymbolTable table) {
+        boolean majorScope = (currScpType != SymbolTable.ScopeType.LOOP &&
+                              currScpType != SymbolTable.ScopeType.ORDINARY);
+        // C30, C31 - allocate space for vars in major scope
+        if (majorScope) {
+            int space = numVars.removeFirst();
+            if (space > 0) {
+                instructions.add("PUSH", Machine.PUSH);
+                instructions.add("UNDEFINED", Machine.UNDEFINED);
+                instructions.add("PUSH", Machine.PUSH);
+                instructions.add(null, (short) space);
+                instructions.add("DUPN", Machine.DUPN);
+            }
+        }
+        
         LinkedList<Declaration> declList = declarations.getList();
         ListIterator<Declaration> declIterator = declList.listIterator();
 
         while (declIterator.hasNext())
-            (declIterator.next()).doCodeGeneration(instructions, numVars, table);
+            (declIterator.next()).doCodeGeneration(instructions, numVars, table, null);
 
         LinkedList<Stmt> stmtList = statements.getList();
         ListIterator<Stmt> stmtIterator = stmtList.listIterator();
 
         while (stmtIterator.hasNext())
-            (stmtIterator.next()).doCodeGeneration(instructions, numVars, table);
+            (stmtIterator.next()).doCodeGeneration(instructions, numVars, table, this.currScpType);
+
+        // remove allocated space
+        if (majorScope) {
+            instructions.add("PUSHMT", Machine.PUSHMT);
+            instructions.add("ADDR", Machine.ADDR);
+            short lexlev = (short) table.getLexicalLevel();
+            instructions.add(null, lexlev);
+            instructions.add(null, (short) 0);
+            instructions.add("SUB", Machine.SUB);
+            instructions.add("POPN", Machine.POPN);
+            if (currScpType != SymbolTable.ScopeType.PROGRAM) {
+                instructions.add("SETD", Machine.SETD);
+                instructions.add(null, (short) lexlev);
+                instructions.add("BR", Machine.BR);
+            }
+        }
     }
 }

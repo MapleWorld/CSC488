@@ -3,6 +3,7 @@ package compiler488.ast.decl;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 /**
  * Holds the declaration part of an array.
@@ -96,5 +97,15 @@ public class ArrayDeclPart extends DeclarationPart {
                                        "S37",
                                        "identifier \"" + name + "\" has already been declared in current scope"));
         return null;
+    }
+
+    /** Adds array to symbol table to determine its lexical level and offset */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, Type idType) {
+        if (hasUpperBoundOnly)
+            table.addSymbol(name, new SymbolTableEntry(new ArraySymbolType(idType, ub)));
+        else 
+            table.addSymbol(name, new SymbolTableEntry(new ArraySymbolType(idType,
+                                                                           ub, lb)));
     }
 }

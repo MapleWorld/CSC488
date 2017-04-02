@@ -63,10 +63,12 @@ public class MultiDeclarations extends Declaration {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table) {
+    /** Performs code generation on each element of this MultiDeclartion */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
         LinkedList<DeclarationPart> elemList = elements.getList();
         ListIterator<DeclarationPart> iterator = elemList.listIterator();
         while (iterator.hasNext())
-            (iterator.next()).doCodeGeneration(instructions, numVars, table);
+            (iterator.next()).doCodeGeneration(instructions, numVars, table, this.getType());
     }
 }

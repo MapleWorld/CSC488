@@ -101,7 +101,7 @@ public class CodeGen {
         instructions.WriteToMemory();
 
  	Machine.setPC( (short) 0) ;		/* where code to be executed begins */
-	Machine.setMSP(instructions.getMSP());   	/* where memory stack begins */
+	Machine.setMSP(instructions.getSize());   	/* where memory stack begins */
 	Machine.setMLP((short) ( Machine.memorySize -1 ) );
 				            /* limit of stack */
 
@@ -113,7 +113,7 @@ public class CodeGen {
         instructions = new Instructions();
         SymbolTable table = new SymbolTable();
         instructions.Initialize();
-        root.doCodeGeneration(instructions, numVars, table);
+        root.doCodeGeneration(instructions, numVars, table, SymbolTable.ScopeType.PROGRAM);
 	    return;
     }
 }

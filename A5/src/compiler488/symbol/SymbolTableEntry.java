@@ -32,9 +32,19 @@ public class SymbolTableEntry {
         this.scope = scope;
     }
 
+    /** Sets this entry's lexical level and order number to lexicalLevel and orderNumber */
     public void setAddress(int lexicalLevel, int orderNumber) {
         this.lexicalLevel = lexicalLevel;
         this.orderNumber = orderNumber;
     }
 
+    /** Returns this entry's lexical level */
+    public int getLexicalLevel() {
+        return lexicalLevel;
+    }
+
+    /** Returns this entry's order number */
+    public int getOrderNumber() {
+        return orderNumber;
+    }
 }

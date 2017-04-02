@@ -8,6 +8,7 @@ import compiler488.ast.stmt.Scope;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 /**
  * Represents the parameters and instructions associated with a
@@ -62,5 +63,16 @@ public class RoutineBody extends Indentable {
         
         body.doSemantics(table, errorMessages);
         return null;
+    }
+
+    /** Does code generation on parameters and routine body */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table) {
+        LinkedList<ScalarDecl> paramList = parameters.getList();
+        ListIterator<ScalarDecl> iterator = paramList.listIterator();
+        while (iterator.hasNext())
+            (iterator.next()).doCodeGeneration(instructions, numVars, table);
+        
+        body.doCodeGenChildren(instructions, numVars, table);
     }
 }
