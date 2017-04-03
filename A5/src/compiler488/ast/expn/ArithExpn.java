@@ -1,6 +1,8 @@
 package compiler488.ast.expn;
 
 import compiler488.ast.type.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 import compiler488.symbol.*;
 import java.util.*;
 
@@ -45,5 +47,30 @@ public class ArithExpn extends BinaryExpn {
 
         // S21
         return new IntegerType(this.getLineNumber(), this.getColumnNumber());
+    }
+    
+    /** Adds code to push the constant values and operation on to stack */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+            SymbolTable table, SymbolTable.ScopeType scp) {
+        
+        IntConstExpn left_int = (IntConstExpn) left;
+        IntConstExpn right_int = (IntConstExpn) right;
+        
+        instructions.add("PUSH", Machine.PUSH);
+        instructions.add(null, left_int.getValue().shortValue());
+        instructions.add("PUSH", Machine.PUSH);
+        instructions.add(null, right_int.getValue().shortValue());
+        
+        if (opSymbol == OP_PLUS) {
+            instructions.add("ADD", Machine.ADD);
+        } else if (opSymbol == OP_MINUS) {
+            instructions.add("SUB", Machine.SUB);
+        } else if(opSymbol == OP_TIMES) {
+            instructions.add("MUL", Machine.MUL);
+        } else if (opSymbol == OP_DIVIDE) {
+            instructions.add("DIV", Machine.DIV);
+        } else {
+            System.out.println("Error invalid arithmetic opSymbol");
+        }
     }
 }
