@@ -1,15 +1,9 @@
-% A program using non-recursive procedures with parameters
 {
-    var a : Integer
-    var b : Boolean
-
     %%%%% procedure with parameters
     procedure procedure_with_params(param1 : Integer, param2 : Integer) {
-        write "procedure with params"
         write param1 + param2
         return
     }
 
     procedure_with_params(5, 5)
-    write "test"
 }

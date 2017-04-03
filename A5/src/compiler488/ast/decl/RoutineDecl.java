@@ -11,6 +11,7 @@ import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
 import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 
 /**
  * Represents the declaration of a function or procedure.
@@ -21,7 +22,7 @@ public class RoutineDecl extends Declaration {
      * execute when the procedure is called.
      */
     private RoutineBody routineBody = new RoutineBody();
-    
+
     /**
      * Construct a function with parameters, and a definition of the body.
      * @param name Name of the routine
@@ -34,7 +35,7 @@ public class RoutineDecl extends Declaration {
         this.routineBody.setParameters(parameters);
         this.routineBody.setBody(body);
     }
-    
+
     /**
      * Construct a function with no parameters, and a definition of the body.
      * @param name Name of the routine
@@ -44,7 +45,7 @@ public class RoutineDecl extends Declaration {
     public RoutineDecl(String name, Type type, Scope body, int line, int column) {
         this(name, type, new ASTList<ScalarDecl>(), body, line, column);
     }
-    
+
     /**
      * Construct a procedure with parameters, and a definition of the body.
      *
@@ -66,7 +67,7 @@ public class RoutineDecl extends Declaration {
     public RoutineDecl(String name, Scope body, int line, int column) {
         this(name, null, new ASTList<ScalarDecl>(), body, line, column);
     }
-    
+
     /**
      * Returns a string indicating that this is a function with return type or a
      * procedure, name, Type parameters, if any, are listed later by routineBody
@@ -79,7 +80,7 @@ public class RoutineDecl extends Declaration {
             return "function " + name + " : " + type;
         }
     }
-    
+
     /**
      * Prints a description of the function/procedure.
      *
@@ -91,7 +92,7 @@ public class RoutineDecl extends Declaration {
         Indentable.printIndentOn(out, depth, this + " ");
         routineBody.printOn(out, depth);
     }
-    
+
     public RoutineBody getRoutineBody() {
         return routineBody;
     }
@@ -100,11 +101,11 @@ public class RoutineDecl extends Declaration {
         this.routineBody = routineBody;
     }
 
-    public Type doSemantics(SymbolTable table, List<String> errorMsg, 
+    public Type doSemantics(SymbolTable table, List<String> errorMsg,
                             SymbolTable.ScopeType scp) {
         if (this.type == null) { // Procedure
             // S17, S18
-            boolean success = table.addSymbol(this.name, 
+            boolean success = table.addSymbol(this.name,
                                               new SymbolTableEntry(new ProcedureSymbolType(this.routineBody.getParameters())));
 
             if (!success)
@@ -112,29 +113,29 @@ public class RoutineDecl extends Declaration {
                                            this.getLineNumber(),
                                            this.getColumnNumber(),
                                            "S41",
-                                           "identifier \"" + name + 
+                                           "identifier \"" + name +
                                            "\" has already been declared in current scope"));
-            
+
             // S08
             table.startScope(SymbolTable.ScopeType.PROCEDURE);
             routineBody.getBody().setScpType(SymbolTable.ScopeType.PROCEDURE);
             routineBody.doSemantics(table, errorMsg);
 
             // S09
-            table.endScope();            
-        } else { // Function                
+            table.endScope();
+        } else { // Function
             // S12, S13, S11
-            boolean success = table.addSymbol(this.name, 
-                                              new SymbolTableEntry(new FunctionSymbolType(this.type, 
+            boolean success = table.addSymbol(this.name,
+                                              new SymbolTableEntry(new FunctionSymbolType(this.type,
                                                                                           this.routineBody.getParameters())));
             if (!success)
                 errorMsg.add(String.format("%d:%d: error %s: %s\n",
                                            this.getLineNumber(),
                                            this.getColumnNumber(),
                                            "S40",
-                                           "identifier \"" + name + 
+                                           "identifier \"" + name +
                                            "\" has already been declared in current scope"));
-            
+
             // S04
             table.startFunctionScope(this.type);
             routineBody.getBody().setScpType(SymbolTable.ScopeType.FUNCTION);
@@ -142,7 +143,7 @@ public class RoutineDecl extends Declaration {
 
             // S05
             table.endScope();
-            
+
         }
         return null;
     }
@@ -150,6 +151,13 @@ public class RoutineDecl extends Declaration {
     /** Does code generation on this routine declaration and saves the starting address of the routine to symbol table */
     public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table,
                                  SymbolTable.ScopeType scp) {
+        // calculate total size of instructions from this routine
+        // before that, add a BR to stack + size
+        instructions.add("PUSH", Machine.PUSH);
+        int indexToFill = instructions.getSize();
+        instructions.add("UNDEFINED", Machine.UNDEFINED);
+        instructions.add("BR", Machine.BR);
+
         if (this.type == null) { // Procedure
             ProcedureSymbolType pst = new ProcedureSymbolType(this.routineBody.getParameters());
             pst.setStartAddr(instructions.getSize());
@@ -160,18 +168,20 @@ public class RoutineDecl extends Declaration {
             routineBody.getBody().setScpType(SymbolTable.ScopeType.PROCEDURE);
             routineBody.doCodeGeneration(instructions, numVars, table);
 
-            table.endScope();            
+            table.endScope();
         } else { // Function
             FunctionSymbolType fst = new FunctionSymbolType(this.type, this.routineBody.getParameters());
             fst.setStartAddr(instructions.getSize());
-            table.addSymbol(this.name, 
+            table.addSymbol(this.name,
                             new SymbolTableEntry(fst));
- 
+
             table.startFunctionScope(this.type);
             routineBody.getBody().setScpType(SymbolTable.ScopeType.FUNCTION);
             routineBody.doCodeGeneration(instructions, numVars, table);
             table.endScope();
         }
+
+        // change the undefined to the current address
+        instructions.set(null, (short) instructions.getSize(), indexToFill);
     }
-        
 }
