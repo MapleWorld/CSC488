@@ -1,5 +1,7 @@
 {
-    var a, b : Integer
-    b := 5
-    write b
+    var a : Integer
+    var b : Boolean
+    a := 5
+    b := true
+    write a
 }

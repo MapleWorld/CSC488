@@ -3,6 +3,8 @@ package compiler488.ast.expn;
 import compiler488.ast.type.BooleanType;
 import compiler488.symbol.*;
 import compiler488.ast.type.*;                                                                                                                                                                           import java.util.*;
+import compiler488.runtime.Machine;
+import compiler488.codegen.Instructions;
 
 /**
  * Boolean literal constants.
@@ -35,5 +37,15 @@ public class BoolConstExpn extends ConstExpn
                             SymbolTable.ScopeType scp) {
         // S20
         return new BooleanType(this.getLineNumber(), this.getColumnNumber());
+    }
+
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
+        instructions.add("PUSH", Machine.PUSH);
+        if (value) {
+            instructions.add(null, Machine.MACHINE_TRUE);
+        } else {
+            instructions.add(null, Machine.MACHINE_FALSE);
+        }
     }
 }
