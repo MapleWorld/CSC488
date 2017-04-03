@@ -22,7 +22,4 @@ public class Stmt extends Indentable {
     public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
         return null;
     }
-
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
-                                 SymbolTable table, SymbolTable.ScopeType scpType) {}
 }
