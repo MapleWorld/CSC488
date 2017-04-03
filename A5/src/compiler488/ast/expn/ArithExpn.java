@@ -53,14 +53,10 @@ public class ArithExpn extends BinaryExpn {
     public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
             SymbolTable table, SymbolTable.ScopeType scp) {
         
-        IntConstExpn left_int = (IntConstExpn) left;
-        IntConstExpn right_int = (IntConstExpn) right;
-        
-        instructions.add("PUSH", Machine.PUSH);
-        instructions.add(null, left_int.getValue().shortValue());
-        instructions.add("PUSH", Machine.PUSH);
-        instructions.add(null, right_int.getValue().shortValue());
-        
+        // Determine the type of the expn and push the value onto the stack
+        left.doCodeGeneration(instructions, numVars, table, scp);
+        right.doCodeGeneration(instructions, numVars, table, scp);
+
         if (opSymbol == OP_PLUS) {
             instructions.add("ADD", Machine.ADD);
         } else if (opSymbol == OP_MINUS) {

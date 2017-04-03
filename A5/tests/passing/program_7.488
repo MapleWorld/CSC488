@@ -1,10 +1,16 @@
 {
-    var a, b, c, d, e ,f : Integer
+    var a, b, c, d, e ,f, g, h, i, j, k : Integer
     a := 1
     b := 5
     c := 1 + 2
     d := 2 - 1
     e := 2 * 3
     f := 6 / 3
+    g := a + b
+    h := b - a
+    i := b * c
+    j := b / a
     write c, d, e, f
+    write newline
+    write g, h, i ,j
 }
