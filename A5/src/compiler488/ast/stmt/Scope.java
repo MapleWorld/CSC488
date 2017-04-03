@@ -186,6 +186,15 @@ public class Scope extends Stmt {
 
         // remove allocated space
         if (majorScope) {
+            if (currScpType != SymbolTable.ScopeType.PROGRAM) {
+                // fill the placeholder issued in return statements with current code address
+                List<Integer> routineAddr = table.getRoutineAddr();
+                Iterator<Integer> addrIter = routineAddr.iterator();
+                short addr = (short) instructions.getSize();
+                while (addrIter.hasNext())
+                    instructions.set(null, addr, addrIter.next());
+            }
+
             instructions.add("PUSHMT", Machine.PUSHMT);
             instructions.add("ADDR", Machine.ADDR);
             short lexlev = (short) table.getLexicalLevel();
@@ -193,7 +202,9 @@ public class Scope extends Stmt {
             instructions.add(null, (short) 0);
             instructions.add("SUB", Machine.SUB);
             instructions.add("POPN", Machine.POPN);
+
             if (currScpType != SymbolTable.ScopeType.PROGRAM) {
+                // go back to where the routine call occurs
                 instructions.add("SETD", Machine.SETD);
                 instructions.add(null, (short) lexlev);
                 instructions.add("BR", Machine.BR);

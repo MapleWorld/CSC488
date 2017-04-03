@@ -4,6 +4,7 @@ import compiler488.ast.Indentable;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
 
 
 /**
@@ -21,4 +22,7 @@ public class Stmt extends Indentable {
     public Type doSemantics(SymbolTable table, List<String> errorMsg, SymbolTable.ScopeType scp) {
         return null;
     }
+
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {}
 }

@@ -1,12 +1,13 @@
 package compiler488.ast.stmt;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import compiler488.ast.AST;
 import compiler488.ast.expn.*;
 import compiler488.symbol.*;
 import compiler488.ast.type.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 
 /**
  * Represents the command to exit from a loop.
@@ -87,5 +88,35 @@ public class ExitStmt extends Stmt {
             }
         }
         return null;
+    }
+
+    /** Does code generation on this exit statement */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
+        int exitLevel = level;
+        // if no integer specified, exit 1 loop
+        if (exitLevel == -1)
+            exitLevel = 1;
+        
+        int index;
+        if (condition != null) {
+            condition.doCodeGeneration(instructions, numVars, table, null);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
+            instructions.add("EQ", Machine.EQ);
+            instructions.add("PUSH", Machine.PUSH);
+            index = instructions.getSize();
+            instructions.add("UNDEFINED", Machine.PUSH);
+            instructions.add("BF", Machine.BF);
+        } else {
+            instructions.add("PUSH", Machine.PUSH);
+            index = instructions.getSize();
+            instructions.add("UNDEFINED", Machine.PUSH);
+            instructions.add("BR", Machine.BR);
+        }
+
+        // saves the index of memory that will be filled with the instruction addr
+        // when getting out of the loop with (current numLoop - exitLevel) + 1 as its numLoop value.
+        table.addLoopAddr(table.getNumLoop() - exitLevel + 1, index);
     }
 }

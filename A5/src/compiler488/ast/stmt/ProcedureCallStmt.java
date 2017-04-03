@@ -1,7 +1,6 @@
 package compiler488.ast.stmt;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import compiler488.ast.AST;
 import compiler488.ast.ASTList;
@@ -9,6 +8,8 @@ import compiler488.ast.decl.*;
 import compiler488.ast.expn.Expn;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 
 /**
  * Represents calling a procedure.
@@ -116,4 +117,37 @@ public class ProcedureCallStmt extends Stmt {
 
         return null;
     }
+
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
+        SymbolTableEntry entry = table.getEntry(name);
+        ProcedureSymbolType procedureType = (ProcedureSymbolType) entry.getType();
+        instructions.add("PUSH", Machine.PUSH);
+        int indexToFill = instructions.getSize();
+        instructions.add("UNDEFINED", Machine.UNDEFINED);
+        instructions.add("ADDR", Machine.ADDR);
+        // because the procedure name is at its parent's lexical level, we need to add 1
+        // when considering things inside the procedure's scope
+        short lexlev = (short) (entry.getLexicalLevel() + 1);
+        instructions.add(null, lexlev);
+        instructions.add(null, (short) 0);
+       
+        for (int i = 0; i < arguments.size(); i++) {
+            arguments.getList().get(i).doCodeGeneration(instructions, numVars, table, null);
+        }            
+        
+        instructions.add("PUSHMT", Machine.PUSHMT);
+        instructions.add("PUSH", Machine.PUSH);
+        instructions.add(null, (short) arguments.size());
+        instructions.add("SUB", Machine.SUB);
+        instructions.add("SETD", Machine.SETD);
+        instructions.add(null, lexlev);
+        instructions.add("PUSH", Machine.PUSH);
+        short addr = (short) procedureType.getStartAddr();
+        instructions.add(null, addr);
+        instructions.add("BR", Machine.BR);
+
+        // patch the address of where to execute the next instruction after the procedure call
+        instructions.set(null, (short)instructions.getSize(), indexToFill);
+    }    
 }

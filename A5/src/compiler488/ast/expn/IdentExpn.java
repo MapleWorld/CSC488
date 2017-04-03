@@ -5,6 +5,8 @@ import compiler488.ast.*;
 import compiler488.ast.expn.*;
 import compiler488.ast.type.*;
 import java.util.*;
+import compiler488.runtime.Machine;
+import compiler488.codegen.Instructions;
 
 import compiler488.ast.Readable;
 
@@ -73,4 +75,35 @@ public class IdentExpn extends Expn implements Readable {
 
         return null;
     }
+
+    /** Generates code to load this identifier's value to stack */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
+        SymbolTableEntry entry = table.getEntry(ident);
+        SymbolType entryType = entry.getType();
+        if (entryType instanceof ScalarSymbolType) {
+            instructions.add("ADDR", Machine.ADDR);
+            instructions.add(null, (short) entry.getLexicalLevel());
+            instructions.add(null, (short) entry.getOrderNumber());
+            instructions.add("LOAD", Machine.LOAD);
+        }
+        else if (entryType instanceof FunctionSymbolType) {
+            FunctionCallExpn func = new FunctionCallExpn(ident, new ASTList<Expn> (),
+                                                         this.getLineNumber(),
+                                                         this.getColumnNumber());
+            func.doCodeGeneration(instructions, numVars, table, scp);
+        }
+    }
+
+    /** Generates code to push this identifier's memory address to stack */
+    public void doCodeGenerationVariable(Instructions instructions, Deque<Integer> numVars,
+                                         SymbolTable table, SymbolTable.ScopeType scp) {
+        SymbolTableEntry entry = table.getEntry(ident);
+        SymbolType entryType = entry.getType();
+        if (entryType instanceof ScalarSymbolType) {
+            instructions.add("ADDR", Machine.ADDR);
+            instructions.add(null, (short) entry.getLexicalLevel());
+            instructions.add(null, (short) entry.getOrderNumber());
+         }
+     }
 }

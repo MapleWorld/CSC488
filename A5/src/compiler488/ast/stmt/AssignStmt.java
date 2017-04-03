@@ -1,13 +1,13 @@
 package compiler488.ast.stmt;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import compiler488.ast.AST;
 import compiler488.ast.expn.Expn;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import compiler488.runtime.Machine;
+import compiler488.codegen.Instructions;
 
 /**
  * Holds the assignment of an expression to a variable.

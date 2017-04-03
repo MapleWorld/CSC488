@@ -1,6 +1,6 @@
 package compiler488.ast.stmt;
 
-import java.util.List;
+import java.util.*;
 
 import java.io.PrintStream;
 
@@ -8,6 +8,8 @@ import compiler488.ast.Indentable;
 import compiler488.ast.expn.Expn;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 
 /**
  * The command to return from a function or procedure.
@@ -84,5 +86,27 @@ public class ReturnStmt extends Stmt {
             }
         }
         return null;
+    }
+
+    /** Does code generation on this return statement */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
+        if (value != null) {
+            //function
+            instructions.add("ADDR", Machine.ADDR);
+            instructions.add(null, (short) table.getLexicalLevel());
+            instructions.add(null, (short) 0);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add(null, (short) 2);
+            instructions.add("SUB", Machine.SUB);
+            value.doCodeGeneration(instructions, numVars, table, null);
+            instructions.add("STORE", Machine.STORE);
+        }
+
+        instructions.add("PUSH", Machine.PUSH);
+        // saves the index of instruction to be patched
+        table.addRoutineAddr(instructions.getSize());
+        instructions.add("UNDEFINED", Machine.UNDEFINED);
+        instructions.add("BR", Machine.BR);
     }
 }

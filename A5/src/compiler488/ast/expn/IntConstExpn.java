@@ -3,6 +3,8 @@ package compiler488.ast.expn;
 import compiler488.symbol.*;
 import java.util.*;
 import compiler488.ast.type.*;
+import compiler488.runtime.Machine;
+import compiler488.codegen.Instructions;
 
 /**
  * Represents a literal integer constant.
@@ -33,5 +35,12 @@ public class IntConstExpn extends ConstExpn
                             SymbolTable.ScopeType scp) {
         // S21
         return new IntegerType(this.getLineNumber(), this.getColumnNumber());
+    }
+
+    /** Adds code to push the constant value to stack */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
+        instructions.add("PUSH", Machine.PUSH);
+        instructions.add(null, value.shortValue());
     }
 }

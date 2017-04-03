@@ -49,4 +49,15 @@ public class Instructions {
     public short getSize() {
         return (short)instructions.size();
     }
+
+    /** Replaces the instructions with opcode and opname at index */
+    public void set(String opname, short opcode, int index) {
+        /** if null, use the actual integer value as the string rep of opcode */
+        if (opname == null) {
+            stringInstructions.set(index, Integer.toString((int) opcode));
+        } else {
+            stringInstructions.set(index, opname);
+        }
+        instructions.set(index, opcode);
+    }
 }
