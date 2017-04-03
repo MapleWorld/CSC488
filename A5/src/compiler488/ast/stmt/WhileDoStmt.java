@@ -37,7 +37,6 @@ public class WhileDoStmt extends LoopingStmt {
     public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
                                  SymbolTable table, SymbolTable.ScopeType scp) {
         int LOOP = instructions.getSize();
-        instructions.add("PUSH", Machine.PUSH);
         condition.doCodeGeneration(instructions, numVars, table, scp);
         instructions.add("PUSH", Machine.PUSH);
         int indexToFill = instructions.getSize();
@@ -55,7 +54,15 @@ public class WhileDoStmt extends LoopingStmt {
         instructions.add("PUSH", Machine.PUSH);
         instructions.add("LOOP", (short) LOOP);
         instructions.add("BR", Machine.BR);
+
+        // patching in all addresses that need to be patched
+        int END = instructions.getSize();
         // change the undefined to the current address
-        instructions.set("END", (short) instructions.getSize(), indexToFill);
+        instructions.set("END", (short) END, indexToFill);
+
+        LinkedList<Integer> addressesToBePatched = table.getLoopAddr(table.getNumLoop());
+        for (int i = 0; i < addressesToBePatched.size(); i++) {
+            instructions.set("END", (short) END, addressesToBePatched.get(i));
+        }
     }
 }

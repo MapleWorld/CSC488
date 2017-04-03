@@ -97,7 +97,7 @@ public class ExitStmt extends Stmt {
         // if no integer specified, exit 1 loop
         if (exitLevel == -1)
             exitLevel = 1;
-        
+
         int index;
         if (condition != null) {
             condition.doCodeGeneration(instructions, numVars, table, null);
@@ -109,6 +109,8 @@ public class ExitStmt extends Stmt {
             instructions.add("UNDEFINED", Machine.PUSH);
             instructions.add("BF", Machine.BF);
         } else {
+            // we never actually go here, because condition is never null, because
+            // 'exit' defaults condition to `true'.
             instructions.add("PUSH", Machine.PUSH);
             index = instructions.getSize();
             instructions.add("UNDEFINED", Machine.PUSH);
@@ -117,6 +119,6 @@ public class ExitStmt extends Stmt {
 
         // saves the index of memory that will be filled with the instruction addr
         // when getting out of the loop with (current numLoop - exitLevel) + 1 as its numLoop value.
-        table.addLoopAddr(table.getNumLoop() - exitLevel + 1, index);
+        table.addLoopAddr(table.getNumLoop() - exitLevel, index);
     }
 }
