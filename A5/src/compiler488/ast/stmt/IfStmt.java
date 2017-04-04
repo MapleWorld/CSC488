@@ -104,7 +104,7 @@ public class IfStmt extends Stmt {
                                  SymbolTable table, SymbolTable.ScopeType scp) {
         if (whenFalse == null) {
             // PUSH condition
-            condition.doCodeGeneration(instructions, numVars, table, scp);
+            condition.doCodeGeneration(instructions, numVars, table, null);
             // PUSH REST
             instructions.add("PUSH", Machine.PUSH);
             int indexToFill = instructions.getSize();
@@ -112,10 +112,39 @@ public class IfStmt extends Stmt {
             // BF
             instructions.add("BF", Machine.BF);
             // code to execute if
-            whenTrue.doCodeGeneration(instructions, numVars, table, scp);
+            whenTrue.doCodeGeneration(instructions, numVars, table, SymbolTable.ScopeType.ORDINARY);
 
             // patch in REST
             instructions.set("REST", (short) instructions.getSize(), indexToFill);
+        } else {
+            // PUSH condition
+            condition.doCodeGeneration(instructions, numVars, table, null);
+            // PUSH F_ADDR
+            instructions.add("PUSH", Machine.PUSH);
+            int fAddrToFill = instructions.getSize();
+            instructions.add("UNDEFINED", Machine.UNDEFINED);
+            // BF
+            instructions.add("BF", Machine.BF);
+
+            // code to execute if
+            whenTrue.doCodeGeneration(instructions, numVars, table, SymbolTable.ScopeType.ORDINARY);
+
+            // PUSH T_ADDR
+            instructions.add("PUSH", Machine.PUSH);
+            int tAddrToFill = instructions.getSize();
+            instructions.add("UNDEFINED", Machine.UNDEFINED);
+
+            // BR
+            instructions.add("BR", Machine.BR);
+
+            // patch in f_addr
+            instructions.set("F_ADDR", (short) instructions.getSize(), fAddrToFill);
+
+            // code to execute else
+            whenFalse.doCodeGeneration(instructions, numVars, table, SymbolTable.ScopeType.ORDINARY);
+
+            // patch in t_addr
+            instructions.set("T_ADDR", (short) instructions.getSize(), tAddrToFill);
         }
     }
 }

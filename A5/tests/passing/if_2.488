@@ -1,6 +1,10 @@
-{    
-    if false then
-        write "failed"
+{
+    if not false then {
+        write "true"
+    }
+    else {
+        write "false"
+    }
 
     write "passed"
 }
