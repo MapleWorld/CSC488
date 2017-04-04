@@ -1,9 +1,6 @@
 {
-    var b : Boolean
-    b := (3 >= 2)
-
-    while b do {
-        write "hey"
-        exit
-    }
+    % todo: upper bound + lower bounds, expressions in index, negative indexes, bounds checking
+    var simple[1] : Integer
+    simple[1] := 1
+    write simple[1]
 }

@@ -4,6 +4,8 @@ import compiler488.ast.Readable;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 
 /**
  * References to an array element variable
@@ -12,41 +14,15 @@ import java.util.*;
  * operand must be an integer expression
  */
 public class SubsExpn extends UnaryExpn implements Readable {
+    public final static String OP_SUBSCRIPT = "[]";
 
     private String variable; // name of the array variable
+    private Expn subscript;
 
-    /** First subscript. */
-    private Expn subscript1;
-
-    /** Second subscript (if any.) */
-    private Expn subscript2 = null;
-
-    // This is wrong
-    public SubsExpn(String variable, Expn subscript1, Expn subscript2, int line, int column) {
-        super(UnaryExpn.OP_NOT, subscript1, line, column);
+    public SubsExpn(String variable, Expn subscript, int line, int column) {
+        super(OP_SUBSCRIPT, subscript, line, column);
         this.variable = variable;
-        this.subscript1 = subscript1;
-        this.subscript2 = subscript2;
-    }
-
-    public SubsExpn(String variable, Expn subscript1, int line, int column) {
-        this(variable, subscript1, null, line, column);
-    }
-
-    public Expn getSubscript1() {
-        return subscript1;
-    }
-
-    public Expn getSubscript2() {
-        return subscript2;
-    }
-
-    public int numSubscripts() {
-        return 1 + (subscript2 != null ? 1 : 0);
-    }
-
-    public int getDimensions() {
-        return this.subscript2 == null ? 1 : 2;
+        this.subscript = subscript;
     }
 
     /** Returns a string that represents the array subscript. */
@@ -100,7 +76,10 @@ public class SubsExpn extends UnaryExpn implements Readable {
                                    "\" has not been declared as an array"));
 
         return null;
+    }
 
-        
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
+        // TODO: do code generation for subs
     }
 }

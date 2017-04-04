@@ -18,7 +18,7 @@ public class UnaryExpn extends Expn {
         this.opSymbol = opSymbol;
         this.operand = operand;
 
-        assert ((opSymbol == OP_NOT) || (opSymbol == OP_MINUS));
+        // assert ((opSymbol == OP_NOT) || (opSymbol == OP_MINUS));
     }
 
     /** Returns a string that represents the unary expression. */
