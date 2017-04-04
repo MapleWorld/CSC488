@@ -1,0 +1,7 @@
+% Arithmetic expression precedence of Operators
+{
+    var x, y : Integer
+    x := 1 - 2 + 3 - 4              % Result -2
+    y := (1 - 2) + (3 - 4)          % Result -2
+    write x, y
+}

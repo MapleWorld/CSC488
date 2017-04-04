@@ -1,0 +1,6 @@
+{    
+    if false then
+        write "passed"
+
+    write "done"
+}

@@ -1,0 +1,11 @@
+{
+    var a, b, c, d, e ,f, g : Integer
+    a := 1
+    b := 2
+    c := 3
+    d := a + b + c
+    e := c - a - b
+    f := a * b + c
+    g := b / a
+    write d, e, f, g
+}
