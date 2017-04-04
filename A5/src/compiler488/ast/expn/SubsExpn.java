@@ -78,8 +78,37 @@ public class SubsExpn extends UnaryExpn implements Readable {
         return null;
     }
 
+    private void doCodeGenerationGeneric(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
+        // PUSH i
+        subscript.doCodeGeneration(instructions, numVars, table, scpType);
+        // PUSH k
+        SymbolTableEntry entry = table.getEntry(variable);
+        SymbolType entryType = entry.getType();
+        ArraySymbolType arrayType = (ArraySymbolType) entryType;
+        int k = arrayType.getLowerBound();
+        instructions.add("PUSH", Machine.PUSH);
+        instructions.add(null, (short) k);
+        // compute i - k (SUB)
+        instructions.add("SUB", Machine.SUB);
+        // ADDR n m
+        instructions.add("ADDR", Machine.ADDR);
+        instructions.add("n", (short) entry.getLexicalLevel());
+        instructions.add("m", (short) entry.getOrderNumber());
+        // ADD
+        instructions.add("ADD", Machine.ADD);
+    }
+
+
     public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
                                  SymbolTable table, SymbolTable.ScopeType scpType) {
-        // TODO: do code generation for subs
+        doCodeGenerationGeneric(instructions, numVars, table, scpType);
+        instructions.add("LOAD", Machine.LOAD);
     }
+
+    /** Generates code to push this identifier's memory address to stack */
+    public void doCodeGenerationVariable(Instructions instructions, Deque<Integer> numVars,
+                                         SymbolTable table, SymbolTable.ScopeType scpType) {
+        doCodeGenerationGeneric(instructions, numVars, table, scpType);
+     }
 }

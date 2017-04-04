@@ -64,7 +64,7 @@ public class MultiDeclarations extends Declaration {
     }
 
     /** Performs code generation on each element of this MultiDeclartion */
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
                                  SymbolTable table, SymbolTable.ScopeType scp) {
         LinkedList<DeclarationPart> elemList = elements.getList();
         ListIterator<DeclarationPart> iterator = elemList.listIterator();
