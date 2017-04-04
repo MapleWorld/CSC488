@@ -1,5 +1,5 @@
-{    
-    if false then
+{
+    if true then
         write "passed"
 
     write "done"

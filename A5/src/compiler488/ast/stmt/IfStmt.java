@@ -1,8 +1,7 @@
 package compiler488.ast.stmt;
 
 import java.io.PrintStream;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import compiler488.ast.AST;
 import compiler488.ast.Indentable;
@@ -11,6 +10,9 @@ import compiler488.ast.type.*;
 
 import compiler488.symbol.*;
 import compiler488.ast.type.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
+
 
 /**
  * Represents an if-then or an if-then-else construct.
@@ -18,13 +20,13 @@ import compiler488.ast.type.*;
 public class IfStmt extends Stmt {
     // The condition that determines which branch to execute.
     private Expn condition;
-    
+
     // Represents the statement to execute when the condition is true.
     private Stmt whenTrue;
-    
+
     // Represents the statement to execute when the condition is false.
     private Stmt whenFalse = null;
-    
+
     public IfStmt(Expn condition, Stmt whenTrue, Stmt whenFalse, int line, int column) {
         super(line, column);
         this.condition = condition;
@@ -71,17 +73,17 @@ public class IfStmt extends Stmt {
     public void setWhenFalse(Stmt whenFalse) {
         this.whenFalse = whenFalse;
     }
-    
+
     public Stmt getWhenTrue() {
         return whenTrue;
     }
-    
+
     public void setWhenTrue(Stmt whenTrue) {
         this.whenTrue = whenTrue;
     }
 
     /** Semantics checks on the condition and statements in this if statement */
-    public Type doSemantics(SymbolTable table, List<String> errorMessages, 
+    public Type doSemantics(SymbolTable table, List<String> errorMessages,
                             SymbolTable.ScopeType scp) {
         // S30: check that expression is boolean.
         Type conditionType = condition.doSemantics(table, errorMessages, null);
@@ -91,10 +93,29 @@ public class IfStmt extends Stmt {
                                             "S30",
                                             "type of expression is not boolean"));
         }
-        
+
         whenTrue.doSemantics(table, errorMessages, SymbolTable.ScopeType.ORDINARY);
         if (whenFalse != null)
-            whenFalse.doSemantics(table, errorMessages, SymbolTable.ScopeType.ORDINARY); 
+            whenFalse.doSemantics(table, errorMessages, SymbolTable.ScopeType.ORDINARY);
         return null;
+    }
+
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
+        if (whenFalse == null) {
+            // PUSH condition
+            condition.doCodeGeneration(instructions, numVars, table, scp);
+            // PUSH REST
+            instructions.add("PUSH", Machine.PUSH);
+            int indexToFill = instructions.getSize();
+            instructions.add("UNDEFINED", Machine.UNDEFINED);
+            // BF
+            instructions.add("BF", Machine.BF);
+            // code to execute if
+            whenTrue.doCodeGeneration(instructions, numVars, table, scp);
+
+            // patch in REST
+            instructions.set("REST", (short) instructions.getSize(), indexToFill);
+        }
     }
 }
