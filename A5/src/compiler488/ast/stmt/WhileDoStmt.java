@@ -61,6 +61,11 @@ public class WhileDoStmt extends LoopingStmt {
         instructions.set("END", (short) END, indexToFill);
 
         LinkedList<Integer> addressesToBePatched = table.getLoopAddr(table.getNumLoop());
+        // if there's no addresses to be patched (i.e., no 'exits' in this loop),
+        // then just return.
+        if (addressesToBePatched == null) {
+            return;
+        }
         for (int i = 0; i < addressesToBePatched.size(); i++) {
             instructions.set("END", (short) END, addressesToBePatched.get(i));
         }
