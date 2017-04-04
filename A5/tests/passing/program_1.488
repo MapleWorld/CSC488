@@ -1,3 +1,9 @@
-{   
-    write "program 1"
+{
+    var b : Boolean
+    b := true and true % Result true
+
+    while b do {
+        write "hey"
+        exit
+    }
 }

@@ -2,6 +2,9 @@ package compiler488.ast.expn;
 
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
+
 import java.util.*;
 
 /**
@@ -42,5 +45,36 @@ public class BoolExpn extends BinaryExpn {
 
         // S20
         return new BooleanType(this.getLineNumber(), this.getColumnNumber());
+    }
+
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scpType) {
+        if (opSymbol == OP_OR) {
+            left.doCodeGeneration(instructions, numVars, table, scpType);
+            right.doCodeGeneration(instructions, numVars, table, scpType);
+            instructions.add("OR", Machine.OR);
+        }
+
+        if (opSymbol == OP_AND) {
+            left.doCodeGeneration(instructions, numVars, table, null);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
+            instructions.add("EQ", Machine.EQ);
+            // after this, we have 'not left'
+
+            right.doCodeGeneration(instructions, numVars, table, null);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
+            instructions.add("EQ", Machine.EQ);
+            // after this, we have 'not right'
+
+            instructions.add("OR", Machine.OR);
+            // after this, we have 'not left or not right'
+
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
+            instructions.add("EQ", Machine.EQ);
+            // after this, we have not (not left or not right) = left and right
+        }
     }
 }

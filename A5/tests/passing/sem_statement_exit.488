@@ -1,6 +1,13 @@
 % While loop statement exit
 {
     repeat {
-        write "hey"
+        repeat {
+            repeat {
+                write "hi1"
+                exit 2
+            } until true
+            write "hi2"
+        } until true
+        write "hi3"
     } until true
 }
