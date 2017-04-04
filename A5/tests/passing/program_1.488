@@ -1,6 +1,6 @@
 {
     var b : Boolean
-    b := true and true % Result true
+    b := not not true % Result true
 
     while b do {
         write "hey"
