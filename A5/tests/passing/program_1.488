@@ -1,6 +1,6 @@
 {
     var b : Boolean
-    b := not not true % Result true
+    b := (3 >= 2)
 
     while b do {
         write "hey"

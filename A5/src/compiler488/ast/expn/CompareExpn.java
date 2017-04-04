@@ -3,6 +3,8 @@ package compiler488.ast.expn;
 import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 
 /**
  * Place holder for all ordered comparisions expression where both operands must
@@ -47,4 +49,34 @@ public class CompareExpn extends BinaryExpn {
         return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }
 
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+            SymbolTable table, SymbolTable.ScopeType scp) {
+        if (opSymbol == OP_LESS) {
+            left.doCodeGeneration(instructions, numVars, table, scp);
+            right.doCodeGeneration(instructions, numVars, table, scp);
+            instructions.add("LT", Machine.LT);
+        } else if (opSymbol == OP_LESS_EQUAL) {
+            // not (b < a) <=> a <= b
+            left.doCodeGeneration(instructions, numVars, table, scp);
+            right.doCodeGeneration(instructions, numVars, table, scp);
+            instructions.add("SWAP", Machine.SWAP);
+            instructions.add("LT", Machine.LT);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
+            instructions.add("EQ", Machine.EQ);
+        } else if (opSymbol == OP_GREATER) {
+            // b < a <=> a > b
+            left.doCodeGeneration(instructions, numVars, table, scp);
+            right.doCodeGeneration(instructions, numVars, table, scp);
+            instructions.add("SWAP", Machine.SWAP);
+            instructions.add("LT", Machine.LT);
+        } else if (opSymbol == OP_GREATER_EQUAL) {
+            left.doCodeGeneration(instructions, numVars, table, scp);
+            right.doCodeGeneration(instructions, numVars, table, scp);
+            instructions.add("LT", Machine.LT);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
+            instructions.add("EQ", Machine.EQ);
+        }
+    }
 }
