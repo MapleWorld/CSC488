@@ -4,6 +4,9 @@ import compiler488.ast.type.*;
 import compiler488.symbol.*;
 import java.util.*;
 
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
+
 /** Represents a conditional expression (i.e., x>0?3:4). */
 public class ConditionalExpn extends Expn {
     private Expn condition; // Evaluate this to decide which value to yield.
@@ -96,5 +99,40 @@ public class ConditionalExpn extends Expn {
         }
         else
             return null;
+    }
+
+
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
+        // PUSH condition
+        condition.doCodeGeneration(instructions, numVars, table, null);
+        // PUSH F_ADDR
+        instructions.add("PUSH", Machine.PUSH);
+        int fAddrToFill = instructions.getSize();
+        instructions.add("UNDEFINED", Machine.UNDEFINED);
+        // BF
+        instructions.add("BF", Machine.BF);
+
+        // code to execute true
+        trueValue.doCodeGeneration(instructions, numVars, table, null);
+
+        // PUSH T_ADDR
+        instructions.add("PUSH", Machine.PUSH);
+        int tAddrToFill = instructions.getSize();
+        instructions.add("UNDEFINED", Machine.UNDEFINED);
+
+        // BR
+        instructions.add("BR", Machine.BR);
+
+        // patch in f_addr
+        instructions.set("F_ADDR", (short) instructions.getSize(), fAddrToFill);
+
+        // code to execute false
+        falseValue.doCodeGeneration(instructions, numVars, table, null);
+
+
+        // patch in t_addr
+        instructions.set("T_ADDR", (short) instructions.getSize(), tAddrToFill);
+
     }
 }
