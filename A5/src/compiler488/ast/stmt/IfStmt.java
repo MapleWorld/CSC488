@@ -100,8 +100,7 @@ public class IfStmt extends Stmt {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
-                                 SymbolTable table, SymbolTable.ScopeType scp) {
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table, SymbolTable.ScopeType scp) {
         if (whenFalse == null) {
             // PUSH condition
             condition.doCodeGeneration(instructions, numVars, table, null);

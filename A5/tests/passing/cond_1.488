@@ -1,0 +1,8 @@
+{
+    var b: Boolean
+
+    % b := ( 1 > 2 ? false : true )               % Result true
+    b := ( 1 > -2 ? false : true )              % Result false
+
+    if b then write "true" else write "false"
+}
