@@ -83,13 +83,13 @@ public class SymbolTable {
             size = 1;
         }
         stack.peek().updateOrderNumber(size);
- 
+
         table.put(ident, entry);
         stack.peek().add(ident, oldEntry);
         return true;
     }
 
-    /** Returns the total size of variables in each major scope */ 
+    /** Returns the total size of variables in each major scope */
     public ArrayDeque<Integer> getNumVars() {
         return numVars;
     }
@@ -158,7 +158,7 @@ public class SymbolTable {
             stack.peek().updateOrderNumber(top.getOrderNumber());
         } else {
             lexicalLevel--;
-            numVars.addLast(top.getOrderNumber());
+            numVars.addFirst(top.getOrderNumber());
         }
 
         top.updateSymbols();

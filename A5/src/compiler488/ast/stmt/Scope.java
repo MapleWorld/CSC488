@@ -136,7 +136,7 @@ public class Scope extends Stmt {
             (declIterator.next()).doSemantics(table, errorMessages, null);
         LinkedList<Stmt> stmtList = statements.getList();
         ListIterator<Stmt> stmtIterator = stmtList.listIterator();
-        while (stmtIterator.hasNext()) 
+        while (stmtIterator.hasNext())
             (stmtIterator.next()).doSemantics(table, errorMessages, this.currScpType);
         return null;
     }
@@ -171,7 +171,7 @@ public class Scope extends Stmt {
                 instructions.add("DUPN", Machine.DUPN);
             }
         }
-        
+
         LinkedList<Declaration> declList = declarations.getList();
         ListIterator<Declaration> declIterator = declList.listIterator();
 

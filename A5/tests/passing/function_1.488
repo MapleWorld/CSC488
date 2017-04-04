@@ -1,0 +1,10 @@
+{
+    var a : Integer
+
+    %%%%% function with parameters
+    function function_with_params(param1 : Integer, param2 : Integer) : Integer {
+        return with param1 + param2
+    }
+
+    a := function_with_params(5, 5)
+}
