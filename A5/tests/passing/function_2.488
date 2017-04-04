@@ -1,0 +1,25 @@
+{
+
+    var a: Boolean
+    var x : Boolean
+    var y : Boolean
+    var b: Integer
+    var C: Integer
+
+    function function_with_boolean(param1: Boolean) : Boolean {
+        if param1 then return with false else return with true
+    }
+
+    %%%%% function without parameters
+    function function_without_params : Boolean {
+        write "function without params"
+        return with true
+    }
+
+    a := true
+    x := function_with_boolean(a) % should be false
+    if not x then write "x false" 
+
+    y := function_without_params % should be true
+    if y then write "y true"
+}

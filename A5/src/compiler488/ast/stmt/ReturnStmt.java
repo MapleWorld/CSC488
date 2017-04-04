@@ -97,7 +97,7 @@ public class ReturnStmt extends Stmt {
             instructions.add(null, (short) table.getLexicalLevel());
             instructions.add(null, (short) 0);
             instructions.add("PUSH", Machine.PUSH);
-            instructions.add(null, (short) 2);
+            instructions.add(null, (short) 3);
             instructions.add("SUB", Machine.SUB);
             value.doCodeGeneration(instructions, numVars, table, null);
             instructions.add("STORE", Machine.STORE);

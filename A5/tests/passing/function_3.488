@@ -1,0 +1,20 @@
+{
+
+    var a: Integer
+
+
+    %%%%% recursive function with parameters
+    % returns true iff sum + 1 + 2 + ... + n is over 5 and is_valid  
+    function rec_function_with_param ( n : Integer) : Integer {
+        if n <= 1
+        then
+            return with 1
+        else {
+            return with rec_function_with_param(n - 1) + n
+        }
+    }
+
+    a := rec_function_with_param(5)
+    write a
+
+}
