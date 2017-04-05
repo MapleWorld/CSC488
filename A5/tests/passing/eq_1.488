@@ -1,0 +1,17 @@
+{
+	% Eqaulity Test
+	var b : Boolean
+    %b := -1 = -1
+    %b := 0 = 0
+    %b := 1 = 1
+
+    % Inequality Test
+    b := 0 not= 0      % Result true
+    %b := (0 not= 1)     % Result true
+
+    if b then
+    	write "true"
+    else
+    	write "false"
+
+}

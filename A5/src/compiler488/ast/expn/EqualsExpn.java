@@ -1,6 +1,8 @@
 package compiler488.ast.expn;
 
 import compiler488.ast.type.*;
+import compiler488.codegen.Instructions;
+import compiler488.runtime.Machine;
 import compiler488.symbol.*;
 import java.util.*;
 
@@ -36,5 +38,24 @@ public class EqualsExpn extends BinaryExpn {
 
         // S20
         return new BooleanType(this.getLineNumber(), this.getColumnNumber());
+    }
+    
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
+            SymbolTable table, SymbolTable.ScopeType scp) {
+    	
+    	left.doCodeGeneration(instructions, numVars, table, null);
+    	right.doCodeGeneration(instructions, numVars, table, null);
+    	
+    	if (opSymbol == OP_EQUAL) {
+    		instructions.add("EQ", Machine.EQ);
+    	}
+    	
+    	if (opSymbol == OP_NOT_EQUAL) {
+    		instructions.add("EQ", Machine.EQ);
+            instructions.add("PUSH", Machine.PUSH);
+            instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
+            instructions.add("EQ", Machine.EQ);
+    	}
+    	
     }
 }
