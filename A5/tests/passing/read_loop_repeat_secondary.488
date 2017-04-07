@@ -1,0 +1,10 @@
+{
+    var a: Integer
+
+    read a
+    repeat {
+        write a
+        write ", "
+        a := a + 1
+    } until a > 25
+}
