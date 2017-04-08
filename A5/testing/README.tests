@@ -76,8 +76,8 @@ variable_in_prev_scopes.488 - Use variable declared in previous scopes
 boolean_1.488 - and test
 boolean_2.488 - or test
 boolean_3.488 - not test
-valid_scope_1.488 - nested scope under minor scopes
-valid_scope_2.488 - nested scope under major scopes
+valid_scope_1.488 - nested scope under major scopes
+valid_scope_2.488 - nested scope under minor scopes
 
 
 Failing Test Cases:
