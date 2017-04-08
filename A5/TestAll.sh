@@ -1,3 +1,3 @@
 #!/bin/sh
-./TestAllFailingTests.sh
-./TestAllPassingTests.sh
+./TestAllFailTests.sh
+./TestAllPassTests.sh

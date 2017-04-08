@@ -3,10 +3,10 @@ echo ""
 echo "# Testing Failing Tests #"
 echo ""
 
-for i in `ls tests/failing`
+for i in `ls tests/fail`
 do
     echo "Testing: $i"
-    ./RUNCOMPILER.sh "tests/failing/$i"
+    ./RUNCOMPILER.sh "tests/fail/$i"
     echo "TEST DONE"
     echo ""
 done 
