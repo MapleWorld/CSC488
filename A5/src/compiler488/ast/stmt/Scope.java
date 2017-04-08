@@ -151,7 +151,20 @@ public class Scope extends Stmt {
         else
             table.startScope(scpType);
         this.currScpType = scpType;
-        this.doCodeGenChildren(instructions, numVars, table);
+        if (scpType == SymbolTable.ScopeType.PROGRAM) {
+            short lexlev = (short) table.getLexicalLevel();
+            instructions.add("ADDR", Machine.ADDR);
+            instructions.add(null, lexlev);
+            instructions.add(null, (short) 0);
+            instructions.add("PUSHMT", Machine.PUSHMT);
+            instructions.add("SETD", Machine.SETD);
+            instructions.add(null, (short) table.getLexicalLevel());
+            this.doCodeGenChildren(instructions, numVars, table);
+            instructions.add("SETD", Machine.SETD);
+            instructions.add(null, (short) table.getLexicalLevel()); 
+        }
+        else
+            this.doCodeGenChildren(instructions, numVars, table);
         table.endScope();
     }
 
