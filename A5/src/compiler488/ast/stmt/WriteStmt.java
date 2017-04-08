@@ -57,7 +57,9 @@ public class WriteStmt extends Stmt {
         return null;
     }
 
-    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, SymbolTable table, SymbolTable.ScopeType scp) {
+    /** Does code generation on every output of this write statement */
+    public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars, 
+                                 SymbolTable table, SymbolTable.ScopeType scp) {
         LinkedList<Printable> elemList = outputs.getList();
         ListIterator<Printable> iterator = elemList.listIterator();
         while (iterator.hasNext()) {

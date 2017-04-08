@@ -40,6 +40,7 @@ public class EqualsExpn extends BinaryExpn {
         return new BooleanType(this.getLineNumber(), this.getColumnNumber());
     }
     
+    /** Does code generation on the = and not= expressions */
     public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
             SymbolTable table, SymbolTable.ScopeType scp) {
     	
@@ -51,7 +52,8 @@ public class EqualsExpn extends BinaryExpn {
     	}
     	
     	if (opSymbol == OP_NOT_EQUAL) {
-    		instructions.add("EQ", Machine.EQ);
+            // first checks if left and right are equal and negate the result
+            instructions.add("EQ", Machine.EQ);
             instructions.add("PUSH", Machine.PUSH);
             instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);
             instructions.add("EQ", Machine.EQ);

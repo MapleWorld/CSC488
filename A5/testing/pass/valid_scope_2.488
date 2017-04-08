@@ -1,0 +1,4 @@
+% testing valid empty scope under minor scope
+{
+        if true then {{} write "pass"}
+}

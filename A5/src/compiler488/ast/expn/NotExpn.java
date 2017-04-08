@@ -35,6 +35,7 @@ public class NotExpn extends UnaryExpn {
 
     public void doCodeGeneration(Instructions instructions, Deque<Integer> numVars,
                                  SymbolTable table, SymbolTable.ScopeType scpType) {
+        // not expn <=> true iff operand is equal to false
         operand.doCodeGeneration(instructions, numVars, table, null);
         instructions.add("PUSH", Machine.PUSH);
         instructions.add("MACHINE_FALSE", Machine.MACHINE_FALSE);

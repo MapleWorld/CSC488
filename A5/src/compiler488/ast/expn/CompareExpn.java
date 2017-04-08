@@ -56,7 +56,7 @@ public class CompareExpn extends BinaryExpn {
             right.doCodeGeneration(instructions, numVars, table, scp);
             instructions.add("LT", Machine.LT);
         } else if (opSymbol == OP_LESS_EQUAL) {
-            // not (b < a) <=> a <= b
+            // not (b > a) <=> a <= b
             left.doCodeGeneration(instructions, numVars, table, scp);
             right.doCodeGeneration(instructions, numVars, table, scp);
             instructions.add("SWAP", Machine.SWAP);

@@ -1,0 +1,10 @@
+% testing valid empty scope under major scopes
+{
+        procedure a {
+           write "1"
+           {}
+           return
+        }
+
+        a
+}

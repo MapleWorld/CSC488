@@ -136,8 +136,13 @@ public class Scope extends Stmt {
             (declIterator.next()).doSemantics(table, errorMessages, null);
         LinkedList<Stmt> stmtList = statements.getList();
         ListIterator<Stmt> stmtIterator = stmtList.listIterator();
-        while (stmtIterator.hasNext())
-            (stmtIterator.next()).doSemantics(table, errorMessages, this.currScpType);
+        while (stmtIterator.hasNext()) {
+            Stmt nextStmt = stmtIterator.next();
+            if (nextStmt instanceof Scope)
+                nextStmt.doSemantics(table, errorMessages, SymbolTable.ScopeType.PROGRAM);
+            else
+                nextStmt.doSemantics(table, errorMessages, this.currScpType);
+        }
         return null;
     }
 
@@ -151,14 +156,19 @@ public class Scope extends Stmt {
         else
             table.startScope(scpType);
         this.currScpType = scpType;
+
         if (scpType == SymbolTable.ScopeType.PROGRAM) {
+            // handle program scope as a major scope but without various branching statments
+            // we still save the display address of the callee's lexical level
             short lexlev = (short) table.getLexicalLevel();
             instructions.add("ADDR", Machine.ADDR);
             instructions.add(null, lexlev);
             instructions.add(null, (short) 0);
             instructions.add("PUSHMT", Machine.PUSHMT);
             instructions.add("SETD", Machine.SETD);
+
             instructions.add(null, (short) table.getLexicalLevel());
+
             this.doCodeGenChildren(instructions, numVars, table);
             instructions.add("SETD", Machine.SETD);
             instructions.add(null, (short) table.getLexicalLevel()); 
@@ -194,8 +204,14 @@ public class Scope extends Stmt {
         LinkedList<Stmt> stmtList = statements.getList();
         ListIterator<Stmt> stmtIterator = stmtList.listIterator();
 
-        while (stmtIterator.hasNext())
-            (stmtIterator.next()).doCodeGeneration(instructions, numVars, table, this.currScpType);
+        while (stmtIterator.hasNext()) {
+            Stmt nextStmt = stmtIterator.next();
+            if (nextStmt instanceof Scope)
+                // makes sure any new non-procedure/function/loop/if-statment scope is treated as a program scope
+                nextStmt.doCodeGeneration(instructions, numVars, table, SymbolTable.ScopeType.PROGRAM);
+            else
+                nextStmt.doCodeGeneration(instructions, numVars, table, this.currScpType);
+        }
 
         // remove allocated space
         if (majorScope) {
