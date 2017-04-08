@@ -5,4 +5,13 @@
     
     if k and false then write "fail"
     else write "pass"
+
+    if k and true then write "pass"
+    else write "fail"
+
+    if false and k then write "fail"
+    else write "pass"
+
+    if false and false then write "fail"
+    else write "pass"
 }
