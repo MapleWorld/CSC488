@@ -23,7 +23,7 @@ cond_6.488 - Conditional Expression <= test
 cond_7.488 - Conditional Expression >= AND test
 decl_1.488 - Variable declaration test
 decl_2.488 - Basic declaration and assignment test
-decl_3.488 - Declaration, assignment, nad re-assignment test
+decl_3.488 - Declaration, assignment, and re-assignment test
 eq_1.488 - Eqaulity Test
 eq_2.488 - Inequality Test
 eq_3.488 - Inequality Test
@@ -49,8 +49,7 @@ read_1.488 - Read integer test
 read_2.488 - Read multiple integer test
 read_3.488 - Single variable read statement test
 read_4.488 - Mutiple variables read statement test
-read_write_1.488 - Read write boolean test
-read_write_2.488 - Read write integer test
+read_write.488 - Read write integer test
 repeat_0.488 - Repeat loop statement exit
 repeat_1.488 - Repeat loop statement exit
 repeat_2.488 - Read repeat exit test
@@ -66,9 +65,11 @@ while_repeat_1.488 - While repeat exit test
 write_1.488 - Write statment with multiple newlines
 write_2.488 - Write function return value test
 S24.488 - S24 Set result type to type of conditional expressions (to verify the correctness of the symbol table)
-S37.488 - S37 Check that identifier has been declared as a scalar variable (to verify the correctness of the symbol table)
-S38.488 - S38 Check that identifier has been declared as an array (to verify the correctness of the symbol table)
 S39.488 - S39 Check identifier has been declared as a parameter (to verify the correctness of the symbol table)
+variable_in_prev_scopes.488 - Use variable declared in previous scopes
+boolean_1.488 - and test
+boolean_2.488 - or test
+boolean_3.488 - not test
 
 Failing Test Cases:
 
@@ -79,3 +80,5 @@ integer_1.488 - Invalid integer above Machine.MAX_INTEGER = 32768
 integer_2.488 - Integer overflow
 proc_1.488 - Stack overflow by infinite recursion
 string_1.488 - Invalid string exceeding memory limit
+S37.488 - Access undefined scalar variable
+S38.488 - Access undefined array variable
