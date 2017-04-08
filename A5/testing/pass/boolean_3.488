@@ -1,0 +1,8 @@
+% Test not expression
+{
+    var k : Boolean
+    k := true
+    
+    if not k then write "fail"
+    else write "pass"
+}

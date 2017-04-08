@@ -2,7 +2,7 @@
 {
     function func1 : Integer {
         %%%%% procedure with parameters
-        procedure proc1 (a : Integer, b : Boolean) {
+        procedure proc1 (a : Integer, b : Integer) {
             var c : Boolean
             var d, e : Integer
             d := a - b
@@ -21,5 +21,5 @@
 
     var a : Integer
     a := func1
-    write "test passed"
+    write a, " test passed"
 }

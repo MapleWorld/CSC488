@@ -13,10 +13,11 @@
                         var f : Integer
                         f := 1
                         write c
+                        return with false
                     }
                     return with true
                 }
-                a := func2(1, 2)
+                a := func2(1, true)
                 write "proc2 passed", newline
                 return
             }
@@ -28,7 +29,7 @@
             write "proc1 passed", newline
             return
         }
-        proc1(1, 2)
+        proc1(1, true)
         write "func1 passed", newline
         return with 1
      }

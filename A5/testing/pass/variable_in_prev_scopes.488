@@ -1,0 +1,9 @@
+% Referring variables in previous scope
+{
+        var x : Integer
+        {
+                x := 1
+        }
+
+        write x
+}

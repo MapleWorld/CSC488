@@ -76,7 +76,8 @@
     }
 
     % While-loop not in scope
-    while true do write "hi"
+    i := 0
+    while i = 0 do i := 1
 
     % Repeat not in scope
     repeat i := 1 until i = 1

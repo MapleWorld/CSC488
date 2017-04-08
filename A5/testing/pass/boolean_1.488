@@ -1,0 +1,8 @@
+% Test and expression
+{
+    var k : Boolean
+    k := true
+    
+    if k and false then write "fail"
+    else write "pass"
+}
