@@ -1,8 +1,0 @@
-{
-     var a : Integer
-     var b : Boolean
-
-     % S23 return type of expn inside bracket
-     a := (true)
-     b := (1 + 2)
-}

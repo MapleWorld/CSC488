@@ -1,0 +1,6 @@
+% Single array exceeding declaration size 
+% Execution Error -  DUPN stack overflow.
+{
+    var x[100000] : Integer
+    x[100000] := 5
+}

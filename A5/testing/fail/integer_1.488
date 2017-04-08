@@ -1,0 +1,7 @@
+% Invalid integer above Machine.MAX_INTEGER = 32768
+% Execution Error - Attempt to LOAD undefined value.
+{
+    var x : Integer
+    x := 32768
+    write x
+}

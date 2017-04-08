@@ -1,6 +1,0 @@
-{
-     %write with non int
-     var a : Boolean
-     a := true
-     write (a and true), newline, "abc"
-}

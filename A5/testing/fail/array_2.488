@@ -1,0 +1,8 @@
+% Multi Array exceeding declaration size 
+% Execution Error -  DUPN stack overflow.
+{
+    var x[-1000..10000] : Integer
+    var y[-1000..10000] : Boolean
+    x[1] := true
+    y[1] := true
+}

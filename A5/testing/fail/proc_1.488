@@ -1,0 +1,11 @@
+% Stack overflow by infinite recursion
+% Execution Error -  Run stack overflow.
+% Procedure with no param but return empty test
+{
+    procedure blarb {
+        write "test"
+        blarb
+        return
+    }
+    blarb
+}

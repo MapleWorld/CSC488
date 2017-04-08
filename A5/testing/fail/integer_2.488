@@ -1,0 +1,7 @@
+% Integer overflow
+% Execution Error -  MUL operator overflow or underflow
+
+{
+    var x : Integer
+    x := 10000 * 4
+}

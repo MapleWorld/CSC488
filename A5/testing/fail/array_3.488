@@ -1,0 +1,6 @@
+% Array invalid assignment index
+% Execution Error -  STORE address out of range.
+{
+    var x[1] : Integer
+    x[100000] := 1
+}

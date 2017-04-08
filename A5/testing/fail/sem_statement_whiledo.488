@@ -1,4 +1,0 @@
-% Incorrect while loop condition statement
-{
-    while 5 do write "wow"
-}

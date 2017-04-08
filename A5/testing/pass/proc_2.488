@@ -3,5 +3,6 @@
     procedure blarb {
         return
     }
+    blarb
     write "blah"
 }

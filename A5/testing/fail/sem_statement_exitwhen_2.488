@@ -1,6 +1,0 @@
-{
-    % incorrect containing scope
-   if true then {
-      exit when true
-   }
-}
