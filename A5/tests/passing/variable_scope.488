@@ -1,3 +1,4 @@
+% Variables scope declaration test
 {
     % test identifier inside another scope could be re-declared
     function b (c : Integer, d : Boolean) : Integer {

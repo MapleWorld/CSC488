@@ -1,4 +1,4 @@
-% Variable declaration 
+% Variable declaration test
 {
     %single boolean
     var b : Boolean

@@ -1,4 +1,4 @@
-% S39 Check identifier has been declared as a parameter
+% S39 Check identifier has been declared as a parameter (to verify the correctness of the symbol table)
 {
     var a : Integer
     var b : Boolean

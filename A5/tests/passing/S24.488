@@ -1,4 +1,4 @@
-% S24 Set result type to type of conditional expressions
+% S24 Set result type to type of conditional expressions (to verify the correctness of the symbol table)
 {
     var a : Integer
     var b : Boolean

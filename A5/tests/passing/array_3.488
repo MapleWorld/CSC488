@@ -1,4 +1,4 @@
-% Basic variable declaration
+% Basic array variable declaration
 {
     var a : Integer
     var b : Boolean

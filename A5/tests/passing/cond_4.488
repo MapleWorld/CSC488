@@ -1,5 +1,4 @@
-% Conditional Expression
-% >=
+% Conditional Expression >= test
 {
     var b : Boolean
 

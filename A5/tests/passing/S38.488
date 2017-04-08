@@ -1,4 +1,4 @@
-% S38 Check that identifier has been declared as an array
+% S38 Check that identifier has been declared as an array (to verify the correctness of the symbol table)
 {
     var a[1] : Integer
     var b[1] : Boolean

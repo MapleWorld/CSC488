@@ -1,3 +1,4 @@
+% Read write integer test
 {
 
     var a, b, c, d : Integer

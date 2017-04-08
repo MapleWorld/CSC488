@@ -1,4 +1,4 @@
-% While loop statement exit on condition
+% While loop statement exit on condition test
 {
     var a : Boolean
     a := true

@@ -1,4 +1,4 @@
-% loop statement exit on integer
+% Loop statement exit on integer test
 {
     while true do {
         write "while1", newline

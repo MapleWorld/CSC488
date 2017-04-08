@@ -1,3 +1,4 @@
+% Read write boolean test
 {
 
     var a, b, c, d : Boolean

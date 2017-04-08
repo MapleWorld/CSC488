@@ -1,4 +1,4 @@
-% loop statement exit int on condition
+% Loop statement exit int on condition test
 {
     var a : Boolean
     a := true

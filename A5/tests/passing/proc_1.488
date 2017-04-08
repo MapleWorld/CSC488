@@ -1,3 +1,4 @@
+% Procedure with params test
 {
     %%%%% procedure with parameters
     procedure procedure_with_params(param1 : Integer, param2 : Integer) {

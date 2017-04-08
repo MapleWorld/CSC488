@@ -1,4 +1,4 @@
-% Arithmetic expression precedence of Operators
+% Arithmetic expression precedence of Operators test
 {
     var x, y : Integer
     x := 1 * 2 - 3 * 4              % Result 10

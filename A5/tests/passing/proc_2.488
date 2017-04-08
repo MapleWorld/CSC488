@@ -1,4 +1,4 @@
-% Procedure with no param but return empty
+% Procedure with no param but return empty test
 {
     procedure blarb {
         return

@@ -1,3 +1,4 @@
+% Read multiple integer test
 {
     var i : Integer
     var j : Integer

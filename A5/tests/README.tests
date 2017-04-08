@@ -7,31 +7,64 @@ A1b.488 - From assignment 1, a program using arrays including all forms of array
 A1c.488 - From assignment 1, a program using all forms of loop building and loop exit constructs.
 A1d.488 - From assignment 1, a program using non-recursive functions and procedures with and without parameters.
 A1e.488 - From assignment 1, a program using recursive functions and procedures with and without parameters.
-
-nested_routine_decl.488 - nested procedure and function 
-nested_scopes.488 - nested scopes
-variable_scope.488 - Identifier re-declaration in nested scope
-program_0.488 - Basic empty scope test
-program_1.488 - Single statment
-program_2.488 - Single variable declaration
-program_3.488 - Multiple variables declaration
-program_4.488 - Variable re-assignment
-program_6.488 - Single procedure with params
-program_8.488 - Various valid if-statements
-program_9.488 - Various valid if-statements with no indent
-program_10.488 - Various array declaration with bound
-program_11.488 - Write statment with multiple newlines
-program_12.488 - Single variable read statement
-program_13.488 - Mutiple variables read statement
-program_14.488 - Recursive function with mutiple read and write.
-program_15.488 - Various valid loops
-sem_statement_exit.488 - exit statement
-sem_statement_exitinteger.488 - exit on integer
-sem_statement_exitwhen.488 - exit on condition
-sem_statement_exitintegerwhen.488 - exit on integer on condition
-sem_statement_return.488 - Procedure with no param but return empty
-sem_statement_returnwith.488 - Function with return type integer
-sem_statement_variable.488 - Basic variable declaration
+arithmetic_1.488 - Basic arithmetic opertors test
+arithmetic_2.488 - Basic arithmetic opertors test on multiple variables
+arithmetic_3.488 - Arithmetic expression precedence of Operators test
+arithmetic_4.488 - Arithmetic expression precedence of Operators test
+array_1.488 - Basic array test
+array_2.488 - Various array declaration with bound
+array_3.488 - Basic array variable declaration
+cond_1.488 - Conditional Expression > test
+cond_2.488 - Conditional Expression < test
+cond_3.488 - Conditional Expression >= test
+cond_4.488 - Conditional Expression >= test
+cond_5.488 - Conditional Expression <= test
+cond_6.488 - Conditional Expression <= test
+cond_7.488 - Conditional Expression >= AND test
+decl_1.488 - Variable declaration test
+decl_2.488 - Basic declaration and assignment test
+decl_3.488 - Declaration, assignment, nad re-assignment test
+eq_1.488 - Eqaulity Test
+eq_2.488 - Inequality Test
+eq_3.488 - Inequality Test
+eq_4.488 - Inequality Test
+eq_5.488 - Inequality Test
+function_1.488 - Function with params and return test
+function_2.488 - Function call with no param test
+function_3.488 - Function with param with return test
+function_4.488 - Recursively function with mutiple read and write test
+function_5.488 - Function with and without params and return with and no return test
+if_1.488 - Basic if test
+if_2.488 - Basic if else test
+if_3.488 - Various valid if-else-statements test
+if_4.488 - Various valid if-statements mixing braces test
+neg_1.488 - Negative integer test
+negate_self.488 - Negative integer read and write test
+nested_1.488 - Nested function and procedure test
+nested_2.488 - Nested function and procedure test
+nested_scopes.488 - Nested scope test
+proc_1.488 - Procedure with params test
+proc_2.488 - Procedure with no param but return empty test
+read_1.488 - Read integer test
+read_2.488 - Read multiple integer test
+read_3.488 - Single variable read statement test
+read_4.488 - Mutiple variables read statement test
+read_write_1.488 - Read write boolean test
+read_write_2.488 - Read write integer test
+repeat_0.488 - Repeat loop statement exit
+repeat_1.488 - Repeat loop statement exit
+repeat_2.488 - Read repeat exit test
+repeat_3.488 - Read repeat until test
+variable_scope.488 - Variables scope declaration test
+while_1.488 - Various valid loops test
+while_2.488 - Loop statement exit on integer test
+while_3.488 - Loop statement exit int on condition test
+while_4.488 - While loop statement exit on condition test
+while_5.488 - Read while do test
+while_6.488 - Read while exit test
+while_repeat_1.488 - While repeat exit test
+write_1.488 - Write statment with multiple newlines
+write_2.488 - Write function return value test
 S24.488 - S24 Set result type to type of conditional expressions (to verify the correctness of the symbol table)
 S37.488 - S37 Check that identifier has been declared as a scalar variable (to verify the correctness of the symbol table)
 S38.488 - S38 Check that identifier has been declared as an array (to verify the correctness of the symbol table)

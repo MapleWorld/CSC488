@@ -1,4 +1,4 @@
-% Mutiple variables read statement
+% Mutiple variables read statement test
 {
     var m, n : Integer
     read m, n

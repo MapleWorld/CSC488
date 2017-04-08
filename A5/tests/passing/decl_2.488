@@ -1,4 +1,4 @@
-% Basic declaration test
+% Basic declaration and assignment test
 {
     var a : Integer
     var b : Boolean

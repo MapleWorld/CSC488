@@ -1,4 +1,4 @@
-% Function nested test
+% Nested function and procedure test
 {
     function func1 : Integer {
         %%%%% procedure with parameters

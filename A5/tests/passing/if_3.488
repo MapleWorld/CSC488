@@ -1,5 +1,22 @@
-% Simple if statement
+% Various valid if-else-statements test
 {
-    if true then
-        write 5
+    if true
+    then write "hi"
+    
+    if true then {
+       write "hi"
+    } else {
+       write "hi"
+    }
+
+    if true then {
+        if false then 
+            write "hi"
+    } else {
+        if false then {
+            write "hi"
+        } else 
+            write "ok"
+    }
+    % hihi
 }

@@ -1,4 +1,4 @@
-% Basic arithmetic test
+% Basic arithmetic opertors test
 {
     var a, b, c, d : Integer
     a := 1 + 1      

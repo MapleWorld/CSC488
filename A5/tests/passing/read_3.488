@@ -1,4 +1,4 @@
-% Single variable read statement
+% Single variable read statement test
 {
     var m, n : Integer
     read m

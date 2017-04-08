@@ -1,4 +1,4 @@
-% Re-assignment test
+% Declaration, assignment, nad re-assignment test
 {
     var x, y : Integer
 

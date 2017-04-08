@@ -1,25 +1,10 @@
-% Function return with and no return test
+% Function call with no param test
 {
-    var a: Boolean
-    var x : Boolean
-    var y : Boolean
-    var b: Integer
-    var c: Integer
-
-    function function_with_boolean(param1: Boolean) : Boolean {
-        if param1 then return with false else return with true
+    var i : Integer
+    function add_one : Integer {
+        return with 1
     }
 
-    %%%%% function without parameters
-    function function_without_params : Boolean {
-        write "function without params", newline 
-        return with true
-    }
-
-    a := true
-    x := function_with_boolean(a) % should be false
-    if not x then write "x false", newline 
-
-    y := function_without_params % should be true
-    if y then write "y true"
+    i := add_one
+    write i             % 1
 }

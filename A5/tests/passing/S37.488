@@ -1,4 +1,4 @@
-% S37 Check that identifier has been declared as a scalar variable
+% 37 Check that identifier has been declared as a scalar variable (to verify the correctness of the symbol table)
 {
     var a : Integer
     write a

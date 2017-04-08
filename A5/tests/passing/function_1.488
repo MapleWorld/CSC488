@@ -1,4 +1,4 @@
-% Function return test
+% Function with params and return test
 {
     var a : Integer
 
