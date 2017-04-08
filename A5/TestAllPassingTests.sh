@@ -3,10 +3,10 @@ echo ""
 echo "# Testing Passing Tests #"
 echo ""
 
-for i in `ls tests/pass/`
+for i in `ls testing/pass/`
 do
     echo "Testing: $i"
-    ./RUNCOMPILER.sh "tests/pass/$i"
+    ./RUNCOMPILER.sh "testing/pass/$i"
     echo "TEST DONE"
     echo ""
 done 
