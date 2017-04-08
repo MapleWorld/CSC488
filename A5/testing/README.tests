@@ -1,4 +1,8 @@
-All tests are used to verify the correctness of the semantics (especially the failing tests) and the AST generation.
+Testing process that our team used:
+
+We did test-driven development - some tests were written each time before implementing a feature. 
+More tests were added after everything was done.
+
 
 Passing Test Cases:
 
@@ -7,6 +11,10 @@ A1b.488 - From assignment 1, a program using arrays including all forms of array
 A1c.488 - From assignment 1, a program using all forms of loop building and loop exit constructs.
 A1d.488 - From assignment 1, a program using non-recursive functions and procedures with and without parameters.
 A1e.488 - From assignment 1, a program using recursive functions and procedures with and without parameters.
+S24.488 - S24 Set result type to type of conditional expressions (to verify the correctness of the symbol table)
+S39.488 - S39 Check identifier has been declared as a parameter (to verify the correctness of the symbol table)
+
+(tests below are new tests)
 arithmetic_1.488 - Basic arithmetic opertors test
 arithmetic_2.488 - Basic arithmetic opertors test on multiple variables
 arithmetic_3.488 - Arithmetic expression precedence of Operators test
@@ -64,12 +72,11 @@ while_6.488 - Read while exit test
 while_repeat_1.488 - While repeat exit test
 write_1.488 - Write statment with multiple newlines
 write_2.488 - Write function return value test
-S24.488 - S24 Set result type to type of conditional expressions (to verify the correctness of the symbol table)
-S39.488 - S39 Check identifier has been declared as a parameter (to verify the correctness of the symbol table)
 variable_in_prev_scopes.488 - Use variable declared in previous scopes
 boolean_1.488 - and test
 boolean_2.488 - or test
 boolean_3.488 - not test
+
 
 Failing Test Cases:
 
