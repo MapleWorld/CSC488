@@ -1,8 +1,9 @@
+% Basic array test
 {
     % todo: upper bound + lower bounds, expressions in index, negative indexes, bounds checking
 
     var simple[-5..5] : Integer
 
     simple[-3] := 1
-    write simple[-3]
+    write simple[-3]            % 1
 }

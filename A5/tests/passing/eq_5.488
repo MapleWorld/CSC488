@@ -1,0 +1,15 @@
+% Inequality Test
+{
+    var a, b, c : Boolean
+
+    a := -1 = -1        % Result true
+    b := 0 not= 1       % Result true
+    c := a and b        % Result true
+
+    % Result true
+    if c then
+        write "true"
+    else
+        write "false"
+
+}

@@ -1,0 +1,14 @@
+% Repeat loop statement exit
+{
+    repeat {
+        repeat {
+            repeat {
+                write "hi1", newline
+                exit 1
+            } until true
+            write "hi2", newline
+        } until true
+        write "hi3", newline
+    } until true
+
+}

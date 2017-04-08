@@ -1,6 +1,7 @@
+% Basic if else test
 {
     if not false then {
-        write "true"
+        write "true "
     }
     else {
         write "false"

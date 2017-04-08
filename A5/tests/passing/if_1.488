@@ -1,6 +1,7 @@
+% Basic if test
 {
     if true then
-        write "passed"
+        write "passed "
 
     write "done"
 }

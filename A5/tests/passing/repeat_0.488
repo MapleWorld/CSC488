@@ -1,0 +1,13 @@
+% Repeat loop statement exit
+{
+    var i : Integer
+    i := 0
+    repeat {
+        write i
+        write ", "
+        i := i + 1
+        exit when i > 25
+
+    } until false
+    % hihi3
+}

@@ -1,6 +1,7 @@
+% Negative integer test
 {
     var i : Integer
     i := -5
 
-    write i
+    write i             % -5
 }

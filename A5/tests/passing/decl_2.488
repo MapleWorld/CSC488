@@ -1,7 +1,8 @@
+% Basic declaration test
 {
     var a : Integer
     var b : Boolean
     a := 5
     b := true
-    write a
+    write a         % 5
 }

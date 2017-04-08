@@ -1,4 +1,4 @@
-% Re-assignment
+% Re-assignment test
 {
     var x, y : Integer
 
@@ -10,7 +10,7 @@
     y := 10
     y := 11
 
-    write x
-    write y
+    write x     % 9
+    write y     % 11
 
 }

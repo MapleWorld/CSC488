@@ -1,11 +1,10 @@
 % Various array declaration with bound
 {
     var simple[1] : Integer
-    var longer[32767] : Integer
+    var longer[8000] : Integer
     var sequential[1..5] : Boolean
     var negatives[-100..-9] : Boolean
     var negative_and_positive[-5..5] : Integer
-    var largest[-32767..32767] : Integer
 
     %Every program must have at least one statement
     write "passed"

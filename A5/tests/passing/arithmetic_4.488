@@ -3,5 +3,5 @@
     var x, y : Integer
     x := 1 * 2 - 3 * 4              % Result 10
     y := (1 * 2) - (3 * 4)          % Result 10
-    write x, y
+    write x, y                      % 1010
 }

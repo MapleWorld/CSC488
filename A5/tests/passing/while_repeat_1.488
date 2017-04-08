@@ -1,0 +1,9 @@
+% While repeat exit test
+{
+    while true do {
+        repeat {
+            exit 2
+        } until true
+    }
+    write "test passed"
+}

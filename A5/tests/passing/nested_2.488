@@ -1,0 +1,39 @@
+% Function nested test
+{
+    function func1 : Integer {
+        procedure proc1 (c : Integer, d : Boolean) {
+            var a : Boolean
+            procedure proc2 {
+                function func2 (k : Integer, g : Boolean) : Boolean {
+                    var c : Integer
+                    c := 1
+                    if (c = 1) then {
+                        write "func2 passed", newline
+                    } else {
+                        var f : Integer
+                        f := 1
+                        write c
+                    }
+                    return with true
+                }
+                a := func2(1, 2)
+                write "proc2 passed", newline
+                return
+            }
+            a := true
+            if a then
+                proc2
+            else
+                write "failed to call proc2", newline
+            write "proc1 passed", newline
+            return
+        }
+        proc1(1, 2)
+        write "func1 passed", newline
+        return with 1
+     }
+
+    var a : Integer
+    a := func1
+    write "test passed"
+}

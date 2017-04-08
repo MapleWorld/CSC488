@@ -1,0 +1,44 @@
+% loop statement exit int on condition
+{
+    var a : Boolean
+    a := true
+
+    write "while1", newline
+    while true do {
+        a := false
+        exit 1 when a = false
+    }
+    
+    write "while2", newline
+    while true do {
+        a := false
+        exit 1 when a = false
+    }
+    
+    write "repeat1", newline
+    repeat exit 1 until true
+
+    write "repeat2", newline
+    repeat {
+       exit 1 when false
+    } until true
+
+    write "while3", newline
+    while true do {
+       while true do {
+            repeat {
+                write "yolo", newline
+                repeat {
+                    exit 4 when a = false 
+                } until true
+            } until true
+        }
+    }
+
+    write "repeat3", newline
+    repeat {
+        while true do {
+              exit 2 when true
+        }
+    } until false 
+}   

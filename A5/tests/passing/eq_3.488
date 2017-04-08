@@ -1,0 +1,12 @@
+% Inequality Test
+{
+    var b : Boolean
+
+    b := not 0 not= 0      % Result true
+
+    if b then
+        write "true"
+    else
+        write "false"
+
+}

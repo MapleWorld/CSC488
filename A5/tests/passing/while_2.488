@@ -1,0 +1,20 @@
+% loop statement exit on integer
+{
+    while true do {
+        write "while1", newline
+        exit 1
+    }
+
+    write "while2", newline
+    while true do exit 1
+
+    write "while3", newline
+    while true do exit 1
+        repeat {
+            write "repeat1", newline
+            repeat {
+                write"repeat2", newline
+                exit 1
+            } until true
+        } until true
+}

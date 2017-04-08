@@ -1,0 +1,25 @@
+% Function nested test
+{
+    function func1 : Integer {
+        %%%%% procedure with parameters
+        procedure proc1 (a : Integer, b : Boolean) {
+            var c : Boolean
+            var d, e : Integer
+            d := a - b
+            e := a + b
+            c := d < e          % Result true
+            if c then
+                write "proc1 passed", newline
+            else
+                write "proc1 failed", newline
+            return 
+        }
+        proc1(1, 2)
+        write "func1 passed", newline
+        return with 1
+    }
+
+    var a : Integer
+    a := func1
+    write "test passed"
+}

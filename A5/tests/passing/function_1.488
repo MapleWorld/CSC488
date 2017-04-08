@@ -1,3 +1,4 @@
+% Function return test
 {
     var a : Integer
 
@@ -7,5 +8,5 @@
     }
 
     a := function_with_params(-5, 5)
-    write a
+    write a             % 0
 }

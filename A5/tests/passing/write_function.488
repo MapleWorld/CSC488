@@ -1,9 +1,0 @@
-{
-
-    function function_with_params(param1 : Integer, param2 : Integer) : Integer {
-        return with param1 + param2
-    }
-
-    write function_with_params(0, 5)
-
-}

@@ -1,0 +1,11 @@
+{
+
+    var a, b, c, d : Boolean
+
+    read a
+    read c
+    read b, c
+    
+    write (a and c) and b or c
+    
+}

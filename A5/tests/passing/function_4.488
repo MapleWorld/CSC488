@@ -1,4 +1,4 @@
-% Recursively function with mutiple read and write
+% Recursively function with mutiple read and write test
 {
     var a : Integer
     var b : Boolean

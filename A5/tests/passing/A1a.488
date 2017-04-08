@@ -119,22 +119,22 @@
 
     % Conditional Expression
     % < >
-    b := ( 1 > 2 ? false : true )               % Result false
-    b := ( 1 > -2 ? false : true )              % Result true
-    b := ( 1 > (-2) ? false : true )            % Result true
-    b := ( 1 < 2 ? false : true )               % Result true
-    b := ( -1 < 2 ? false : true )              % Result true
-    b := ( (-1) < 2 ? false : true )            % Result true
+    b := ( 1 > 2 ? true : false )               % Result false
+    b := ( 1 > -2 ? true : false )              % Result true
+    b := ( 1 > (-2) ? true : false )            % Result true
+    b := ( 1 < 2 ? true : false )               % Result true
+    b := ( -1 < 2 ? true : false )              % Result true
+    b := ( (-1) < 2 ? true : false )            % Result true
 
     % < > =
-    b := ( 1 >= 1 ? false : true )              % Result true
-    b := ( -1 >= -1 ? false : true )            % Result true
-    b := ( (-1) >= (-1) ? false : true )        % Result true
-    b := ( 1 <= 1 ? false : true )              % Result true
-    b := ( -1 <= -1 ? false : true )            % Result true
-    b := ( (-1) <= (-1) ? false : true )        % Result true
+    b := ( 1 >= 1 ? true : false )              % Result true
+    b := ( -1 >= -1 ? true : false )            % Result true
+    b := ( (-1) >= (-1) ? true : false )        % Result true
+    b := ( 1 <= 1 ? true : false )              % Result true
+    b := ( -1 <= -1 ? true : false )            % Result true
+    b := ( (-1) <= (-1) ? true : false )        % Result true
 
-    b := ( 1 >= 1 ? false : true ) and ( 1 >= 1 ? false : true )  % Result true
+    b := ( 1 >= 1 ? true : false ) and ( 1 >= 1 ? true : false )  % Result true
 
     % Precedence of Operators %
     b := false or true and false               % Result false

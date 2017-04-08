@@ -1,8 +1,10 @@
-% various valid if-statements
+% Various valid if-statements tset
 {
     var a, b : Integer
+
     a := 1
     b := 2
+    
     if a = b
     then if b = 2
     then b := 3
@@ -23,4 +25,5 @@
         then a := 2
         else a := 1
     }
+    write a,b       % 12
 }

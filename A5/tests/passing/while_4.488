@@ -1,0 +1,9 @@
+% While loop statement exit on condition
+{
+    var a : Boolean
+    a := true
+    while true do {
+        a := false
+        exit when a = false
+    }
+}   

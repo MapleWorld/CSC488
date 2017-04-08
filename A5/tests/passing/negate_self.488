@@ -1,8 +1,7 @@
+% Negative integer read and write test
 {
-
     var i : Integer
     
     read i
     write -i
-    
 }

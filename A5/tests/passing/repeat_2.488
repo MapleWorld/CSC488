@@ -1,0 +1,12 @@
+% Read repeat exit test
+{
+    var a: Integer
+
+    read a
+    repeat {
+        write a
+        write ", "
+        a := a + 1
+        exit when a > 25
+    } until false
+}

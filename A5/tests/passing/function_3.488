@@ -1,7 +1,7 @@
+% Function with param with return test
 {
 
     var a: Integer
-
 
     %%%%% recursive function with parameters
     % returns true iff sum + 1 + 2 + ... + n is over 5 and is_valid  
@@ -15,6 +15,6 @@
     }
 
     a := rec_function_with_param(5)
-    write a
+    write a                             % 15
 
 }

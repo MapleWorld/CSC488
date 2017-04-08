@@ -1,9 +1,9 @@
 % Conditional Expression
-% >
+% >= AND
 {
     var b : Boolean
 
-    b := ( 1 > -2 ? true : false )              % Result true
+    b := ( 1 >= 1 ? true : false ) and ( 1 >= 1 ? true : false )  % Result true
 
     if b then write "true" else write "false"
 }

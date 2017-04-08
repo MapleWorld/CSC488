@@ -1,8 +1,9 @@
+% Basic arithmetic test
 {
     var a, b, c, d : Integer
-    a := 1 + 1
+    a := 1 + 1      
     b := 2 - 1
     c := 3 * 1
     d := 10 / 5
-    write a, b, c, d
+    write a, b, c, d        % 2132
 }
